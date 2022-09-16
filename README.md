@@ -4,19 +4,21 @@ A website application reservation system for the BSTM and BSHM students of Phili
 
 <br>
 
->Credits:
-> 
+>**Credits:**
+>
+>
+>
 >Stellar by HTML5 UP
 >
->Demo Images:<br>
->Unsplash (unsplash.com)
+>Demo Images:
+>- Unsplash (unsplash.com)
 >
->Icons:<br>
->Font Awesome (fontawesome.io)
+>Icons:
+>- Font Awesome (fontawesome.io)
 >
->Other:<br>
->jQuery (jquery.com)<br>
->Scrollex (github.com/ajlkn/jquery.scrollex)<br>
->Responsive Tools (github.com/ajlkn/responsive-tools)
+>Other:
+>- jQuery (jquery.com)<br>
+>- Scrollex (github.com/ajlkn/jquery.scrollex)<br>
+>- Responsive Tools (github.com/ajlkn/responsive-tools)
 >
-> Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+>*Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)*

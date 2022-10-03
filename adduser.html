@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>PARS - User Management</title>
+		<title>PARS - User Information</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -20,7 +20,7 @@
 				<!-- Header -->
 					<header id="header">
 						<h1>P.A.R.S.</h1>
-						<p>User Management</p>
+						<p>User Information</p>
 					</header>
 
 				<!-- Main -->
@@ -29,84 +29,58 @@
 						<!-- Content -->
 							<section id="content" class="main">
 
-								<!-- Table -->
+								<!-- Text -->
+								<!-- Form -->
 									<section>
-										<h3>Users</h3>
-										<div class="table-wrapper">
-											<table class="alt">
-												<thead>
-													<tr>
-														<th>Name</th>
-														<th>Username</th>
-														<th>Action</th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr>
-														<td>Name One</td>
-														<td>username</td>
-														<td>
-															<a href="#" class="button primary small">Edit</a>
-															
-														</td>
+										<h2>Users</h2>
+										<form method="post" action="#">
+											<div class="row gtr-uniform">
+												<div class="col-4 col-12-xsmall">
+													<h2>First Name</h2>
+													<input type="text" name="userFirstName" id="userFirstName" value="" placeholder="First Name" />
+												</div>
+												<div class="col-4 col-12-xsmall">	
+													<h2>Middle Name</h2>
+													<input type="text" name="userMiddleName" id="userMiddleName" value="" placeholder="Middle Name" />
+												</div>
+												<div class="col-4 col-12-xsmall">
+													<h2>Last Name</h2>
+													<input type="text" name="userLastName" id="userLastName" value="" placeholder="Last Name" />
+												
+												</div>
+												
+												<div class="col-6">
+													<h2>User</h2>
+													<select name="userType" id="userType"  >
+														<option value="">User Type</option>
+														<option value="1">User</option>
+														<option value="2">Administrator</option>
 														
-													</tr>
-													<tr>
-														<td>Name Two</td>
-														<td>username</td>
-														<td>
-															
-															<a href="#" class="button primary small">Edit</a>
-															
-														</td>
-														
-													</tr>
-													<tr>
-														<td>Name Three</td>
-														<td>username</td>
-														<td>
-															<a href="#" class="button primary small">Edit</a>
-															
-														</td>
-														
-													</tr>
-													<tr>
-														<td>Name Four</td>
-														<td>username</td>
-														<td>
-															<a href="#" class="button primary small">Edit</a>
-															
-														</td>
-														
-													</tr>
-													<tr>
-														<td>Name Five</td>
-														<td>username</td>
-														<td>
-															<a href="#" class="button primary small">Edit</a>
-															
-														</td>
-														
-													</tr>
-													
-												</tbody>
+													</select>
+												</div>
+
 												
 												
-											</table>
-											<div class="col-12">
+												<div class="col-12">
 													<ul class="actions">
-														<li><input type="submit" value="Add User" class="primary" /></li>
+														<li><input type="submit" value="Submit" class="primary" /></li>
 														
 													</ul>
 												</div>
-										</div>
-									</section>
+
+												
+												
+												
+											</div>
+										</form>
+									
+									
+										
+										
 
 								
 								
 								
-
-							</section>
 
 					</div>
 

@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>PARS - Client Information</title>
+		<title>Client Information - PARS</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -32,12 +32,11 @@
 								<!-- Text -->
 								<!-- Form -->
 									<section>
-										<h2>Users</h2>
 										<form method="post" action="#">
 											<div class="row gtr-uniform">
 												<div class="col-4 col-12-xsmall">
 													<h2>First Name</h2>
-													<input type="text" name="clientFirstName" id="clientFirstName" value="" placeholder="First Name" />
+													<input type="text" name="clientFirstName" id="clientFirstName" value="" placeholder="First Name" required/>
 												</div>
 												<div class="col-4 col-12-xsmall">	
 													<h2>Middle Name</h2>
@@ -45,14 +44,13 @@
 												</div>
 												<div class="col-4 col-12-xsmall">
 													<h2>Last Name</h2>
-													<input type="text" name="clientLastName" id="clientLastName" value="" placeholder="Last Name" />
+													<input type="text" name="clientLastName" id="clientLastName" value="" placeholder="Last Name" required/>
 												
 												</div>
 												
 												<div class="col-6">
 													<h2>Gender</h2>
-													<select name="clientGender" id="clientGender"  >
-														<option value="">Gender</option>
+													<select name="clientGender" id="clientGender">
 														<option value="1">Male</option>
 														<option value="2">Female</option>
 														
@@ -62,7 +60,7 @@
 												
 												<div class="col-6 col-12-xsmall">
 													<h2>Birthdate</h2>
-													<input type="text" name="clientBirthday" id="clientBirthday" value="" placeholder="MM/DD/YY" />
+													<input type="date" name="clientBirthday" id="clientBirthday" value="" placeholder="MM/DD/YY" />
 												</div>
 
 												
@@ -82,7 +80,7 @@
 												</div>
 												<div class="col-6 col-12-xsmall">
 													<h2>Nationality</h2>
-													<input type="text" name="clientNationality" id="clientNationality" value="" placeholder="Nationality" />
+													<input type="text" name="clientNationality" id="clientNationality" value="" placeholder="Nationality" required/>
 												</div>
 												<!-- Alternative Nationality -->
 												<!-- <div class="col-12">
@@ -108,10 +106,18 @@
 												</div>-->
 												<div class="col-6 col-12-xsmall">
 													<h2>Additional Passenger</h2>
+<<<<<<< HEAD
 													<input type="radio" id="demo-priority-yes" name="clientAddtnlinfo" value="passenger">
 													<label for="demo-priority-yes">Yes</label>	
 													<input type="radio" id="demo-priority-no" name="clientAddtnlinfo" value="client">
 													<label for="demo-priority-no">No</label>
+=======
+													<!--A radio group is defined by giving each of radio buttons in the group the same name. Once a radio group is established, selecting any radio button in that group automatically deselects any currently-selected radio button in the same group.-->
+													<input type="radio" id="passenger-yes" name="passenger" checked>
+													<label for="passenger-yes">Yes</label>	
+													<input type="radio" id="passenger-no" name="passenger" >
+													<label for="passenger-no">No</label>
+>>>>>>> 62ebe7751cb70e9564cc71d50e44a6451bdaf683
 												</div>
 
 												<div class="col-6 col-12-xsmall">
@@ -125,26 +131,18 @@
 														
 													</ul>
 												</div>
-
-												
-												
-												
 											</div>
 										</form>
-									
-									
-										
-										
-
-								
-								
-								
-
+									</section>
+							</section>
 					</div>
 
 				<!-- Footer -->
 					<footer id="footer">
+<<<<<<< HEAD
 						
+=======
+>>>>>>> 62ebe7751cb70e9564cc71d50e44a6451bdaf683
 						<p class="copyright">&copy; Philippine Cultural College. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
 					</footer>
 
@@ -173,8 +171,6 @@ if($connection->connect_error){
 	echo "Success";
 	$stmt->close();
 	$connection->close();
-
-
 }
 
 ?>

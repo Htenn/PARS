@@ -32,12 +32,11 @@
 								<!-- Text -->
 								<!-- Form -->
 									<section>
-										<h2>Users</h2>
 										<form method="post" action="#">
 											<div class="row gtr-uniform">
 												<div class="col-4 col-12-xsmall">
 													<h2>First Name</h2>
-													<input type="text" name="passengerFirstName" id="passengerFirstName" value="" placeholder="First Name" />
+													<input type="text" name="passengerFirstName" id="passengerFirstName" value="" placeholder="First Name" required/>
 												</div>
 												<div class="col-4 col-12-xsmall">	
 													<h2>Middle Name</h2>
@@ -45,13 +44,13 @@
 												</div>
 												<div class="col-4 col-12-xsmall">
 													<h2>Last Name</h2>
-													<input type="text" name="passengerLastName" id="passengerLastName" value="" placeholder="Last Name" />
+													<input type="text" name="passengerLastName" id="passengerLastName" value="" placeholder="Last Name" required/>
 												
 												</div>
 												
 												<div class="col-6">
 													<h2>Gender</h2>
-													<select name="passengerGender" id="passengerGender"  >
+													<select name="passengerGender" id="passengerGender" >
 														<option value="1">Male</option>
 														<option value="2">Female</option>
 														
@@ -61,7 +60,7 @@
 												
 												<div class="col-6 col-12-xsmall">
 													<h2>Birthdate</h2>
-													<input type="text" name="passengerBirthday" id="passengerBirthday" value="" placeholder="MM/DD/YY" />
+													<input type="date" name="passengerBirthday" id="passengerBirthday" value="" placeholder="MM/DD/YY" />
 												</div>
 
 												
@@ -81,7 +80,7 @@
 												</div>
 												<div class="col-6 col-12-xsmall">
 													<h2>Nationality</h2>
-													<input type="text" name="passengerNationality" id="passengerNationality" value="" placeholder="Nationality" />
+													<input type="text" name="passengerNationality" id="passengerNationality" value="" placeholder="Nationality" required/>
 												</div>
 
 												<!-- Alternative Nationality -->

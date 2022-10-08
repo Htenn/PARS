@@ -36,7 +36,7 @@
 											<div class="row gtr-uniform">
 												<div class="col-4 col-12-xsmall">
 													<h2>First Name</h2>
-													<input type="text" name="userFirstName" id="userFirstName" value="" placeholder="First Name" />
+													<input type="text" name="userFirstName" id="userFirstName" value="" placeholder="First Name" required/>
 												</div>
 												<div class="col-4 col-12-xsmall">	
 													<h2>Middle Name</h2>
@@ -44,20 +44,23 @@
 												</div>
 												<div class="col-4 col-12-xsmall">
 													<h2>Last Name</h2>
-													<input type="text" name="userLastName" id="userLastName" value="" placeholder="Last Name" />
-												
+													<input type="text" name="userLastName" id="userLastName" value="" placeholder="Last Name" required/>
 												</div>
-												
+												<div class="col-6 col-12-xsmall">
+													<h2>User ID</h2>
+													<input type="text" name="username" id="username" value="" placeholder="ID" required/>
+												</div>
+												<div class="col-6 col-12-xsmall">
+													<h2>Password</h2>
+													<input type="text" name="password" id="password" value="" placeholder="password" required/>
+												</div>
 												<div class="col-6">
 													<h2>Account Type</h2>
 													<select name="userType" id="userType"  >
 														<option value="1">User</option>
 														<option value="2">Administrator</option>
-														
 													</select>
 												</div>
-
-												
 												
 												<div class="col-12">
 													<ul class="actions">

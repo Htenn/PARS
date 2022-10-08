@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>Client Information - PARS</title>
+		<title>Edit Passenger Information - PARS</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -20,7 +20,7 @@
 				<!-- Header -->
 					<header id="header">
 						<h1>P.A.R.S.</h1>
-						<p>Client Information</p>
+						<p>Passenger Information</p>
 					</header>
 
 				<!-- Main -->
@@ -32,25 +32,25 @@
 								<!-- Text -->
 								<!-- Form -->
 									<section>
-										<form method="post" action="connectclient.php">
+										<form method="post" action="connectpassenger.php">
 											<div class="row gtr-uniform">
 												<div class="col-4 col-12-xsmall">
 													<h2>First Name</h2>
-													<input type="text" name="clientFirstName" id="clientFirstName" value="" placeholder="First Name" required/>
+													<input type="text" name="passengerFirstName" id="passengerFirstName" value="" placeholder="First Name" required/>
 												</div>
 												<div class="col-4 col-12-xsmall">	
 													<h2>Middle Name</h2>
-													<input type="text" name="clientMiddleName" id="clientMiddleName" value="" placeholder="Middle Name" />
+													<input type="text" name="passengerMiddleName" id="passengerMiddleName" value="" placeholder="Middle Name" />
 												</div>
 												<div class="col-4 col-12-xsmall">
 													<h2>Last Name</h2>
-													<input type="text" name="clientLastName" id="clientLastName" value="" placeholder="Last Name" required/>
+													<input type="text" name="passengerLastName" id="passengerLastName" value="" placeholder="Last Name" required/>
 												
 												</div>
 												
 												<div class="col-6">
 													<h2>Gender</h2>
-													<select name="clientGender" id="clientGender">
+													<select name="passengerGender" id="passengerGender">
 														<option value="1">Male</option>
 														<option value="2">Female</option>
 														
@@ -60,27 +60,27 @@
 												
 												<div class="col-6 col-12-xsmall">
 													<h2>Birthdate</h2>
-													<input type="date" name="clientBirthday" id="clientBirthday" value="" placeholder="MM/DD/YY" />
+													<input type="date" name="passengerBirthday" id="passengerBirthday" value="" placeholder="MM/DD/YY" />
 												</div>
 
 												
 												<div class="col-6 col-12-xsmall">
 													<h2>Age</h2>
-													<input type="text" name="clientAge" id="clientAge" value="" placeholder="Age" />
+													<input type="text" name="passengerAge" id="passengerAge" value="" placeholder="Age" />
 												</div>
 
 												<div class="col-6 col-12-xsmall">
 													<h2>Email</h2>
-													<input type="email" name="clientEmail" id="clientEmail" value="" placeholder="Email" />
+													<input type="email" name="passengerEmail" id="passengerEmail" value="" placeholder="Email" />
 												</div>
 
 												<div class="col-6 col-12-xsmall">
 													<h2>Contact Number</h2>
-													<input type="text" name="clientContactNum" id="clientContactNum" value="" placeholder="************" />
+													<input type="text" name="passengerContactNum" id="passengerContactNum" value="" placeholder="************" />
 												</div>
 												<div class="col-6 col-12-xsmall">
 													<h2>Nationality</h2>
-													<input type="text" name="clientNationality" id="clientNationality" value="" placeholder="Nationality" required/>
+													<input type="text" name="passengerNationality" id="passengerNationality" value="" placeholder="Nationality" required/>
 												</div>
 												<!-- Alternative Nationality -->
 												<!-- <div class="col-12">
@@ -104,23 +104,16 @@
 														<option value="1">Taiwanese</option>
 													</select>
 												</div>-->
-												<div class="col-6 col-12-xsmall">
-													<h2>Additional Passenger</h2>
-													<!--A radio group is defined by giving each of radio buttons in the group the same name. Once a radio group is established, selecting any radio button in that group automatically deselects any currently-selected radio button in the same group.-->
-													<input type="radio" id="passenger-yes" name="passenger" checked>
-													<label for="passenger-yes">Yes</label>	
-													<input type="radio" id="passenger-no" name="passenger" >
-													<label for="passenger-no">No</label>
-												</div>
+												
 
 												<div class="col-6 col-12-xsmall">
 													<h2>Remarks</h2>
-													<input type="text" name="clientRemarks" id="clientRemarks" value="" placeholder="Remarks" />
+													<input type="text" name="passengerRemarks" id="passengerRemarks" value="" placeholder="Remarks" />
 												</div>
 
 												<div class="col-12">
 													<ul class="actions">
-														<li><input type="submit" value="Submit" class="primary" /></li>
+														<li><input type="submit" value="Save" class="primary" /></li>
 														
 													</ul>
 												</div>

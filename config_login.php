@@ -22,7 +22,7 @@
             date_default_timezone_set('Asia/Manila'); //set timezone
             $date = date("Y-m-d");
             $time = date("H:i:s"); //set date and time for logging
-            $logQuery = "INSERT INTO user_sign_in_log VALUES '$userID', '$date', '$time'"; //log date and time to the database
+            $logQuery = "INSERT INTO user_sign_in_log VALUES ('$userID', '$date', '$time')"; //log date and time to the database
 
             //determine which menu to redirect based on the userType
             $field_user = mysqli_fetch_field($result_loginQuery);

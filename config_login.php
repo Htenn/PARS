@@ -15,7 +15,7 @@
         $loginQuery = "SELECT * FROM user WHERE userID = '$userID' AND password = '$password'";
         $result_loginQuery = mysqli_query($db, $loginQuery);
         if(mysqli_num_rows($result_loginQuery) == 1) {
-            $_SESSION['userID'] = $username;
+            $_SESSION['userID'] = $userID;
             $_SESSION['success'] = "You are now logged in"; //set session
 
             // for logging of user login

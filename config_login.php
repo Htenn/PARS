@@ -12,7 +12,7 @@
         $password = mysqli_real_escape_string($db, $_POST['password']);
 
         $password = md5($password); //encrypt
-        $loginQuery = "SELECT * FROM user WHERE userID = '$userID' and password = '$password'";
+        $loginQuery = "SELECT * FROM user WHERE userID = '$userID' AND password = '$password'";
         $result_loginQuery = mysqli_query($db, $loginQuery);
         if(mysqli_num_rows($result_loginQuery) == 1) {
             $_SESSION['userID'] = $username;

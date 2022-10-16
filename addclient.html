@@ -1,3 +1,4 @@
+
 <!DOCTYPE HTML>
 <!--
 	Stellar by HTML5 UP
@@ -32,7 +33,7 @@
 								<!-- Text -->
 								<!-- Form -->
 									<section>
-										<form method="post" action="connectclient.php">
+										<form method="post" action="add_client-config.php">
 											<div class="row gtr-uniform">
 												<div class="col-4 col-12-xsmall">
 													<h2>First Name</h2>
@@ -105,7 +106,19 @@
 													</select>
 												</div>-->
 												<div class="col-6 col-12-xsmall">
+													<h2>Passenger Type</h2>
+													<select name="clientType" id="clientType">
+														<option value="Normal">Normal</option>
+														<option value="Unaccompanied Minor">Unaccompanied Minor</option>
+														<option value="Handicapped">Handicapped</option>
+														<option value="Medically OK for travel">Medically OK for travel</option>
+														<option value="Senior Citizen">Senior Citizen</option>
+														
+													</select>
+												</div>
+												<div class="col-6 col-12-xsmall">
 													<h2>Additional Passenger</h2>
+													
 													<!--A radio group is defined by giving each of radio buttons in the group the same name. Once a radio group is established, selecting any radio button in that group automatically deselects any currently-selected radio button in the same group.-->
 													<input type="radio" id="passenger-yes" name="passenger" checked>
 													<label for="passenger-yes">Yes</label>	
@@ -120,7 +133,7 @@
 
 												<div class="col-12">
 													<ul class="actions">
-														<li><input type="submit" value="Submit" class="primary" /></li>
+														<li><input type="submit" value="Submit" name="add_client" class="primary" /></li>
 														
 													</ul>
 												</div>

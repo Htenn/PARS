@@ -16,7 +16,7 @@ $clientRemarks ="";
 
 $errors = array(); //  to collect errors
 // connect to the database
-$db = mysqli_connect('localhost', 'root', 'Fgs8%[EHwcdmupuv', 'id17946631_pars');
+$db = mysqli_connect('localhost', 'root', '', 'id17946631_pars');
 
 // REGISTER USER
 if (isset($_POST['add_client'])) { // add_client is the name of the button in the form

@@ -16,7 +16,7 @@ $passengerRemarks ="";
 
 $errors = array(); //  to collect errors
 // connect to the database
-$db = mysqli_connect('localhost', 'root', 'Fgs8%[EHwcdmupuv', 'id17946631_pars');
+$db = mysqli_connect('', '', '', '');
 
 // REGISTER USER
 if (isset($_POST['add_passenger'])) { // add_passenger is the name of the button in the form

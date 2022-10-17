@@ -31,6 +31,7 @@ $passengerEmail = mysqli_real_escape_string($db, $_POST['passengerEmail']);
 $passengerContactNum = mysqli_real_escape_string($db, $_POST['passengerContactNum']);
 $passengerNationality = mysqli_real_escape_string($db, $_POST['passengerNationality']);
 $passengerType = mysqli_real_escape_string($db, $_POST['passengerType']);
+$passengerRemarks = mysqli_real_escape_string($db, $_POST['passengerRemarks']);
 
 
 // first check the database to make sure

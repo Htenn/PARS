@@ -26,8 +26,8 @@
 				<!-- Nav -->
 					<nav id="nav">
 						<ul>
-							<li><a href="#intro" class="active">Client Information</a></li>
-							<li><a href="#first">Flight Destinations</a></li>
+							<li><a href="#intro" class="active">Client and Passenger List</a></li>
+							<li><a href="#first">Booking List</a></li>
 							<li><a href="#second">Flight seat</a></li>
 						</ul>
 					</nav>
@@ -40,12 +40,13 @@
 								<div class="spotlight">
 									<div class="content">
 										<header class="major">
-											<h2>Client Information</h2>
+											<h2>Clients and Passengers</h2>
 										</header>
 										<div class="table-wrapper">
 											<table class="alt">
 												<thead>
 													<tr>
+														<th>ID</th>
 														<th>FirstName</th>
 														<th>MiddleName</th>
 														<th>LastName</th>
@@ -59,7 +60,9 @@
 													</tr>
 												</thead>
 												<tbody>
+													<!--
 													<tr>
+														<td>ID</td>
 														<td>Jonas Anthony</td>
 														<td>Pagcanlungan</td>
 														<td>Napiza</td>
@@ -69,61 +72,49 @@
 														<td>napiza@gmail.com</td>
 														<td>09215984382</td>
 														<td>filipino</td>
-														<td><a href="#" class="button primary small">Edit</a></td>
+														<td><a href="#" class="button primary small">Edit</a></td>	
+													</tr>
+													-->
+
+													<?php
+														$db = mysqli_connect('','','','');
+														$clientQuery = mysqli_query($db, "SELECT * FROM client");
 														
-													</tr>
+														while($row = mysqli_fetch_array($clientQuery)) {
+															echo "<tr>";
+																echo "<td>" . $row['clientID'] . "</td>";
+																echo "<td>" . $row['clientFirstName'] . "</td>";
+																echo "<td>" . $row['clientMiddleName'] . "</td>";
+																echo "<td>" . $row['clientLastName'] . "</td>";
+																echo "<td>" . $row['clientGender'] . "</td>";
+																echo "<td>" . $row['clientBirthday'] . "</td>";
+																echo "<td>" . $row['clientAge'] . "</td>";
+																echo "<td>" . $row['clientEmail'] . "</td>";
+																echo "<td>" . $row['clientContactNum'] . "</td>";
+																echo "<td>" . $row['clientNationality'] . "</td>";
+															echo "</tr>";
+														}
 
-													<tr>
-														<td>Jonas Anthony</td>
-														<td>P.</td>
-														<td>Napiza</td>
-														<td>Male</td>
-														<td>21/3/00</td>
-														<td>22</td>
-														<td>napizajonas@gmail.com</td>
-														<td>09215984382</td>
-														<td>filipino</td>
-														<td><a href="#" class="button primary small">Edit</a></td>
-													</tr>
+														$passengerQuery = mysqli_query($db, "SELECT * FROM passenger");
+														while($row = mysqli_fetch_array($passengerQuery)) {
+															echo "<tr>";
+																echo "<td>" . $row['passengerID'] . "</td>";
+																echo "<td>" . $row['passengerFirstName'] . "</td>";
+																echo "<td>" . $row['passengerMiddleName'] . "</td>";
+																echo "<td>" . $row['passengerLastName'] . "</td>";
+																echo "<td>" . $row['passengerGender'] . "</td>";
+																echo "<td>" . $row['passengerBirthday'] . "</td>";
+																echo "<td>" . $row['passengerAge'] . "</td>";
+																echo "<td>" . $row['passengerEmail'] . "</td>";
+																echo "<td>" . $row['passengerContactNum'] . "</td>";
+																echo "<td>" . $row['passengerNationality'] . "</td>";
+															echo "</tr>";
+														}
 
-													<tr>
-														<td>Jonas Anthony</td>
-														<td>Pagcanlungan</td>
-														<td>Napiza</td>
-														<td>Male</td>
-														<td>21/3/00</td>
-														<td>22</td>
-														<td>napiza@gmail.com</td>
-														<td>09215984382</td>
-														<td>filipino</td>
-														<td><a href="#" class="button primary small">Edit</a></td>
-													</tr>
-
-													<tr>
-														<td>Jonas Anthony</td>
-														<td>Pagcanlungan</td>
-														<td>Napiza</td>
-														<td>Male</td>
-														<td>21/3/00</td>
-														<td>22</td>
-														<td>napiza@gmail.com</td>
-														<td>09215984382</td>
-														<td>filipino</td>
-														<td><a href="#" class="button primary small">Edit</a></td>
-													</tr>
-
-													<tr>
-														<td>Jonas Anthony</td>
-														<td>Pagcanlungan</td>
-														<td>Napiza</td>
-														<td>Male</td>
-														<td>21/3/00</td>
-														<td>22</td>
-														<td>napiza@gmail.com</td>
-														<td>09215984382</td>
-														<td>filipino</td>
-														<td><a href="#" class="button primary small">Edit</a></td>
-													</tr>
+														mysqli_free_result($clientQuery);
+														mysqli_free_result($passengerQuery);
+														mysqli_close($db);
+													?>
 
 												</tbody>
 											</table>
@@ -135,58 +126,41 @@
 						<!-- First Section -->
 							<section id="first" class="main special">
 								<header class="major">
-									<h2>Flight Destinations</h2>
+									<h2>Booking List</h2>
 								</header>
 								
 									<div class="table-wrapper">
 										<table class="alt">
 											<thead>
 												<tr>
+													<th>Booking ID</th>
+													<th>Flight Number</th>
+													<th>Client Name</th>
 													<th>Origin</th>
 													<th>Destination</th>
-													<th>Depart</th>
-													<th>Date arrive destination</th>
-													<th>Time arrive destination</th>
+													<th>Booked Seats</th>
 
 												</tr>
 											</thead>
 											<tbody>
-												<tr>
-													<td>Philippine</td>
-													<td>Japan</td>
-													<td>13:00</td>
-													<td>20/09/2022</td>
-													<td>20:00</td>
-													<td><a href="#" class="button primary small">Edit</a></td>
-												</tr>
+												
+												<?php
+													$db = mysqli_connect('','','','');
+													$bookingQuery = mysqli_query($db, "SELECT booking.clientID, booking.bookingID, booking.flightNumber, client.clientFirstName, client.clientMiddleName, client.clientLastName, booking.bookingOrigin, booking.bookingDestination, booking.bookingNumOfSeat FROM booking INNER JOIN client ON booking.clientID = client.clientID");
 
-												<tr>
-													<td>Philippine</td>
-													<td>Japan</td>
-													<td>13:00</td>
-													<td>20/09/2022</td>
-													<td>20:00</td>
-													<td><a href="#" class="button primary small">Edit</a></td>
-												</tr>
-
-												<tr>
-													<td>Philippine</td>
-													<td>Japan</td>
-													<td>13:00</td>
-													<td>20/09/2022</td>
-													<td>20:00</td>
-													<td><a href="#" class="button primary small">Edit</a></td>
-												</tr>
-
-												<tr>
-													<td>Philippine</td>
-													<td>Japan</td>
-													<td>13:00</td>
-													<td>20/09/2022</td>
-													<td>20:00</td>
-													<td><a href="#" class="button primary small">Edit</a></td>
-												</tr>
-
+													while($row = mysqli_fetch_array($bookingQuery)) {
+														echo "<tr>";
+															echo "<td>" . $row['bookingID'] . "</td>";
+															echo "<td>" . $row['flightNumber'] . "</td>";
+															echo "<td>" . $row['clientFirstName'] . " " . $row['clientMiddleName'] . " " . $row['clientLastName'] . "</td>";
+															echo "<td>" . $row['bookingOrigin'] . "</td>";
+															echo "<td>" . $row['bookingDestination'] . "</td>";
+															echo "<td>" . $row['bookingNumOfSeat'] . "</td>";
+														echo "</tr>";
+													}
+													mysqli_free_result($bookingQuery);
+													mysqli_close($db);
+												?>
 
 											</tbody>
 										</table>

@@ -15,6 +15,8 @@
 	</head>
 	<body class="is-preload">
 
+		
+
 		<!-- Wrapper -->
 			<div id="wrapper">
 
@@ -37,7 +39,7 @@
 											<div class="row gtr-uniform">
 												<div class="col-4 col-12-xsmall">
 													<h2>First Name</h2>
-													<input type="text" name="clientFirstName" id="clientFirstName" value="" placeholder="First Name" required/>
+													<input type="text" name="clientFirstName" id="clientFirstName" value="<?php if(isset($_POST['clientFirstName'])) {echo $_POST['clientFirstName'];} ?>" placeholder="First Name" required/>
 												</div>
 												<div class="col-4 col-12-xsmall">	
 													<h2>Middle Name</h2>
@@ -83,45 +85,30 @@
 													<h2>Nationality</h2>
 													<input type="text" name="clientNationality" id="clientNationality" value="" placeholder="Nationality" required/>
 												</div>
-												<!-- Alternative Nationality -->
-												<!-- <div class="col-12">
-													<select name="demo-category" id="demo-category">
-														<option value="">Nationality</option>
-														<option value="1">American</option>
-														<option value="1">Brazilian</option>
-														<option value="1">Chinese</option>
-														<option value="1">Filipino</option>
-														<option value="1">Hungarian</option>
-														<option value="1">Japanese</option>
-														<option value="1">Korean</option>
-														<option value="1">Liberian</option>
-														<option value="1">Malaysian</option>
-														<option value="1">New Zealander</option>
-														<option value="1">Omani</option>
-														<option value="1">Polish</option>
-														<option value="1">Qatari</option>
-														<option value="1">Russian</option>
-														<option value="1">Singaporean</option>
-														<option value="1">Taiwanese</option>
-													</select>
-												</div>-->
-												<div class="col-6 col-12-xsmall">
-													<h2>Additional Passenger</h2>
-													<!--A radio group is defined by giving each of radio buttons in the group the same name. Once a radio group is established, selecting any radio button in that group automatically deselects any currently-selected radio button in the same group.-->
-													<input type="radio" id="passenger-yes" name="passenger" checked>
-													<label for="passenger-yes">Yes</label>	
-													<input type="radio" id="passenger-no" name="passenger" >
-													<label for="passenger-no">No</label>
-												</div>
-
+												
 												<div class="col-6 col-12-xsmall">
 													<h2>Remarks</h2>
 													<input type="text" name="clientRemarks" id="clientRemarks" value="" placeholder="Remarks" />
 												</div>
-
+												<div class="col-6 col-12-xsmall">
+													<h2>Passenger Type</h2>
+													<select name="clientType" id="clientType">
+														<option value="Normal">Normal</option>
+														<option value="Unaccompanied Minor">Unaccompanied Minor</option>
+														<option value="Handicapped">Handicapped</option>
+														<option value="Medically OK for travel">Medically OK for travel</option>
+														<option value="Senior Citizen">Senior Citizen</option>
+														
+													</select>
+												</div>
+												<div class="col-6 col-12-xsmall">
+													<h2>Additional Passenger (If none, type "0")</h2>
+													<input type="text" name="clientAddPass" id="clientAddPass" value="" placeholder="Number of Passengers " />
+													
+												</div>
 												<div class="col-12">
 													<ul class="actions">
-														<li><input type="submit" value="Submit" class="primary" /></li>
+														<li><input type="submit" value="Submit" name="add_client" class="primary" /></li>
 														
 													</ul>
 												</div>

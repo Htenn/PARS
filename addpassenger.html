@@ -32,7 +32,7 @@
 								<!-- Text -->
 								<!-- Form -->
 									<section>
-										<form method="post" action="#">
+										<form method="post" action="add_passenger-config.php">
 											<div class="row gtr-uniform">
 												<div class="col-4 col-12-xsmall">
 													<h2>First Name</h2>
@@ -106,15 +106,21 @@
 													</select>
 												</div>-->
 												<div class="col-6 col-12-xsmall">
-													<h2>Additional Passenger</h2>
-													<input type="radio" id="demo-priority-yes" name="demo-priority" checked>
-													<label for="demo-priority-yes">Yes</label>	
-													<input type="radio" id="demo-priority-no" name="demo-priority" >
-													<label for="demo-priority-no">No</label>
+													<h2>Passenger Type</h2>
+													<select name="passengerType" id="passengerType">
+														<option value="Normal">Normal</option>
+														<option value="Infant">Infant</option>
+														<option value="Unaccompanied Minor">Unaccompanied Minor</option>
+														<option value="Handicapped">Handicapped</option>
+														<option value="Medically OK for travel">Medically OK for travel</option>
+														<option value="Senior Citizen">Senior Citizen</option>
+														
+													</select>
 												</div>
+												
 												<div class="col-12">
 													<ul class="actions">
-														<li><input type="submit" value="Submit" class="primary" /></li>
+														<li><input type="submit" value="Submit" name="add_passenger"  class="primary" /></li>
 														
 													</ul>
 												</div>

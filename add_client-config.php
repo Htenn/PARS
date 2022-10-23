@@ -57,6 +57,13 @@ header('location: addclient.php'); // redirects to the next page
 */
 }
 }
+include "index1.php";
+do {
+  include "assets/includes/addform.php";
+  echo "<br><br>";
+  $clientAddPass--;
 
+} while ($clientAddPass >= 1);
+include "assets/includes/submitb.php";
+include "assets/includes/footer.php";
 ?>
-// ...

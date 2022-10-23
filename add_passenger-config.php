@@ -16,7 +16,7 @@ $passengerRemarks ="";
 
 $errors = array(); //  to collect errors
 // connect to the database
-$db = mysqli_connect('', '', '', '');
+$db = mysqli_connect('localhost', 'root', '', 'id17946631_pars');
 
 // REGISTER USER
 if (isset($_POST['add_passenger'])) { // add_passenger is the name of the button in the form
@@ -31,7 +31,6 @@ $passengerEmail = mysqli_real_escape_string($db, $_POST['passengerEmail']);
 $passengerContactNum = mysqli_real_escape_string($db, $_POST['passengerContactNum']);
 $passengerNationality = mysqli_real_escape_string($db, $_POST['passengerNationality']);
 $passengerType = mysqli_real_escape_string($db, $_POST['passengerType']);
-$passengerRemarks = mysqli_real_escape_string($db, $_POST['passengerRemarks']);
 
 
 // first check the database to make sure

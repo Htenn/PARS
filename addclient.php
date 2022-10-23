@@ -39,7 +39,7 @@
 											<div class="row gtr-uniform">
 												<div class="col-4 col-12-xsmall">
 													<h2>First Name</h2>
-													<input type="text" name="clientFirstName" id="clientFirstName" value="" placeholder="First Name" required/>
+													<input type="text" name="clientFirstName" id="clientFirstName" value="<?php if(isset($_POST['clientFirstName'])) {echo $_POST['clientFirstName'];} ?>" placeholder="First Name" required/>
 												</div>
 												<div class="col-4 col-12-xsmall">	
 													<h2>Middle Name</h2>

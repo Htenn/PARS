@@ -11,7 +11,7 @@ $userType ="";
 
 $errors = array(); //  to collect errors
 // connect to the database
-$db = mysqli_connect('', '', '', '');
+$db = mysqli_connect('localhost', 'root', '', 'id17946631_pars');
 
 // REGISTER USER
 if (isset($_POST['add_user'])) { // add_user is the name of the button in the form

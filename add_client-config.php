@@ -11,12 +11,12 @@ $clientAge = "";
 $clientEmail = "";
 $clientContactNum = "";
 $clientNationality = "";
-$clientType = "";
+$clientAddtnlinfo = "";
 $clientRemarks ="";
 
 $errors = array(); //  to collect errors
 // connect to the database
-$db = mysqli_connect('','','','');
+$db = mysqli_connect('localhost', 'root', '', 'id17946631_pars');
 
 // REGISTER USER
 if (isset($_POST['add_client'])) { // add_client is the name of the button in the form
@@ -30,7 +30,7 @@ $clientAge = mysqli_real_escape_string($db, $_POST['clientAge']);
 $clientEmail = mysqli_real_escape_string($db, $_POST['clientEmail']);
 $clientContactNum = mysqli_real_escape_string($db, $_POST['clientContactNum']);
 $clientNationality = mysqli_real_escape_string($db, $_POST['clientNationality']);
-$clientType = mysqli_real_escape_string($db, $_POST['clientType']);
+// $clientAddtnlinfo = mysqli_real_escape_string($db, $_POST['clientAddtnlinfo']);
 $clientRemarks = mysqli_real_escape_string($db, $_POST['clientRemarks']);
 
 // first check the database to make sure
@@ -45,7 +45,7 @@ array_push($errors, "Client already exists");
 // Finally, add client to database if there are no errors in the form
 if (count($errors) == 0) {
 
-$query = "INSERT INTO client (clientFirstName, clientMiddleName, clientLastName, clientGender, clientBirthday, clientAge, clientEmail, clientContactNum, clientNationality, clientType, clientRemarks) VALUES ('$clientFirstName', '$clientMiddleName','$clientLastName','$clientGender','$clientBirthday','$clientAge','$clientEmail','$clientContactNum','$clientNationality','$clientType','$clientRemarks')";
+$query = "INSERT INTO client (clientFirstName, clientMiddleName, clientLastName, clientGender, clientBirthday, clientAge, clientEmail, clientContactNum, clientNationality, clientAddtnlinfo, clientRemarks) VALUES ('$clientFirstName', '$clientMiddleName','$clientLastName','$clientGender','$clientBirthday','$clientAge','$clientEmail','$clientContactNum','$clientNationality','$clientAddtnlinfo','$clientRemarks')";
 mysqli_query($db, $query); // Execute query to the code.
 
 

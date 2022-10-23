@@ -11,7 +11,8 @@ $clientAge = "";
 $clientEmail = "";
 $clientContactNum = "";
 $clientNationality = "";
-$clientAddtnlinfo = "";
+$clientType = "";
+$clientAddPass = "";
 $clientRemarks ="";
 
 $errors = array(); //  to collect errors
@@ -30,7 +31,8 @@ $clientAge = mysqli_real_escape_string($db, $_POST['clientAge']);
 $clientEmail = mysqli_real_escape_string($db, $_POST['clientEmail']);
 $clientContactNum = mysqli_real_escape_string($db, $_POST['clientContactNum']);
 $clientNationality = mysqli_real_escape_string($db, $_POST['clientNationality']);
-// $clientAddtnlinfo = mysqli_real_escape_string($db, $_POST['clientAddtnlinfo']);
+$clientType = mysqli_real_escape_string($db, $_POST['clientType']);
+$clientAddPass = mysqli_real_escape_string($db, $_POST['clientAddPass']);
 $clientRemarks = mysqli_real_escape_string($db, $_POST['clientRemarks']);
 
 // first check the database to make sure
@@ -45,7 +47,7 @@ array_push($errors, "Client already exists");
 // Finally, add client to database if there are no errors in the form
 if (count($errors) == 0) {
 
-$query = "INSERT INTO client (clientFirstName, clientMiddleName, clientLastName, clientGender, clientBirthday, clientAge, clientEmail, clientContactNum, clientNationality, clientAddtnlinfo, clientRemarks) VALUES ('$clientFirstName', '$clientMiddleName','$clientLastName','$clientGender','$clientBirthday','$clientAge','$clientEmail','$clientContactNum','$clientNationality','$clientAddtnlinfo','$clientRemarks')";
+$query = "INSERT INTO client (clientFirstName, clientMiddleName, clientLastName, clientGender, clientBirthday, clientAge, clientEmail, clientContactNum, clientNationality, clientType, clientAddPass, clientRemarks) VALUES ('$clientFirstName', '$clientMiddleName','$clientLastName','$clientGender','$clientBirthday','$clientAge','$clientEmail','$clientContactNum','$clientNationality','clientType','$clientAddPass','$clientRemarks')";
 mysqli_query($db, $query); // Execute query to the code.
 
 
@@ -57,6 +59,14 @@ header('location: addclient.php'); // redirects to the next page
 */
 }
 }
+include "index1.php";
+do {
+  include "assets/includes/addform.php";
+  echo "<br><br>";
+  $clientAddPass--;
 
+} while ($clientAddPass >= 1);
+include "assets/includes/submitb.php";
+include "assets/includes/footer.php";
 ?>
-// ...
+

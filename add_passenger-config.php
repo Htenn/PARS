@@ -59,4 +59,3 @@ header('location: addpassenger.php'); // redirects to the next page
 }
 
 ?>
-// ...

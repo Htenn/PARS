@@ -51,4 +51,3 @@ header('location: adduser.php'); // redirects to the next page
 }
 
 ?>
-// ...

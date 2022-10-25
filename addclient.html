@@ -103,7 +103,7 @@
 											</div>
 											<div class="col-6 col-12-xsmall">
 												<h2>Additional Passenger (If none, type "0")</h2>
-												<input type="text" name="clientAddPass" id="clientAddPass" value="" placeholder="Number of Passengers " />
+												<input type="text" name="clientAddPass" id="clientAddPass" onchange="saveValue(this)" value="" placeholder="Number of Passengers " />
 												
 											</div>
 											<div class="col-12">
@@ -121,7 +121,17 @@
 
 				<script type="text/javascript">
 					document.getElementById("clientFirstName").value = getSavedValue("clientFirstName");    // set the value to this input
-					document.getElementById("clientLastName").value = getSavedValue("clientLastName");   // set the value to this input
+					document.getElementById("clientMiddleName").value = getSavedValue("clientMiddleName");   // set the value to this input
+					document.getElementById("clientLastName").value = getSavedValue("clientLastName");    // set the value to this input
+					document.getElementById("clientGender").value = getSavedValue("clientGender");   // set the value to this input
+					document.getElementById("clientBirthday").value = getSavedValue("clientBirthday");    // set the value to this input
+					document.getElementById("clientAge").value = getSavedValue("clientAge");   // set the value to this input
+					document.getElementById("clientEmail").value = getSavedValue("clientEmail");   // set the value to this input
+					document.getElementById("clientContactNum").value = getSavedValue("clientContactNum");   // set the value to this input
+					document.getElementById("clientNationality").value = getSavedValue("clientNationality");   // set the value to this input
+					document.getElementById("clientType").value = getSavedValue("clientType");   // set the value to this input
+					document.getElementById("clientRemarks").value = getSavedValue("clientRemarks");   // set the value to this input
+					document.getElementById("clientAddPass").value = getSavedValue("clientAddPass");   // set the value to this input
 					/* Here you can add more inputs to set value. if it's saved */
 			
 					//Save the value function - save it to localStorage as (ID, VALUE)

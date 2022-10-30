@@ -1,0 +1,4 @@
+A320
+    - Business
+    - Economy Plus
+    - Economy

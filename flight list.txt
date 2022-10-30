@@ -3,3 +3,11 @@ Flight No - Origin - Dest
 TG621 - MNL - BKK
 PR312 - MNL - HKG
 CX709 - HKG - BKK
+
+---
+
+Flight Class
+
+Y: Full-fare economy-class ticket.
+J: Full-fare business-class ticket.
+F: Full-fare first-class ticket.

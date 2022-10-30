@@ -1,0 +1,5 @@
+Flight No - Origin - Dest
+
+TG621 - MNL - BKK
+PR312 - MNL - HKG
+CX709 - HKG - BKK

@@ -147,8 +147,9 @@
 												<?php
 													$db = mysqli_connect('','','','');
 													$bookingQuery = mysqli_query($db, "SELECT booking.clientID, booking.bookingID, booking.flightNumber, client.clientFirstName, client.clientMiddleName, client.clientLastName, booking.bookingOrigin, booking.bookingDestination, booking.bookingNumOfSeat FROM booking INNER JOIN client ON booking.clientID = client.clientID");
+													$resultBookingQuery = mysqli_query($db, $bookingQuery);
 
-													while($row = mysqli_fetch_array($bookingQuery)) {
+													while($row = mysqli_fetch_array($resultBookingQuery)) {
 														echo "<tr>";
 															echo "<td>" . $row['bookingID'] . "</td>";
 															echo "<td>" . $row['flightNumber'] . "</td>";

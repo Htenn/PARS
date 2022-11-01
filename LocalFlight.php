@@ -106,7 +106,7 @@
 													if (mysqli_num_rows($query_run) > 0) {
 
 														foreach($query_run as $row) {
-															?>
+											?>
 															<div class="row gtr-uniform">
 
 																<div class="col-6 col-12-xsmall">
@@ -136,17 +136,15 @@
 																<div class="col-6 col-12-xsmall">
 																	<h2>Time Arrive Destination</h2>
 																	<input type="text" disabled="disabled"  value="<?= $row["timeArriveDestination"]; ?>"/>
-																</div>	
-
+																</div>
 															</div>
-															<?php
+											<?php
 														}
 													}
 													else {
 														echo "no result";
 													}
 												}
-
 											?>
 
 									</div>

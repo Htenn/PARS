@@ -60,6 +60,9 @@ header('location: addclient.php'); // redirects to the next page
 }
 }
 include "index1.php";
+if ($clientAddPass <= 0){
+include "assets/includes/receiptclient.php";
+}else{
 do {
   include "assets/includes/addform.php";
   echo "<br><br>";
@@ -67,5 +70,7 @@ do {
 
 } while ($clientAddPass >= 1);
 include "assets/includes/submitb.php";
+
+}
 include "assets/includes/footer.php";
 ?>

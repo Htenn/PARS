@@ -148,6 +148,13 @@
 						}
 						return localStorage.getItem(v);
 					}
+
+					function getdata(Event){
+ 					 Event.preventDefault()
+ 					 let chatInput = $('#chat-input').val(); 
+ 					 $('#result').text(chatInput)
+											}
+					 // $('#message-send').click(getdata);
 			</script>
 					
 				<!-- Footer -->

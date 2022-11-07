@@ -35,12 +35,27 @@
 										$selectedFlightAircraftModel = mysqli_query($conn, $selectedFlightQuery);
 
 										if($selectedFlightAircraftModel = "A320") {
+											# business class
 											for($column = 'A'; $column <= 'B'; $column++) {
 												for ($row = 1; $row <= 3; $column++) {
-													echo "<div class=\"seat\" id=" . $column . $row . "></div>";
+													echo "<div class=\"seat\" id=\"" . $column . $row . "\"></div>";
+												}
+											}
+
+											# economy class
+											for($column ='A'; $column >= 'F'; $column++ ){
+												for($row = 7; $row <= 8; $row++){
+													echo "<div class=\"seat\" id=\"" . $column . $row . "\"></div>";
+												}
+												for($row = 10; $row <= 12; $row++){
+													echo "<div class=\"seat\" id=\"" . $column . $row . "\"></div>";
+												}
+												for($row = 20; $row <= 38; $row++){
+													echo "<div class=\"seat\" id=\"" . $column . $row . "\"></div>";
 												}
 											}
 										}
+										elseif($selectedFlightAircraftModel = "")
 									?>
 								</div>
 							</section>

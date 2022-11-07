@@ -3,7 +3,7 @@ A320
     - Economy Plus
     - Economy
 
-# Business
+# Business J
     A1
     A2
     A3
@@ -17,7 +17,7 @@ A320
     F2
     F3
 
-#  Economy Plus
+#  Economy Plus Y
     A7
     A8
     A10
@@ -66,7 +66,7 @@ A320
     F20
     F21
 
-#   Economy
+#   Economy Y
     A22
     A23
     A24

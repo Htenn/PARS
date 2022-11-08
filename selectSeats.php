@@ -88,10 +88,6 @@
 													for($row = 31; $row <= 47; $row++){
 														echo "<div class=\"seat\" id=\"" . $columnArray[$cIndex] . $row . "\"></div>";
 													}
-												echo "</div>";
-											}
-											for($cIndex = 0; $cIndex < count($columnArray); $cIndex) {
-												echo "<div class= \"seatRow\">";
 													for($row = 51; $row <= 62; $row++){
 														echo "<div class=\"seat\" id=\"" . $columnArray[$cIndex] . $row . "\"></div>";
 													}

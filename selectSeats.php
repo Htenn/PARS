@@ -37,13 +37,15 @@
 										if($selectedFlightAircraftModel = "A320") {
 											# business class
 											for($column = 'A'; $column <= 'B'; $column++) {
-												for ($row = 1; $row <= 3; $column++) {
-													echo "<div class=\"seat\" id=\"" . $column . $row . "\"></div>";
-												}
+												echo "<div class= \"seatRow\">";
+													for ($row = 1; $row <= 3; $column++) {
+														echo "<div class=\"seat\" id=\"" . $column . $row . "\"></div>";
+													}
+												echo "</div>";
 											}
 
 											# economy class
-											for($column ='A'; $column >= 'F'; $column++ ){
+											for($column ='A'; $column <= 'F'; $column++ ){
 												for($row = 7; $row <= 8; $row++){
 													echo "<div class=\"seat\" id=\"" . $column . $row . "\"></div>";
 												}
@@ -55,7 +57,55 @@
 												}
 											}
 										}
-										elseif($selectedFlightAircraftModel = "")
+										elseif($selectedFlightAircraftModel = "A330"){
+											# business class
+											$columnArray = array('K', 'G', 'D', 'A');
+
+											for($cIndex = 0; $cIndex < count($columnArray); $cIndex) {
+												echo "<div class= \"seatRow\">";
+													for($row = 1; $row <= 6; $row++){
+														echo "<div class=\"seat\" id=\"" . $columnArray[$cIndex] . $row . "\"></div>";
+													}
+												echo "</div>";
+											}
+
+											#premium economoy
+											$columnArray = array('A', 'C', 'D', 'E', 'G', 'H', 'K');
+
+											for($cIndex = 0; $cIndex < count($columnArray); $cIndex) {
+												echo "<div class= \"seatRow\">";
+													for($row = 21; $row <= 23; $row++){
+														echo "<div class=\"seat\" id=\"" . $columnArray[$cIndex] . $row . "\"></div>";
+													}
+												echo "</div>";
+											}
+											
+											# economy
+											$columnArray = array('A', 'C', 'D', 'E', 'F', 'G', 'H', 'K');
+
+											for($cIndex = 0; $cIndex < count($columnArray); $cIndex) {
+												echo "<div class= \"seatRow\">";
+													for($row = 31; $row <= 47; $row++){
+														echo "<div class=\"seat\" id=\"" . $columnArray[$cIndex] . $row . "\"></div>";
+													}
+												echo "</div>";
+											}
+											for($cIndex = 0; $cIndex < count($columnArray); $cIndex) {
+												echo "<div class= \"seatRow\">";
+													for($row = 51; $row <= 62; $row++){
+														echo "<div class=\"seat\" id=\"" . $columnArray[$cIndex] . $row . "\"></div>";
+													}
+												echo "</div>"
+											}
+											$columnArray = array('A', 'C', 'D', 'E', 'F', 'H', 'K');
+											for($cIndex = 0; $cIndex < count($columnArray); $cIndex) {
+												echo "<div class= \"seatRow\">";
+													for($row = 63; $row <= 67; $row++){
+														echo "<div class=\"seat\" id=\"" . $columnArray[$cIndex] . $row . "\"></div>";
+													}
+												echo "</div>";
+											}
+										}
 									?>
 								</div>
 							</section>

@@ -95,7 +95,7 @@
 													for($row = 51; $row <= 62; $row++){
 														echo "<div class=\"seat\" id=\"" . $columnArray[$cIndex] . $row . "\"></div>";
 													}
-												echo "</div>"
+												echo "</div>";
 											}
 
 											$columnArray = array('K', 'H', 'F', 'E', 'D', 'C', 'A');

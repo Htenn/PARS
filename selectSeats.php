@@ -70,7 +70,7 @@
 											}
 
 											#premium economoy
-											$columnArray = array('A', 'C', 'D', 'E', 'G', 'H', 'K');
+											$columnArray = array('K', 'H', 'G', 'E', 'D', 'C', 'A');
 
 											for($cIndex = 0; $cIndex < count($columnArray); $cIndex) {
 												echo "<div class= \"seatRow\">";
@@ -81,7 +81,7 @@
 											}
 											
 											# economy
-											$columnArray = array('A', 'C', 'D', 'E', 'F', 'G', 'H', 'K');
+											$columnArray = array('K', 'H', 'G', 'F', 'E', 'D', 'C', 'A');
 
 											for($cIndex = 0; $cIndex < count($columnArray); $cIndex) {
 												echo "<div class= \"seatRow\">";
@@ -97,7 +97,9 @@
 													}
 												echo "</div>"
 											}
-											$columnArray = array('A', 'C', 'D', 'E', 'F', 'H', 'K');
+
+											$columnArray = array('K', 'H', 'F', 'E', 'D', 'C', 'A');
+
 											for($cIndex = 0; $cIndex < count($columnArray); $cIndex) {
 												echo "<div class= \"seatRow\">";
 													for($row = 63; $row <= 67; $row++){

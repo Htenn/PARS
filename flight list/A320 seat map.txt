@@ -17,7 +17,7 @@ A320
     F2
     F3
 
-#  Economy Plus Y
+#  Economy Plus P
     A7
     A8
     A10

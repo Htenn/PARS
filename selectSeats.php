@@ -36,7 +36,7 @@
 
 										if($selectedFlightAircraftModel = "A320") {
 											# business class
-											for($column = 'A'; $column <= 'B'; $column++) {
+											for($column = 'B'; $column >= 'A'; $column--) {
 												echo "<div class= \"seatRow\">";
 													for ($row = 1; $row <= 3; $column++) {
 														echo "<div class=\"seat\" id=\"" . $column . $row . "\"></div>";
@@ -44,15 +44,25 @@
 												echo "</div>";
 											}
 
+											# premium economy
+											for($column = 'F'; $column >= 'A'; $column--){
+												for ($row = 7; $row <= 8; $row++) {
+													echo "<div class=\"seat\" id=\"" . $column . $row . "\"></div>";
+												}
+												for ($row = 10; $row <= 12; $row++) {
+													echo "<div class=\"seat\" id=\"" . $column . $row . "\"></div>";
+												}
+												for ($row = 10; $row <= 12; $row++) {
+													echo "<div class=\"seat\" id=\"" . $column . $row . "\"></div>";
+												}
+												for ($row = 20; $row <= 21; $row++) {
+													echo "<div class=\"seat\" id=\"" . $column . $row . "\"></div>";
+												}
+											}
+
 											# economy class
-											for($column ='A'; $column <= 'F'; $column++ ){
-												for($row = 7; $row <= 8; $row++){
-													echo "<div class=\"seat\" id=\"" . $column . $row . "\"></div>";
-												}
-												for($row = 10; $row <= 12; $row++){
-													echo "<div class=\"seat\" id=\"" . $column . $row . "\"></div>";
-												}
-												for($row = 20; $row <= 38; $row++){
+											for($column = 'F'; $column >= 'A'; $column-- ){
+												for($row = 22; $row <= 38; $row++){
 													echo "<div class=\"seat\" id=\"" . $column . $row . "\"></div>";
 												}
 											}

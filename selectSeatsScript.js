@@ -13,7 +13,7 @@ function updateSelectedCount() {
 
     var ids = $(".seat.selected").map(function() {
         return this.id;
-    }).get();
+    }).get();  // put into array the divs that contain "seat" and "selected" classes
 }
 
 function populateUI() {

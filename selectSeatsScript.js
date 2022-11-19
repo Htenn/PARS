@@ -11,7 +11,7 @@ function updateSelectedCount() {
 
     localStorage.setItem("selectedSeats", JSON.stringify(seatsIndex));
 
-    var ids = $(".seat.selected").map(function() {
+    const ids = $(".seat.selected").map(function() {
         return this.id;
     }).get();  // put into array the divs that contain "seat" and "selected" classes
 }

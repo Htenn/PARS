@@ -223,6 +223,9 @@
 										}
 									?>
 								</div>
+								<form method="post">
+									<input type="submit" name="continue" id="continue" value="continue" />
+								</form>
 							</section>
 
 					</div>

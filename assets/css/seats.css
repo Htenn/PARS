@@ -3961,7 +3961,7 @@ body.is-preload #header.alt .logo {
     margin: 3px;
     font-size: 50px;
     border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
 }
 
 .seat.selected {

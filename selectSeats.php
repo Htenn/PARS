@@ -35,264 +35,263 @@
 										$selectedFlightQuery = "SELECT flightAircraftModel FROM flight_aircrafts WHERE flightNumber = $selectedFlightNumber";
 										$selectedFlightAircraftModel = mysqli_query($conn, $selectedFlightQuery);
 										*/
-										$selectedFlightAircraftModel = "A320";
+										date_default_timezone_set("Asia/Manila");
+										echo "The time is " . date("h:i:sa");
+
+										$selectedFlightAircraftModel = "A330";
 										$conn = mysqli_connect("localhost","root","","pars");
 										$selectedFlightNumber = 'TG621';
-
+										echo $selectedFlightAircraftModel;
 										# query to check the availability of a seat
 										$seatCheckQuery = "SELECT * from flight_seat WHERE flightNumber = '$selectedFlightNumber'";
 										$seatCheck = mysqli_query($conn, $seatCheckQuery);
 
-										if($selectedFlightAircraftModel = "A320") {
-											foreach(range('B', 'A') as $column) {
+										switch($selectedFlightAircraftModel) {
+											case 'A320':
+											# business class
+											foreach (range('F', 'E') as $column) {
 												echo "<div class= \"seatRow\">";
 													for ($row = 1; $row <= 3; $row++) {
 														$seatNumber = $column . $row;
+														$seatSold = false;
 
 														foreach ($seatCheck as $data) {
 															if ($data['flightSeatNumber'] == $seatNumber) { # sold if the seat is logged in the database
-																echo "<div class=\"seat sold\" id=\"" . $seatNumber . "\">"  . $seatNumber .  "</div>";
-															} else {
-																echo "<div class=\"seat\" id=\"" . $seatNumber . "\">"  . $seatNumber .  "</div>";
+																$seatSold = true;
 															}
 														}
-													}
-												echo "</div></br>";
-											}
-											/*
-											# business class
-											for($column = 'B'; $column >= 'A'; $column--) {
-												echo "<div class= \"seatRow\">";
-													for ($row = 1; $row <= 3; $column++) {
-														$seatNumber = $column . $row;
 
-														foreach ($seatCheck as $data) {
-															if ($data['flightNumber'] == $seatNumber) { # sold if the seat is logged in the database
-																echo "<div class=\"seat sold\" id=\"" . $seatNumber . "\">"  . $seatNumber .  "</div>";
-															}
-															else {
-																echo "<div class=\"seat\" id=\"" . $seatNumber . "\">"  . $seatNumber .  "</div>";
-															}
+														if ($seatSold == true) {
+															echo "<div class=\"seat sold\" id=\"" . $seatNumber . "\">"  . $seatNumber .  "</div>";
+														} else {
+															echo "<div class=\"seat\" id=\"" . $seatNumber . "\">"  . $seatNumber .  "</div>";
 														}
 													}
 												echo "</div>";
 											}
-											*/
-											foreach(range('F','A') as $column) {
+											echo "</br>";
+											foreach (range('B', 'A') as $column) {
 												echo "<div class= \"seatRow\">";
-													for ($row = 7; $row <= 8; $row++) {
+													for ($row = 1; $row <= 3; $row++) {
 														$seatNumber = $column . $row;
+														$seatSold = false;
 
 														foreach ($seatCheck as $data) {
 															if ($data['flightSeatNumber'] == $seatNumber) { # sold if the seat is logged in the database
-																echo "<div class=\"seat sold\" id=\"" . $seatNumber . "\">"  . $seatNumber .  "</div>";
-															} else {
-																echo "<div class=\"seat\" id=\"" . $seatNumber . "\">"  . $seatNumber .  "</div>";
+																$seatSold = true;
 															}
+														}
+
+														if ($seatSold == true) {
+															echo "<div class=\"seat sold\" id=\"" . $seatNumber . "\">"  . $seatNumber .  "</div>";
+														} else {
+															echo "<div class=\"seat\" id=\"" . $seatNumber . "\">"  . $seatNumber .  "</div>";
+														}
+													}
+												echo "</div>";
+											}
+											echo "</br>";
+
+											# economy plus
+											foreach (range('F', 'A') as $column) {
+												echo "<div class= \"seatRow\">";
+													for ($row = 7; $row <= 8; $row++) {
+														$seatNumber = $column . $row;
+														$seatSold = false;
+
+														foreach ($seatCheck as $data) {
+															if ($data['flightSeatNumber'] == $seatNumber) { # sold if the seat is logged in the database
+																$seatSold = true;
+															}
+														}
+
+														if ($seatSold == true) {
+															echo "<div class=\"seat sold\" id=\"" . $seatNumber . "\">"  . $seatNumber .  "</div>";
+														} else {
+															echo "<div class=\"seat\" id=\"" . $seatNumber . "\">"  . $seatNumber .  "</div>";
 														}
 													}
 													for ($row = 10; $row <= 12; $row++) {
 														$seatNumber = $column . $row;
+														$seatSold = false;
 
 														foreach ($seatCheck as $data) {
 															if ($data['flightSeatNumber'] == $seatNumber) { # sold if the seat is logged in the database
-																echo "<div class=\"seat sold\" id=\"" . $seatNumber . "\">"  . $seatNumber .  "</div>";
-															} else {
-																echo "<div class=\"seat\" id=\"" . $seatNumber . "\">"  . $seatNumber .  "</div>";
+																$seatSold = true;
 															}
+														}
+
+														if ($seatSold == true) {
+															echo "<div class=\"seat sold\" id=\"" . $seatNumber . "\">"  . $seatNumber .  "</div>";
+														} else {
+															echo "<div class=\"seat\" id=\"" . $seatNumber . "\">"  . $seatNumber .  "</div>";
 														}
 													}
 													for ($row = 20; $row <= 21; $row++) {
 														$seatNumber = $column . $row;
+														$seatSold = false;
 
 														foreach ($seatCheck as $data) {
 															if ($data['flightSeatNumber'] == $seatNumber) { # sold if the seat is logged in the database
-																echo "<div class=\"seat sold\" id=\"" . $seatNumber . "\">"  . $seatNumber .  "</div>";
-															} else {
-																echo "<div class=\"seat\" id=\"" . $seatNumber . "\">"  . $seatNumber .  "</div>";
+																$seatSold = true;
 															}
 														}
+
+														if ($seatSold == true) {
+															echo "<div class=\"seat sold\" id=\"" . $seatNumber . "\">"  . $seatNumber .  "</div>";
+														} else {
+															echo "<div class=\"seat\" id=\"" . $seatNumber . "\">"  . $seatNumber .  "</div>";
+														}
 													}
-													# economy
+												echo "</div>";
+												if($column == 'D'){
+													echo "</br>";
+												}
+											}
+											echo "</br>";
+
+											# economy
+											foreach (range('F', 'A') as $column) {
+												echo "<div class= \"seatRow\">";
 													for ($row = 22; $row <= 38; $row++) {
 														$seatNumber = $column . $row;
+														$seatSold = false;
 
 														foreach ($seatCheck as $data) {
 															if ($data['flightSeatNumber'] == $seatNumber) { # sold if the seat is logged in the database
-																echo "<div class=\"seat sold\" id=\"" . $seatNumber . "\">"  . $seatNumber .  "</div>";
-															} else {
-																echo "<div class=\"seat\" id=\"" . $seatNumber . "\">"  . $seatNumber .  "</div>";
+																$seatSold = true;
 															}
 														}
-													}
-												echo "</div></br>";
-											}
 
-											/*
-											# premium economy
-											for($column = 'F'; $column >= 'A'; $column--){
-												echo "<div class= \"seatRow\">";
-													for ($row = 7; $row <= 8; $row++) {
-														$seatNumber = $column . $row;
-															
-														foreach ($seatCheck as $data) {
-															if ($data['flightNumber'] == $seatNumber) { # sold if the seat is logged in the database
-																echo "<div class=\"seat sold\" id=\"" . $seatNumber . "\">"  . $seatNumber .  "</div>";
-															}
-															else {
-																echo "<div class=\"seat\" id=\"" . $seatNumber . "\">"  . $seatNumber .  "</div>";
-															}
-														}
-													}
-													for ($row = 10; $row <= 12; $row++) {
-														$seatNumber = $column . $row;
-															
-														foreach ($seatCheck as $data) {
-															if ($data['flightNumber'] == $seatNumber) { # sold if the seat is logged in the database
-																echo "<div class=\"seat sold\" id=\"" . $seatNumber . "\">"  . $seatNumber .  "</div>";
-															}
-															else {
-																echo "<div class=\"seat\" id=\"" . $seatNumber . "\">"  . $seatNumber .  "</div>";
-															}
-														}
-													}
-													for ($row = 10; $row <= 12; $row++) {
-														$seatNumber = $column . $row;
-															
-														foreach ($seatCheck as $data) {
-															if ($data['flightNumber'] == $seatNumber) { # sold if the seat is logged in the database
-																echo "<div class=\"seat sold\" id=\"" . $seatNumber . "\">"  . $seatNumber .  "</div>";
-															}
-															else {
-																echo "<div class=\"seat\" id=\"" . $seatNumber . "\">"  . $seatNumber .  "</div>";
-															}
-														}
-													}
-													for ($row = 20; $row <= 21; $row++) {
-														$seatNumber = $column . $row;
-															
-														foreach ($seatCheck as $data) {
-															if ($data['flightNumber'] == $seatNumber) { # sold if the seat is logged in the database
-																echo "<div class=\"seat sold\" id=\"" . $seatNumber . "\">"  . $seatNumber .  "</div>";
-															}
-															else {
-																echo "<div class=\"seat\" id=\"" . $seatNumber . "\">"  . $seatNumber .  "</div>";
-															}
+														if ($seatSold == true) {
+															echo "<div class=\"seat sold\" id=\"" . $seatNumber . "\">"  . $seatNumber .  "</div>";
+														} else {
+															echo "<div class=\"seat\" id=\"" . $seatNumber . "\">"  . $seatNumber .  "</div>";
 														}
 													}
 												echo "</div>";
+												if($column == 'D'){
+													echo "</br>";
+												}
 											}
-											
+											break;
 
-											# economy class
-											for($column = 'F'; $column >= 'A'; $column-- ){
-												echo "<div class= \"seatRow\">";
-													for($row = 22; $row <= 38; $row++){
-														$seatNumber = $column . $row;
-															
-														foreach ($seatCheck as $data) {
-															if ($data['flightSeatNumber'] == $seatNumber) { # sold if the seat is logged in the database
-																echo "<div class=\"seat sold\" id=\"" . $seatNumber . "\">"  . $seatNumber .  "</div>";
-															}
-															else {
-																echo "<div class=\"seat\" id=\"" . $seatNumber . "\">"  . $seatNumber .  "</div>";
-															}
-														}
-													}
-												echo "</div>";
-											}*/
-										}
-										elseif($selectedFlightAircraftModel = "A330"){
+											case "A330":
 											# business class
 											$columnArray = array('K', 'G', 'D', 'A');
 
-											for($cIndex = 0; $cIndex < count($columnArray); $cIndex++) {
+											foreach ($columnArray as $column) {
 												echo "<div class= \"seatRow\">";
-													for($row = 1; $row <= 6; $row++){
-														$seatNumber = $columnArray[$cIndex] . $row;
+													for ($row = 1; $row <= 6; $row++) {
+														$seatNumber = $column . $row;
+														$seatSold = false;
 
 														foreach ($seatCheck as $data) {
 															if ($data['flightSeatNumber'] == $seatNumber) { # sold if the seat is logged in the database
-																echo "<div class=\"seat sold\" id=\"" . $seatNumber . "\">"  . $seatNumber .  "</div>";
+																$seatSold = true;
 															}
-															else {
-																echo "<div class=\"seat\" id=\"" . $seatNumber . "\">"  . $seatNumber .  "</div>";
-															}
+														}
+
+														if ($seatSold == true) {
+															echo "<div class=\"seat sold\" id=\"" . $seatNumber . "\">"  . $seatNumber .  "</div>";
+														} else {
+															echo "<div class=\"seat\" id=\"" . $seatNumber . "\">"  . $seatNumber .  "</div>";
 														}
 													}
 												echo "</div>";
 											}
-
+											echo "</br>";
+											
 											#premium economoy
 											$columnArray = array('K', 'H', 'G', 'E', 'D', 'C', 'A');
 
-											for($cIndex = 0; $cIndex < count($columnArray); $cIndex++) {
+											foreach ($columnArray as $column) {
 												echo "<div class= \"seatRow\">";
-													for($row = 21; $row <= 23; $row++){
-														$seatNumber = $columnArray[$cIndex] . $row;
+													for ($row = 21; $row <= 23; $row++) {
+														$seatNumber = $column . $row;
+														$seatSold = false;
 
 														foreach ($seatCheck as $data) {
 															if ($data['flightSeatNumber'] == $seatNumber) { # sold if the seat is logged in the database
-																echo "<div class=\"seat sold\" id=\"" . $seatNumber . "\">"  . $seatNumber .  "</div>";
+																$seatSold = true;
 															}
-															else {
-																echo "<div class=\"seat\" id=\"" . $seatNumber . "\">"  . $seatNumber .  "</div>";
-															}
+														}
+
+														if ($seatSold == true) {
+															echo "<div class=\"seat sold\" id=\"" . $seatNumber . "\">"  . $seatNumber .  "</div>";
+														} else {
+															echo "<div class=\"seat\" id=\"" . $seatNumber . "\">"  . $seatNumber .  "</div>";
 														}
 													}
 												echo "</div>";
 											}
+											echo "</br>";
 											
 											# economy
 											$columnArray = array('K', 'H', 'G', 'F', 'E', 'D', 'C', 'A');
 
-											for($cIndex = 0; $cIndex < count($columnArray); $cIndex++) {
+											foreach ($columnArray as $column) {
 												echo "<div class= \"seatRow\">";
-													for($row = 31; $row <= 47; $row++){
-														$seatNumber = $columnArray[$cIndex] . $row;
+													for ($row = 31; $row <= 47; $row++) {
+														$seatNumber = $column . $row;
+														$seatSold = false;
 
 														foreach ($seatCheck as $data) {
 															if ($data['flightSeatNumber'] == $seatNumber) { # sold if the seat is logged in the database
-																echo "<div class=\"seat sold\" id=\"" . $seatNumber . "\">"  . $seatNumber .  "</div>";
-															}
-															else {
-																echo "<div class=\"seat\" id=\"" . $seatNumber . "\">"  . $seatNumber .  "</div>";
+																$seatSold = true;
 															}
 														}
+
+														if ($seatSold == true) {
+															echo "<div class=\"seat sold\" id=\"" . $seatNumber . "\">"  . $seatNumber .  "</div>";
+														} else {
+															echo "<div class=\"seat\" id=\"" . $seatNumber . "\">"  . $seatNumber .  "</div>";
+														}
 													}
-													for($row = 51; $row <= 62; $row++){
-														$seatNumber = $columnArray[$cIndex] . $row;
+													for ($row = 51; $row <= 62; $row++) {
+														$seatNumber = $column . $row;
+														$seatSold = false;
 
 														foreach ($seatCheck as $data) {
 															if ($data['flightSeatNumber'] == $seatNumber) { # sold if the seat is logged in the database
-																echo "<div class=\"seat sold\" id=\"" . $seatNumber . "\">"  . $seatNumber .  "</div>";
+																$seatSold = true;
 															}
-															else {
-																echo "<div class=\"seat\" id=\"" . $seatNumber . "\">"  . $seatNumber .  "</div>";
-															}
+														}
+
+														if ($seatSold == true) {
+															echo "<div class=\"seat sold\" id=\"" . $seatNumber . "\">"  . $seatNumber .  "</div>";
+														} else {
+															echo "<div class=\"seat\" id=\"" . $seatNumber . "\">"  . $seatNumber .  "</div>";
 														}
 													}
 												echo "</div>";
 											}
-
+											echo "</br>";
+											
 											$columnArray = array('K', 'H', 'F', 'E', 'D', 'C', 'A');
 
-											for($cIndex = 0; $cIndex < count($columnArray); $cIndex++) {
+											foreach ($columnArray as $column) {
 												echo "<div class= \"seatRow\">";
-													for($row = 63; $row <= 67; $row++){
-														$seatNumber = $columnArray[$cIndex] . $row;
+													for ($row = 63; $row <= 67; $row++) {
+														$seatNumber = $column . $row;
+														$seatSold = false;
 
 														foreach ($seatCheck as $data) {
 															if ($data['flightSeatNumber'] == $seatNumber) { # sold if the seat is logged in the database
-																echo "<div class=\"seat sold\" id=\"" . $seatNumber . "\">"  . $seatNumber .  "</div>";
+																$seatSold = true;
 															}
-															else {
-																echo "<div class=\"seat\" id=\"" . $seatNumber . "\">"  . $seatNumber .  "</div>";
-															}
+														}
+
+														if ($seatSold == true) {
+															echo "<div class=\"seat sold\" id=\"" . $seatNumber . "\">"  . $seatNumber .  "</div>";
+														} else {
+															echo "<div class=\"seat\" id=\"" . $seatNumber . "\">"  . $seatNumber .  "</div>";
 														}
 													}
 												echo "</div>";
 											}
+											echo "</br>";
+											break;
 										}
 									?>
 								</div>

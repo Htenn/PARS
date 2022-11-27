@@ -11,9 +11,17 @@ function updateSelectedCount() {
 
     localStorage.setItem("selectedSeats", JSON.stringify(seatsIndex));
 
-    var ids = $(".seat.selected").map(function() {
+    // an algorithm to get id of seats
+    const ids = $(".seat.selected").map(function() {
         return this.id;
-    }).get();
+    }).get();  // put into array the divs that contain "seat" and "selected" classes
+    // $('#text').text(ids.join(',')); // output to div containing the div id = 'test'
+
+    // another algorithm for getting seats based on class
+    var seatSelection = [];
+    document.querySelectorAll(".seat.selected").forEach(item => {
+        seatSelection.push(item.innerHTML);
+    });
 }
 
 function populateUI() {

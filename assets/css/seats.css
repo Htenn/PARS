@@ -3942,15 +3942,14 @@ body.is-preload #header.alt .logo {
 /* Seats */
 
 .container {
-    perspective: 1000px;
-    margin-bottom: 30px;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-.row {
+.seatRow {
     display: flex;
 }
 
@@ -3958,10 +3957,14 @@ body.is-preload #header.alt .logo {
     background-color: #444451;
     height: 26px;
     width: 32px;
-    margin: 3px;
-    font-size: 50px;
+    margin: 4px;
+    font-size: 16px;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
 }
 
 .seat.selected {
@@ -3971,7 +3974,7 @@ body.is-preload #header.alt .logo {
 .seat.sold {
     background-color: red;
 }
-
+/*
 .seat:nth-of-type(2) {
     margin-right: 18px;
 }
@@ -3979,7 +3982,7 @@ body.is-preload #header.alt .logo {
 .seat:nth-last-of-type(2) {
     margin-left: 18px;
 }
-
+*/
 .seat:not(sold):hover {
     cursor: pointer;
     transform: scale(1.2);

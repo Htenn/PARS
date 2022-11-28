@@ -22,6 +22,8 @@ function updateSelectedCount() {
     document.querySelectorAll(".seat.selected").forEach(item => {
         seatSelection.push(item.innerHTML);
     });
+
+    const jsondata = JSON.stringify(ids);
 }
 
 function populateUI() {
@@ -45,6 +47,7 @@ container.addEventListener("click", (e) => {
         e.target.classList.toggle("selected");
 
         updateSelectedCount();
+        document.write("hello");
     }
 });
 

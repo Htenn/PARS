@@ -180,6 +180,9 @@
 											# business class
 											$columnArray = array('K', 'G', 'D', 'A');
 
+											echo "<h2>Business</h2>";
+											echo "<hr style=\"color: black; border: 0; border-bottom: solid 1px; margin: 2em 0; box-sizing: inherit; display: block; unicode-bidi: isolate; margin-block-start: 0.5em; margin-block-end: 0.5em; margin-inline-start: auto; margin-inline-end: auto; overflow: hidden; border-style: inset; border-width: 1px; border-bottom-color: #dddddd;\" />";
+
 											foreach ($columnArray as $column) {
 												echo "<div class= \"seatRow\">";
 													for ($row = 1; $row <= 6; $row++) {
@@ -295,11 +298,8 @@
 										}
 									?>
 								</div>
-								<!--
-								<form method="post">
-									<input type="submit" name="continue" id="continue" value="continue" />
-								</form>
-									-->
+									
+								<a id="submit" href="/test.php">Submit</a>
 							</section>
 
 					</div>
@@ -311,8 +311,8 @@
 
 			</div>
 
-		<!-- Scripts -->
-			<script src="selectSeatsScript.js"></script>
+		<!-- Scripts
+			<script src="selectSeatsScript.js"></script>-->
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/jquery.scrollex.min.js"></script>
 			<script src="assets/js/jquery.scrolly.min.js"></script>
@@ -320,6 +320,96 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+
+			<script language="javascript" type="text/javascript">
+				const container = document.querySelector(".container");
+				const seats = document.querySelectorAll(".row .seat:not(.sold)");
+
+				populateUI();
+
+				// Update total and count
+				function updateSelectedCount() {
+					const selectedSeats = document.querySelectorAll(".row .seat.selected");
+
+					const seatsIndex = [...selectedSeats].map((seat) => [...seats].indexOf(seat));
+
+					localStorage.setItem("selectedSeats", JSON.stringify(seatsIndex));
+
+					// an algorithm to get id of seats
+					const ids = $('.seat.selected').map(function() {
+						return this.id;
+					}).get();  // put into array the divs that contain "seat" and "selected" classes
+					// $('#text').text(ids.join(',')); // output to div containing the div id = 'test'
+
+					// another algorithm for getting seats based on class
+					var seatSelection = [];
+					document.querySelectorAll(".seat.selected").forEach(item => {
+						seatSelection.push(item.innerHTML);
+					});
+
+					console.log(ids);
+					
+					writeElement(ids);
+
+					return ids;
+				}
+
+				function populateUI() {
+					const selectedSeats = JSON.parse(localStorage.getItem("selectedSeats"));
+
+					if (selectedSeats !== null && selectedSeats.length > 0) {
+						seats.forEach((seat, index) => {
+							if (selectedSeats.indexOf(index) > -1) {
+								console.log(seat.classList.add("selected"));
+							}
+						});
+					}
+				}
+
+				function writeElement(ids) {
+					if (ids.length !== 0){
+						for (var i = 0; i < ids.length; i++) {
+						let newDiv = document.createElement("div");
+						newDiv.innerText = ids[i];
+						document.body.appendChild(newDiv);
+						}
+
+						
+					}
+				}
+
+				// Seat click event
+				container.addEventListener("click", (e) => {
+					if (
+						e.target.classList.contains("seat") &&
+						!e.target.classList.contains("sold")
+					) {
+						e.target.classList.toggle("selected");
+
+						updateSelectedCount();
+					}
+					
+				});
+
+				//initial count and total set
+				updateSelectedCount();
+
+				$(document).ready(function () {
+					$('a#submit').click(function (e) {
+						e.preventDefault();
+						const ids = updateSelectedCount();
+
+						$.ajax({
+							url: 'test.php',
+							type: 'POST',
+							data: ids,
+							success: function() {
+								alert("success")
+							}
+						});
+					});
+				});
+			</script>
 
 	</body>
 </html>

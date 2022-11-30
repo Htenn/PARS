@@ -35,12 +35,12 @@
                     echo "The time is " . date("h:i:sa");
 
                     $elements = json_decode($_POST['str'], true);
-                    echo $elements;
-                    /*
+                    //echo $elements;
+                    
                     foreach ($elements as $items) {
                         echo $items;
                     }
-                    */
+                    
                 ?>
             </section>
 

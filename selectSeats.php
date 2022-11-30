@@ -303,7 +303,7 @@
 					?>
 				</div>
 
-				<form id="inviForm" action="test1.php" method="get">
+				<form id="inviForm" action="test.php" method="POST">
 					<input type="hidden" id="str" name="str" value="" />
 					<input type="submit" class="button primary fit" id="btn" name="submit" value="Submit" />
 				</form>
@@ -404,10 +404,10 @@
 					});
 			});
 
-			$("#inviForm").submit(function() {
+			//$("#inviForm").submit(function() {
 				//window.location.href = "/PARS/test.php";
-				return false;
-			});
+			//	return false;
+			//});
 		});
 
 		/*

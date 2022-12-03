@@ -303,7 +303,7 @@
 					?>
 				</div>
 
-				<form id="inviForm" action="test.php" method="POST">
+				<form id="inviForm" action="assign2seat.php" method="POST">
 					<input type="hidden" id="str" name="str" value="" />
 					<input type="submit" class="button primary fit" id="btn" name="submit" value="Submit" />
 				</form>
@@ -350,8 +350,6 @@
 			}).get(); // put into array the divs that contain "seat" and "selected" classes
 
 			console.log(ids);
-
-			//return ids;
 		}
 
 		function populateUI() {
@@ -403,38 +401,9 @@
 						$("#result").html(info);
 					});
 			});
-
-			//$("#inviForm").submit(function() {
-				//window.location.href = "/PARS/test.php";
-			//	return false;
-			//});
 		});
 
-		/*
-		$(document).ready(function() {
-			$('a#submit').click(function(e) {
-
-				e.preventDefault();
-
-				$.ajax({
-					url: '/PARS/test.php',
-					type: 'POST',
-					data: {
-						'ids': ids
-					},
-					cache: false,
-					success: function() {
-						window.location.href = "/PARS/test.php";
-					}
-				});
-
-			});
-		});*/
 	</script>
-
-	<?php
-		include("test1.php");
-	?>
 
 </body>
 

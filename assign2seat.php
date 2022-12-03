@@ -24,6 +24,7 @@
         <!-- Header -->
         <header id="header">
             <h1>Assign to Seats</h1>
+            <p></p>
         </header>
 
         <!-- Main -->

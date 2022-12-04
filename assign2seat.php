@@ -32,7 +32,7 @@
 
             <!-- Content -->
             <section id="content" class="main">
-                <form method="post" action="">
+                <form method="post" action="assign2seat.php">
                     <?php
                         date_default_timezone_set("Asia/Manila");
                         echo "The time is " . date("h:i:sa");

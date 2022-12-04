@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE HTML>
 <!--
 	Stellar by HTML5 UP
@@ -34,21 +35,20 @@
 			<section id="content" class="main">
 				<div class="container">
 					<?php
-					/*
-										$selectedFlightNumber = $row["flightNumber"];						
-										$selectedFlightQuery = "SELECT flightAircraftModel FROM flight_aircrafts WHERE flightNumber = $selectedFlightNumber";
-										$selectedFlightAircraftModel = mysqli_query($conn, $selectedFlightQuery);
-										*/
 					date_default_timezone_set("Asia/Manila");
 					echo "The time is " . date("h:i:sa");
+					
+					$selectedFlightNumber = $_SESSION["selectedFlightNum"];
 
-					$selectedFlightAircraftModel = "A330";
-					$conn = mysqli_connect("localhost", "root", "", "pars");
-					$selectedFlightNumber = 'TG621';
-					echo $selectedFlightAircraftModel;
+					$selectedFlightQuery = "SELECT flightAircraftModel FROM flight_aircrafts WHERE flightNumber = '$selectedFlightNumber' LIMIT 1";
+					$db = mysqli_connect('localhost', 'root', '', 'pars');
+					$selectedFlightAircraftModel = mysqli_query($db, $selectedFlightQuery);
+					$selectedFlightAircraftModel = mysqli_fetch_assoc($selectedFlightAircraftModel);
+					$selectedFlightAircraftModel = $selectedFlightAircraftModel['flightAircraftModel'];
+
 					# query to check the availability of a seat
 					$seatCheckQuery = "SELECT * from flight_seat WHERE flightNumber = '$selectedFlightNumber'";
-					$seatCheck = mysqli_query($conn, $seatCheckQuery);
+					$seatCheck = mysqli_query($db, $seatCheckQuery);
 
 					switch ($selectedFlightAircraftModel) {
 						case 'A320':
@@ -189,7 +189,7 @@
 
 							foreach ($columnArray as $column) {
 								echo "<div class= \"seatRow\">";
-								for ($row = 1; $row <= 6; $row++) {
+								for ($row = 1; $row <= 5; $row++) {
 									$seatNumber = $column . $row;
 									$seatSold = false;
 

@@ -1,4 +1,4 @@
-
+<?php session_start(); ?>
 <!DOCTYPE HTML>
 
 <html>
@@ -16,10 +16,8 @@
 
 				<!-- Header -->
 					<header id="header" class="alt">
-						<span class="logo"><img src="images/logo.svg" alt="" /></span>
-						<h1>Stellar</h1>
-						<p>Just another free, fully responsive site template<br />
-						built by <a href="https://twitter.com/ajlkn">@ajlkn</a> for <a href="https://html5up.net">HTML5 UP</a>.</p>
+						<h1>Flights</h1>
+						<p></p>
 					</header>
 
 				<!-- Nav -->
@@ -44,20 +42,19 @@
 										<thead>
 											<tr>
 												<th>Flight No.</th>
-												<th>Apt</th>
 												<th>Origin</th>
 												<th>Destination</th>
 												<th>Date Dep</th>
 												<th>Date Arr</th>
-												<th>Dep</th>
-												<th>Arr</th>
+												<th>Time Dep</th>
+												<th>Time Arr</th>
 											</tr>
 										</thead>
 										
 										<tbody>
 
 											<?php
-												$conn = mysqli_connect("localhost", "root", "", "id17946631_pars");
+												$conn = mysqli_connect("localhost", "root", "", "pars");
 												$sql = "SELECT * from flight";
 												$result = mysqli_query ($conn, $sql);
 												$resultcheck = mysqli_num_rows($result);
@@ -66,7 +63,7 @@
 													while ($row = mysqli_fetch_array($result)) {
 														echo "<tr><td>" . $row["flightNumber"] . "</td><td>" . $row["flightOrigin"] . "</td><td>" . $row["flightDestination"] . "</td><td>" . $row["dateDepartOrigin"] . "</td><td>"
 														. $row["timeDepartOrigin"] . "</td><td>" . $row["dateArriveDestination"] . "</td><td>" . $row["timeArriveDestination"] . 
-														"</td><td>" . $row["flightType"] . "</td><td>" . 
+														"</td>" . "<td>" . 
 														"<form>" .
 														"<button name='btn' type='submit' value = ". $row["flightNumber"] . ">Select</button>" . 
 														"</form>" .
@@ -91,17 +88,17 @@
 							<section id="first" class="main special">
 								<div class="spotlight">
 									<div class="content">
-												<header class="major">
-													<h2>Flight</h2>
-												</header>
+												
 											<?php
-												$con = mysqli_connect("localhost", "root", "", "id17946631_pars");
+												$con = mysqli_connect("localhost", "root", "", "pars");
 												if(isset($_GET['btn'])) {
 													$btn = $_GET['btn'];
+													$_SESSION['selectedFlightNum'] = $btn;
 													
 													$query = "SELECT * FROM flight WHERE flightNumber = '$btn' ";
                                        				$query_run = mysqli_query($con, $query);
 
+													echo "<header class='major'><h2>" . $btn . "</h2></header>";
 		
 													if (mysqli_num_rows($query_run) > 0) {
 
@@ -151,19 +148,25 @@
 									
 								</div>
 								
-								<ahref="#" class="button primary">Confirm</a>
+								<?php
+									if (isset($_GET['btn'])){
+								?>
+										<a class='button primary' style='text-decoration:none;' href='selectSeats.php'>Confirm</a>
+								<?php
+									}
+								?>
+								
 
 							</section>
-					
-				<!-- Footer -->
+			</div>
+
+			<!-- Footer -->
 				<footer id="footer">
 					<section>
 						
 					</section>
 					<p class="copyright">&copy; Philippine Cultural College. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
 				</footer>
-
-			</div>
 
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>

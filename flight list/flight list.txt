@@ -11,3 +11,10 @@ Flight Class
 Y: Full-fare economy-class ticket.
 J: Full-fare business-class ticket.
 F: Full-fare first-class ticket.
+
+---
+
+Flight Type
+
+D: Domestic Flights
+I: International Flights

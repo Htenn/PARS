@@ -1,5 +1,6 @@
 <?php
     $counter = 1;
+    $pcounter = 1;
 
     $firstname = "";
     $middlename = "";
@@ -47,72 +48,83 @@
                 $checkClientResult = mysqli_query($db, $checkClientQuery);
                 $ifClientResult = mysqli_fetch_assoc($checkClientResult);
                 if ($ifClientResult) {
-                    $ID = $ifClientResult['clientID'];
+                    $_SESSION['clientID'] = $ifClientResult['clientID'];
+                    $_SESSION['clientFirstName'] = $ifClientResult['clientFirstName'];
+                    $_SESSION['clientMiddleName'] = $ifClientResult['clientMiddleName'];
+                    $_SESSION['clientLastName'] = $ifClientResult['clientLastName'];
+                    $_SESSION['clientGender'] = $ifClientResult['clientGender'];
+                    $_SESSION['clientBirthday'] = $ifClientResult['clientBirthday'];
+                    $_SESSION['clientAge'] = $ifClientResult['clientAge'];
+                    $_SESSION['clientEmail'] = $ifClientResult['clientEmail'];
+                    $_SESSION['clientContactNum'] = $ifClientResult['clientContactNum'];
+                    $_SESSION['clientNationality'] = $ifClientResult['clientNationality'];
+                    $_SESSION['clientType'] = $ifClientResult['clientType'];
+                    $_SESSION['clientRemarks'] = $ifClientResult['clientRemarks'];
+                    $_SESSION['clientSeat'] = $items;
                 }
                 else {
-                    $insertQuery = "INSERT INTO client (clientFirstName, clientMiddleName, clientLastName, clientGender, clientBirthday, clientAge, clientEmail, clientContactNum, clientNationality, clientType, clientRemarks, addClientDate, addClientTime) VALUES ('$firstname', '$middlename', '$lastname', '$gender', '$nationality', $age, '$birthdate' , '$email', '$contactnum', '$passengertype', '$remarks', curdate(), curtime())";
-
-                    mysqli_query($db, $insertQuery);
-
-                    $getIDquery = "SELECT clientID FROM client WHERE
-                        clientFirstName = '$firstname' AND
-                        clientMiddleName = '$middlename' AND
-                        clientLastname = '$lastname' AND
-                        clientGender = '$gender' AND
-                        clientBirthday = '$birthdate' AND
-                        clientAge = $age AND
-                        clientEmail = '$email' AND
-                        clientContactNum = '$contactnum' AND
-                        clientNationality = '$nationality' AND
-                        clientType = '$passengertype' AND
-                        clientRemarks = '$remarks";
-
-                    $ID = mysqli_query($db, $getIDquery);
+                    $_SESSION['clientFirstName'] = $firstname;
+                    $_SESSION['clientMiddleName'] = $middlename;
+                    $_SESSION['clientLastName'] = $lastname;
+                    $_SESSION['clientGender'] = $gender;
+                    $_SESSION['clientBirthday'] = $birthdate;
+                    $_SESSION['clientAge'] = $age;
+                    $_SESSION['clientEmail'] = $email;
+                    $_SESSION['clientContactNum'] = $contactnum;
+                    $_SESSION['clientNationality'] = $nationality;
+                    $_SESSION['clientType'] = $passengertype;
+                    $_SESSION['clientRemarks'] = $remarks;
+                    $_SESSION['clientSeat'] = $items;
                 }
             }
             else {
                 $checkpassengerQuery = "SELECT * FROM passenger WHERE 
-                        passengerFirstName = '$firstname' AND
-                        passengerMiddleName = '$middlename' AND
-                        passengerLastname = '$lastname' AND
-                        passengerGender = '$gender' AND
-                        passengerBirthday = '$birthdate' AND
-                        passengerAge = $age AND
-                        passengerEmail = '$email' AND
-                        passengerContactNum = '$contactnum' AND
-                        passengerNationality = '$nationality' AND
-                        passengerType = '$passengertype' AND
-                        passengerRemarks = '$remarks' LIMIT 1";
+                    passengerFirstName = '$firstname' AND
+                    passengerMiddleName = '$middlename' AND
+                    passengerLastname = '$lastname' AND
+                    passengerGender = '$gender' AND
+                    passengerBirthday = '$birthdate' AND
+                    passengerAge = $age AND
+                    passengerEmail = '$email' AND
+                    passengerContactNum = '$contactnum' AND
+                    passengerNationality = '$nationality' AND
+                    passengerType = '$passengertype' AND
+                    passengerRemarks = '$remarks' LIMIT 1";
 
                 $checkpassengerResult = mysqli_query($db, $checkpassengerQuery);
                 $ifpassengerResult = mysqli_fetch_assoc($checkpassengerResult);
                 if ($ifpassengerResult) {
-                    $ID = $ifpassengerResult['passengerID'];
+                    $_SESSION['passengerID' . $pcounter] = $ifpassengerResult['passengerID'];
+                    $_SESSION['passengerFirstName' . $pcounter] = $ifpassengerResult['passengerFirstName'];
+                    $_SESSION['passengerMiddleName' . $pcounter] = $ifpassengerResult['passengerMiddleName'];
+                    $_SESSION['passengerLastName' . $pcounter] = $ifpassengerResult['passengerLastName'];
+                    $_SESSION['passengerGender' . $pcounter] = $ifpassengerResult['passengerGender'];
+                    $_SESSION['passengerBirthday' . $pcounter] = $ifpassengerResult['passengerBirthday'];
+                    $_SESSION['passengerAge' . $pcounter] = $ifpassengerResult['passengerAge'];
+                    $_SESSION['passengerEmail' . $pcounter] = $ifpassengerResult['passengerEmail'];
+                    $_SESSION['passengerContactNum' . $pcounter] = $ifpassengerResult['passengerContactNum'];
+                    $_SESSION['passengerNationality' . $pcounter] = $ifpassengerResult['passengerNationality'];
+                    $_SESSION['passengerType' . $pcounter] = $ifpassengerResult['passengerType'];
+                    $_SESSION['passengerRemarks' . $pcounter] = $ifpassengerResult['passengerRemarks'];
+                    $_SESSION['passengerSeat' . $pcounter] = $items;
                 } else {
-                    $insertQuery = "INSERT INTO passenger (passengerFirstName, passengerMiddleName, passengerLastName, passengerGender, passengerBirthday, passengerAge, passengerEmail, passengerContactNum, passengerNationality, passengerType, passengerRemarks, addpassengerDate, addpassengerTime) VALUES ('$firstname', '$middlename', '$lastname', '$gender', '$nationality', $age, '$birthdate' , '$email', '$contactnum', '$passengertype', '$remarks', curdate(), curtime())";
-
-                    mysqli_query($db, $insertQuery);
-
-                    $getIDquery = "SELECT passengerID FROM passenger WHERE
-                            passengerFirstName = '$firstname' AND
-                            passengerMiddleName = '$middlename' AND
-                            passengerLastname = '$lastname' AND
-                            passengerGender = '$gender' AND
-                            passengerBirthday = '$birthdate' AND
-                            passengerAge = $age AND
-                            passengerEmail = '$email' AND
-                            passengerContactNum = '$contactnum' AND
-                            passengerNationality = '$nationality' AND
-                            passengerType = '$passengertype' AND
-                            passengerRemarks = '$remarks";
-
-                    $ID = mysqli_query($db, $getIDquery);
+                    $_SESSION['passengerFirstName' . $pcounter] = $firstname;
+                    $_SESSION['passengerMiddleName' . $pcounter] = $middlename;
+                    $_SESSION['passengerLastName' . $pcounter] = $lastname;
+                    $_SESSION['passengerGender' . $pcounter] = $gender;
+                    $_SESSION['passengerBirthday' . $pcounter] = $birthdate;
+                    $_SESSION['passengerAge' . $pcounter] = $age;
+                    $_SESSION['passengerEmail' . $pcounter] = $email;
+                    $_SESSION['passengerContactNum' . $pcounter] = $contactnum;
+                    $_SESSION['passengerNationality' . $pcounter] = $nationality;
+                    $_SESSION['passengerType' . $pcounter] = $passengertype;
+                    $_SESSION['passengerRemarks' . $pcounter] = $remarks;
+                    $_SESSION['passengerSeat' . $pcounter] = $items;
                 }
             }
-
-            if ($ID) {
-                
-            }
         }
+
+        $pcounter++;
+        $counter++;
     }
 ?>

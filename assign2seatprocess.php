@@ -1,4 +1,6 @@
 <?php
+    session_start();
+
     $counter = 1;
     $pcounter = 1;
 
@@ -14,10 +16,10 @@
     $passengertype = "";
     $remarks = "";
 
-    foreach ($elements as $items) {
+    if (isset($_POST['seatSubmit'])) {
         $db = mysqli_connect('localhost', 'root' , '', 'pars');
 
-        if (isset($_POST['submit'])) {
+        foreach ($_SESSION['elements'] as $items) {
             $firstname = mysqli_real_escape_string($db, $_POST['firstName' . $counter]);
             $middlename = mysqli_real_escape_string($db, $_POST['middleName' . $counter]);
             $lastname = mysqli_real_escape_string($db, $_POST['lastName' . $counter]);
@@ -49,33 +51,21 @@
                 $ifClientResult = mysqli_fetch_assoc($checkClientResult);
                 if ($ifClientResult) {
                     $_SESSION['clientID'] = $ifClientResult['clientID'];
-                    $_SESSION['clientFirstName'] = $ifClientResult['clientFirstName'];
-                    $_SESSION['clientMiddleName'] = $ifClientResult['clientMiddleName'];
-                    $_SESSION['clientLastName'] = $ifClientResult['clientLastName'];
-                    $_SESSION['clientGender'] = $ifClientResult['clientGender'];
-                    $_SESSION['clientBirthday'] = $ifClientResult['clientBirthday'];
-                    $_SESSION['clientAge'] = $ifClientResult['clientAge'];
-                    $_SESSION['clientEmail'] = $ifClientResult['clientEmail'];
-                    $_SESSION['clientContactNum'] = $ifClientResult['clientContactNum'];
-                    $_SESSION['clientNationality'] = $ifClientResult['clientNationality'];
-                    $_SESSION['clientType'] = $ifClientResult['clientType'];
-                    $_SESSION['clientRemarks'] = $ifClientResult['clientRemarks'];
-                    $_SESSION['clientSeat'] = $items;
                 }
-                else {
-                    $_SESSION['clientFirstName'] = $firstname;
-                    $_SESSION['clientMiddleName'] = $middlename;
-                    $_SESSION['clientLastName'] = $lastname;
-                    $_SESSION['clientGender'] = $gender;
-                    $_SESSION['clientBirthday'] = $birthdate;
-                    $_SESSION['clientAge'] = $age;
-                    $_SESSION['clientEmail'] = $email;
-                    $_SESSION['clientContactNum'] = $contactnum;
-                    $_SESSION['clientNationality'] = $nationality;
-                    $_SESSION['clientType'] = $passengertype;
-                    $_SESSION['clientRemarks'] = $remarks;
-                    $_SESSION['clientSeat'] = $items;
-                }
+
+                $_SESSION['clientFirstName'] = $firstname;
+                $_SESSION['clientMiddleName'] = $middlename;
+                $_SESSION['clientLastName'] = $lastname;
+                $_SESSION['clientGender'] = $gender;
+                $_SESSION['clientBirthday'] = $birthdate;
+                $_SESSION['clientAge'] = $age;
+                $_SESSION['clientEmail'] = $email;
+                $_SESSION['clientContactNum'] = $contactnum;
+                $_SESSION['clientNationality'] = $nationality;
+                $_SESSION['clientType'] = $passengertype;
+                $_SESSION['clientRemarks'] = $remarks;
+                $_SESSION['clientSeat'] = $items;
+                echo $_SESSION['clientFirstName'];
             }
             else {
                 $checkpassengerQuery = "SELECT * FROM passenger WHERE 
@@ -121,10 +111,12 @@
                     $_SESSION['passengerRemarks' . $pcounter] = $remarks;
                     $_SESSION['passengerSeat' . $pcounter] = $items;
                 }
+                $pcounter++;
             }
+            $counter++;
         }
-
-        $pcounter++;
-        $counter++;
+        $_SESSION['counter'] = $counter;
+        $_SESSION['pcounter'] = $pcounter;
+        header('location: confirmation.php');
     }
 ?>

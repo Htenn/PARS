@@ -18,3 +18,20 @@ Flight Type
 
 D: Domestic Flights
 I: International Flights
+
+---
+
+Area Options
+
+B: Bulkhead seat
+W: Window seat
+A: Aisle seat
+
+---
+
+Specific Passenger Options
+
+I: Infant
+U: Unaccompanied Minor
+H: Handicapped
+M: Mediacally OK for travel

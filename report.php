@@ -185,35 +185,35 @@
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
-												<td>V.I.P</td>
-												<td>69</td>
-												<td><a href="#" class="button primary small">Edit</a></td>
-											</tr>
+											<?php
+												$db = mysqli_connect('localhost', 'root', '', 'id17946631_pars');
+												$bookingQuery = mysqli_query($db, "SELECT booking.clientID, booking.bookingID, booking.flightNumber, client.clientFirstName, client.clientMiddleName, client.clientLastName, booking.bookingOrigin, booking.bookingDestination, booking.bookingNumOfSeats FROM booking INNER JOIN client ON booking.clientID = client.clientID");
+												//Removed $resultBookingQuery = mysqli_query($db, $bookingQuery);
+												//Renamed $resultBookingQuery to bookingQuery
+												while($row = mysqli_fetch_array($bookingQuery)) {
+													echo "<tr>";
+														echo "<td>" . $row['flightSeatClass'] . "</td>";
+														echo "<td>" . $row['flightSeatNumber'] . "</td>";
+														echo "<td>"
+														
+														if (isset($_GET['btn'])) {
+															$btn = $_GET['btn'];
+															$query = $mysqli->query("SELECT * FROM flight_seat WHERE flightNumber=$btn");
+															
+														//	if(count($query)==1){
+														//		$row = $result->fetch_array();
+														//		$fligthSeatClass = $row['flightSeatClass'];
+														//		$fligthSeatNumber = $row['flightSeatNumber'];
+															}
+															 
+														}
 
-											<tr>
-												<td>V.I.P</td>
-												<td>69</td>
-												<td><a href="#" class="button primary small">Edit</a></td>
-											</tr>
-
-											<tr>
-												<td>V.I.P</td>
-												<td>69</td>
-												<td><a href="#" class="button primary small">Edit</a></td>
-											</tr>
-
-											<tr>
-												<td>V.I.P</td>
-												<td>69</td>
-												<td><a href="#" class="button primary small">Edit</a></td>
-											</tr>
-
-											<tr>
-												<td>V.I.P</td>
-												<td>69</td>
-												<td><a href="#" class="button primary small">Edit</a></td>
-											</tr>
+													
+														echo "</tr>";
+																									
+													mysqli_free_result($bookingQuery);
+													mysqli_close($db);
+											?>
 										</tbody>
 									</table>
 								</div>

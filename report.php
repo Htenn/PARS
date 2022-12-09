@@ -77,7 +77,7 @@
 													-->
 
 													<?php
-														$db = mysqli_connect('','','','');
+														$db = mysqli_connect('localhost', 'root', '', 'id17946631_pars');
 														$clientQuery = mysqli_query($db, "SELECT * FROM client");
 														
 														while($row = mysqli_fetch_array($clientQuery)) {
@@ -145,18 +145,18 @@
 											<tbody>
 												
 												<?php
-													$db = mysqli_connect('','','','');
-													$bookingQuery = mysqli_query($db, "SELECT booking.clientID, booking.bookingID, booking.flightNumber, client.clientFirstName, client.clientMiddleName, client.clientLastName, booking.bookingOrigin, booking.bookingDestination, booking.bookingNumOfSeat FROM booking INNER JOIN client ON booking.clientID = client.clientID");
-													$resultBookingQuery = mysqli_query($db, $bookingQuery);
+													$db = mysqli_connect('localhost', 'root', '', 'id17946631_pars');
+													$bookingQuery = mysqli_query($db, "SELECT booking.clientID, booking.bookingID, booking.flightNumber, client.clientFirstName, client.clientMiddleName, client.clientLastName, booking.bookingOrigin, booking.bookingDestination, booking.bookingNumOfSeats, booking.addBookingDate, booking.addBookingTime FROM booking INNER JOIN client ON booking.clientID = client.clientID");
+													
 
-													while($row = mysqli_fetch_array($resultBookingQuery)) {
+													while($row = mysqli_fetch_array($bookingQuery)) {
 														echo "<tr>";
 															echo "<td>" . $row['bookingID'] . "</td>";
 															echo "<td>" . $row['flightNumber'] . "</td>";
 															echo "<td>" . $row['clientFirstName'] . " " . $row['clientMiddleName'] . " " . $row['clientLastName'] . "</td>";
-															echo "<td>" . $row['bookingOrigin'] . "</td>";
-															echo "<td>" . $row['bookingDestination'] . "</td>";
-															echo "<td>" . $row['bookingNumOfSeat'] . "</td>";
+															echo "<td>" . $row['bookingOrigin'] . " " . $row['addBookingDate'] . " " . $row['addBookingTime'] . "</td>";
+															echo "<td>" . $row['bookingDestination'] . " " . $row['addBookingDate'] . " " . $row['addBookingTime'] . "</td>";
+															echo "<td>" . $row['bookingNumOfSeats'] . "</td>";
 														echo "</tr>";
 													}
 													mysqli_free_result($bookingQuery);
@@ -194,7 +194,7 @@
 													echo "<tr>";
 														echo "<td>" . $row['flightSeatClass'] . "</td>";
 														echo "<td>" . $row['flightSeatNumber'] . "</td>";
-														echo "<td>"
+														echo "<td>";
 														
 														if (isset($_GET['btn'])) {
 															$btn = $_GET['btn'];

@@ -3951,6 +3951,7 @@ body.is-preload #header.alt .logo {
 
 .seatRow {
     display: flex;
+    overflow-x: auto;
 }
 
 .seat {

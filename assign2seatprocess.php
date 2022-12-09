@@ -65,7 +65,6 @@
                 $_SESSION['clientType'] = $passengertype;
                 $_SESSION['clientRemarks'] = $remarks;
                 $_SESSION['clientSeat'] = $items;
-                echo $_SESSION['clientFirstName'];
             }
             else {
                 $checkpassengerQuery = "SELECT * FROM passenger WHERE 
@@ -85,32 +84,21 @@
                 $ifpassengerResult = mysqli_fetch_assoc($checkpassengerResult);
                 if ($ifpassengerResult) {
                     $_SESSION['passengerID' . $pcounter] = $ifpassengerResult['passengerID'];
-                    $_SESSION['passengerFirstName' . $pcounter] = $ifpassengerResult['passengerFirstName'];
-                    $_SESSION['passengerMiddleName' . $pcounter] = $ifpassengerResult['passengerMiddleName'];
-                    $_SESSION['passengerLastName' . $pcounter] = $ifpassengerResult['passengerLastName'];
-                    $_SESSION['passengerGender' . $pcounter] = $ifpassengerResult['passengerGender'];
-                    $_SESSION['passengerBirthday' . $pcounter] = $ifpassengerResult['passengerBirthday'];
-                    $_SESSION['passengerAge' . $pcounter] = $ifpassengerResult['passengerAge'];
-                    $_SESSION['passengerEmail' . $pcounter] = $ifpassengerResult['passengerEmail'];
-                    $_SESSION['passengerContactNum' . $pcounter] = $ifpassengerResult['passengerContactNum'];
-                    $_SESSION['passengerNationality' . $pcounter] = $ifpassengerResult['passengerNationality'];
-                    $_SESSION['passengerType' . $pcounter] = $ifpassengerResult['passengerType'];
-                    $_SESSION['passengerRemarks' . $pcounter] = $ifpassengerResult['passengerRemarks'];
-                    $_SESSION['passengerSeat' . $pcounter] = $items;
-                } else {
-                    $_SESSION['passengerFirstName' . $pcounter] = $firstname;
-                    $_SESSION['passengerMiddleName' . $pcounter] = $middlename;
-                    $_SESSION['passengerLastName' . $pcounter] = $lastname;
-                    $_SESSION['passengerGender' . $pcounter] = $gender;
-                    $_SESSION['passengerBirthday' . $pcounter] = $birthdate;
-                    $_SESSION['passengerAge' . $pcounter] = $age;
-                    $_SESSION['passengerEmail' . $pcounter] = $email;
-                    $_SESSION['passengerContactNum' . $pcounter] = $contactnum;
-                    $_SESSION['passengerNationality' . $pcounter] = $nationality;
-                    $_SESSION['passengerType' . $pcounter] = $passengertype;
-                    $_SESSION['passengerRemarks' . $pcounter] = $remarks;
-                    $_SESSION['passengerSeat' . $pcounter] = $items;
                 }
+
+                $_SESSION['passengerFirstName' . $pcounter] = $firstname;
+                $_SESSION['passengerMiddleName' . $pcounter] = $middlename;
+                $_SESSION['passengerLastName' . $pcounter] = $lastname;
+                $_SESSION['passengerGender' . $pcounter] = $gender;
+                $_SESSION['passengerBirthday' . $pcounter] = $birthdate;
+                $_SESSION['passengerAge' . $pcounter] = $age;
+                $_SESSION['passengerEmail' . $pcounter] = $email;
+                $_SESSION['passengerContactNum' . $pcounter] = $contactnum;
+                $_SESSION['passengerNationality' . $pcounter] = $nationality;
+                $_SESSION['passengerType' . $pcounter] = $passengertype;
+                $_SESSION['passengerRemarks' . $pcounter] = $remarks;
+                $_SESSION['passengerSeat' . $pcounter] = $items;
+                
                 $pcounter++;
             }
             $counter++;

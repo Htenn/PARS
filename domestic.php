@@ -1,8 +1,5 @@
 <?php 
 	session_start();
-	//if (isset($_POST['btn'])) {
-	//	header('location: domestic.php#conf');
-	//}
 ?>
 <!DOCTYPE HTML>
 
@@ -40,7 +37,7 @@
 						<!-- Introduction -->
 							<section id="choose" class="main">
 								<header class="major">
-									<h2>Local Flight Information</h2>
+									<h2>Available Flights</h2>
 								</header>
 								
 								<div class="table-wrapper">

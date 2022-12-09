@@ -38,8 +38,6 @@
             <section id="content" class="main">
                 <form method="post" action="assign2seatprocess.php">
                     <?php
-                        date_default_timezone_set("Asia/Manila");
-                        echo "The time is " . date("h:i:sa");
 
                         $count = 1;
                         $_SESSION['elements'] = json_decode($_POST['str'], true);

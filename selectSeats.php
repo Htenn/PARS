@@ -41,9 +41,6 @@
 					$_SESSION['a330j'] = array();
 					$_SESSION['a330p'] = array();
 					$_SESSION['a330y'] = array();
-
-					date_default_timezone_set("Asia/Manila");
-					echo "The time is " . date("h:i:sa");
 					
 					$selectedFlightNumber = $_SESSION["selectedFlightNum"];
 
@@ -343,6 +340,7 @@
 					?>
 				</div>
 
+				<p></p>
 				<form id="inviForm" action="assign2seat.php" method="POST">
 					<input type="hidden" id="str" name="str" value="" />
 					<input type="submit" class="button primary fit" id="btn" name="submit" value="Submit" />

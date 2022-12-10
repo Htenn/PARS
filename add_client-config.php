@@ -52,7 +52,7 @@ if (count($errors) == 0) {
 
 $query = "INSERT INTO client (clientFirstName, clientMiddleName, clientLastName, clientGender, clientBirthday, clientAge, clientEmail, clientContactNum, clientNationality, clientType, clientRemarks) VALUES ('$clientFirstName', '$clientMiddleName','$clientLastName','$clientGender','$clientBirthday','$clientAge','$clientEmail','$clientContactNum','$clientNationality','clientType','$clientRemarks')";
 
-$query = "INSERT INTO flight (flightNumber, flightOrigin, flightDestination, dateDepartOrigin, timeDepartOrigin, dateArriveDestinaiton, timeArriveDestination, flightType) VALUES ('$flightNumber', '$flightOrigin', '$flightDestination', '$dateDepartOrigin', '$timeDepartOrigin', '$dateArriveDestination', '$timeArriveDestination', '$flightType')";
+//$query = "INSERT INTO flight (flightNumber, flightOrigin, flightDestination, dateDepartOrigin, timeDepartOrigin, dateArriveDestinaiton, timeArriveDestination, flightType) VALUES ('$flightNumber', '$flightOrigin', '$flightDestination', '$dateDepartOrigin', '$timeDepartOrigin', '$dateArriveDestination', '$timeArriveDestination', '$flightType')";
 mysqli_query($db, $query); // Execute query to the code.
 
 

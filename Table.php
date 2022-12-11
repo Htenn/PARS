@@ -57,7 +57,7 @@
 										<tbody>
 
 											<?php
-												$conn = mysqli_connect("localhost", "root", "", "id17946631_pars");
+												$conn = mysqli_connect("localhost", "root", "", "pars1");
 												$sql = "SELECT * from flight";
 												$result = mysqli_query ($conn, $sql);
 												$resultcheck = mysqli_num_rows($result);
@@ -88,7 +88,7 @@
 							</section>
 							
 							<?php
-							$con = mysqli_connect("localhost", "root", "", "id17946631_pars");
+							$con = mysqli_connect("localhost", "root", "", "pars1");
 							if(isset($_GET['btn'])) {
 								$btn = $_GET['btn'];
 								
@@ -98,11 +98,29 @@
 							}
 							?>
 							<?php
-							$con = mysqli_connect("localhost", "root", "", "id17946631_pars");
+							$con = mysqli_connect("localhost", "root", "", "pars1");
 							if(isset($_GET['btn'])) {
 								$btn = $_GET['btn'];
 								
 								$Dquery = "DELETE from flight WHERE flightNumber = '$btn'";
+								$query_run = mysqli_query($con, $Dquery);
+								
+							}
+
+							if(isset($_GET['btn'])) {
+								$btn = $_GET['btn'];
+								
+								$query = "INSERT into flight_seatarchive SELECT * FROM flight_seat WHERE flightNumber = '$btn' ";
+								$query_run = mysqli_query($con, $query);
+								
+							}
+							?>
+							<?php
+							$con = mysqli_connect("localhost", "root", "", "pars1");
+							if(isset($_GET['btn'])) {
+								$btn = $_GET['btn'];
+								
+								$Dquery = "DELETE from flight_seat WHERE flightNumber = '$btn'";
 								$query_run = mysqli_query($con, $Dquery);
 								header("Location: ../PARS/Table.php");
 							}
@@ -136,8 +154,8 @@
 										<tbody>
 
 											<?php
-												$conn = mysqli_connect("localhost", "root", "", "id17946631_pars");
-												$sql = "SELECT * from flightarchive";
+												$conn = mysqli_connect("localhost", "root", "", "pars1");
+												$sql = "SELECT * from flightarchive ORDER BY 'date' DESC";
 												$result = mysqli_query ($conn, $sql);
 												$resultcheck = mysqli_num_rows($result);
 												

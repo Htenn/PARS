@@ -1,4 +1,6 @@
-<?php session_start(); ?>
+<?php 
+	session_start();
+?>
 <!DOCTYPE HTML>
 
 <html>
@@ -20,21 +22,22 @@
 						<p></p>
 					</header>
 
-				<!-- Nav -->
+				<!-- Nav
 					<nav id="nav">
 						<ul>
 							<li><a href="#intro" class="active">Local Flight Information</a></li>
 							<li><a href="#first">Confirmation</a></li>
 						</ul>
 					</nav>
+				-->
 
 				<!-- Main -->
 					<div id="main">
 
 						<!-- Introduction -->
-							<section id="intro" class="main">
+							<section id="choose" class="main">
 								<header class="major">
-									<h2>Local Flight Information</h2>
+									<h2>Available Flights</h2>
 								</header>
 								
 								<div class="table-wrapper">
@@ -45,8 +48,8 @@
 												<th>Origin</th>
 												<th>Destination</th>
 												<th>Date Dep</th>
-												<th>Date Arr</th>
 												<th>Time Dep</th>
+												<th>Date Arr</th>
 												<th>Time Arr</th>
 											</tr>
 										</thead>
@@ -64,7 +67,7 @@
 														echo "<tr><td>" . $row["flightNumber"] . "</td><td>" . $row["flightOrigin"] . "</td><td>" . $row["flightDestination"] . "</td><td>" . $row["dateDepartOrigin"] . "</td><td>"
 														. $row["timeDepartOrigin"] . "</td><td>" . $row["dateArriveDestination"] . "</td><td>" . $row["timeArriveDestination"] . 
 														"</td>" . "<td>" . 
-														"<form>" .
+														"<form method='post' action='domestic.php#conf'>" .
 														"<button name='btn' type='submit' value = ". $row["flightNumber"] . ">Select</button>" . 
 														"</form>" .
 														"</td></tr>";
@@ -85,14 +88,14 @@
 							</section>
 
 							<!-- First Section -->
-							<section id="first" class="main special">
+							<section id="conf" class="main special">
 								<div class="spotlight">
 									<div class="content">
 												
 											<?php
 												$con = mysqli_connect("localhost", "root", "", "pars");
-												if(isset($_GET['btn'])) {
-													$btn = $_GET['btn'];
+												if(isset($_POST['btn'])) {
+													$btn = $_POST['btn'];
 													$_SESSION['selectedFlightNum'] = $btn;
 													
 													$query = "SELECT * FROM flight WHERE flightNumber = '$btn' ";
@@ -135,7 +138,17 @@
 																	<input type="text" disabled="disabled"  value="<?= $row["timeArriveDestination"]; ?>"/>
 																</div>
 															</div>
+
+															
 											<?php
+												// save to session variables
+												$_SESSION['flightOrigin'] = $row["flightOrigin"];
+												$_SESSION['flightDestination'] = $row["flightDestination"];
+												$_SESSION['dateDepartOrigin'] = $row["dateDepartOrigin"];
+												$_SESSION['timeDepartOrigin'] = $row["timeDepartOrigin"];
+												$_SESSION['dateArriveDestination'] = $row["dateArriveDestination"];
+												$_SESSION['timeArriveDestination'] = $row["timeArriveDestination"];
+												
 														}
 													}
 													else {
@@ -149,7 +162,7 @@
 								</div>
 								
 								<?php
-									if (isset($_GET['btn'])){
+									if (isset($_POST['btn'])){
 								?>
 										<a class='button primary' style='text-decoration:none;' href='selectSeats.php'>Confirm</a>
 								<?php

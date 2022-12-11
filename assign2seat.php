@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <!DOCTYPE HTML>
 <!--
 	Stellar by HTML5 UP
@@ -32,17 +36,14 @@
 
             <!-- Content -->
             <section id="content" class="main">
-                <form method="post" action="assign2seat.php">
+                <form method="post" action="assign2seatprocess.php">
                     <?php
-                        date_default_timezone_set("Asia/Manila");
-                        echo "The time is " . date("h:i:sa");
 
                         $count = 1;
-
-                        $elements = json_decode($_POST['str'], true);
+                        $_SESSION['elements'] = json_decode($_POST['str'], true);
                         
                         echo "";
-                        foreach ($elements as $items) {
+                        foreach ($_SESSION['elements'] as $items) {
                             if ($count !== 1) {
                                 echo "<br /><hr /><br />";
                             }
@@ -110,11 +111,10 @@
                                     <div class="col-4 col-12-xsmall">
                                         <label for="passengerType<?php echo $count; ?>"><h2>Passenger Type</h2></label>
                                         <select name="passengerType<?php echo $count; ?>" id="passengerType">
-                                            <option value="normal">Normal</option>
-                                            <option value="minor">Unaccompanied Minor</option>
-                                            <option value="handicapped">Handicapped</option>
-                                            <option value="med">Medically OK for travel</option>
-                                            <option value="sc">Senior Citizen</option>
+                                            <option value="N">Normal</option>
+                                            <option value="U">Unaccompanied Minor</option>
+                                            <option value="H">Handicapped</option>
+                                            <option value="M">Medically OK for travel</option>
                                         </select>
                                     </div>
                                 </div>
@@ -132,7 +132,7 @@
 
                     <br>
                     <div class="col-12">
-                        <input type="submit" value="Submit" name="submit" class="button primary fit" />
+                        <input type="submit" value="Submit" name="seatSubmit" class="button primary fit" />
                     </div>
                 </form>
             </section>

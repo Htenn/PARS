@@ -35,12 +35,16 @@
 			<section id="content" class="main">
 				<div class="container">
 					<?php
-					date_default_timezone_set("Asia/Manila");
-					echo "The time is " . date("h:i:sa");
+					$_SESSION['a320j'] = array();
+					$_SESSION['a320p'] = array();
+					$_SESSION['a320y'] = array();
+					$_SESSION['a330j'] = array();
+					$_SESSION['a330p'] = array();
+					$_SESSION['a330y'] = array();
 					
 					$selectedFlightNumber = $_SESSION["selectedFlightNum"];
 
-					$selectedFlightQuery = "SELECT flightAircraftModel FROM flight_aircrafts WHERE flightNumber = '$selectedFlightNumber' LIMIT 1";
+					$selectedFlightQuery = "SELECT flightAircraftModel FROM flight WHERE flightNumber = '$selectedFlightNumber' LIMIT 1";
 					$db = mysqli_connect('localhost', 'root', '', 'pars');
 					$selectedFlightAircraftModel = mysqli_query($db, $selectedFlightQuery);
 					$selectedFlightAircraftModel = mysqli_fetch_assoc($selectedFlightAircraftModel);
@@ -57,6 +61,9 @@
 								echo "<div class= \"seatRow\">";
 								for ($row = 1; $row <= 3; $row++) {
 									$seatNumber = $column . $row;
+									
+									array_push($_SESSION['a320j'], $seatNumber);
+
 									$seatSold = false;
 
 									foreach ($seatCheck as $data) {
@@ -78,6 +85,9 @@
 								echo "<div class= \"seatRow\">";
 								for ($row = 1; $row <= 3; $row++) {
 									$seatNumber = $column . $row;
+
+									array_push($_SESSION['a320j'], $seatNumber);
+
 									$seatSold = false;
 
 									foreach ($seatCheck as $data) {
@@ -101,6 +111,9 @@
 								echo "<div class= \"seatRow\">";
 								for ($row = 7; $row <= 8; $row++) {
 									$seatNumber = $column . $row;
+
+									array_push($_SESSION['a320p'], $seatNumber);
+
 									$seatSold = false;
 
 									foreach ($seatCheck as $data) {
@@ -117,6 +130,9 @@
 								}
 								for ($row = 10; $row <= 12; $row++) {
 									$seatNumber = $column . $row;
+
+									array_push($_SESSION['a320p'], $seatNumber);
+
 									$seatSold = false;
 
 									foreach ($seatCheck as $data) {
@@ -133,6 +149,9 @@
 								}
 								for ($row = 20; $row <= 21; $row++) {
 									$seatNumber = $column . $row;
+
+									array_push($_SESSION['a320p'], $seatNumber);
+
 									$seatSold = false;
 
 									foreach ($seatCheck as $data) {
@@ -159,6 +178,9 @@
 								echo "<div class= \"seatRow\">";
 								for ($row = 22; $row <= 38; $row++) {
 									$seatNumber = $column . $row;
+
+									array_push($_SESSION['a320y'], $seatNumber);
+
 									$seatSold = false;
 
 									foreach ($seatCheck as $data) {
@@ -191,6 +213,9 @@
 								echo "<div class= \"seatRow\">";
 								for ($row = 1; $row <= 5; $row++) {
 									$seatNumber = $column . $row;
+
+									array_push($_SESSION['a330j'], $seatNumber);
+
 									$seatSold = false;
 
 									foreach ($seatCheck as $data) {
@@ -216,6 +241,9 @@
 								echo "<div class= \"seatRow\">";
 								for ($row = 21; $row <= 23; $row++) {
 									$seatNumber = $column . $row;
+
+									array_push($_SESSION['a330p'], $seatNumber);
+
 									$seatSold = false;
 
 									foreach ($seatCheck as $data) {
@@ -241,6 +269,9 @@
 								echo "<div class= \"seatRow\">";
 								for ($row = 31; $row <= 47; $row++) {
 									$seatNumber = $column . $row;
+
+									array_push($_SESSION['a330y'], $seatNumber);
+
 									$seatSold = false;
 
 									foreach ($seatCheck as $data) {
@@ -257,6 +288,9 @@
 								}
 								for ($row = 51; $row <= 62; $row++) {
 									$seatNumber = $column . $row;
+
+									array_push($_SESSION['a330y'], $seatNumber);
+
 									$seatSold = false;
 
 									foreach ($seatCheck as $data) {
@@ -281,6 +315,9 @@
 								echo "<div class= \"seatRow\">";
 								for ($row = 63; $row <= 67; $row++) {
 									$seatNumber = $column . $row;
+
+									array_push($_SESSION['a330j'], $seatNumber);
+
 									$seatSold = false;
 
 									foreach ($seatCheck as $data) {
@@ -303,6 +340,7 @@
 					?>
 				</div>
 
+				<p></p>
 				<form id="inviForm" action="assign2seat.php" method="POST">
 					<input type="hidden" id="str" name="str" value="" />
 					<input type="submit" class="button primary fit" id="btn" name="submit" value="Submit" />

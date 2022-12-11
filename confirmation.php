@@ -299,8 +299,12 @@
     <?php
         if (array_key_exists('exeConfirm', $_POST)) {
             $db = mysqli_connect('localhost', 'root', '', 'pars');
-            for ($ii = 0; $ii < $pcounter; $ii++) {
-                if ($ii == 0) {
+            $counter = $_SESSION['counter'];
+            $pcounter = $_SESSION['pcounter'];
+
+            for ($ii = 0; $ii <= $pcounter; $ii++) {
+
+                if ($ii == 0) { // CLIENT
                     // check for seat class
                     if (in_array($_SESSION['clientSeat'], $_SESSION['a320j'], true)) {
                         $seatClass = 'Business';
@@ -322,8 +326,10 @@
                     }
 
                     if (isset($_SESSION['clientID'])) {
+                        $clientID = $_SESSION['clientID'];
+
                         $insertFlightSeatQuery = "INSERT INTO flight_seat (clientID, flightNumber, flightSeatClass, flightSeatNumber) VALUES ('" . 
-                        $_SESSION['clientID'] . "', '" . 
+                        $clientID . "', '" . 
                         $_SESSION['selectedFlightNum'] . "', '" .
                         $seatClass . "', '" .
                         $_SESSION['clientSeat']
@@ -356,7 +362,6 @@
                         $_SESSION['clientBirthday'] . "', '" .
                         $_SESSION['clientEmail'] . "', '" .
                         $_SESSION['clientContactNum'] . "', '" .
-                        $passengerType . "', '" .
                         $_SESSION['clientType'] . "', '" .
                         $_SESSION['clientRemarks'] . "', curdate(), curtime()) ";
 
@@ -382,10 +387,107 @@
                         $seatClass . "', '" .
                         $_SESSION['clientSeat']
                         . "') ";
+
+                        mysqli_query($db, $insertFlightSeatQuery);
                     }
+
+                    $insertBookingQuery = "INSERT INTO booking (clientID, flightNumber, bookingOrigin, bookingDestination, bookingNumOfSeats, addBookingDate, addBookingTime) VALUES ('" .
+                    $clientID . "', '" .
+                    $_SESSION['selectedFlightNum'] . "', '" .
+                    $_SESSION['flightOrigin'] . "', '" .
+                    $_SESSION['flightDestination'] . "', " .
+                    $counter . ", curdate(), curtime())";
                 }
-                
+                else { // PASSENGER
+                    if (in_array($_SESSION['passengerSeat' . $ii], $_SESSION['a320j'], true)) {
+                        $seatClass = 'Business';
+                    }
+                    if (in_array($_SESSION['passengerSeat' . $ii], $_SESSION['a320p'], true)) {
+                        $seatClass = 'Premium Economy';
+                    }
+                    if (in_array($_SESSION['passengerSeat' . $ii], $_SESSION['a320y'], true)) {
+                        $seatClass = 'Economy';
+                    }
+                    if (in_array($_SESSION['passengerSeat' . $ii], $_SESSION['a330j'], true)) {
+                        $seatClass = 'Business';
+                    }
+                    if (in_array($_SESSION['passengerSeat' . $ii], $_SESSION['a330p'], true)) {
+                        $seatClass = 'Premium Economy';
+                    }
+                    if (in_array($_SESSION['passengerSeat' . $ii], $_SESSION['a330y'], true)) {
+                        $seatClass = 'Economy';
+                    }
+
+                    if (isset($_SESSION['passengerID' . $ii])) {
+                        $passengerID = $_SESSION['passengerID'];
+
+                        $insertFlightSeatQuery = "INSERT INTO flight_seat (clientID, passengerID, flightNumber, flightSeatClass, flightSeatNumber) VALUES ('" .
+                            $clientID . "', '" .
+                            $passengerID . "', '" .
+                            $_SESSION['selectedFlightNum'] . "', '" .
+                            $seatClass . "', '" .
+                            $_SESSION['passengerSeat' . $ii]
+                            . "') ";
+
+                        mysqli_query($db, $insertFlightSeatQuery);
+                    } else {
+                        switch ($_SESSION['passengerType' . $ii]) {
+                            case 'U':
+                                $passengerType = 'Unaccompanied Minor';
+                                break;
+                            case 'H':
+                                $passengerType = 'Handicapped';
+                                break;
+                            case 'M':
+                                $passengerType = 'Medically OK for travel';
+                                break;
+                            default:
+                                $passengerType = 'Normal';
+                        }
+
+                        $insertPassengerQuery = "INSERT INTO passenger (passengerFirstName, passengerMiddleName, passengerLastName, passengerGender, passengerNationality, passengerAge, passengerBirthday, passengerEmail, passengerContactNum, passengerType, passengerRemarks, addClientDate, addClientTime) VALUES ('" .
+                            $_SESSION['passengerFirstName' . $ii] . "', '" .
+                            $_SESSION['passengerMiddleName' . $ii] . "', '" .
+                            $_SESSION['passengerLastName' . $ii] . "', '" .
+                            $_SESSION['passengerGender' . $ii] . "', '" .
+                            $_SESSION['passengerNationality' . $ii] . "', '" .
+                            $_SESSION['passengerAge' . $ii] . "', '" .
+                            $_SESSION['passengerBirthday' . $ii] . "', '" .
+                            $_SESSION['passengerEmail' . $ii] . "', '" .
+                            $_SESSION['passengerContactNum' . $ii] . "', '" .
+                            $_SESSION['passengerType' . $ii] . "', '" .
+                            $_SESSION['passengerRemarks' . $ii] . "', curdate(), curtime()) ";
+
+                        mysqli_query($db, $insertPassengerQuery);
+
+                        $selectPassengerIDquery = "SELECT passengerID FROM passenger WHERE 
+                            passengerFirstname = '" . $_SESSION['passengerFirstName' . $ii]
+                            . "' AND passengerMiddleName = '" . $_SESSION['passengerMiddleName' . $ii]
+                            . "' AND passengerLastName = '" . $_SESSION['passengerLastName' . $ii]
+                            . "' AND passengerGender = '" . $_SESSION['passengerGender' . $ii]
+                            . "' AND passengerNationality = '" . $_SESSION['passengerNationality' . $ii]
+                            . "' AND passengerAge = '" . $_SESSION['passengerAge' . $ii]
+                            . "' AND passengerBirthday = '" . $_SESSION['passengerBirthday' . $ii]
+                            . "' AND passengerEmail = '" . $_SESSION['passengerEmail' . $ii]
+                            . "' AND passengerContactNum = '" . $_SESSION['passengerContactNum' . $ii]
+                            . "'";
+
+                        $passengerID = mysqli_query($db, $selectPassengerIDquery);
+
+                        $insertFlightSeatQuery = "INSERT INTO flight_seat (clientID, passengerID, flightNumber, flightSeatClass, flightSeatNumber) VALUES ('" .
+                            $clientID . "', '" .    
+                            $passengerID . "', '" .
+                            $_SESSION['selectedFlightNum'] . "', '" .
+                            $seatClass . "', '" .
+                            $_SESSION['passengerSeat' . $ii]
+                            . "') ";
+
+                        mysqli_query($db, $insertFlightSeatQuery);
+                        }
+                }
             }
+
+            unset($_SESSION['selectedFlightNum']);
         }
     ?>
 

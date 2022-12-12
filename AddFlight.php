@@ -40,7 +40,7 @@
 													<h2>Add Flight</h2>
 												</header>
 
-												<form action="includes/AddingData.php" method = "POST">
+												<form action="AddFlight.php" method = "POST">
 
 															<div class="row gtr-uniform">
 
@@ -79,18 +79,18 @@
 																</div>
 
 																<div class="col-6 col-12-xsmall">
-																	<h2>FAircraft Model</h2>
+																	<h2>Aircraft Model</h2>
 																	<input type="text"  name="AircraftModelN" placeholder = "Aircraft Model"/>
 																</div>
 												
 													
 																<div class="col-6 col-12-small">
-																	<input type="radio" id="demo-priority-low" name="flightTypeN" value = "DF">
+																	<input type="radio" id="demo-priority-low" name="flightTypeN" value = "D" checked>
 																	<label for="demo-priority-low">Domestic Flight</label>
 																</div>
 
 																<div class="col-6 col-12-small">
-																	<input type="radio" id="demo-priority-normal" name="flightTypeN" value = "IF">
+																	<input type="radio" id="demo-priority-normal" name="flightTypeN" value = "I">
 																	<label for="demo-priority-normal">International Flight</label>
 																</div>
 
@@ -100,10 +100,14 @@
 									</div>
 						
 								</div>
-								
+								<?php
+									include 'includes/AddingData.php';
+								?>
+								<br>
 								<button type = "submit" name = "submit" class="button primary">Confirm</button>
 
 								</form>
+
 							</section>
 					
 				<!-- Footer -->

@@ -240,13 +240,6 @@
 							
 							}
 
-							if (isset($_GET['save'])){
-								$flightSeatClass = $_POST['flightSeatClass'];
-								$flightSeatNumber = $_POST['flightSeatNumber'];
-
-								$Uquery = "UPDATE flight_seat SET flightSeatClass='$flightSeatClass', flightSeatNumber='$flightClassNumber' WHERE flightNumber = '$flightNumber'";
-								$query_run = mysqli_query($db, $Uquery);
-							}
 							
 							?>
 					
@@ -264,6 +257,7 @@
 													</br>
 								<div class="col-12">
 									<ul class="actions">
+										<!--Sunmit button not done -->
 									<li><input type="submit" value="Save"  class="primary" /></li>
 									</ul>
 								</div>
@@ -272,7 +266,23 @@
 							</section>
 
 					</div>
+					<?php 
+							$flightSeatClass ="";
+							$flightSeatNumber ="";
+							$db = mysqli_connect('localhost','root','','id17946631_pars');
+							$sql = "SELECT * from flight_seat";
+							$result = mysqli_query($db,$sql);
+							
+							
+							if (isset($_GET['save'])){
+								$flightSeatClass = $_POST['flightSeatClass'];
+								$flightSeatNumber = $_POST['flightSeatNumber'];
 
+								$Uquery = "UPDATE flight_seat SET flightSeatClass='$flightSeatClass', flightSeatNumber='$flightClassNumber' WHERE flightNumber = '$flightNumber'";
+								$query_run = mysqli_query($db, $Uquery);
+							}
+							
+							?>
 				<!-- Footer -->
 				<footer id="footer">
 					<section>

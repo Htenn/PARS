@@ -273,7 +273,7 @@
                     }
                 ?>
 
-                <form method='post'>
+                <form method='post' action='confirmation.php'>
                     <input type='submit' class='button primary fit' name='exeConfirm' value='CONFIRM' />
                 </form>
             </section>
@@ -325,6 +325,7 @@
                         $seatClass = 'Economy';
                     }
 
+
                     if (isset($_SESSION['clientID'])) {
                         $clientID = $_SESSION['clientID'];
 
@@ -336,6 +337,8 @@
                         . "') ";
 
                         mysqli_query($db, $insertFlightSeatQuery);
+
+                        insertBooking($clientID, $counter);
                     }
                     else {
                         switch ($_SESSION['clientType']) {
@@ -380,6 +383,8 @@
                         . "'";
 
                         $clientID = mysqli_query($db, $selectClientIDquery);
+                        $clientID = mysqli_fetch_assoc($clientID);
+                        $clientID = $clientID['clientID'];
 
                         $insertFlightSeatQuery = "INSERT INTO flight_seat (clientID, flightNumber, flightSeatClass, flightSeatNumber) VALUES ('" .
                         $clientID . "', '" .
@@ -389,14 +394,19 @@
                         . "') ";
 
                         mysqli_query($db, $insertFlightSeatQuery);
+
+                        insertBooking($clientID, $counter);
                     }
 
-                    $insertBookingQuery = "INSERT INTO booking (clientID, flightNumber, bookingOrigin, bookingDestination, bookingNumOfSeats, addBookingDate, addBookingTime) VALUES ('" .
-                    $clientID . "', '" .
-                    $_SESSION['selectedFlightNum'] . "', '" .
-                    $_SESSION['flightOrigin'] . "', '" .
-                    $_SESSION['flightDestination'] . "', " .
-                    $counter . ", curdate(), curtime())";
+                    function insertBooking(int $clientID, int $counter) {
+                        $insertBookingQuery = "INSERT INTO booking (clientID, flightNumber, bookingOrigin, bookingDestination, bookingNumOfSeats, addBookingDate, addBookingTime) VALUES ('" . $clientID . "', '" .
+                        $_SESSION['selectedFlightNum'] . "', '" .
+                        $_SESSION['flightOrigin'] . "', '" .
+                        $_SESSION['flightDestination'] . "', " .
+                        $counter . ", curdate(), curtime())";
+                    }
+
+                    
                 }
                 else { // PASSENGER
                     if (in_array($_SESSION['passengerSeat' . $ii], $_SESSION['a320j'], true)) {
@@ -419,7 +429,7 @@
                     }
 
                     if (isset($_SESSION['passengerID' . $ii])) {
-                        $passengerID = $_SESSION['passengerID'];
+                        $passengerID = $_SESSION['passengerID' .$ii];
 
                         $insertFlightSeatQuery = "INSERT INTO flight_seat (clientID, passengerID, flightNumber, flightSeatClass, flightSeatNumber) VALUES ('" .
                             $clientID . "', '" .
@@ -488,6 +498,47 @@
             }
 
             unset($_SESSION['selectedFlightNum']);
+            unset($_SESSION['flightOrigin']);
+            unset($_SESSION['flightDestination']);
+            unset($_SESSION['dateDepartOrigin']);
+            unset($_SESSION['timeDepartOrigin']);
+            unset($_SESSION['dateArriveDestination']);
+            unset($_SESSION['timeArriveDestination']);
+            unset($_SESSION['a320j']);
+            unset($_SESSION['a320p']);
+            unset($_SESSION['a320y']);
+            unset($_SESSION['a330j']);
+            unset($_SESSION['a330p']);
+            unset($_SESSION['a330y']);
+            unset($_SESSION['clientID']);
+            unset($_SESSION['clientFirstName']);
+            unset($_SESSION['clientMiddleName']);
+            unset($_SESSION['clientLastName']);
+            unset($_SESSION['clientGender']);
+            unset($_SESSION['clientBirthday']);
+            unset($_SESSION['clientAge']);
+            unset($_SESSION['clientEmail']);
+            unset($_SESSION['clientContactNum']);
+            unset($_SESSION['clientNationality']);
+            unset($_SESSION['clientType']);
+            unset($_SESSION['clientRemarks']);
+            unset($_SESSION['clientSeat']);
+
+            for ($u = 1; $u <= $pcounter; $u++) {
+                unset($_SESSION['passengerID' . $u]);
+                unset($_SESSION['passengerFirstName' . $u]);
+                unset($_SESSION['passengerMiddleName' . $u]);
+                unset($_SESSION['passengerLastName' . $u]);
+                unset($_SESSION['passengerGender' . $u]);
+                unset($_SESSION['passengerBirthday' . $u]);
+                unset($_SESSION['passengerAge' . $u]);
+                unset($_SESSION['passengerEmail' . $u]);
+                unset($_SESSION['passengerContactNum' . $u]);
+                unset($_SESSION['passengerNationality' . $u]);
+                unset($_SESSION['passengerType' . $u]);
+                unset($_SESSION['passengerRemarks' . $u]);
+                unset($_SESSION['passengerSeat' . $u]);
+            }
         }
     ?>
 

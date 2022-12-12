@@ -85,7 +85,6 @@
 																			<td>" . $row["timeDepartOrigin"] . "</td>
 																			<td>" . $row["dateArriveDestination"] . "</td>
 																			<td>" . $row["timeArriveDestination"] . "</td>
-																			<td>" . $row["flightType"] . "</td>
 																			<td>" .
 																"<form action='domestic.php#conf' method='post'>	
 																			<button class='button primary small' name='btn' type='submit' value = " . $row["flightNumber"] . ">Select</button>" .
@@ -115,7 +114,6 @@
 																		<td>" . $row["timeDepartOrigin"] . "</td>
 																		<td>" . $row["dateArriveDestination"] . "</td>
 																		<td>" . $row["timeArriveDestination"] . "</td>
-																		<td>" . $row["flightType"] . "</td>
 																		<td>" .
 																"<form action='domestic.php#conf' method='post'>
 																		<button class='button primary small' name='btn' type='submit' value = " . $row["flightNumber"] . ">Select</button>" .

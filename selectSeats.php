@@ -41,7 +41,7 @@
 					$_SESSION['a330j'] = array();
 					$_SESSION['a330p'] = array();
 					$_SESSION['a330y'] = array();
-					
+
 					$selectedFlightNumber = $_SESSION["selectedFlightNum"];
 
 					$selectedFlightQuery = "SELECT flightAircraftModel FROM flight WHERE flightNumber = '$selectedFlightNumber' LIMIT 1";
@@ -61,7 +61,7 @@
 								echo "<div class= \"seatRow\">";
 								for ($row = 1; $row <= 3; $row++) {
 									$seatNumber = $column . $row;
-									
+
 									array_push($_SESSION['a320j'], $seatNumber);
 
 									$seatSold = false;
@@ -80,7 +80,9 @@
 								}
 								echo "</div>";
 							}
-							echo "</br>";
+							
+								echo "<div style='margin-top: 20px;'></div>";
+
 							foreach (range('B', 'A') as $column) {
 								echo "<div class= \"seatRow\">";
 								for ($row = 1; $row <= 3; $row++) {
@@ -104,7 +106,7 @@
 								}
 								echo "</div>";
 							}
-							echo "</br>";
+							echo "<p></p>";
 
 							# economy plus
 							foreach (range('F', 'A') as $column) {
@@ -168,10 +170,10 @@
 								}
 								echo "</div>";
 								if ($column == 'D') {
-									echo "</br>";
+									echo "<div style='margin-top: 20px;'></div>";
 								}
 							}
-							echo "</br>";
+							echo "<p></p>";
 
 							# economy
 							foreach (range('F', 'A') as $column) {
@@ -197,7 +199,7 @@
 								}
 								echo "</div>";
 								if ($column == 'D') {
-									echo "</br>";
+									echo "<div style='margin-top: 20px;'></div>";
 								}
 							}
 							break;
@@ -207,8 +209,7 @@
 							$columnArray = array('K', 'G', 'D', 'A');
 
 							echo "<h2>Business</h2>";
-							echo "<hr style=\"color: black; border: 0; border-bottom: solid 1px; margin: 2em 0; box-sizing: inherit; display: block; unicode-bidi: isolate; margin-block-start: 0.5em; margin-block-end: 0.5em; margin-inline-start: auto; margin-inline-end: auto; overflow: hidden; border-style: inset; border-width: 1px; border-bottom-color: #dddddd;\" />";
-
+							
 							foreach ($columnArray as $column) {
 								echo "<div class= \"seatRow\">";
 								for ($row = 1; $row <= 5; $row++) {
@@ -231,11 +232,16 @@
 									}
 								}
 								echo "</div>";
+								if ($column == 'K' || $column == 'D') {
+									echo "<div style='margin-top: 20px;'></div>";
+								}
 							}
-							echo "</br>";
+							echo "<p></p>";
 
 							#premium economoy
 							$columnArray = array('K', 'H', 'G', 'E', 'D', 'C', 'A');
+
+							echo "<h2>Premium Economy</h2>";
 
 							foreach ($columnArray as $column) {
 								echo "<div class= \"seatRow\">";
@@ -259,11 +265,16 @@
 									}
 								}
 								echo "</div>";
+								if ($column == 'H' || $column == 'D') {
+									echo "<div style='margin-top: 20px;'></div>";
+								}
 							}
-							echo "</br>";
+							echo "<p></p>";
 
 							# economy
 							$columnArray = array('K', 'H', 'G', 'F', 'E', 'D', 'C', 'A');
+
+							echo "<h2>Economy</h2>";
 
 							foreach ($columnArray as $column) {
 								echo "<div class= \"seatRow\">";
@@ -306,8 +317,11 @@
 									}
 								}
 								echo "</div>";
+								if ($column == 'H' || $column == 'D') {
+									echo "<div style='margin-top: 20px;'></div>";
+								}
 							}
-							echo "</br>";
+							echo "<p></p>";
 
 							$columnArray = array('K', 'H', 'F', 'E', 'D', 'C', 'A');
 
@@ -333,8 +347,11 @@
 									}
 								}
 								echo "</div>";
+								if ($column == 'H' || $column == 'D') {
+									echo "<div style='margin-top: 20px;'></div>";
+								}
 							}
-							echo "</br>";
+							echo "<p></p>";
 							break;
 					}
 					?>
@@ -440,7 +457,12 @@
 					});
 			});
 		});
+	</script>
 
+	<script>
+		if (window.history.replaceState) {
+			window.history.replaceState(null, null, window.location.href);
+		}
 	</script>
 
 </body>

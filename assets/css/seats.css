@@ -3947,11 +3947,14 @@ body.is-preload #header.alt .logo {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    overflow-x: auto;
+    margin: auto;
+    padding: 2%;
 }
 
 .seatRow {
     display: flex;
-    overflow-x: auto;
+    margin: auto;
 }
 
 .seat {

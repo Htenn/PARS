@@ -187,18 +187,20 @@
 										<tbody>
 											<?php
 												$db = mysqli_connect('localhost', 'root', '', 'id17946631_pars');
-												$bookingQuery = mysqli_query($db, "SELECT booking.clientID, booking.bookingID, booking.flightNumber, client.clientFirstName, client.clientMiddleName, client.clientLastName, booking.bookingOrigin, booking.bookingDestination, booking.bookingNumOfSeats FROM booking INNER JOIN client ON booking.clientID = client.clientID");
+												//$bookingQuery = mysqli_query($db, "SELECT booking.clientID, booking.bookingID, booking.flightNumber, client.clientFirstName, client.clientMiddleName, client.clientLastName, booking.bookingOrigin, booking.bookingDestination, booking.bookingNumOfSeats FROM booking INNER JOIN client ON booking.clientID = client.clientID");
+												$bookingQuery = mysqli_query($db, "SELECT * FROM flight_seat");
+												
 												//Removed $resultBookingQuery = mysqli_query($db, $bookingQuery);
 												//Renamed $resultBookingQuery to bookingQuery
 												while($row = mysqli_fetch_array($bookingQuery)) {
 													echo "<tr>";
 														echo "<td>" . $row['flightSeatClass'] . "</td>";
 														echo "<td>" . $row['flightSeatNumber'] . "</td>";
-														echo "<td>";
+														echo "<td><button name='edit' class='primary button' type='submit' value = ". $row["flightNumber"] . ">Edit</button>" . "</td>";
 														
-														if (isset($_GET['btn'])) {
-															$btn = $_GET['btn'];
-															$query = $mysqli->query("SELECT * FROM flight_seat WHERE flightNumber=$btn");
+														
+														
+														//	$query = $mysqli->query("SELECT * FROM flight_seat WHERE flightNumber=$btn");
 															
 														//	if(count($query)==1){
 														//		$row = $result->fetch_array();
@@ -206,10 +208,10 @@
 														//		$fligthSeatNumber = $row['flightSeatNumber'];
 															}
 															 
-														}
-
+														
+															
 													
-														echo "</tr>";
+														
 																									
 													mysqli_free_result($bookingQuery);
 													mysqli_close($db);
@@ -217,6 +219,47 @@
 										</tbody>
 									</table>
 								</div>
+							</section>
+							
+
+							
+							<?php 
+							$mysqli = new mysqli('localhost','root','','id17946631_pars');
+							$result = $mysqli->query("SELECT * FROM flight_seat");
+							
+							
+							if (isset($_GET['edit'])) {
+								$flightNumber = $_GET['flightNumber'];
+								$result = $mysqli->query("SELECT * from flight_seat where flightNumber=$flightNumber");
+								if (count($result)==1){
+									$row = $result->fetch_array();
+									$fligthSeatClass = $row['flightSeatClass'];
+									$fligthSeatNumber = $row['flightSeatNumber'];
+								}
+							
+							}
+							
+							?>
+					
+							<section id="content" class="main">
+							<section">
+							<form action="process.php" method="POST">
+								<div class="col-4 col-12-xsmall">
+									<h2>Seat Class</h2>
+									<input type="text" name="flightSeatClass" value="<?php echo $flightSeatClass; ?>" placeholder="Seat Class" required/>
+								</div>
+								<div class="col-4 col-12-xsmall">	
+									<h2>Seat Number</h2>
+									<input type="text" name="flightSeatClass" value="<?php echo $flightSeatNumber; ?>" placeholder="Seat Number" required/>
+								</div>
+													</br>
+								<div class="col-12">
+									<ul class="actions">
+									<li><input type="submit" onclick="add_client()" value="Save" name="add_client" class="primary" /></li>
+									</ul>
+								</div>
+							</form>
+							</section>
 							</section>
 
 					</div>

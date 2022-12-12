@@ -1,5 +1,5 @@
 <?php
-    session_start();
+session_start();
 ?>
 
 <!DOCTYPE HTML>
@@ -38,10 +38,10 @@
             <section id="content" class="main">
                 <form method="post" action="assign2seatprocess.php">
                     <?php
-
+                    if (isset($_POST['str'])) {
                         $count = 1;
                         $_SESSION['elements'] = json_decode($_POST['str'], true);
-                        
+
                         echo "";
                         foreach ($_SESSION['elements'] as $items) {
                             if ($count !== 1) {
@@ -49,27 +49,36 @@
                             }
                             echo "<h1>" . $items . "</h1>";
 
-                            ?>
-                            
+
+                    ?>
+
                             <section>
                                 <div class="row">
                                     <div class="col-4 col-12-xsmall">
-                                        <label for="firstName<?php echo $count; ?>"><h2>First Name</h2></label>
+                                        <label for="firstName<?php echo $count; ?>">
+                                            <h2>First Name</h2>
+                                        </label>
                                         <input type="text" name="firstName<?php echo $count; ?>" id="firstName" value="" placeholder="First Name" required />
                                     </div>
                                     <div class="col-4 col-12-xsmall">
-                                        <label for="middleName<?php echo $count; ?>"><h2>Middle Name</h2></label>
+                                        <label for="middleName<?php echo $count; ?>">
+                                            <h2>Middle Name</h2>
+                                        </label>
                                         <input type="text" name="middleName<?php echo $count; ?>" id="middleName" value="" placeholder="Middle Name" />
                                     </div>
                                     <div class="col-4 col-12-xsmall">
-                                        <label for="lastName<?php echo $count; ?>"><h2>Last Name</h2></label>
+                                        <label for="lastName<?php echo $count; ?>">
+                                            <h2>Last Name</h2>
+                                        </label>
                                         <input type="text" name="lastName<?php echo $count; ?>" id="lastName" value="" placeholder="Last Name" required />
                                     </div>
                                 </div>
-                                <br/>
+                                <br />
                                 <div class="row">
                                     <div class="col-4 col-12-xsmall">
-                                        <label for="gender<?php echo $count; ?>"><h2>Gender</h2></label>
+                                        <label for="gender<?php echo $count; ?>">
+                                            <h2>Gender</h2>
+                                        </label>
                                         <select name="gender<?php echo $count; ?>" id="gender">
                                             <option value="M">Male</option>
                                             <option value="F">Female</option>
@@ -77,39 +86,50 @@
                                     </div>
 
                                     <div class="col-4 col-12-xsmall">
-                                        <label for="nationality<?php echo $count; ?>"><h2>Nationality</h2></label>
+                                        <label for="nationality<?php echo $count; ?>">
+                                            <h2>Nationality</h2>
+                                        </label>
                                         <input type="text" name="nationality<?php echo $count; ?>" id="nationality" value="" placeholder="Nationality" required />
                                     </div>
                                 </div>
-                                <br/>
+                                <br />
                                 <div class="row">
                                     <div class="col-4 col-12-xsmall">
-                                        <label for="age<?php echo $count; ?>"><h2>Age</h2></label>
+                                        <label for="age<?php echo $count; ?>">
+                                            <h2>Age</h2>
+                                        </label>
                                         <input type="text" name="age<?php echo $count; ?>" id="age" value="" placeholder="Age" />
                                     </div>
 
                                     <div class="col-4 col-12-xsmall">
-                                        <label for="birthdate<?php echo $count; ?>"><h2>Birthdate</h2></label>
+                                        <label for="birthdate<?php echo $count; ?>">
+                                            <h2>Birthdate</h2>
+                                        </label>
                                         <input type="date" name="birthdate<?php echo $count; ?>" id="birthdate" value="" placeholder="MM/DD/YYYY" />
                                     </div>
                                 </div>
-                                <br/>
+                                <br />
                                 <div class="row">
                                     <div class="col-6 col-12-xsmall">
-                                        <label for="email<?php echo $count; ?>"><h2>Email</h2></label>
-                                        <input type="email" name="email<?php echo $count; ?>" id="email"
-                                        value="" placeholder="Email" />
+                                        <label for="email<?php echo $count; ?>">
+                                            <h2>Email</h2>
+                                        </label>
+                                        <input type="email" name="email<?php echo $count; ?>" id="email" value="" placeholder="Email" />
                                     </div>
 
                                     <div class="col-6 col-12-xsmall">
-                                        <label for="contactNum<?php echo $count; ?>"><h2>Contact Number</h2></label>
+                                        <label for="contactNum<?php echo $count; ?>">
+                                            <h2>Contact Number</h2>
+                                        </label>
                                         <input type="text" name="contactNum<?php echo $count; ?>" id="contactNum" value="" placeholder="************" />
                                     </div>
                                 </div>
-                                <br/>
+                                <br />
                                 <div class="row">
                                     <div class="col-4 col-12-xsmall">
-                                        <label for="passengerType<?php echo $count; ?>"><h2>Passenger Type</h2></label>
+                                        <label for="passengerType<?php echo $count; ?>">
+                                            <h2>Passenger Type</h2>
+                                        </label>
                                         <select name="passengerType<?php echo $count; ?>" id="passengerType">
                                             <option value="N">Normal</option>
                                             <option value="U">Unaccompanied Minor</option>
@@ -118,22 +138,29 @@
                                         </select>
                                     </div>
                                 </div>
-                                <br/>
+                                <br />
                                 <div class="col-4 col-12-xsmall">
-                                    <label for="remarks<?php echo $count; ?>"><h2>Remarks</h2></label>
+                                    <label for="remarks<?php echo $count; ?>">
+                                        <h2>Remarks</h2>
+                                    </label>
                                     <input type="text" name="remarks<?php echo $count; ?>" id="remarks" value="" placeholder="Remarks" />
                                 </div>
                             </section>
-                            
-                        <?php
-                        $count++;
-                        }
-                        ?>
+                            <br>
+                            <div class="col-12">
+                                <input type="submit" value="Submit" name="seatSubmit" class="button primary fit" />
+                            </div>
 
-                    <br>
-                    <div class="col-12">
-                        <input type="submit" value="Submit" name="seatSubmit" class="button primary fit" />
-                    </div>
+                    <?php
+                            $count++;
+                        }
+                    } else {
+                        echo "<h1 style='text-align: center;'>Please go back to the previous step.</h1>";
+                        echo "<a class='button primary fit' style='text-decoration:none;' href='selectSeats.php'>Continue</a>";
+                    }
+                    ?>
+
+
                 </form>
             </section>
 
@@ -141,7 +168,7 @@
 
         <!-- Footer -->
         <footer id="footer">
-            
+
             <p class="copyright">&copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
         </footer>
 
@@ -155,7 +182,11 @@
     <script src="assets/js/breakpoints.min.js"></script>
     <script src="assets/js/util.js"></script>
     <script src="assets/js/main.js"></script>
-
+    <script>
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.href);
+        }
+    </script>
 </body>
 
 </html>

@@ -36,11 +36,19 @@
 
 						<!-- Introduction -->
 							<section id="choose" class="main">
+								<div class="col-2 col-12-xsmall" style="position: relative; margin-left: auto; margin: right; display: block; width: 25%;">
+									<form action = "domestic.php#table" method = "POST">
+										<input type="text" name="search" placeholder="Search" />
+										<br>
+										<button class="button primary small" name="Sbtn" type="submit">Search</button>
+									</form>
+								</div>
+
 								<header class="major">
 									<h2>Available Flights</h2>
 								</header>
 								
-								<div class="table-wrapper">
+								<div id='table'class="table-wrapper">
 									<table class="alt">
 										<thead>
 											<tr>
@@ -57,26 +65,66 @@
 										<tbody>
 
 											<?php
-												$conn = mysqli_connect("localhost", "root", "", "pars");
-												$sql = "SELECT * from flight";
-												$result = mysqli_query ($conn, $sql);
-												$resultcheck = mysqli_num_rows($result);
-												
-												if ($resultcheck > 0) {
-													while ($row = mysqli_fetch_array($result)) {
-														echo "<tr><td>" . $row["flightNumber"] . "</td><td>" . $row["flightOrigin"] . "</td><td>" . $row["flightDestination"] . "</td><td>" . $row["dateDepartOrigin"] . "</td><td>"
-														. $row["timeDepartOrigin"] . "</td><td>" . $row["dateArriveDestination"] . "</td><td>" . $row["timeArriveDestination"] . 
-														"</td>" . "<td>" . 
-														"<form method='post' action='domestic.php#conf'>" .
-														"<button name='btn' type='submit' value = ". $row["flightNumber"] . ">Select</button>" . 
-														"</form>" .
-														"</td></tr>";
+												if (isset($_POST['Sbtn'])) {
+													$conn = mysqli_connect("localhost", "root", "", "pars");
+													$Ssearch = mysqli_real_escape_string($conn, $_POST['search']);
+
+													$Ssql = "SELECT * FROM flight WHERE flightNumber LIKE '%$Ssearch%' OR  flightOrigin LIKE '%$Ssearch%' 
+																	OR flightDestination LIKE '%$Ssearch%' OR dateDepartOrigin LIKE '%$Ssearch%' OR timeDepartOrigin LIKE '%$Ssearch%' 
+																	OR dateArriveDestination LIKE '%$Ssearch%' OR timeArriveDestination LIKE '%$Ssearch%' OR flightType LIKE '%$Ssearch%'";
+													$result = mysqli_query($conn, $Ssql);
+													$queryResult = mysqli_num_rows($result);
+
+													if ($queryResult > 0) {
+														while ($row = mysqli_fetch_array($result)) {
+															echo "<tr>
+																			<td>" . $row["flightNumber"] . "</td>
+																			<td>" . $row["flightOrigin"] . "</td>
+																			<td>" . $row["flightDestination"] . "</td>
+																			<td>" . $row["dateDepartOrigin"] . "</td>
+																			<td>" . $row["timeDepartOrigin"] . "</td>
+																			<td>" . $row["dateArriveDestination"] . "</td>
+																			<td>" . $row["timeArriveDestination"] . "</td>
+																			<td>" .
+																"<form action='domestic.php#conf' method='post'>	
+																			<button class='button primary small' name='btn' type='submit' value = " . $row["flightNumber"] . ">Select</button>" .
+																"</form>
+																			</td>
+																			</tr>";
+														}
+													} else {
+														echo "No results";
 													}
 												}
-												else {
-													echo "No results";
+
+
+												if (!isset($_POST['Sbtn'])) {
+													$conn = mysqli_connect("localhost", "root", "", "pars");
+													$sql = "SELECT * from flight";
+													$result = mysqli_query($conn, $sql);
+													$resultcheck = mysqli_num_rows($result);
+
+													if ($resultcheck > 0) {
+														while ($row = mysqli_fetch_array($result)) {
+															echo "<tr>
+																		<td>" . $row["flightNumber"] . "</td>
+																		<td>" . $row["flightOrigin"] . "</td>
+																		<td>" . $row["flightDestination"] . "</td>
+																		<td>" . $row["dateDepartOrigin"] . "</td>
+																		<td>" . $row["timeDepartOrigin"] . "</td>
+																		<td>" . $row["dateArriveDestination"] . "</td>
+																		<td>" . $row["timeArriveDestination"] . "</td>
+																		<td>" .
+																"<form action='domestic.php#conf' method='post'>
+																		<button class='button primary small' name='btn' type='submit' value = " . $row["flightNumber"] . ">Select</button>" .
+																"</form>
+																		</td>
+																		</tr>";
+														}
+													} else {
+														echo "No results";
+													}
 												}
-												$conn -> close();
 											
 											?>
 

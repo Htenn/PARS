@@ -221,11 +221,12 @@
 								</div>
 							</section>
 							
-
-							
 							<?php 
-							$mysqli = new mysqli('localhost','root','','id17946631_pars');
-							$result = $mysqli->query("SELECT * FROM flight_seat");
+							$flightSeatClass ="";
+							$flightSeatNumber ="";
+							$db = mysqli_connect('localhost','root','','id17946631_pars');
+							$sql = "SELECT * from flight_seat";
+							$result = mysqli_query($db,$sql);
 							
 							
 							if (isset($_GET['edit'])) {
@@ -238,24 +239,32 @@
 								}
 							
 							}
+
+							if (isset($_GET['save'])){
+								$flightSeatClass = $_POST['flightSeatClass'];
+								$flightSeatNumber = $_POST['flightSeatNumber'];
+
+								$Uquery = "UPDATE flight_seat SET flightSeatClass='$flightSeatClass', flightSeatNumber='$flightClassNumber' WHERE flightNumber = '$flightNumber'";
+								$query_run = mysqli_query($db, $Uquery);
+							}
 							
 							?>
 					
 							<section id="content" class="main">
 							<section">
-							<form action="process.php" method="POST">
+							<form>
 								<div class="col-4 col-12-xsmall">
 									<h2>Seat Class</h2>
 									<input type="text" name="flightSeatClass" value="<?php echo $flightSeatClass; ?>" placeholder="Seat Class" required/>
 								</div>
 								<div class="col-4 col-12-xsmall">	
 									<h2>Seat Number</h2>
-									<input type="text" name="flightSeatClass" value="<?php echo $flightSeatNumber; ?>" placeholder="Seat Number" required/>
+									<input type="text" name="flightSeatNumber" value="<?php echo $flightSeatNumber; ?>" placeholder="Seat Number" required/>
 								</div>
 													</br>
 								<div class="col-12">
 									<ul class="actions">
-									<li><input type="submit" onclick="add_client()" value="Save" name="add_client" class="primary" /></li>
+									<li><input type="submit" value="Save"  class="primary" /></li>
 									</ul>
 								</div>
 							</form>

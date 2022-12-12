@@ -233,7 +233,7 @@
 								$flightNumber = $_GET['flightNumber'];
 								$result = $mysqli->query("SELECT * from flight_seat where flightNumber=$flightNumber");
 								if (count($result)==1){
-									$row = $result->fetch_array();
+									$row = mysqli_fetch_array($result);
 									$fligthSeatClass = $row['flightSeatClass'];
 									$fligthSeatNumber = $row['flightSeatNumber'];
 								}

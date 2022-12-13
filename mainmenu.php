@@ -28,7 +28,7 @@
 		<header id="header" class="alt">
 			<span class="logo"><img src="images/logo.svg" alt="" /></span>
 			<h1>PCC QC Airline Reservation System</h1>
-			<h3>Admin Menu</h3>
+			<h3>Main Menu</h3>
 			<p></p>
 		</header>
 

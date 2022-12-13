@@ -300,7 +300,7 @@
         function insertBooking(int $clientID, int $counter)
         {
             $db = mysqli_connect('localhost', 'root', '', 'pars');
-            $insertBookingQuery = "INSERT INTO booking (clientID, flightNumber, bookingOrigin, bookingDestination, bookingNumOfSeats, addBookingDate, addBookingTime) VALUES ('" . $clientID . "', '" .
+            $insertBookingQuery = "INSERT INTO booking (clientID, flightNumber, bookingOrigin, bookingDestination, bookingNumOfSeats, addBookingDate, addBookingTime) VALUES ('" .  $clientID . "', '" .
                 $_SESSION['selectedFlightNum'] . "', '" .
                 $_SESSION['flightOrigin'] . "', '" .
                 $_SESSION['flightDestination'] . "', " .
@@ -319,22 +319,22 @@
                 if ($ii == 0) { // CLIENT
                     // check for seat class
                     if (in_array($_SESSION['clientSeat'], $_SESSION['a320j'], true)) {
-                        $seatClass = 'Business';
+                        $seatClass = 'J';
                     }
                     if (in_array($_SESSION['clientSeat'], $_SESSION['a320p'], true)) {
-                        $seatClass = 'Premium Economy';
+                        $seatClass = 'P';
                     }
                     if (in_array($_SESSION['clientSeat'], $_SESSION['a320y'], true)) {
-                        $seatClass = 'Economy';
+                        $seatClass = 'Y';
                     }
                     if (in_array($_SESSION['clientSeat'], $_SESSION['a330j'], true)) {
-                        $seatClass = 'Business';
+                        $seatClass = 'J';
                     }
                     if (in_array($_SESSION['clientSeat'], $_SESSION['a330p'], true)) {
-                        $seatClass = 'Premium Economy';
+                        $seatClass = 'P';
                     }
                     if (in_array($_SESSION['clientSeat'], $_SESSION['a330y'], true)) {
-                        $seatClass = 'Economy';
+                        $seatClass = 'Y';
                     }
 
 
@@ -395,10 +395,10 @@
 
                         $clientID = mysqli_query($db, $selectClientIDquery);
                         $clientID = mysqli_fetch_assoc($clientID);
-                        $clientID = $clientID['clientID'];
+                        $_SESSION['clientID'] = $clientID['clientID'];
 
                         $insertFlightSeatQuery = "INSERT INTO flight_seat (clientID, flightNumber, flightSeatClass, flightSeatNumber) VALUES ('" .
-                        $clientID . "', '" .
+                        $_SESSION['clientID'] . "', '" .
                         $_SESSION['selectedFlightNum'] . "', '" .
                         $seatClass . "', '" .
                         $_SESSION['clientSeat']
@@ -412,22 +412,22 @@
                 }
                 else { // PASSENGER
                     if (in_array($_SESSION['passengerSeat' . $ii], $_SESSION['a320j'], true)) {
-                        $seatClass = 'Business';
+                        $seatClass = 'J';
                     }
                     if (in_array($_SESSION['passengerSeat' . $ii], $_SESSION['a320p'], true)) {
-                        $seatClass = 'Premium Economy';
+                        $seatClass = 'P';
                     }
                     if (in_array($_SESSION['passengerSeat' . $ii], $_SESSION['a320y'], true)) {
-                        $seatClass = 'Economy';
+                        $seatClass = 'Y';
                     }
                     if (in_array($_SESSION['passengerSeat' . $ii], $_SESSION['a330j'], true)) {
-                        $seatClass = 'Business';
+                        $seatClass = 'J';
                     }
                     if (in_array($_SESSION['passengerSeat' . $ii], $_SESSION['a330p'], true)) {
-                        $seatClass = 'Premium Economy';
+                        $seatClass = 'P';
                     }
                     if (in_array($_SESSION['passengerSeat' . $ii], $_SESSION['a330y'], true)) {
-                        $seatClass = 'Economy';
+                        $seatClass = 'Y';
                     }
 
                     if (isset($_SESSION['passengerID' . $ii])) {

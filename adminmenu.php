@@ -66,7 +66,7 @@
 						<div class="col-6 col-12-medium">
 							<ul class="actions stacked">
 								<li><a href="#" class="button primary fit">Manage Clients</a></li>
-								<li><a href="#" class="button primary fit">Manage Users</a></li>
+								<li><a href="users.php" class="button primary fit">Manage Users</a></li>
 								<li><a href="report.php" class="button primary fit">Reports</a></li>
 							</ul>
 						</div>

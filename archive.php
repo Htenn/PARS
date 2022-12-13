@@ -55,7 +55,7 @@
 										<tbody>
 
 											<?php
-												$conn = mysqli_connect("localhost", "root", "", "pars1");
+												$conn = mysqli_connect("localhost", "root", "", "pars");
 												$sql = "SELECT * from flight";
 												$result = mysqli_query ($conn, $sql);
 												$resultcheck = mysqli_num_rows($result);
@@ -86,7 +86,7 @@
 							</section>
 							
 							<?php
-							$con = mysqli_connect("localhost", "root", "", "pars1");
+							$con = mysqli_connect("localhost", "root", "", "pars");
 							if(isset($_GET['btn'])) {
 								$btn = $_GET['btn'];
 								
@@ -96,7 +96,7 @@
 							}
 							?>
 							<?php
-							$con = mysqli_connect("localhost", "root", "", "pars1");
+							$con = mysqli_connect("localhost", "root", "", "pars");
 							if(isset($_GET['btn'])) {
 								$btn = $_GET['btn'];
 								
@@ -114,7 +114,7 @@
 							}
 							?>
 							<?php
-							$con = mysqli_connect("localhost", "root", "", "pars1");
+							$con = mysqli_connect("localhost", "root", "", "pars");
 							if(isset($_GET['btn'])) {
 								$btn = $_GET['btn'];
 								
@@ -152,7 +152,7 @@
 										<tbody>
 
 											<?php
-												$conn = mysqli_connect("localhost", "root", "", "pars1");
+												$conn = mysqli_connect("localhost", "root", "", "pars");
 												$sql = "SELECT * from flightarchive ORDER BY 'date' DESC";
 												$result = mysqli_query ($conn, $sql);
 												$resultcheck = mysqli_num_rows($result);

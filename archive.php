@@ -120,7 +120,7 @@
 								
 								$Dquery = "DELETE from flight_seat WHERE flightNumber = '$btn'";
 								$query_run = mysqli_query($con, $Dquery);
-								header("Location: ../PARS/Table.php");
+								header("Location: ../PARS/archive.php");
 							}
 							
 							?>

@@ -91,7 +91,7 @@ session_start();
 
 							if (!isset($_POST['Sbtn'])) {
 								$conn = mysqli_connect("localhost", "root", "", "pars");
-								$sql = "SELECT * from user";
+								$sql = "SELECT * from user ORDER BY userFirstName";
 								$result = mysqli_query($conn, $sql);
 								$resultcheck = mysqli_num_rows($result);
 

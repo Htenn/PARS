@@ -147,9 +147,7 @@ session_start();
                                 </div>
                             </section>
                             <br>
-                            <div class="col-12">
-                                <input type="submit" value="Submit" name="seatSubmit" class="button primary fit" />
-                            </div>
+                            
 
                     <?php
                             $count++;
@@ -159,7 +157,15 @@ session_start();
                         echo "<a class='button primary fit' style='text-decoration:none;' href='selectSeats.php'>Continue</a>";
                     }
                     ?>
-
+                    <?php
+                        if(isset($_POST['str'])){
+                    ?>
+                        <div class="col-12">
+                            <input type="submit" value="Submit" name="seatSubmit" class="button primary fit" />
+                        </div>
+                    <?php
+                        }
+                    ?>
 
                 </form>
             </section>

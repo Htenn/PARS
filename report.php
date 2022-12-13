@@ -198,7 +198,8 @@
 													echo "<tr>";
 														echo "<td>" . $row['flightSeatClass'] . "</td>";
 														echo "<td>" . $row['flightSeatNumber'] . "</td>";
-														echo "<td><button name='edit' class='primary button' type='submit' value = ". $row["flightNumber"] . ">Edit</button>" . "</td>";
+													
+														echo "<td><form><button name='edit' class='primary button' type='submit' value = ". $row["flightNumber"] . ">Edit</button>" . "<form></td>";
 														
 														
 														

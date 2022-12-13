@@ -3949,12 +3949,13 @@ body.is-preload #header.alt .logo {
     justify-content: center;
     overflow-x: auto;
     margin: auto;
-    padding: 2%;
+    padding: 50px;
 }
 
 .seatRow {
     display: flex;
     margin: auto;
+    overflow-x: auto;
 }
 
 .seat {

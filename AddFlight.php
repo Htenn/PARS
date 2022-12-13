@@ -33,7 +33,7 @@
 													<h2>Add Flight</h2>
 												</header>
 
-												<form action="AddFlight.php" method = "POST">
+												<form action="addflight.php" method = "POST">
 
 															<div class="row gtr-uniform">
 

@@ -57,6 +57,8 @@
 					switch ($selectedFlightAircraftModel) {
 						case 'A320':
 							# business class
+							echo "<h2>Business</h2>";
+
 							foreach (range('F', 'E') as $column) {
 								echo "<div class= \"seatRow\">";
 								for ($row = 1; $row <= 3; $row++) {
@@ -109,6 +111,8 @@
 							echo "<p></p>";
 
 							# economy plus
+							echo "<h2>Premium Economy</h2>";
+
 							foreach (range('F', 'A') as $column) {
 								echo "<div class= \"seatRow\">";
 								for ($row = 7; $row <= 8; $row++) {
@@ -176,6 +180,8 @@
 							echo "<p></p>";
 
 							# economy
+							echo "<h2>Economy</h2>";
+
 							foreach (range('F', 'A') as $column) {
 								echo "<div class= \"seatRow\">";
 								for ($row = 22; $row <= 38; $row++) {

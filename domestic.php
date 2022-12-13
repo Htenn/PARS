@@ -131,13 +131,15 @@ session_start();
 			</section>
 
 			<!-- First Section -->
+			<?php
+					$con = mysqli_connect("localhost", "root", "", "pars");
+					if (isset($_POST['btn'])) {
+			?>
 			<section id="conf" class="main special">
 				<div class="spotlight">
 					<div class="content">
-
 						<?php
-						$con = mysqli_connect("localhost", "root", "", "pars");
-						if (isset($_POST['btn'])) {
+						
 							$btn = $_POST['btn'];
 							$_SESSION['selectedFlightNum'] = $btn;
 

@@ -26,15 +26,6 @@ session_start();
 			<p></p>
 		</header>
 
-		<!-- Nav
-					<nav id="nav">
-						<ul>
-							<li><a href="#intro" class="active">Local Flight Information</a></li>
-							<li><a href="#first">Confirmation</a></li>
-						</ul>
-					</nav>
-				-->
-
 		<!-- Main -->
 		<div id="main">
 

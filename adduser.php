@@ -19,8 +19,8 @@
 
 				<!-- Header -->
 					<header id="header">
-						<h1>P.A.R.S.</h1>
-						<p>Create User Account</p>
+						<h1>Create User Account</h1>
+						<p></p>
 					</header>
 
 				<!-- Main -->
@@ -57,8 +57,8 @@
 												<div class="col-6">
 													<h2>Account Type</h2>
 													<select name="userType" onchange="saveValue(this)" id="userType"  >
-														<option value="User">User</option>
-														<option value="Administrator">Administrator</option>
+														<option value="U">User</option>
+														<option value="A">Administrator</option>
 													</select>
 												</div>
 												

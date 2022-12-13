@@ -17,15 +17,14 @@
 				<!-- Header -->
 					<header id="header" class="alt">
 						<span class="logo"><img src="images/logo.svg" alt="" /></span>
-						<h1>Stellar</h1>
-						<p>Just another free, fully responsive site template<br />
-						built by <a href="https://twitter.com/ajlkn">@ajlkn</a> for <a href="https://html5up.net">HTML5 UP</a>.</p>
+						<h1>Archives</h1>
+						<p></p>
 					</header>
 
 				<!-- Nav -->
 					<nav id="nav">
 						<ul>
-							<li><a href="#intro" class="active">All Flight Information</a></li>
+							<li><a href="#intro" class="active">Available Flights</a></li>
 							<li><a href="#first">Archive</a></li>
 						</ul>
 					</nav>
@@ -36,7 +35,7 @@
 						<!-- Introduction -->
 							<section id="intro" class="main">
 								<header class="major">
-									<h2>All Flight Information</h2>
+									<h2>Available Flights</h2>
 								</header>
 								
 								<div class="table-wrapper">
@@ -44,13 +43,12 @@
 										<thead>
 											<tr>
 												<th>Flight No.</th>
-												<th>Apt</th>
 												<th>Origin</th>
 												<th>Destination</th>
 												<th>Date Dep</th>
+												<th>Time Dep</th>
 												<th>Date Arr</th>
-												<th>Dep</th>
-												<th>Arr</th>
+												<th>Time Arr</th>
 											</tr>
 										</thead>
 										
@@ -66,7 +64,7 @@
 													while ($row = mysqli_fetch_array($result)) {
 														echo "<tr><td>" . $row["flightNumber"] . "</td><td>" . $row["flightOrigin"] . "</td><td>" . $row["flightDestination"] . "</td><td>" . $row["dateDepartOrigin"] . "</td><td>"
 														. $row["timeDepartOrigin"] . "</td><td>" . $row["dateArriveDestination"] . "</td><td>" . $row["timeArriveDestination"] . 
-														"</td><td>" . $row["flightType"] . "</td><td>" . 
+														"</td><td>" . 
 														"<form>" .
 														"<button name='btn' type='submit' value = ". $row["flightNumber"] . ">Select</button>" . 
 														"</form>" .
@@ -163,7 +161,7 @@
 													while ($row = mysqli_fetch_array($result)) {
 														echo "<tr><td>" . $row["flightNumber"] . "</td><td>" . $row["flightOrigin"] . "</td><td>" . $row["flightDestination"] . "</td><td>" . $row["dateDepartOrigin"] . "</td><td>"
 														. $row["timeDepartOrigin"] . "</td><td>" . $row["dateArriveDestination"] . "</td><td>" . $row["timeArriveDestination"] . 
-														"</td><td>" . $row["flightType"] . "</td></tr>";
+														"</td></tr>";
 													}
 												}
 												else {

@@ -53,7 +53,7 @@ if (isset($_SESSION['pcounter'])) {
 <html>
 
 <head>
-	<title>Admin Menu - PARS</title>
+	<title>Main Menu - PARS</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="assets/css/main.css" />
@@ -94,15 +94,25 @@ if (isset($_SESSION['pcounter'])) {
 						</div>
 
 						<header class="major">
+							<h2>Manage Flights</h2>
+						</header>
+						<div class="col-6 col-12-medium">
+							<ul class="actions stacked">
+								<li><a href="#" class="button primary fit">Add Flights</a></li>
+								<li><a href="#" class="button primary fit">Archive Flights</a></li>
+							</ul>
+						</div>
+
+						<header class="major">
 							<h2>Options</h2>
 						</header>
 						<div class="col-6 col-12-medium">
 							<ul class="actions stacked">
 								<li><a href="#" class="button primary fit">Manage Clients</a></li>
-								<li><a href="report.php" class="button primary fit">View Reports</a></li>
+								<li><a href="#" class="button primary fit">Manage Users</a></li>
+								<li><a href="report.php" class="button primary fit">Reports</a></li>
 							</ul>
 						</div>
-
 					</div>
 				</div>
 			</section>

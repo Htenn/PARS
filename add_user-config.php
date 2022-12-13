@@ -31,7 +31,8 @@ $user_check_query = "SELECT * FROM user WHERE userFirstName='$userFirstName' AND
 $result = mysqli_query($db, $user_check_query); // Execute query
 $user = mysqli_fetch_assoc($result); 
 if ($user) { // if user exists
-array_push($errors, "user already exists");
+    array_push($errors, "user already exists");
+    echo "User already exists.";
 }
 
 // Finally, add user to database if there are no errors in the form

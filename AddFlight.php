@@ -22,13 +22,6 @@
 						built by <a href="https://twitter.com/ajlkn">@ajlkn</a> for <a href="https://html5up.net">HTML5 UP</a>.</p>
 					</header>
 
-				<!-- Nav -->
-					<nav id="nav">
-						<ul>
-							<li><a href="#first">Add Flight</a></li>
-						</ul>
-					</nav>
-
 				<!-- Main -->
 					<div id="main">
 

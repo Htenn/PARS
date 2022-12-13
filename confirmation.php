@@ -408,10 +408,7 @@
 
                         insertBooking($clientID, $counter);
                     }
-
-                    
-
-                    
+                     
                 }
                 else { // PASSENGER
                     if (in_array($_SESSION['passengerSeat' . $ii], $_SESSION['a320j'], true)) {
@@ -502,49 +499,6 @@
                         mysqli_query($db, $insertFlightSeatQuery);
                         }
                 }
-            }
-
-            unset($_SESSION['selectedFlightNum']);
-            unset($_SESSION['flightOrigin']);
-            unset($_SESSION['flightDestination']);
-            unset($_SESSION['dateDepartOrigin']);
-            unset($_SESSION['timeDepartOrigin']);
-            unset($_SESSION['dateArriveDestination']);
-            unset($_SESSION['timeArriveDestination']);
-            unset($_SESSION['a320j']);
-            unset($_SESSION['a320p']);
-            unset($_SESSION['a320y']);
-            unset($_SESSION['a330j']);
-            unset($_SESSION['a330p']);
-            unset($_SESSION['a330y']);
-            unset($_SESSION['clientID']);
-            unset($_SESSION['clientFirstName']);
-            unset($_SESSION['clientMiddleName']);
-            unset($_SESSION['clientLastName']);
-            unset($_SESSION['clientGender']);
-            unset($_SESSION['clientBirthday']);
-            unset($_SESSION['clientAge']);
-            unset($_SESSION['clientEmail']);
-            unset($_SESSION['clientContactNum']);
-            unset($_SESSION['clientNationality']);
-            unset($_SESSION['clientType']);
-            unset($_SESSION['clientRemarks']);
-            unset($_SESSION['clientSeat']);
-
-            for ($u = 1; $u <= $pcounter; $u++) {
-                unset($_SESSION['passengerID' . $u]);
-                unset($_SESSION['passengerFirstName' . $u]);
-                unset($_SESSION['passengerMiddleName' . $u]);
-                unset($_SESSION['passengerLastName' . $u]);
-                unset($_SESSION['passengerGender' . $u]);
-                unset($_SESSION['passengerBirthday' . $u]);
-                unset($_SESSION['passengerAge' . $u]);
-                unset($_SESSION['passengerEmail' . $u]);
-                unset($_SESSION['passengerContactNum' . $u]);
-                unset($_SESSION['passengerNationality' . $u]);
-                unset($_SESSION['passengerType' . $u]);
-                unset($_SESSION['passengerRemarks' . $u]);
-                unset($_SESSION['passengerSeat' . $u]);
             }
         }
 

@@ -55,7 +55,7 @@
 						</header>
 						<div class="col-6 col-12-medium">
 							<ul class="actions stacked">
-								<li><a href="AddFlight" class="button primary fit">Add Flights</a></li>
+								<li><a href="addflight.php" class="button primary fit">Add Flights</a></li>
 								<li><a href="archive.php" class="button primary fit">Archive Flights</a></li>
 							</ul>
 						</div>

@@ -44,8 +44,7 @@
                     clientEmail = '$email' AND
                     clientContactNum = '$contactnum' AND
                     clientNationality = '$nationality' AND
-                    clientType = '$passengertype' AND
-                    clientRemarks = '$remarks' LIMIT 1";
+                    clientType = '$passengertype' LIMIT 1";
 
                 $checkClientResult = mysqli_query($db, $checkClientQuery);
                 $ifClientResult = mysqli_fetch_assoc($checkClientResult);
@@ -77,8 +76,7 @@
                     passengerEmail = '$email' AND
                     passengerContactNum = '$contactnum' AND
                     passengerNationality = '$nationality' AND
-                    passengerType = '$passengertype' AND
-                    passengerRemarks = '$remarks' LIMIT 1";
+                    passengerType = '$passengertype' LIMIT 1";
 
                 $checkpassengerResult = mysqli_query($db, $checkpassengerQuery);
                 $ifpassengerResult = mysqli_fetch_assoc($checkpassengerResult);

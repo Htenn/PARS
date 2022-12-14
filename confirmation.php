@@ -297,14 +297,14 @@
     <script src="assets/js/main.js"></script>
 
     <?php
-        function insertBooking(int $clientID, int $counter)
+        function insertBooking(int $clientID, int $pcounter)
         {
             $db = mysqli_connect('localhost', 'root', '', 'pars');
             $insertBookingQuery = "INSERT INTO booking (clientID, flightNumber, bookingOrigin, bookingDestination, bookingNumOfSeats, addBookingDate, addBookingTime) VALUES ('" .  $clientID . "', '" .
                 $_SESSION['selectedFlightNum'] . "', '" .
                 $_SESSION['flightOrigin'] . "', '" .
                 $_SESSION['flightDestination'] . "', " .
-                $counter . ", curdate(), curtime())";
+                $pcounter . ", curdate(), curtime())";
 
             mysqli_query($db, $insertBookingQuery);
         }
@@ -340,16 +340,17 @@
 
                     if (isset($_SESSION['clientID'])) {
 
-                        $insertFlightSeatQuery = "INSERT INTO flight_seat (clientID, flightNumber, flightSeatClass, flightSeatNumber) VALUES ('" .
+                        $insertFlightSeatQuery = "INSERT INTO flight_seat (clientID, flightNumber, flightSeatClass, flightSeatNumber, remarks) VALUES ('" .
                         $_SESSION['clientID'] . "', '" . 
                         $_SESSION['selectedFlightNum'] . "', '" .
                         $seatClass . "', '" .
-                        $_SESSION['clientSeat']
+                        $_SESSION['clientSeat'] . "', '" .
+                        $_SESSION['clientRemarks']
                         . "') ";
 
                         mysqli_query($db, $insertFlightSeatQuery);
 
-                        insertBooking($_SESSION['clientID'], $counter);
+                        insertBooking($_SESSION['clientID'], $pcounter);
                     }
                     else {
                         switch ($_SESSION['clientType']) {
@@ -366,7 +367,7 @@
                                 $passengerType = 'Normal';
                         }
 
-                        $insertClientQuery = "INSERT INTO client (clientFirstName, clientMiddleName, clientLastName, clientGender, clientNationality, clientAge, clientBirthday, clientEmail, clientContactNum, clientType, clientRemarks, addClientDate, addClientTime) VALUES ('" . 
+                        $insertClientQuery = "INSERT INTO client (clientFirstName, clientMiddleName, clientLastName, clientGender, clientNationality, clientAge, clientBirthday, clientEmail, clientContactNum, clientType, addClientDate, addClientTime) VALUES ('" . 
                         $_SESSION['clientFirstName'] . "', '" . 
                         $_SESSION['clientMiddleName'] . "', '" .
                         $_SESSION['clientLastName'] . "', '" .
@@ -376,8 +377,7 @@
                         $_SESSION['clientBirthday'] . "', '" .
                         $_SESSION['clientEmail'] . "', '" .
                         $_SESSION['clientContactNum'] . "', '" .
-                        $_SESSION['clientType'] . "', '" .
-                        $_SESSION['clientRemarks'] . "', curdate(), curtime()) ";
+                        $_SESSION['clientType'] . "', curdate(), curtime()) ";
 
                         mysqli_query($db, $insertClientQuery);
 
@@ -395,18 +395,19 @@
 
                         $clientID = mysqli_query($db, $selectClientIDquery);
                         $clientID = mysqli_fetch_assoc($clientID);
-                        $_SESSION['clientID'] = $clientID['clientID'];
+                        $_SESSION['clientID'] = intval($clientID['clientID']);
 
-                        $insertFlightSeatQuery = "INSERT INTO flight_seat (clientID, flightNumber, flightSeatClass, flightSeatNumber) VALUES ('" .
+                        $insertFlightSeatQuery = "INSERT INTO flight_seat (clientID, flightNumber, flightSeatClass, flightSeatNumber, remarks) VALUES ('" .
                         $_SESSION['clientID'] . "', '" .
                         $_SESSION['selectedFlightNum'] . "', '" .
                         $seatClass . "', '" .
-                        $_SESSION['clientSeat']
+                        $_SESSION['clientSeat'] . "', '" .
+                        $_SESSION['clientRemarks']
                         . "') ";
 
                         mysqli_query($db, $insertFlightSeatQuery);
 
-                        insertBooking($clientID, $counter);
+                        insertBooking($_SESSION['clientID'], $pcounter);
                     }
                      
                 }
@@ -433,12 +434,13 @@
                     if (isset($_SESSION['passengerID' . $ii])) {
                         $passengerID = $_SESSION['passengerID' .$ii];
 
-                        $insertFlightSeatQuery = "INSERT INTO flight_seat (clientID, passengerID, flightNumber, flightSeatClass, flightSeatNumber) VALUES ('" .
-                            $_SESSION['clientID'] . "', '" .
+                        $insertFlightSeatQuery = "INSERT INTO flight_seat (clientID, passengerID, flightNumber, flightSeatClass, flightSeatNumber, remarks) VALUES (" .
+                            $_SESSION['clientID'] . ", '" .
                             $passengerID . "', '" .
                             $_SESSION['selectedFlightNum'] . "', '" .
                             $seatClass . "', '" .
-                            $_SESSION['passengerSeat' . $ii]
+                            $_SESSION['passengerSeat' . $ii] . "', '" .
+                            $_SESSION['passengerRemarks' . $ii]
                             . "') ";
 
                         mysqli_query($db, $insertFlightSeatQuery);
@@ -457,7 +459,7 @@
                                 $passengerType = 'Normal';
                         }
 
-                        $insertPassengerQuery = "INSERT INTO passenger (passengerFirstName, passengerMiddleName, passengerLastName, passengerGender, passengerNationality, passengerAge, passengerBirthday, passengerEmail, passengerContactNum, passengerType, passengerRemarks, addPassengerDate, addPassengerTime) VALUES ('" .
+                        $insertPassengerQuery = "INSERT INTO passenger (passengerFirstName, passengerMiddleName, passengerLastName, passengerGender, passengerNationality, passengerAge, passengerBirthday, passengerEmail, passengerContactNum, passengerType, addPassengerDate, addPassengerTime) VALUES ('" .
                             $_SESSION['passengerFirstName' . $ii] . "', '" .
                             $_SESSION['passengerMiddleName' . $ii] . "', '" .
                             $_SESSION['passengerLastName' . $ii] . "', '" .
@@ -467,8 +469,7 @@
                             $_SESSION['passengerBirthday' . $ii] . "', '" .
                             $_SESSION['passengerEmail' . $ii] . "', '" .
                             $_SESSION['passengerContactNum' . $ii] . "', '" .
-                            $_SESSION['passengerType' . $ii] . "', '" .
-                            $_SESSION['passengerRemarks' . $ii] . "', curdate(), curtime()) ";
+                            $_SESSION['passengerType' . $ii] . "', curdate(), curtime()) ";
 
                         mysqli_query($db, $insertPassengerQuery);
 
@@ -486,14 +487,15 @@
 
                         $passengerID = mysqli_query($db, $selectPassengerIDquery);
                         $passengerID = mysqli_fetch_assoc($passengerID);
-                        $passengerID = $passengerID['passengerID'];
+                        $passengerID = intval($passengerID['passengerID']);
 
-                        $insertFlightSeatQuery = "INSERT INTO flight_seat (clientID, passengerID, flightNumber, flightSeatClass, flightSeatNumber) VALUES ('" .
-                            $_SESSION['clientID'] . "', '" .    
+                        $insertFlightSeatQuery = "INSERT INTO flight_seat (clientID, passengerID, flightNumber, flightSeatClass, flightSeatNumber, remarks) VALUES (" .
+                            $_SESSION['clientID'] . ", '" .    
                             $passengerID . "', '" .
                             $_SESSION['selectedFlightNum'] . "', '" .
                             $seatClass . "', '" .
-                            $_SESSION['passengerSeat' . $ii]
+                            $_SESSION['passengerSeat' . $ii] . "', '" .
+                            $_SESSION['passengerRemarks' . $ii]
                             . "') ";
 
                         mysqli_query($db, $insertFlightSeatQuery);

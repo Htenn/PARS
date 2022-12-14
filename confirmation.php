@@ -459,7 +459,8 @@
                                 $passengerType = 'Normal';
                         }
 
-                        $insertPassengerQuery = "INSERT INTO passenger (passengerFirstName, passengerMiddleName, passengerLastName, passengerGender, passengerNationality, passengerAge, passengerBirthday, passengerEmail, passengerContactNum, passengerType, addPassengerDate, addPassengerTime) VALUES ('" .
+                        $insertPassengerQuery = "INSERT INTO passenger (clientID, passengerFirstName, passengerMiddleName, passengerLastName, passengerGender, passengerNationality, passengerAge, passengerBirthday, passengerEmail, passengerContactNum, passengerType, addPassengerDate, addPassengerTime) VALUES ('" .
+                            $_SESSION['clientID'] . "', '" .
                             $_SESSION['passengerFirstName' . $ii] . "', '" .
                             $_SESSION['passengerMiddleName' . $ii] . "', '" .
                             $_SESSION['passengerLastName' . $ii] . "', '" .

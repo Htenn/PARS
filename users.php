@@ -163,12 +163,6 @@ session_start();
 										</div>
 										<p></p>
 										<div class='row'>
-											<div class="col-2 col-12-xsmall">
-												<label for="userName">
-													<h2>User Type</h2>
-												</label>
-												<input type="text" name="username" id="username" value="<?= $row["username"]; ?>" placeholder="Username" required />
-											</div>
 											<div class="col-6 col-12-xsmall">
 												<label for="userName">
 													<h2>Username</h2>

@@ -59,21 +59,6 @@
 													</tr>
 												</thead>
 												<tbody>
-													<!--
-													<tr>
-														<td>ID</td>
-														<td>Jonas Anthony</td>
-														<td>Pagcanlungan</td>
-														<td>Napiza</td>
-														<td>Male</td>
-														<td>21/3/00</td>
-														<td>22</td>
-														<td>napiza@gmail.com</td>
-														<td>09215984382</td>
-														<td>filipino</td>
-														<td><a href="#" class="button primary small">Edit</a></td>	
-													</tr>
-													-->
 
 													<?php
 														$db = mysqli_connect('localhost', 'root', '', 'pars');
@@ -107,10 +92,6 @@
 																echo "<td>" . $row['passengerNationality'] . "</td>";
 															echo "</tr>";
 														}
-
-														mysqli_free_result($clientQuery);
-														mysqli_free_result($passengerQuery);
-														mysqli_close($db);
 													?>
 
 												</tbody>
@@ -156,8 +137,7 @@
 															echo "<td>" . $row['bookingNumOfSeats'] . "</td>";
 														echo "</tr>";
 													}
-													mysqli_free_result($bookingQuery);
-													mysqli_close($db);
+													
 												?>
 
 											</tbody>
@@ -169,25 +149,66 @@
 
 						<!-- Second Section -->
 							<section id="second" class="main special">
-								<header class="major">
+								<header class='major'>
 									<h2>Reserved Seats</h2>
 								</header>
+								<?php
+
+									$flightQuery = mysqli_query($db, "SELECT flightNumber FROM flight");
+
+									while($flights = mysqli_fetch_assoc($flightQuery)) {
+										$seatQuery = "SELECT * FROM flight_seat WHERE flightNumber = '" . $flights['flightNumber'] . "'";
+												$seatQuery = mysqli_query($db, $seatQuery);
+
+												$seatQueryResult = mysqli_num_rows($seatQuery);
+												if ($seatQueryResult > 0 ){
+													echo "
+														<h2>Flight Number " . $flights['flightNumber'] . "</h2>
+													";
+									
+								?>
 								<div class="table-wrapper">
 									<table class="alt">
 										<thead>
 											<tr>
-												<th>Flight Number</th>
-												<th>Name</th>
 												<th>Seat Number</th>
 												<th>Class</th>
+												<th>Name</th>
 												<th>Remarks</th>
 											</tr>
 										</thead>
 										<tbody>
-											
+											<?php
+												
+													while($row = mysqli_fetch_assoc($seatQuery)) {
+														echo "<tr>";
+														echo "<td>" . $row['flightSeatNumber'] . "</td>";
+														echo "<td>" . $row['flightSeatClass'] . "</td>";
+
+															if (is_null($row['passengerID'])) {
+																$getNameQuery = "SELECT clientFirstName, clientMiddleName, clientLastName FROM client WHERE clientID = " . $row['clientID'];
+																$getNameQuery = mysqli_query($db, $getNameQuery);
+																$getName = mysqli_fetch_assoc($getNameQuery);
+
+																echo "<td>" . $getName['clientFirstName'] . " " . $getName['clientMiddleName'] . " " . $getName['clientLastName'] . "</td>";
+															} else {
+																$getNameQuery = "SELECT passengerFirstName, passengerMiddleName, passengerLastName FROM passenger WHERE passengerID = " . $row['passengerID'];
+																$getNameQuery = mysqli_query($db, $getNameQuery);
+																$getName = mysqli_fetch_assoc($getNameQuery);
+
+																echo "<td>" . $getName['passengerFirstName'] . " " . $getName['passengerMiddleName'] . " " . $getName['passengerLastName'] . "</td>";
+															}
+														echo "<td>" . $row['remarks'] . "</td>";
+														echo "</tr>";
+													}
+												}
+											?>
 										</tbody>
 									</table>
 								</div>
+								<?php
+								} // end of while ($flights = mysqli_fetch_assoc)
+								?>
 							</section>
 					</div>
 					

@@ -163,7 +163,7 @@
 												$seatQueryResult = mysqli_num_rows($seatQuery);
 												if ($seatQueryResult > 0 ){
 													echo "
-														<h2>Flight Number " . $flights['flightNumber'] . "</h2>
+														<h2>Flight Number <strong>" . $flights['flightNumber'] . "</strong></h2>
 														<p></p>
 													";
 									

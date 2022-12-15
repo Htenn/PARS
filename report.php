@@ -164,6 +164,7 @@
 												if ($seatQueryResult > 0 ){
 													echo "
 														<h2>Flight Number " . $flights['flightNumber'] . "</h2>
+														<p></p>
 													";
 									
 								?>

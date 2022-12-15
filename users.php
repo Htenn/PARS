@@ -51,20 +51,18 @@ session_start();
 								<th>Middle Name</th>
 								<th>Last Name</th>
 								<th>Username</th>
-								<th>Password</th>
 							</tr>
 						</thead>
 
 						<tbody>
-
+							<!-- SEARCH -->
 							<?php
 							if (isset($_POST['Sbtn'])) {
 								$conn = mysqli_connect("localhost", "root", "", "pars");
 								$Ssearch = mysqli_real_escape_string($conn, $_POST['search']);
 
 								$Ssql = "SELECT * FROM user WHERE userFirstName LIKE '%$Ssearch%' 
-																	OR userMiddleName LIKE '%$Ssearch%' OR userLastName LIKE '%$Ssearch%' OR username LIKE '%$Ssearch%' 
-																	OR password LIKE '%$Ssearch%' ORDER BY userFirstName";
+																	OR userMiddleName LIKE '%$Ssearch%' OR userLastName LIKE '%$Ssearch%' OR username LIKE '%$Ssearch%' ORDER BY userFirstName";
 								$result = mysqli_query($conn, $Ssql);
 								$queryResult = mysqli_num_rows($result);
 
@@ -75,7 +73,6 @@ session_start();
 																			<td>" . $row["userMiddleName"] . "</td>
 																			<td>" . $row["userLastName"] . "</td>
 																			<td>" . $row["username"] . "</td>
-																			<td>" . $row["password"] . "</td>
 																			<td>" .
 											"<form action='users.php#conf' method='post'>	
 																			<button class='button primary small' name='btn' type='submit' value = " . $row["userID"] . ">Select</button>" .
@@ -102,7 +99,6 @@ session_start();
 																		<td>" . $row["userMiddleName"] . "</td>
 																		<td>" . $row["userLastName"] . "</td>
 																		<td>" . $row["username"] . "</td>
-																		<td>" . $row["password"] . "</td>
 																		<td>" .
 											"<form action='users.php#conf' method='post'>
 																		<button class='button primary small' name='btn' type='submit' value = " . $row["userID"] . ">Edit</button>" .
@@ -132,6 +128,7 @@ session_start();
 			<section id="conf" class="main special">
 				<div class="spotlight">
 					<div class="content">
+						<form action='users.php' method='post'>
 						<?php
 						
 							$btn = $_POST['btn'];
@@ -143,7 +140,7 @@ session_start();
 
 								foreach ($query_run as $row) {
 						?>
-									
+									<input type='hidden' name='id' value="<?php echo $btn;?>" >
 									<div class="row">
 										<div class="col-4 col-12-xsmall">
 											<label for="firstName">
@@ -170,13 +167,13 @@ session_start();
 											<label for="userName">
 												<h2>Username</h2>
 											</label>
-											<input type="text" name="userName" id="username" value="<?= $row["username"]; ?>" placeholder="username" required />
+											<input type="text" name="username" id="username" value="<?= $row["username"]; ?>" placeholder="Username" required />
 										</div>
 										<div class="col-6 col-12-xsmall">
 											<label for="password">
 												<h2>Password</h2>
 											</label>
-											<input type="text" name="password" id="password" value="<?= $row["password"]; ?>" placeholder="username" required />
+											<input type="text" name="password" id="password" value="" placeholder="Enter new password" required />
 										</div>
 									</div>
 
@@ -196,7 +193,7 @@ session_start();
 				<?php
 				if (isset($_POST['btn'])) {
 				?>
-					<form>
+					
 						<p></p>
 						<div class="row">
 							<div class="col-6 col-12-xsmall">
@@ -223,6 +220,42 @@ session_start();
 			</section>
 			<p class="copyright">&copy; Philippine Cultural College. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
 		</footer>
+
+		<?php
+			if (isset($_POST['save'])) {
+				$db = mysqli_connect('localhost', 'root', '', 'pars');
+				$id = mysqli_real_escape_string($db, $_POST['id']);
+					$id = intval($id);
+				$firstName = mysqli_real_escape_string($db, $_POST['firstName']);
+				$middleName = mysqli_real_escape_string($db, $_POST['middleName']);
+				$lastName = mysqli_real_escape_string($db, $_POST['lastName']);
+				$username = mysqli_real_escape_string($db, $_POST['username']);
+				$password = mysqli_real_escape_string($db, $_POST['password']);
+
+				$updateQuery = "UPDATE user SET 
+					userFirstName = '" . $firstName . "',
+					userMiddleName = '" . $middleName . "',
+					userLastName = '" . $lastName . "', 
+					username = '" . $username . "', 
+					password = '" . md5($password) . "'
+					WHERE userID = " . $id;
+
+				mysqli_query($db, $updateQuery);
+
+				echo "<script>alert('User has been saved!');</script>";
+			}
+
+			if (isset($_POST['delete'])) {
+				$db = mysqli_connect('localhost', 'root', '', 'pars');
+				$id = mysqli_real_escape_string($db, $_POST['id']);
+					$id = intval($id);
+
+				$deleteQuery = "DELETE FROM user WHERE userID = " . $id;
+				mysqli_query($db, $deleteQuery);
+
+				echo "<script>alert('User has been deleted!');</script>";
+			}
+		?>
 
 		<!-- Scripts -->
 		<script src="assets/js/jquery.min.js"></script>

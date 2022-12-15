@@ -1,5 +1,5 @@
 <?php
-    $conn = mysqli_connect("localhost", "root", "", "pars1");
+    $conn = mysqli_connect("localhost", "root", "", "pars");
 
     if(isset($_POST['submit'])) {
     $flightOriginN = $_POST['flightOriginN'];

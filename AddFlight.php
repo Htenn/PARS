@@ -16,10 +16,8 @@
 
 				<!-- Header -->
 					<header id="header" class="alt">
-						<span class="logo"><img src="images/logo.svg" alt="" /></span>
-						<h1>Stellar</h1>
-						<p>Just another free, fully responsive site template<br />
-						built by <a href="https://twitter.com/ajlkn">@ajlkn</a> for <a href="https://html5up.net">HTML5 UP</a>.</p>
+						<h1>Add Flights</h1>
+						<p></p>
 					</header>
 
 				<!-- Main -->
@@ -29,9 +27,6 @@
 							<section id="first" class="main special">
 								<div class="spotlight">
 									<div class="content">
-												<header class="major">
-													<h2>Add Flight</h2>
-												</header>
 
 												<form action="addflight.php" method = "POST">
 
@@ -73,7 +68,10 @@
 
 																<div class="col-6 col-12-xsmall">
 																	<h2>Aircraft Model</h2>
-																	<input type="text"  name="AircraftModelN" placeholder = "Aircraft Model"/>
+																	<select name="AircraftModelN">
+																		<option value="A320">A320</option>
+																		<option value="A330">A330</option>
+																	</select>
 																</div>
 												
 													
@@ -97,12 +95,15 @@
 									include 'includes/AddingData.php';
 								?>
 								<br>
-								<button type = "submit" name = "submit" class="button primary">Confirm</button>
+								<input type = "submit" name = "submit" class="button primary fit" value="Confirm" />
 
 								</form>
 
 							</section>
-					
+				
+
+			</div>
+				
 				<!-- Footer -->
 				<footer id="footer">
 					<section>
@@ -110,8 +111,6 @@
 					</section>
 					<p class="copyright">&copy; Philippine Cultural College. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
 				</footer>
-
-			</div>
 
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>

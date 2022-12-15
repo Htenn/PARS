@@ -122,95 +122,101 @@ session_start();
 
 			<!-- First Section -->
 			<?php
-					$con = mysqli_connect("localhost", "root", "", "pars");
-					if (isset($_POST['btn'])) {
+			$con = mysqli_connect("localhost", "root", "", "pars");
+			if (isset($_POST['btn'])) {
 			?>
-			<section id="conf" class="main special">
-				<div class="spotlight">
-					<div class="content">
-						<form action='users.php' method='post'>
-						<?php
-						
-							$btn = $_POST['btn'];
+				<section id="conf" class="main special">
+					<div class="spotlight">
+						<div class="content">
+							<form action='users.php' method='post'>
+								<?php
 
-							$query = "SELECT * FROM user WHERE userID = $btn ";
-							$query_run = mysqli_query($con, $query);
+								$btn = $_POST['btn'];
 
-							if (mysqli_num_rows($query_run) > 0) {
+								$query = "SELECT * FROM user WHERE userID = $btn ";
+								$query_run = mysqli_query($con, $query);
 
-								foreach ($query_run as $row) {
-						?>
-									<input type='hidden' name='id' value="<?php echo $btn;?>" >
-									<div class="row">
-										<div class="col-4 col-12-xsmall">
-											<label for="firstName">
-												<h2>First Name</h2>
-											</label>
-											<input type="text" name="firstName" id="firstName" value="<?= $row["userFirstName"]; ?>" placeholder="First Name" required />
+								if (mysqli_num_rows($query_run) > 0) {
+
+									foreach ($query_run as $row) {
+								?>
+										<input type='hidden' name='id' value="<?php echo $btn; ?>">
+										<div class="row">
+											<div class="col-4 col-12-xsmall">
+												<label for="firstName">
+													<h2>First Name</h2>
+												</label>
+												<input type="text" name="firstName" id="firstName" value="<?= $row["userFirstName"]; ?>" placeholder="First Name" required />
+											</div>
+											<div class="col-4 col-12-xsmall">
+												<label for="middleName">
+													<h2>Middle Name</h2>
+												</label>
+												<input type="text" name="middleName" id="middleName" value="<?= $row["userMiddleName"]; ?>" placeholder="Middle Name" />
+											</div>
+											<div class="col-4 col-12-xsmall">
+												<label for="lastName">
+													<h2>Last Name</h2>
+												</label>
+												<input type="text" name="lastName" id="lastName" value="<?= $row["userLastName"]; ?>" placeholder="Last Name" required />
+											</div>
 										</div>
-										<div class="col-4 col-12-xsmall">
-											<label for="middleName">
-												<h2>Middle Name</h2>
-											</label>
-											<input type="text" name="middleName" id="middleName" value="<?= $row["userMiddleName"]; ?>" placeholder="Middle Name" />
+										<p></p>
+										<div class='row'>
+											<div class="col-2 col-12-xsmall">
+												<label for="userName">
+													<h2>User Type</h2>
+												</label>
+												<input type="text" name="username" id="username" value="<?= $row["username"]; ?>" placeholder="Username" required />
+											</div>
+											<div class="col-6 col-12-xsmall">
+												<label for="userName">
+													<h2>Username</h2>
+												</label>
+												<input type="text" name="username" id="username" value="<?= $row["username"]; ?>" placeholder="Username" required />
+											</div>
+											<div class="col-6 col-12-xsmall">
+												<label for="password">
+													<h2>Password</h2>
+												</label>
+												<input type="text" name="password" id="password" value="" placeholder="Enter new password" required />
+											</div>
 										</div>
-										<div class="col-4 col-12-xsmall">
-											<label for="lastName">
-												<h2>Last Name</h2>
-											</label>
-											<input type="text" name="lastName" id="lastName" value="<?= $row["userLastName"]; ?>" placeholder="Last Name" required />
-										</div>
-									</div>
-									<p></p>
-									<div class='row'>
-										<div class="col-6 col-12-xsmall">
-											<label for="userName">
-												<h2>Username</h2>
-											</label>
-											<input type="text" name="username" id="username" value="<?= $row["username"]; ?>" placeholder="Username" required />
-										</div>
-										<div class="col-6 col-12-xsmall">
-											<label for="password">
-												<h2>Password</h2>
-											</label>
-											<input type="text" name="password" id="password" value="" placeholder="Enter new password" required />
-										</div>
-									</div>
 
 
-						<?php
+							<?php
+									}
+								} else {
+									echo "no result";
 								}
-							} else {
-								echo "no result";
 							}
-						}
-						?>
+							?>
+
+						</div>
 
 					</div>
 
-				</div>
+					<?php
+					if (isset($_POST['btn'])) {
+					?>
 
-				<?php
-				if (isset($_POST['btn'])) {
-				?>
-					
 						<p></p>
 						<div class="row">
 							<div class="col-6 col-12-xsmall">
 								<input type='submit' name='save' class='button primary fit' value='Save' />
 							</div>
-							
+
 							<div class="col-6 col-12-xsmall">
-								<input type='submit' name='delete' class='button fit' value='Delete' />	
+								<input type='submit' name='delete' class='button fit' value='Delete' />
 							</div>
 						</div>
-					</form>
-				<?php
-				}
-				?>
+						</form>
+					<?php
+					}
+					?>
 
 
-			</section>
+				</section>
 		</div>
 
 		<!-- Footer -->
@@ -222,17 +228,17 @@ session_start();
 		</footer>
 
 		<?php
-			if (isset($_POST['save'])) {
-				$db = mysqli_connect('localhost', 'root', '', 'pars');
-				$id = mysqli_real_escape_string($db, $_POST['id']);
-					$id = intval($id);
-				$firstName = mysqli_real_escape_string($db, $_POST['firstName']);
-				$middleName = mysqli_real_escape_string($db, $_POST['middleName']);
-				$lastName = mysqli_real_escape_string($db, $_POST['lastName']);
-				$username = mysqli_real_escape_string($db, $_POST['username']);
-				$password = mysqli_real_escape_string($db, $_POST['password']);
+		if (isset($_POST['save'])) {
+			$db = mysqli_connect('localhost', 'root', '', 'pars');
+			$id = mysqli_real_escape_string($db, $_POST['id']);
+			$id = intval($id);
+			$firstName = mysqli_real_escape_string($db, $_POST['firstName']);
+			$middleName = mysqli_real_escape_string($db, $_POST['middleName']);
+			$lastName = mysqli_real_escape_string($db, $_POST['lastName']);
+			$username = mysqli_real_escape_string($db, $_POST['username']);
+			$password = mysqli_real_escape_string($db, $_POST['password']);
 
-				$updateQuery = "UPDATE user SET 
+			$updateQuery = "UPDATE user SET 
 					userFirstName = '" . $firstName . "',
 					userMiddleName = '" . $middleName . "',
 					userLastName = '" . $lastName . "', 
@@ -240,21 +246,21 @@ session_start();
 					password = '" . md5($password) . "'
 					WHERE userID = " . $id;
 
-				mysqli_query($db, $updateQuery);
+			mysqli_query($db, $updateQuery);
 
-				echo "<script>alert('User has been saved!');</script>";
-			}
+			echo "<script>alert('User has been saved!');</script>";
+		}
 
-			if (isset($_POST['delete'])) {
-				$db = mysqli_connect('localhost', 'root', '', 'pars');
-				$id = mysqli_real_escape_string($db, $_POST['id']);
-					$id = intval($id);
+		if (isset($_POST['delete'])) {
+			$db = mysqli_connect('localhost', 'root', '', 'pars');
+			$id = mysqli_real_escape_string($db, $_POST['id']);
+			$id = intval($id);
 
-				$deleteQuery = "DELETE FROM user WHERE userID = " . $id;
-				mysqli_query($db, $deleteQuery);
+			$deleteQuery = "DELETE FROM user WHERE userID = " . $id;
+			mysqli_query($db, $deleteQuery);
 
-				echo "<script>alert('User has been deleted!');</script>";
-			}
+			echo "<script>alert('User has been deleted!');</script>";
+		}
 		?>
 
 		<!-- Scripts -->

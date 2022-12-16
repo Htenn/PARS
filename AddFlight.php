@@ -43,36 +43,36 @@ include 'sessionstart.php';
 
 								<div class="col-6 col-12-xsmall">
 									<h2>Origin</h2>
-									<input type="text" name="flightOriginN" placeholder="flight Origin" />
+									<input type="text" name="flightOriginN" placeholder="" />
 								</div>
 								<div class="col-6 col-12-xsmall">
 									<h2>Destination</h2>
-									<input type="text" name="flightDestinationN" placeholder="flight Destination" />
+									<input type="text" name="flightDestinationN" placeholder="" />
 								</div>
 
 								<div class="col-6 col-12-xsmall">
-									<h2>Date Depart Origin</h2>
-									<input type="date" name="dateDepartOriginN" placeholder="Select date" />
+									<h2><strong>Date</strong> Depart Origin</h2>
+									<input type="date" name="dateDepartOriginN" placeholder="" />
 								</div>
 
 								<div class="col-6 col-12-xsmall">
-									<h2>Time Depart Origin</h2>
-									<input type="text" name="timeDepartOriginN" placeholder="time Depart Origin" />
+									<h2><strong>Time</strong> Depart Origin</h2>
+									<input type="text" name="timeDepartOriginN" placeholder="HH:mm:ss" />
 								</div>
 
 								<div class="col-6 col-12-xsmall">
-									<h2>Date Arrive Destination</h2>
+									<h2><strong>Date</strong> Arrive Destination</h2>
 									<input type="date" name="dateArriveDestinationN" placeholder="Select date" />
 								</div>
 
 								<div class="col-6 col-12-xsmall">
-									<h2>Time Arrive Destination</h2>
-									<input type="text" name="timeArriveDestinationN" placeholder="time Arrive Destination" />
+									<h2><strong>Time</strong> Arrive Destination</h2>
+									<input type="text" name="timeArriveDestinationN" placeholder="HH:mm:ss" />
 								</div>
 
 								<div class="col-6 col-12-xsmall">
 									<h2>Flight Number</h2>
-									<input type="text" name="flightNumberN" placeholder="Flight Number" />
+									<input type="text" name="flightNumberN" placeholder="" />
 								</div>
 
 								<div class="col-6 col-12-xsmall">

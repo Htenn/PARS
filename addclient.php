@@ -23,7 +23,7 @@
 				<!-- Header -->
 					<header id="header">
 						<h1>P.A.R.S.</h1>
-						<p>Client Information</p>
+						<p>Client Registration Form</p>
 					</header>
 
 				<!-- Main -->
@@ -54,8 +54,8 @@
 											<div class="col-6">
 												<h2>Gender</h2>
 												<select name="clientGender" onchange="saveValue(this)" id="clientGender">
-													<option value="1">Male</option>
-													<option value="2">Female</option>
+													<option value="Male">Male</option>
+													<option value="Female">Female</option>
 													
 												</select>
 											</div>
@@ -63,7 +63,7 @@
 											
 											<div class="col-6 col-12-xsmall">
 												<h2>Birthdate</h2>
-												<input type="date" name="clientBirthday" id="clientBirthday" value="" placeholder="MM/DD/YY" />
+												<input type="date" name="clientBirthday" onchange="saveValue(this)" id="clientBirthday" value="" placeholder="MM/DD/YY" />
 											</div>
 
 											
@@ -101,20 +101,24 @@
 													
 												</select>
 											</div>
-											<div class="col-6 col-12-xsmall">
-												<h2>Additional Passenger (If none, type "0")</h2>
-												<input type="text" name="clientAddPass" id="clientAddPass" onchange="saveValue(this)" value="" placeholder="Number of Passengers " />
-												
-											</div>
-											<div class="col-12">
-												<ul class="actions">
-													<li><input type="submit" onclick="add_client()" value="Submit" name="add_client" class="primary" /></li>
-													
-												</ul>
-											</div>
+
 											
-										</div>
+
+											
+											
+										
 									</form>
+									
+
+                                    <div class="col-12">
+										<ul class="actions">
+											
+											<li><input type="submit" onclick="add_client()" value="Submit" name="add_client" class="primary" /></li>
+													
+										</ul>
+									</div>
+									</div>
+                                  
 								</section>
 						</section>
 				</div>
@@ -131,7 +135,7 @@
 					document.getElementById("clientNationality").value = getSavedValue("clientNationality");   // set the value to this input
 					document.getElementById("clientType").value = getSavedValue("clientType");   // set the value to this input
 					document.getElementById("clientRemarks").value = getSavedValue("clientRemarks");   // set the value to this input
-					document.getElementById("clientAddPass").value = getSavedValue("clientAddPass");   // set the value to this input
+					
 					/* Here you can add more inputs to set value. if it's saved */
 			
 					//Save the value function - save it to localStorage as (ID, VALUE)
@@ -155,8 +159,13 @@
  					 $('#result').text(chatInput)
 											}
 					 // $('#message-send').click(getdata);
-			</script>
-					
+					 
+
+
+
+
+				</script>
+				
 				<!-- Footer -->
 					<footer id="footer">
 						<p class="copyright">&copy; Philippine Cultural College. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
@@ -172,6 +181,7 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+			
 			
 
 			

@@ -1,0 +1,10 @@
+A330
+    - Business
+    - Premium Economy
+    - Economy
+
+# Business J
+
+
+> REFERENCE
+https://www.seatguru.com/airlines/Philippine_Airlines/Philippine_Airlines_Airbus_A330_V3.php

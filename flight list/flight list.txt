@@ -1,0 +1,37 @@
+Flight No - Origin - Dest
+
+TG621 - MNL - BKK
+PR312 - MNL - HKG
+CX709 - HKG - BKK
+
+---
+
+Flight Class
+
+Y: Full-fare economy-class ticket.
+J: Full-fare business-class ticket.
+F: Full-fare first-class ticket.
+
+---
+
+Flight Type
+
+D: Domestic Flights
+I: International Flights
+
+---
+
+Area Options
+
+B: Bulkhead seat
+W: Window seat
+A: Aisle seat
+
+---
+
+Specific Passenger Options
+
+I: Infant
+U: Unaccompanied Minor
+H: Handicapped
+M: Mediacally OK for travel

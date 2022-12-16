@@ -1,3 +1,6 @@
+<?php
+include 'sessionstart.php';
+?>
 <!DOCTYPE HTML>
 <!--
 	Stellar by HTML5 UP
@@ -16,6 +19,9 @@
 
 		<!-- Wrapper -->
 			<div id="wrapper">
+				<?php
+				include 'includes/menubutton.php';
+				?>
 
 				<!-- Header -->
 					<header id="header">

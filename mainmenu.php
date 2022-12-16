@@ -1,5 +1,6 @@
 <?php
 include 'unset.php';
+include 'sessionstart.php';
 ?>
 <!DOCTYPE HTML>
 <!--
@@ -55,7 +56,7 @@ include 'unset.php';
 						</header>
 						<div class="col-6 col-12-medium">
 							<ul class="actions stacked">
-								<li><a href="#" class="button primary fit">Manage Clients</a></li>
+								<li><a href="clients.php" class="button primary fit">Manage Clients</a></li>
 								<li><a href="report.php" class="button primary fit">View Reports</a></li>
 							</ul>
 						</div>

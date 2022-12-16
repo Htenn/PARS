@@ -1,4 +1,6 @@
-<?php session_start(); ?>
+<?php
+include 'sessionstart.php';
+?>
 <!DOCTYPE HTML>
 <!--
 	Stellar by HTML5 UP
@@ -21,6 +23,9 @@
 
 	<!-- Wrapper -->
 	<div id="wrapper">
+		<?php
+		include 'includes/menubutton.php';
+		?>
 
 		<!-- Header -->
 		<header id="header">
@@ -49,6 +54,8 @@
 					$selectedFlightAircraftModel = mysqli_query($db, $selectedFlightQuery);
 					$selectedFlightAircraftModel = mysqli_fetch_assoc($selectedFlightAircraftModel);
 					$selectedFlightAircraftModel = $selectedFlightAircraftModel['flightAircraftModel'];
+
+					echo "<h1>" . $selectedFlightAircraftModel ."</h1><p></p>";
 
 					# query to check the availability of a seat
 					$seatCheckQuery = "SELECT * from flight_seat WHERE flightNumber = '$selectedFlightNumber'";
@@ -82,8 +89,8 @@
 								}
 								echo "</div>";
 							}
-							
-								echo "<div style='margin-top: 20px;'></div>";
+
+							echo "<div style='margin-top: 20px;'></div>";
 
 							foreach (range('B', 'A') as $column) {
 								echo "<div class= \"seatRow\">";
@@ -215,7 +222,7 @@
 							$columnArray = array('K', 'G', 'D', 'A');
 
 							echo "<h2>Business</h2>";
-							
+
 							foreach ($columnArray as $column) {
 								echo "<div class= \"seatRow\">";
 								for ($row = 1; $row <= 5; $row++) {

@@ -1,5 +1,5 @@
 <?php
-session_start();
+include 'sessionstart.php';
 ?>
 <!DOCTYPE HTML>
 
@@ -19,6 +19,9 @@ session_start();
 
 	<!-- Wrapper -->
 	<div id="wrapper">
+		<?php
+		include 'includes/menubutton.php';
+		?>
 
 		<!-- Header -->
 		<header id="header" class="alt">

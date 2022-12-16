@@ -1,5 +1,5 @@
 <?php
-session_start();
+include 'sessionstart.php';
 ?>
 
 <!DOCTYPE HTML>
@@ -24,6 +24,9 @@ session_start();
 
     <!-- Wrapper -->
     <div id="wrapper">
+        <?php
+        include 'includes/menubutton.php';
+        ?>
 
         <!-- Header -->
         <header id="header">
@@ -147,7 +150,7 @@ session_start();
                                 </div>
                             </section>
                             <br>
-                            
+
 
                     <?php
                             $count++;
@@ -158,13 +161,13 @@ session_start();
                     }
                     ?>
                     <?php
-                        if(isset($_POST['str'])){
+                    if (isset($_POST['str'])) {
                     ?>
                         <div class="col-12">
                             <input type="submit" value="Submit" name="seatSubmit" class="button primary fit" />
                         </div>
                     <?php
-                        }
+                    }
                     ?>
 
                 </form>

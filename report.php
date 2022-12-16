@@ -1,3 +1,6 @@
+<?php
+include 'sessionstart.php';
+?>
 <!DOCTYPE HTML>
 <!--
 	Stellar by HTML5 UP
@@ -16,6 +19,9 @@
 
 		<!-- Wrapper -->
 			<div id="wrapper">
+				<?php 
+					include 'includes/menubutton.php';
+				?>
 
 				<!-- Header -->
 				<header id="header">
@@ -27,7 +33,7 @@
 					<nav id="nav">
 						<ul>
 							<li><a href="#intro" class="active">Client and Passenger List</a></li>
-							<li><a href="#first">Booking List</a></li>
+							<li><a href="#first">Reservations</a></li>
 							<li><a href="#second">Reserved Seats</a></li>
 						</ul>
 					</nav>

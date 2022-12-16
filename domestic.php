@@ -1,5 +1,5 @@
 <?php
-session_start();
+include 'sessionstart.php';
 ?>
 <!DOCTYPE HTML>
 
@@ -19,6 +19,9 @@ session_start();
 
 	<!-- Wrapper -->
 	<div id="wrapper">
+		<?php
+		include 'includes/menubutton.php';
+		?>
 
 		<!-- Header -->
 		<header id="header" class="alt">
@@ -132,14 +135,14 @@ session_start();
 
 			<!-- First Section -->
 			<?php
-					$con = mysqli_connect("localhost", "root", "", "pars");
-					if (isset($_POST['btn'])) {
+			$con = mysqli_connect("localhost", "root", "", "pars");
+			if (isset($_POST['btn'])) {
 			?>
-			<section id="conf" class="main special">
-				<div class="spotlight">
-					<div class="content">
-						<?php
-						
+				<section id="conf" class="main special">
+					<div class="spotlight">
+						<div class="content">
+							<?php
+
 							$btn = $_POST['btn'];
 							$_SESSION['selectedFlightNum'] = $btn;
 
@@ -151,7 +154,7 @@ session_start();
 							if (mysqli_num_rows($query_run) > 0) {
 
 								foreach ($query_run as $row) {
-						?>
+							?>
 									<div class="row gtr-uniform">
 
 										<div class="col-6 col-12-xsmall">
@@ -200,20 +203,20 @@ session_start();
 						}
 						?>
 
+						</div>
+
 					</div>
 
-				</div>
-
-				<?php
-				if (isset($_POST['btn'])) {
-				?>
-					<a class='button primary' style='text-decoration:none;' href='selectSeats.php'>Confirm</a>
-				<?php
-				}
-				?>
+					<?php
+					if (isset($_POST['btn'])) {
+					?>
+						<a class='button primary' style='text-decoration:none;' href='selectSeats.php'>Confirm</a>
+					<?php
+					}
+					?>
 
 
-			</section>
+				</section>
 		</div>
 
 		<!-- Footer -->

@@ -1,3 +1,6 @@
+<?php
+	include 'config_login.php';
+?>
 <!DOCTYPE HTML>
 <!--
 	Stellar by HTML5 UP
@@ -29,23 +32,21 @@
 
 						<!-- Content -->
 							<section id="content" class="main">
-								<form method="post" action="#">
+								<form method="post" action="login.php">
 									<div class="row gtr-uniform">
 										<div class="col-6 col-12-xsmall">
-											<label for="userID">ID</label>
-											<input type="text" name="userID" id="userID" value="" placeholder="ID" />
+											<label for="userID">Username</label>
+											<input type="text" name="username" id="username" value="" placeholder="Username" />
 										</div>
 										<div class="col-6 col-12-xsmall">
 											<label for="password">Passcode</label>
 											<input type="password" name="password" id="password" value="" placeholder="Passcode" />
 										</div>
-										<br>
-										<div class="col-6 col-12-medium">
-											<ul class="actions">
-												<li><input type="submit" value="LOGIN" name="login" class="button primary"></li>
-											</ul>
-										</div>
 									</div>
+									<p><?php if($errors) {
+											echo $errors[0];
+									} ?></p>
+									<input type="submit" value="LOGIN" name="login" class="button primary fit">
 								</form>
 							</section>
 

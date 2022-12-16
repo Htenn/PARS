@@ -11,7 +11,7 @@ include 'sessionstart.php';
 <html>
 
 <head>
-	<title>Admin Menu - PARS</title>
+	<title>Main Menu - PARS</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="assets/css/main.css" />
@@ -76,7 +76,7 @@ include 'sessionstart.php';
 
 		<!-- Footer -->
 		<footer id="footer">
-			<p class="copyright">&copy; Philippine Cultural College. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+			<p class="copyright">&copy; Philippine Cultural College</p>
 		</footer>
 
 	</div>

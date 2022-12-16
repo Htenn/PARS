@@ -10,7 +10,7 @@ include 'sessionstart.php';
 <html>
 
 <head>
-	<title>Generic - Stellar by HTML5 UP</title>
+	<title>Select Seats - PARS</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="assets/css/seats.css" />
@@ -55,7 +55,7 @@ include 'sessionstart.php';
 					$selectedFlightAircraftModel = mysqli_fetch_assoc($selectedFlightAircraftModel);
 					$selectedFlightAircraftModel = $selectedFlightAircraftModel['flightAircraftModel'];
 
-					echo "<h1>" . $selectedFlightAircraftModel ."</h1><p></p>";
+					echo "<h1>" . $selectedFlightAircraftModel . "</h1><p></p>";
 
 					# query to check the availability of a seat
 					$seatCheckQuery = "SELECT * from flight_seat WHERE flightNumber = '$selectedFlightNumber'";
@@ -382,7 +382,7 @@ include 'sessionstart.php';
 
 		<!-- Footer -->
 		<footer id="footer">
-			<p class="copyright">&copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+			<p class="copyright">&copy; Philippine Cultural College</p>
 		</footer>
 
 	</div>

@@ -54,10 +54,7 @@
 
 				<!-- Footer -->
 					<footer id="footer">
-						<section>
-							
-						</section>
-						<p class="copyright">&copy; Philippine Cultural College. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+						<p class="copyright">&copy; Philippine Cultural College</p>
 					</footer>
 
 			</div>

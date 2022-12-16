@@ -12,7 +12,7 @@ date_default_timezone_set("Asia/Manila");
 <html>
 
 <head>
-    <title>Generic - Stellar by HTML5 UP</title>
+    <title>Confirmation - PARS</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="assets/css/main.css" />
@@ -284,7 +284,7 @@ date_default_timezone_set("Asia/Manila");
 
         <!-- Footer -->
         <footer id="footer">
-            <p class="copyright">&copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+            <p class="copyright">&copy; Philippine Cultural College</p>
         </footer>
 
     </div>

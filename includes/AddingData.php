@@ -28,7 +28,8 @@
 
     $result = mysqli_query($conn, $sql);
 
-    
+    echo "<script> alert('Flight has been added!');</script>";
+    header('location: addflight.php');
     }
 
 }

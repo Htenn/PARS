@@ -502,6 +502,8 @@ date_default_timezone_set("Asia/Manila");
                 }
             }
         }
+        echo "<script> alert('Seats are now reserved!');</script>";
+        header('location: report.php#reserved');
     }
 
 

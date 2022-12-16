@@ -83,7 +83,7 @@ include 'sessionstart.php';
                                             <h2>Gender</h2>
                                         </label>
                                         <select name="gender<?php echo $count; ?>" id="gender">
-                                            <option value="M">Male</option>
+                                            <option value="M" selected>Male</option>
                                             <option value="F">Female</option>
                                         </select>
                                     </div>
@@ -134,7 +134,7 @@ include 'sessionstart.php';
                                             <h2>Passenger Type</h2>
                                         </label>
                                         <select name="passengerType<?php echo $count; ?>" id="passengerType">
-                                            <option value="N">Normal</option>
+                                            <option value="N" selected>Normal</option>
                                             <option value="U">Unaccompanied Minor</option>
                                             <option value="H">Handicapped</option>
                                             <option value="M">Medically OK for travel</option>

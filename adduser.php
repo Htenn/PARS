@@ -70,8 +70,8 @@ include 'sessionstart.php';
 											</div>
 											<p></p>
 											<div class="col-6 col-12-xsmall">
-													<input type="submit" value="Submit" name="add_user" class="button primary fit" />
-												</div>
+												<input type="submit" value="Submit" name="add_user" class="button primary fit" />
+											</div>
 										</form>
 									</section>
 							</section>
@@ -79,7 +79,7 @@ include 'sessionstart.php';
 
 				<!-- Footer -->
 					<footer id="footer">
-						<p class="copyright">&copy; Philippine Cultural College. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+						<p class="copyright">&copy; Philippine Cultural College</p>
 					</footer>
 
 			</div>

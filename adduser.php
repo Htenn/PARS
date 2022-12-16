@@ -54,21 +54,18 @@
 													<h2>Password</h2>
 													<input type="text" name="password" id="password" value="" placeholder="Password" required/>
 												</div>
-												<div class="col-6">
+												<div class="col-6 col-12-xsmall">
 													<h2>Account Type</h2>
 													<select name="userType" id="userType"  >
 														<option value="U" selected>User</option>
 														<option value="A">Administrator</option>
 													</select>
 												</div>
-												
-												<div class="col-12">
-													<ul class="actions">
-														<li><input type="submit" value="Submit" name="add_user"  class="primary" /></li>
-														
-													</ul>
-												</div>
 											</div>
+											<p></p>
+											<div class="col-6 col-12-xsmall">
+													<input type="submit" value="Submit" name="add_user" class="button primary fit" />
+												</div>
 										</form>
 									</section>
 							</section>

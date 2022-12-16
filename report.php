@@ -42,7 +42,7 @@ include 'sessionstart.php';
 					<div id="main">
 
 						<!-- Introduction -->
-							<section id="intro" class="main">
+							<section id="cp" class="main">
 								<div class="spotlight">
 									<div class="content">
 										<header class="major">
@@ -108,7 +108,7 @@ include 'sessionstart.php';
 							</section>
 
 						<!-- First Section -->
-							<section id="first" class="main special">
+							<section id="reservations" class="main special">
 								<header class="major">
 									<h2>Reservations</h2>
 								</header>
@@ -154,7 +154,7 @@ include 'sessionstart.php';
 							</section>
 
 						<!-- Second Section -->
-							<section id="second" class="main special">
+							<section id="reserved" class="main special">
 								<header class='major'>
 									<h2>Reserved Seats</h2>
 								</header>

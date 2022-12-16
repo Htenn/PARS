@@ -16,9 +16,8 @@
 
     $query = mysqli_query($conn, $flightNumberNsql);
     if(mysqli_num_rows($query) > 0) {
-
-        echo "Flight number Or Aircraft Model is already used";
-
+        echo "<script> alert('Flight already exists!');</script>";
+        header('location: addflight.php');
     } else {
 
     $sql = "INSERT INTO flight (flightNumber, flightOrigin, flightDestination, dateDepartOrigin, timeDepartOrigin, 

@@ -54,7 +54,7 @@ session_start();
 								<th>Birthdate</th>
 								<th>Email</th>
 								<th>Contact Num</th>
-								<th>Passenger Options</th>
+								<th>Passenger Type</th>
 							</tr>
 						</thead>
 

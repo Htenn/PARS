@@ -57,7 +57,7 @@ include 'sessionstart.php';
 
 								<div class="col-6 col-12-xsmall">
 									<h2><strong>Time</strong> Depart Origin</h2>
-									<input type="text" name="timeDepartOriginN" placeholder="HH:mm:ss" />
+									<input type="text" name="timeDepartOriginN" placeholder="HH:mm" />
 								</div>
 
 								<div class="col-6 col-12-xsmall">
@@ -67,7 +67,7 @@ include 'sessionstart.php';
 
 								<div class="col-6 col-12-xsmall">
 									<h2><strong>Time</strong> Arrive Destination</h2>
-									<input type="text" name="timeArriveDestinationN" placeholder="HH:mm:ss" />
+									<input type="text" name="timeArriveDestinationN" placeholder="HH:mm" />
 								</div>
 
 								<div class="col-6 col-12-xsmall">

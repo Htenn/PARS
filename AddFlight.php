@@ -78,7 +78,7 @@ include 'sessionstart.php';
 								<div class="col-6 col-12-xsmall">
 									<h2>Aircraft Model</h2>
 									<select name="AircraftModelN">
-										<option value="A320">A320</option>
+										<option value="A320" selected>A320</option>
 										<option value="A330">A330</option>
 									</select>
 								</div>

@@ -2024,6 +2024,7 @@ input, select, textarea {
 		input[type="password"]:invalid,
 		input[type="email"]:invalid,
 		input[type="email"]:invalid,
+		input[type="date"]:invalid,
 		select:invalid,
 		textarea:invalid {
 			box-shadow: none;
@@ -3464,7 +3465,7 @@ input, select, textarea {
 			#main input[type="text"]:focus,
 			#main input[type="password"]:focus,
 			#main input[type="email"]:focus,
-			#main input[type="email"]:focus,
+			#main input[type="date"]:focus,
 			#main select:focus,
 			#main textarea:focus {
 				border-color: #8cc9f0;

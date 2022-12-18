@@ -124,7 +124,7 @@ include 'sessionstart.php';
 
 				$Dquery = "DELETE from flight_seat WHERE flightNumber = '$btn'";
 				$query_run = mysqli_query($con, $Dquery);
-				header("Location: ../PARS/archive.php");
+				echo "<script> alert('Seats are now reserved!'); window.location= 'report.php#reserved'</script>";
 			}
 
 			?>
@@ -156,7 +156,7 @@ include 'sessionstart.php';
 
 									<?php
 									$conn = mysqli_connect("localhost", "root", "", "pars");
-									$sql = "SELECT * from flightarchive ORDER BY 'date' DESC";
+									$sql = "SELECT * from flightarchive";
 									$result = mysqli_query($conn, $sql);
 									$resultcheck = mysqli_num_rows($result);
 
@@ -177,26 +177,23 @@ include 'sessionstart.php';
 
 							</table>
 						</div>
-
-
+				</div>
 			</section>
-
-			<!-- Footer -->
-			<footer id="footer">
-				<p class="copyright">&copy; Philippine Cultural College</p>
-			</footer>
-
 		</div>
+		<!-- Footer -->
+		<footer id="footer">
+			<p class="copyright">&copy; Philippine Cultural College</p>
+		</footer>
 	</div>
 
-		<!-- Scripts -->
-		<script src="assets/js/jquery.min.js"></script>
-		<script src="assets/js/jquery.scrollex.min.js"></script>
-		<script src="assets/js/jquery.scrolly.min.js"></script>
-		<script src="assets/js/browser.min.js"></script>
-		<script src="assets/js/breakpoints.min.js"></script>
-		<script src="assets/js/util.js"></script>
-		<script src="assets/js/main.js"></script>
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.scrollex.min.js"></script>
+	<script src="assets/js/jquery.scrolly.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
 
 </body>
 

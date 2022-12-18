@@ -4,6 +4,10 @@ TG621 - MNL - BKK
 PR312 - MNL - HKG
 CX709 - HKG - BKK
 
+5J907 - MNL - CEB
+PR612 - DVO - CRK
+Z2321 - CRK - CEB
+
 ---
 
 Flight Class

@@ -274,7 +274,7 @@ date_default_timezone_set("Asia/Manila");
                     }
                 }
                 ?>
-
+                <p></p>
                 <form method='post' action='confirmation.php'>
                     <input type='submit' class='button primary fit' name='exeConfirm' value='CONFIRM' />
                 </form>
@@ -502,8 +502,7 @@ date_default_timezone_set("Asia/Manila");
                 }
             }
         }
-        echo "<script> alert('Seats are now reserved!');</script>";
-        header('location: report.php#reserved');
+        echo "<script> alert('Seats are now reserved!'); window.location= 'report.php#reserved'</script>";
     }
 
 

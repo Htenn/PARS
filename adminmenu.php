@@ -42,7 +42,7 @@ include 'sessionstart.php';
 					<div class="content">
 
 						<header class="major">
-							<h2>Book Flights</h2>
+							<h2>Reserve Seats</h2>
 						</header>
 						<div class="col-6 col-12-medium">
 							<ul class="actions fit">

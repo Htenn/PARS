@@ -1,5 +1,6 @@
 <?php
 include 'sessionstart.php';
+include 'includes/AddingData.php';
 ?>
 <!DOCTYPE HTML>
 
@@ -43,36 +44,36 @@ include 'sessionstart.php';
 
 								<div class="col-6 col-12-xsmall">
 									<h2>Origin</h2>
-									<input type="text" name="flightOriginN" placeholder="" />
+									<input type="text" name="flightOriginN" placeholder="" required />
 								</div>
 								<div class="col-6 col-12-xsmall">
 									<h2>Destination</h2>
-									<input type="text" name="flightDestinationN" placeholder="" />
+									<input type="text" name="flightDestinationN" placeholder="" required />
 								</div>
 
 								<div class="col-6 col-12-xsmall">
 									<h2><strong>Date</strong> Depart Origin</h2>
-									<input type="date" name="dateDepartOriginN" placeholder="" />
+									<input type="date" name="dateDepartOriginN" placeholder="" required />
 								</div>
 
 								<div class="col-6 col-12-xsmall">
 									<h2><strong>Time</strong> Depart Origin</h2>
-									<input type="text" name="timeDepartOriginN" placeholder="HH:mm" />
+									<input type="text" name="timeDepartOriginN" placeholder="HH:mm" required />
 								</div>
 
 								<div class="col-6 col-12-xsmall">
 									<h2><strong>Date</strong> Arrive Destination</h2>
-									<input type="date" name="dateArriveDestinationN" placeholder="Select date" />
+									<input type="date" name="dateArriveDestinationN" placeholder="Select date" required />
 								</div>
 
 								<div class="col-6 col-12-xsmall">
 									<h2><strong>Time</strong> Arrive Destination</h2>
-									<input type="text" name="timeArriveDestinationN" placeholder="HH:mm" />
+									<input type="text" name="timeArriveDestinationN" placeholder="HH:mm" required />
 								</div>
 
 								<div class="col-6 col-12-xsmall">
 									<h2>Flight Number</h2>
-									<input type="text" name="flightNumberN" placeholder="" />
+									<input type="text" name="flightNumberN" placeholder="" required />
 								</div>
 
 								<div class="col-6 col-12-xsmall">
@@ -93,20 +94,16 @@ include 'sessionstart.php';
 									<input type="radio" id="demo-priority-normal" name="flightTypeN" value="I">
 									<label for="demo-priority-normal">International Flight</label>
 								</div>
-
-
-
 							</div>
+							<br>
+							<input type="submit" name="submit" class="button primary fit" value="Confirm" />
+						</form>
 					</div>
 
 				</div>
-				<?php
-				include 'includes/AddingData.php';
-				?>
-				<br>
-				<input type="submit" name="submit" class="button primary fit" value="Confirm" />
 
-				</form>
+
+
 
 			</section>
 

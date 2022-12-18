@@ -24,8 +24,7 @@ include 'sessionstart.php';
 		?>
 
 		<!-- Header -->
-		<header id="header" class="alt">
-			<span class="logo"><img src="images/logo.svg" alt="" /></span>
+		<header id="header">
 			<h1>Archives</h1>
 			<p></p>
 		</header>

@@ -25,7 +25,7 @@ include 'includes/AddingData.php';
 		?>
 
 		<!-- Header -->
-		<header id="header" class="alt">
+		<header id="header">
 			<h1>Add Flights</h1>
 			<p></p>
 		</header>

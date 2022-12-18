@@ -130,7 +130,7 @@ include 'sessionstart.php';
 												
 												<?php
 													$db = mysqli_connect('localhost', 'root', '', 'pars');
-													$bookingQuery = mysqli_query($db, "SELECT booking.clientID, booking.bookingID, booking.flightNumber, client.clientFirstName, client.clientMiddleName, client.clientLastName, booking.bookingOrigin, booking.bookingDestination, booking.bookingNumOfSeats, booking.addBookingDate, booking.addBookingTime FROM booking INNER JOIN client ON booking.clientID = client.clientID ORDER BY booking.addBookingDate DESC, booking.addBookingTime DESC");
+													$bookingQuery = mysqli_query($db, "SELECT * FROM client INNER JOIN booking ON client.clientID = booking.clientID INNER JOIN flight ON booking.flightNumber = flight.flightNumber ORDER BY booking.addBookingDate DESC, booking.addBookingTime DESC");
 													
 
 													while($row = mysqli_fetch_array($bookingQuery)) {
@@ -138,8 +138,8 @@ include 'sessionstart.php';
 															echo "<td>" . $row['bookingID'] . "</td>";
 															echo "<td>" . $row['flightNumber'] . "</td>";
 															echo "<td>" . $row['clientFirstName'] . " " . $row['clientMiddleName'] . " " . $row['clientLastName'] . "</td>";
-															echo "<td>" . $row['bookingOrigin'] . " " . $row['addBookingDate'] . " " . $row['addBookingTime'] . "</td>";
-															echo "<td>" . $row['bookingDestination'] . " " . $row['addBookingDate'] . " " . $row['addBookingTime'] . "</td>";
+															echo "<td>" . $row['bookingOrigin'] . " " . $row['dateDepartOrigin'] . " " . $row['timeDepartOrigin'] . "</td>";
+															echo "<td>" . $row['bookingDestination'] . " " . $row['dateArriveDestination'] . " " . $row['timeArriveDestination'] . "</td>";
 															echo "<td>" . $row['bookingNumOfSeats'] . "</td>";
 														echo "</tr>";
 													}
@@ -163,7 +163,7 @@ include 'sessionstart.php';
 									$flightQuery = mysqli_query($db, "SELECT flightNumber FROM flight");
 
 									while($flights = mysqli_fetch_assoc($flightQuery)) {
-										$seatQuery = "SELECT * FROM flight_seat WHERE flightNumber = '" . $flights['flightNumber'] . "'";
+										$seatQuery = "SELECT * FROM flight_seat WHERE flightNumber = '" . $flights['flightNumber'] . "' ORDER BY flightSeatNumber";
 												$seatQuery = mysqli_query($db, $seatQuery);
 
 												$seatQueryResult = mysqli_num_rows($seatQuery);

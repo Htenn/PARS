@@ -1,3 +1,6 @@
+<?php
+include 'sessionstart.php';
+?>
 <!DOCTYPE HTML>
 <!--
 	Stellar by HTML5 UP
@@ -16,6 +19,9 @@
 
 		<!-- Wrapper -->
 			<div id="wrapper">
+				<?php
+				include 'includes/menubutton.php';
+				?>
 
 				<!-- Header -->
 					<header id="header">
@@ -54,20 +60,17 @@
 													<h2>Password</h2>
 													<input type="text" name="password" id="password" value="" placeholder="Password" required/>
 												</div>
-												<div class="col-6">
+												<div class="col-6 col-12-xsmall">
 													<h2>Account Type</h2>
-													<select name="userType" onchange="saveValue(this)" id="userType"  >
-														<option value="U">User</option>
+													<select name="userType" id="userType"  >
+														<option value="U" selected>User</option>
 														<option value="A">Administrator</option>
 													</select>
 												</div>
-												
-												<div class="col-12">
-													<ul class="actions">
-														<li><input type="submit" value="Submit" name="add_user"  class="primary" /></li>
-														
-													</ul>
-												</div>
+											</div>
+											<p></p>
+											<div class="col-6 col-12-xsmall">
+												<input type="submit" value="Submit" name="add_user" class="button primary fit" />
 											</div>
 										</form>
 									</section>
@@ -76,34 +79,11 @@
 
 				<!-- Footer -->
 					<footer id="footer">
-						<p class="copyright">&copy; Philippine Cultural College. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+						<p class="copyright">&copy; Philippine Cultural College</p>
 					</footer>
 
 			</div>
-			<script type="text/javascript">
-				document.getElementById("userFirstName").value = getSavedValue("userFirstName");    // set the value to this input
-				document.getElementById("userMiddleName").value = getSavedValue("userMiddleName");   // set the value to this input
-				document.getElementById("userLastName").value = getSavedValue("userLastName");    // set the value to this input
-				document.getElementById("userType").value = getSavedValue("userType");    // set the value to this input
-				
-				
-				/* Here you can add more inputs to set value. if it's saved */
-		
-				//Save the value function - save it to localStorage as (ID, VALUE)
-				function saveValue(e){
-					var id = e.id;  // get the sender's id to save it . 
-					var val = e.value; // get the value. 
-					localStorage.setItem(id, val);// Every time user writing something, the localStorage's value will override . 
-				}
-		
-				//get the saved value function - return the value of "v" from localStorage. 
-				function getSavedValue  (v){
-					if (!localStorage.getItem(v)) {
-						return "";// You can change this to your defualt value. 
-					}
-					return localStorage.getItem(v);
-				}
-		</script>
+			
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/jquery.scrollex.min.js"></script>

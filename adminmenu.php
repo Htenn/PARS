@@ -42,12 +42,12 @@ include 'sessionstart.php';
 					<div class="content">
 
 						<header class="major">
-							<h2>Book Flights</h2>
+							<h2>Reserve Seats</h2>
 						</header>
 						<div class="col-6 col-12-medium">
 							<ul class="actions fit">
 								<li><a href="domestic.php" class="button primary fit">Domestic</a></li>
-								<li><a href="#" class="button primary fit">International</a>
+								<li><a href="international.php" class="button primary fit">International</a>
 							</ul>
 						</div>
 
@@ -65,9 +65,12 @@ include 'sessionstart.php';
 							<h2>Options</h2>
 						</header>
 						<div class="col-6 col-12-medium">
+							<ul class="actions fit">
+								<li><a href="adduser.php" class="button primary fit">Add User</a></li>
+								<li><a href="users.php" class="button primary fit">Manage Users</a></li>
+							</ul>
 							<ul class="actions stacked">
 								<li><a href="clients.php" class="button primary fit">Manage Clients</a></li>
-								<li><a href="users.php" class="button primary fit">Manage Users</a></li>
 								<li><a href="report.php" class="button primary fit">Reports</a></li>
 							</ul>
 						</div>

@@ -31,8 +31,7 @@ $user_check_query = "SELECT * FROM user WHERE userFirstName='$userFirstName' AND
 $result = mysqli_query($db, $user_check_query); // Execute query
 $user = mysqli_fetch_assoc($result); 
 if ($user) { // if user exists
-    array_push($errors, "user already exists");
-    echo "User already exists.";
+        echo "<script> alert('User already exists!'); window.location= 'adduser.php'</script>";
 }
 
 // Finally, add user to database if there are no errors in the form
@@ -41,13 +40,7 @@ $password = md5($password);
 $query = "INSERT INTO user (userFirstName, userMiddleName, userLastName, username, password, userType) VALUES ('$userFirstName', '$userMiddleName','$userLastName','$username','$password','$userType')";
 mysqli_query($db, $query); // Execute query to the code.
 
-
-//$_SESSION['userID'] = $userID; // 
-// $_SESSION['success'] = "user is added.";
-
-/* Incomplete section. Requires code to verify if addPassenger is true or false to decide where to redirect.
-header('location: adduser.php'); // redirects to the next page
-*/
+    echo "<script> alert('User has been added!'); window.location= 'users.php'</script>";
 }
 }
 

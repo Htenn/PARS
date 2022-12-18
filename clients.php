@@ -24,7 +24,7 @@ include 'sessionstart.php';
 		?>
 
 		<!-- Header -->
-		<header id="header" class="alt">
+		<header id="header">
 			<h1>Clients</h1>
 			<p></p>
 		</header>

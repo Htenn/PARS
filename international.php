@@ -6,7 +6,7 @@ include 'sessionstart.php';
 <html>
 
 <head>
-	<title>Domestic Flights - PARS</title>
+	<title>International Flights - PARS</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="assets/css/main.css" />
@@ -69,7 +69,7 @@ include 'sessionstart.php';
 
 								$Ssql = "SELECT * FROM flight WHERE flightNumber LIKE '%$Ssearch%' OR  flightOrigin LIKE '%$Ssearch%' 
 																	OR flightDestination LIKE '%$Ssearch%' OR dateDepartOrigin LIKE '%$Ssearch%' OR timeDepartOrigin LIKE '%$Ssearch%' 
-																	OR dateArriveDestination LIKE '%$Ssearch%' OR timeArriveDestination LIKE '%$Ssearch%' WHERE flightType = 'D'";
+																	OR dateArriveDestination LIKE '%$Ssearch%' OR timeArriveDestination LIKE '%$Ssearch%' WHERE flightType = 'I'";
 								$result = mysqli_query($conn, $Ssql);
 								$queryResult = mysqli_num_rows($result);
 
@@ -98,7 +98,7 @@ include 'sessionstart.php';
 
 							if (!isset($_POST['Sbtn'])) {
 								$conn = mysqli_connect("localhost", "root", "", "pars");
-								$sql = "SELECT * from flight WHERE flightType = 'D'";
+								$sql = "SELECT * from flight WHERE flightType = 'I'";
 								$result = mysqli_query($conn, $sql);
 								$resultcheck = mysqli_num_rows($result);
 

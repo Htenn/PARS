@@ -59,7 +59,7 @@ include 'sessionstart.php';
                                 <div class="row">
                                     <div class="col-4 col-12-xsmall">
                                         <label for="firstName<?php echo $count; ?>">
-                                            <h2>First Name</h2>
+                                            <h2>First Name *</h2>
                                         </label>
                                         <input type="text" name="firstName<?php echo $count; ?>" id="firstName" value="" placeholder="First Name" required />
                                     </div>
@@ -71,7 +71,7 @@ include 'sessionstart.php';
                                     </div>
                                     <div class="col-4 col-12-xsmall">
                                         <label for="lastName<?php echo $count; ?>">
-                                            <h2>Last Name</h2>
+                                            <h2>Last Name *</h2>
                                         </label>
                                         <input type="text" name="lastName<?php echo $count; ?>" id="lastName" value="" placeholder="Last Name" required />
                                     </div>
@@ -80,7 +80,7 @@ include 'sessionstart.php';
                                 <div class="row">
                                     <div class="col-4 col-12-xsmall">
                                         <label for="gender<?php echo $count; ?>">
-                                            <h2>Gender</h2>
+                                            <h2>Gender *</h2>
                                         </label>
                                         <select name="gender<?php echo $count; ?>" id="gender">
                                             <option value="M" selected>Male</option>
@@ -90,7 +90,7 @@ include 'sessionstart.php';
 
                                     <div class="col-4 col-12-xsmall">
                                         <label for="nationality<?php echo $count; ?>">
-                                            <h2>Nationality</h2>
+                                            <h2>Nationality *</h2>
                                         </label>
                                         <input type="text" name="nationality<?php echo $count; ?>" id="nationality" value="" placeholder="Nationality" required />
                                     </div>
@@ -99,30 +99,30 @@ include 'sessionstart.php';
                                 <div class="row">
                                     <div class="col-4 col-12-xsmall">
                                         <label for="age<?php echo $count; ?>">
-                                            <h2>Age</h2>
+                                            <h2>Age *</h2>
                                         </label>
-                                        <input type="text" name="age<?php echo $count; ?>" id="age" value="" placeholder="Age" />
+                                        <input type="text" name="age<?php echo $count; ?>" id="age" value="" placeholder="Age" required/>
                                     </div>
 
                                     <div class="col-4 col-12-xsmall">
                                         <label for="birthdate<?php echo $count; ?>">
-                                            <h2>Birthdate</h2>
+                                            <h2>Birthdate *</h2>
                                         </label>
-                                        <input type="date" name="birthdate<?php echo $count; ?>" id="birthdate" value="" placeholder="MM/DD/YYYY" />
+                                        <input type="date" name="birthdate<?php echo $count; ?>" id="birthdate" value="" placeholder="MM/DD/YYYY" required />
                                     </div>
                                 </div>
                                 <br />
                                 <div class="row">
                                     <div class="col-6 col-12-xsmall">
                                         <label for="email<?php echo $count; ?>">
-                                            <h2>Email</h2>
+                                            <h2>Email *</h2>
                                         </label>
                                         <input type="email" name="email<?php echo $count; ?>" id="email" value="" placeholder="Email" />
                                     </div>
 
                                     <div class="col-6 col-12-xsmall">
                                         <label for="contactNum<?php echo $count; ?>">
-                                            <h2>Contact Number</h2>
+                                            <h2>Contact Number *</h2>
                                         </label>
                                         <input type="text" name="contactNum<?php echo $count; ?>" id="contactNum" value="" placeholder="************" />
                                     </div>
@@ -131,7 +131,7 @@ include 'sessionstart.php';
                                 <div class="row">
                                     <div class="col-4 col-12-xsmall">
                                         <label for="passengerType<?php echo $count; ?>">
-                                            <h2>Passenger Type</h2>
+                                            <h2>Passenger Type *</h2>
                                         </label>
                                         <select name="passengerType<?php echo $count; ?>" id="passengerType">
                                             <option value="N" selected>Normal</option>

@@ -75,7 +75,7 @@ include 'sessionstart.php';
 										. $row["timeDepartOrigin"] . "</td><td>" . $row["dateArriveDestination"] . "</td><td>" . $row["timeArriveDestination"] .
 										"</td><td>" .
 										"<form>" .
-										"<button name='btn' type='submit' value = " . $row["flightNumber"] . ">Select</button>" .
+										"<button name='btn' type='submit' value = " . $row["flightNumber"] . ">Archive</button>" .
 										"</form>" .
 										"</td></tr>";
 								}
@@ -188,6 +188,7 @@ include 'sessionstart.php';
 			</footer>
 
 		</div>
+	</div>
 
 		<!-- Scripts -->
 		<script src="assets/js/jquery.min.js"></script>

@@ -69,35 +69,25 @@ include 'sessionstart.php';
 													<?php
 														$db = mysqli_connect('localhost', 'root', '', 'pars');
 														$clientQuery = mysqli_query($db, "SELECT * FROM client");
+														$passengerQuery = mysqli_query($db, "SELECT * FROM passenger");
 														
 														while($row = mysqli_fetch_array($clientQuery)) {
+															printRow($row);
+														}
+														while($row = mysqli_fetch_array($passengerQuery)) {
+															printRow($row);
+														}
+														
+														function printRow($row){
 															echo "<tr>";
-																echo "<td>" . $row['clientFirstName'] . "</td>";
-																echo "<td>" . $row['clientMiddleName'] . "</td>";
-																echo "<td>" . $row['clientLastName'] . "</td>";
-																echo "<td>" . $row['clientGender'] . "</td>";
-																echo "<td>" . $row['clientBirthday'] . "</td>";
-																echo "<td>" . $row['clientAge'] . "</td>";
-																echo "<td>" . $row['clientEmail'] . "</td>";
-																echo "<td>" . $row['clientContactNum'] . "</td>";
-																echo "<td>" . $row['clientNationality'] . "</td>";
+															foreach($row as $col){
+																echo "<td>{$col}</td>";
+															}
 															echo "</tr>";
 														}
 
-														$passengerQuery = mysqli_query($db, "SELECT * FROM passenger");
-														while($row = mysqli_fetch_array($passengerQuery)) {
-															echo "<tr>";
-																echo "<td>" . $row['passengerFirstName'] . "</td>";
-																echo "<td>" . $row['passengerMiddleName'] . "</td>";
-																echo "<td>" . $row['passengerLastName'] . "</td>";
-																echo "<td>" . $row['passengerGender'] . "</td>";
-																echo "<td>" . $row['passengerBirthday'] . "</td>";
-																echo "<td>" . $row['passengerAge'] . "</td>";
-																echo "<td>" . $row['passengerEmail'] . "</td>";
-																echo "<td>" . $row['passengerContactNum'] . "</td>";
-																echo "<td>" . $row['passengerNationality'] . "</td>";
-															echo "</tr>";
-														}
+														
+														
 													?>
 
 												</tbody>

@@ -70,7 +70,7 @@ include 'sessionstart.php';
 											</div>
 											<p></p>
 											<div class="col-6 col-12-xsmall">
-												<input type="submit" value="Submit" name="add_user" class="button primary fit" />
+												<input type="submit" value="Confirm" name="add_user" class="button primary fit" />
 											</div>
 										</form>
 									</section>

@@ -373,7 +373,7 @@ include 'sessionstart.php';
 				<p></p>
 				<form id="inviForm" action="assign2seat.php" method="POST">
 					<input type="hidden" id="str" name="str" value="" />
-					<input type="submit" class="button primary fit" id="btn" name="submit" value="Submit" />
+					<input type="submit" class="button primary fit" id="btn" name="submit" value="Continue" />
 				</form>
 
 			</section>

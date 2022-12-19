@@ -164,7 +164,7 @@ include 'sessionstart.php';
                     if (isset($_POST['str'])) {
                     ?>
                         <div class="col-12">
-                            <input type="submit" value="Submit" name="seatSubmit" class="button primary fit" />
+                            <input type="submit" value="Continue" name="seatSubmit" class="button primary fit" />
                         </div>
                     <?php
                     }

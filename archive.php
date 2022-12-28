@@ -124,7 +124,7 @@ include 'sessionstart.php';
 
 				$Dquery = "DELETE from flight_seat WHERE flightNumber = '$btn'";
 				$query_run = mysqli_query($con, $Dquery);
-				echo "<script> alert('Seats are now reserved!'); window.location= 'report.php#reserved'</script>";
+				echo "<script> alert('Flight and its seats have been archived!'); window.location= 'archive.php'</script>";
 			}
 
 			?>

@@ -207,17 +207,17 @@ include 'sessionstart.php';
 															}
 														echo "<td>" . $row['remarks'] . "</td>";
 														echo "</tr>";
-													}
-												}
+														}
+												
 											?>
 										</tbody>
 									</table>
 								</div>
 								<?php
+												}
 								} // end of while ($flights = mysqli_fetch_assoc)
 								?>
 							</section>
-					</div>
 					
 			</div>
 

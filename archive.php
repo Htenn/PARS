@@ -1,5 +1,6 @@
 <?php
 include 'sessionstart.php';
+$db = mysqli_connect("localhost", "root", "", "pars");
 ?>
 <!DOCTYPE HTML>
 
@@ -63,9 +64,9 @@ include 'sessionstart.php';
 						<tbody>
 
 							<?php
-							$conn = mysqli_connect("localhost", "root", "", "pars");
+							
 							$sql = "SELECT * from flight";
-							$result = mysqli_query($conn, $sql);
+							$result = mysqli_query($db, $sql);
 							$resultcheck = mysqli_num_rows($result);
 
 							if ($resultcheck > 0) {
@@ -81,7 +82,7 @@ include 'sessionstart.php';
 							} else {
 								echo "No results";
 							}
-							$conn->close();
+							$db->close();
 
 							?>
 
@@ -93,37 +94,37 @@ include 'sessionstart.php';
 			</section>
 
 			<?php
-			$con = mysqli_connect("localhost", "root", "", "pars");
+			
 			if (isset($_GET['btn'])) {
 				$btn = $_GET['btn'];
 
 				$query = "INSERT into flightarchive SELECT * FROM flight WHERE flightNumber = '$btn' ";
-				$query_run = mysqli_query($con, $query);
+				$query_run = mysqli_query($db, $query);
 			}
 			?>
 			<?php
-			$con = mysqli_connect("localhost", "root", "", "pars");
+			
 			if (isset($_GET['btn'])) {
 				$btn = $_GET['btn'];
 
 				$Dquery = "DELETE from flight WHERE flightNumber = '$btn'";
-				$query_run = mysqli_query($con, $Dquery);
+				$query_run = mysqli_query($db, $Dquery);
 			}
 
 			if (isset($_GET['btn'])) {
 				$btn = $_GET['btn'];
 
 				$query = "INSERT into flight_seatarchive SELECT * FROM flight_seat WHERE flightNumber = '$btn' ";
-				$query_run = mysqli_query($con, $query);
+				$query_run = mysqli_query($db, $query);
 			}
 			?>
 			<?php
-			$con = mysqli_connect("localhost", "root", "", "pars");
+			
 			if (isset($_GET['btn'])) {
 				$btn = $_GET['btn'];
 
 				$Dquery = "DELETE from flight_seat WHERE flightNumber = '$btn'";
-				$query_run = mysqli_query($con, $Dquery);
+				$query_run = mysqli_query($db, $Dquery);
 				echo "<script> alert('Flight and its seats have been archived!'); window.location= 'archive.php'</script>";
 			}
 
@@ -155,9 +156,9 @@ include 'sessionstart.php';
 								<tbody>
 
 									<?php
-									$conn = mysqli_connect("localhost", "root", "", "pars");
+									
 									$sql = "SELECT * from flightarchive";
-									$result = mysqli_query($conn, $sql);
+									$result = mysqli_query($db, $sql);
 									$resultcheck = mysqli_num_rows($result);
 
 									if ($resultcheck > 0) {
@@ -169,7 +170,7 @@ include 'sessionstart.php';
 									} else {
 										echo "No results";
 									}
-									$conn->close();
+									$db->close();
 
 									?>
 

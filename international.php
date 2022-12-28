@@ -69,7 +69,7 @@ include 'sessionstart.php';
 
 								$Ssql = "SELECT * FROM flight WHERE flightNumber LIKE '%$Ssearch%' OR  flightOrigin LIKE '%$Ssearch%' 
 																	OR flightDestination LIKE '%$Ssearch%' OR dateDepartOrigin LIKE '%$Ssearch%' OR timeDepartOrigin LIKE '%$Ssearch%' 
-																	OR dateArriveDestination LIKE '%$Ssearch%' OR timeArriveDestination LIKE '%$Ssearch%' WHERE flightType = 'I'";
+																	OR dateArriveDestination LIKE '%$Ssearch%' OR timeArriveDestination LIKE '%$Ssearch%' AND flightType = 'I'";
 								$result = mysqli_query($conn, $Ssql);
 								$queryResult = mysqli_num_rows($result);
 

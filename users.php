@@ -242,7 +242,7 @@ include 'sessionstart.php';
 
 			mysqli_query($db, $updateQuery);
 
-			echo "<script>alert('User has been saved!');</script>";
+			echo "<script> alert('Changes has been saved!'); window.location= 'users.php'</script>";
 		}
 
 		if (isset($_POST['delete'])) {
@@ -253,7 +253,7 @@ include 'sessionstart.php';
 			$deleteQuery = "DELETE FROM user WHERE userID = " . $id;
 			mysqli_query($db, $deleteQuery);
 
-			echo "<script>alert('User has been deleted!');</script>";
+			echo "<script> alert('User has been deleted!'); window.location= 'users.php'</script>";
 		}
 		?>
 

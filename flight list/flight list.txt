@@ -38,4 +38,9 @@ Specific Passenger Options
 I: Infant
 U: Unaccompanied Minor
 H: Handicapped
-M: Mediacally OK for travel
+M: Medically OK for travel
+
+---
+
+O: One way trip
+R: Round trip

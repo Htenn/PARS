@@ -27,10 +27,12 @@
             $field_user = mysqli_fetch_assoc($result_loginQuery);
             if($field_user['userType'] == 'A') {
                 $_SESSION['session'] = 'A';
+                $_SESSION['user'] = $username;
                 header('location: adminmenu.php'); //if the user account type is an admin, redirect to the admin menu.
             }
             else {
                 $_SESSION['session'] = 'U';
+                $_SESSION['user'] = $username;
                 header ('location: mainmenu.php'); //if the user account type is a user, redirect to the user menu.
             }
         }

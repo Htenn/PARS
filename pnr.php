@@ -11,7 +11,7 @@ include 'sessionstart.php';
 <html>
 
 <head>
-    <title>Select Seats - PARS</title>
+    <title>Passenger Name Record - PARS</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="assets/css/main.css" />
@@ -39,24 +39,51 @@ include 'sessionstart.php';
 
             <!-- Content -->
             <section id="content" class="main">
-                <form method="post" action="assign2seatprocess.php">
+                
                     <?php
-                    if (isset($_POST['str'])) {
-                        $count = 1;
-                        $_SESSION['elements'] = json_decode($_POST['str'], true);
+                    echo "<h2><strong>Seats selected:</strong> "; foreach($_SESSION['seats'] as $seat) { echo $seat . " ";} echo "</h2><br>";
 
-                        echo "";
-                        foreach ($_SESSION['elements'] as $items) {
+                    if (isset($_POST['str'])) {
+                        $_SESSION['seats'] = json_decode($_POST['str'], true);
+                        $_SESSION['minSeatCount'] = count($_SESSION['seats']);
+                    }
+
+                    if (isset($_SESSION['seats'])) {
+                        if (isset(($_GET['passenger']))) {
+                            $seatcount = $_GET['passenger'];
+                        }
+                        else {
+                            $seatcount = count($_SESSION['seats']);
+                        }
+
+                        $minSeatCount = $_SESSION['minSeatCount'];
+                        echo "<form method='get' action='pnr'>";
+                            echo "<div class='row'>";
+                                echo "<div class='col-3 col-12-xsmall'>";
+                                    echo "<label for='passenger'>Number of Passenger/s</label><input type='number' name='passenger' id='numcount' value='$seatcount' min='$minSeatCount'/>";
+                                echo "</div>";
+                                echo "<div class='col-1 col-12-xsmall'>";
+                                    echo "<label><br></label><input type='submit' class='button fit' value='OK'>";
+                                echo "</div>";
+                            echo "</div>";
+                        echo "</form>";
+
+                        echo "<p><br></p>";
+
+                        echo "<form method='post' action='pnrprocess'>";
+                        
+                        $count = 1;
+
+                        for ($count = 1; $count <= $seatcount; $count++) {
                             if ($count !== 1) {
                                 echo "<br /><hr /><br />";
                             }
-                            echo "<h1>" . $items . "</h1>";
-
-
                     ?>
-
+                            
                             <section>
-                                <div class="row">
+                                <h1>Passenger <?php echo $count; if($count == 1) { echo " / Client"; }?></h1>
+
+                                <div class="row gtr-uniform">
                                     <div class="col-4 col-12-xsmall">
                                         <label for="firstName<?php echo $count; ?>">
                                             <h2>First Name *</h2>
@@ -77,7 +104,7 @@ include 'sessionstart.php';
                                     </div>
                                 </div>
                                 <br />
-                                <div class="row">
+                                <div class="row gtr-uniform">
                                     <div class="col-4 col-12-xsmall">
                                         <label for="gender<?php echo $count; ?>">
                                             <h2>Gender *</h2>
@@ -96,7 +123,7 @@ include 'sessionstart.php';
                                     </div>
                                 </div>
                                 <br />
-                                <div class="row">
+                                <div class="row gtr-uniform">
                                     <div class="col-4 col-12-xsmall">
                                         <label for="age<?php echo $count; ?>">
                                             <h2>Age *</h2>
@@ -112,7 +139,7 @@ include 'sessionstart.php';
                                     </div>
                                 </div>
                                 <br />
-                                <div class="row">
+                                <div class="row gtr-uniform">
                                     <div class="col-6 col-12-xsmall">
                                         <label for="email<?php echo $count; ?>">
                                             <h2>Email *</h2>
@@ -128,7 +155,7 @@ include 'sessionstart.php';
                                     </div>
                                 </div>
                                 <br />
-                                <div class="row">
+                                <div class="row gtr-uniform">
                                     <div class="col-4 col-12-xsmall">
                                         <label for="passengerType<?php echo $count; ?>">
                                             <h2>Passenger Type *</h2>
@@ -151,17 +178,12 @@ include 'sessionstart.php';
                             </section>
                             <br>
 
-
                     <?php
-                            $count++;
                         }
-                    } else {
-                        echo "<h1 style='text-align: center;'>Please go back to the previous step.</h1>";
-                        echo "<a class='button primary fit' style='text-decoration:none;' href='selectSeats.php'>Continue</a>";
                     }
                     ?>
                     <?php
-                    if (isset($_POST['str'])) {
+                    if (isset($_SESSION['seats'])) {
                     ?>
                         <div class="col-12">
                             <input type="submit" value="Continue" name="seatSubmit" class="button primary fit" />

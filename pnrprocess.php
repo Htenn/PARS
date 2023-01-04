@@ -1,5 +1,6 @@
 <?php
     session_start();
+    $db = mysqli_connect('localhost', 'root' , '', 'pars');
 
     $counter = 1;
     $pcounter = 1;
@@ -17,9 +18,8 @@
     $remarks = "";
 
     if (isset($_POST['seatSubmit'])) {
-        $db = mysqli_connect('localhost', 'root' , '', 'pars');
 
-        foreach ($_SESSION['elements'] as $items) {
+        foreach ($_SESSION['seats'] as $items) {
             $firstname = mysqli_real_escape_string($db, $_POST['firstName' . $counter]);
             $middlename = mysqli_real_escape_string($db, $_POST['middleName' . $counter]);
             $lastname = mysqli_real_escape_string($db, $_POST['lastName' . $counter]);
@@ -99,6 +99,6 @@
         }
         $_SESSION['counter'] = $counter;
         $_SESSION['pcounter'] = $pcounter;
-        header('location: confirmation.php');
+        header('location: confirmation.php', true, 301);
     }
 ?>

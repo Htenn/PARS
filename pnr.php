@@ -242,7 +242,6 @@ include 'sessionstart.php';
                                     <input type="text" name="remarks<?php echo $count; ?>" id="remarks" value="" placeholder="Remarks" />
                                 </div>
                             </section>
-                            <br>
 
                     <?php
                         }

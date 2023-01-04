@@ -1,4 +1,4 @@
-Flight No - Origin - Dest
+# Flight No - Origin - Dest
 
 TG621 - MNL - BKK
 PR312 - MNL - HKG
@@ -10,7 +10,7 @@ Z2321 - CRK - CEB
 
 ---
 
-Flight Class
+# Flight Class
 
 Y: Full-fare economy-class ticket.
 J: Full-fare business-class ticket.
@@ -18,14 +18,14 @@ F: Full-fare first-class ticket.
 
 ---
 
-Flight Type
+# Flight Type
 
 D: Domestic Flights
 I: International Flights
 
 ---
 
-Area Options
+# Area Options
 
 B: Bulkhead seat
 W: Window seat
@@ -33,7 +33,7 @@ A: Aisle seat
 
 ---
 
-Specific Passenger Options
+# Specific Passenger Options
 
 I: Infant
 U: Unaccompanied Minor
@@ -42,7 +42,7 @@ M: Medically OK for travel
 
 ---
 
-Passenger Type Codes
+# Passenger Type Codes
 
 ADT: Adult
 CHD: Child
@@ -53,6 +53,21 @@ INS: Infant with a seat
 SRC: Senior Citizen
 
 src: https://support.travelport.com/webhelp/uapi/Content/Air/Shared_Air_Topics/Passenger_Type_Codes.htm
+
+---
+
+# Special Service Requests
+
+BLND: Traveler is blind
+DEAF: Traveler is deaf
+WCHC: Wheelchair is needed - traveler is completely immobile
+WCHR: Wheelchair is needed - traveler can ascend/descend stairs
+
+# Meal SSRs:
+AVML BBML BLML CHML DBML FPML GFML HFML HNML KSML LCML LFML
+LPML LSML MOML NLML ORML PRML RVML SFML SPML VGML VLML
+
+
 
 ---
 

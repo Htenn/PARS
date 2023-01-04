@@ -40,7 +40,17 @@ U: Unaccompanied Minor
 H: Handicapped
 M: Medically OK for travel
 
+ADT: Adult
+CHD: Child
+UNN: Unaccompanied Child
+UNMR: Unaccompanied Minor
+INF: Infant without a seat
+INS: Infant with a seat
+SRC: Senior Citizen
+
+src: https://support.travelport.com/webhelp/uapi/Content/Air/Shared_Air_Topics/Passenger_Type_Codes.htm
+
 ---
 
-O: One way trip
-R: Round trip
+OW: One way trip
+RT: Round trip

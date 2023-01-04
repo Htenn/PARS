@@ -26,7 +26,7 @@ $db = mysqli_connect("localhost", "root", "", "pars");
 
 		<!-- Header -->
 		<header id="header">
-			<h1>Flights</h1>
+			<h1></h1>
 			<p></p>
 		</header>
 
@@ -148,7 +148,7 @@ $db = mysqli_connect("localhost", "root", "", "pars");
 						$_SESSION['dateArriveDestination'] = $row["dateArriveDestination"];
 						$_SESSION['timeArriveDestination'] = $row["timeArriveDestination"];
 					}
-					header('location: pnr', true, 301);
+					header('location: seatmap', true, 301);
 				}
 			}
 			?>

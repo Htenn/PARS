@@ -40,6 +40,10 @@ U: Unaccompanied Minor
 H: Handicapped
 M: Medically OK for travel
 
+---
+
+Passenger Type Codes
+
 ADT: Adult
 CHD: Child
 UNN: Unaccompanied Child

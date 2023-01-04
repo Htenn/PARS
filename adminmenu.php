@@ -42,7 +42,17 @@ include 'sessionstart.php';
 					<div class="content">
 
 						<header class="major">
-							<h2>Reserve Seats</h2>
+							<h2>One-Way Trip</h2>
+						</header>
+						<div class="col-6 col-12-medium">
+							<ul class="actions fit">
+								<li><a href="domestic.php" class="button primary fit">Domestic</a></li>
+								<li><a href="international.php" class="button primary fit">International</a>
+							</ul>
+						</div>
+
+						<header class="major">
+							<h2>Return/Round Trip</h2>
 						</header>
 						<div class="col-6 col-12-medium">
 							<ul class="actions fit">

@@ -3799,3 +3799,30 @@ input, select, textarea {
 			}
 
 		}
+
+		.tooltip {
+			position: relative;
+			display: inline-block;
+		  }
+		  
+		  .tooltip .tooltiptext {
+			visibility: hidden;
+			font-size: 0.7em;
+			min-width: 10vh;
+			max-width: 20vh;
+			background-color: rgba(0, 0, 0, 0.45);
+			color: #fff;
+			text-align: center;
+			border-radius: 6px;
+			padding: 5px;
+			margin-top: 4.1em;
+			margin-left: 1vh;
+		  
+			/* Position the tooltip */
+			position: absolute;
+			z-index: 1;
+		  }
+		  
+		  .tooltip:hover .tooltiptext {
+			visibility: visible;
+		  }

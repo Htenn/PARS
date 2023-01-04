@@ -32,7 +32,7 @@
 
 						<!-- Content -->
 							<section id="content" class="main">
-								<form method="post" action="login.php">
+								<form method="post" action="login">
 									<div class="row gtr-uniform">
 										<div class="col-6 col-12-xsmall">
 											<label for="userID">Username</label>

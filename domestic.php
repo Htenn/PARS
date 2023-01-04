@@ -36,7 +36,7 @@ $db = mysqli_connect("localhost", "root", "", "pars");
 			<!-- Introduction -->
 			<section id="choose" class="main">
 				<div class="col-2 col-12-xsmall" style="position: relative; margin-left: auto; margin: right; display: block; width: 25%;">
-					<form action="domestic.php#table" method="POST">
+					<form action="domestic" method="POST">
 						<input type="text" name="search" placeholder="Search" />
 						<br>
 						<button class="button primary small" name="Sbtn" type="submit">Search</button>
@@ -64,7 +64,7 @@ $db = mysqli_connect("localhost", "root", "", "pars");
 						<tbody>
 
 							<?php
-							if (isset($_POST['Sbtn'])) {
+							if (isset($_POST['Sbtn'])) { // Search table display
 								$Ssearch = mysqli_real_escape_string($db, $_POST['search']);
 
 								$Ssql = "SELECT * FROM flight WHERE flightNumber LIKE '%$Ssearch%' OR  flightOrigin LIKE '%$Ssearch%' 
@@ -84,19 +84,17 @@ $db = mysqli_connect("localhost", "root", "", "pars");
 																			<td>" . $row["dateArriveDestination"] . "</td>
 																			<td>" . $row["timeArriveDestination"] . "</td>
 																			<td>" .
-											"<form action='domestic.php#conf' method='post'>	
+											"<form action='domestic' method='post'>	
 																			<button class='button primary small' name='btn' type='submit' value = " . $row["flightNumber"] . ">Select</button>" .
 											"</form>
 																			</td>
 																			</tr>";
 									}
-								} else {
-									echo "No results";
 								}
 							}
 
 
-							if (!isset($_POST['Sbtn'])) {
+							if (!isset($_POST['Sbtn'])) { // Standard table display
 								$sql = "SELECT * from flight WHERE flightType = 'D'";
 								$result = mysqli_query($db, $sql);
 								$resultcheck = mysqli_num_rows($result);
@@ -112,14 +110,12 @@ $db = mysqli_connect("localhost", "root", "", "pars");
 																		<td>" . $row["dateArriveDestination"] . "</td>
 																		<td>" . $row["timeArriveDestination"] . "</td>
 																		<td>" .
-											"<form action='domestic.php#conf' method='post'>
+											"<form action='domestic' method='post'>
 																		<button class='button primary small' name='btn' type='submit' value = " . $row["flightNumber"] . ">Select</button>" .
 											"</form>
 																		</td>
 																		</tr>";
 									}
-								} else {
-									echo "No results";
 								}
 							}
 
@@ -135,87 +131,29 @@ $db = mysqli_connect("localhost", "root", "", "pars");
 			<!-- First Section -->
 			<?php
 			if (isset($_POST['btn'])) {
-			?>
-				<section id="conf" class="main special">
-					<div class="spotlight">
-						<div class="content">
-							<?php
+				$btn = $_POST['btn'];
+				$_SESSION['selectedFlightNum'] = $btn;
 
-							$btn = $_POST['btn'];
-							$_SESSION['selectedFlightNum'] = $btn;
+				$query = "SELECT * FROM flight WHERE flightNumber = '$btn' ";
+				$query_run = mysqli_query($db, $query);
 
-							$query = "SELECT * FROM flight WHERE flightNumber = '$btn' ";
-							$query_run = mysqli_query($db, $query);
+				if (mysqli_num_rows($query_run) > 0) {
 
-							echo "<header class='major'><h2>" . $btn . "</h2></header>";
-
-							if (mysqli_num_rows($query_run) > 0) {
-
-								foreach ($query_run as $row) {
-							?>
-									<div class="row gtr-uniform">
-
-										<div class="col-6 col-12-xsmall">
-											<h2>Origin</h2>
-											<input type="text" disabled="disabled" value="<?= $row["flightOrigin"]; ?>" />
-										</div>
-										<div class="col-6 col-12-xsmall">
-											<h2>Destination</h2>
-											<input type="text" disabled="disabled" value="<?= $row["flightDestination"]; ?>" />
-										</div>
-
-										<div class="col-6 col-12-xsmall">
-											<h2>Date Depart Origin</h2>
-											<input type="text" disabled="disabled" value="<?= $row["dateDepartOrigin"]; ?>" />
-										</div>
-
-										<div class="col-6 col-12-xsmall">
-											<h2>Time Depart Origin</h2>
-											<input type="text" disabled="disabled" value="<?= $row["timeDepartOrigin"]; ?>" />
-										</div>
-
-										<div class="col-6 col-12-xsmall">
-											<h2>Date Arrive Destination</h2>
-											<input type="text" disabled="disabled" value="<?= $row["dateArriveDestination"]; ?>" />
-										</div>
-
-										<div class="col-6 col-12-xsmall">
-											<h2>Time Arrive Destination</h2>
-											<input type="text" disabled="disabled" value="<?= $row["timeArriveDestination"]; ?>" />
-										</div>
-									</div>
-
-
-						<?php
-									// save to session variables
-									$_SESSION['flightOrigin'] = $row["flightOrigin"];
-									$_SESSION['flightDestination'] = $row["flightDestination"];
-									$_SESSION['dateDepartOrigin'] = $row["dateDepartOrigin"];
-									$_SESSION['timeDepartOrigin'] = $row["timeDepartOrigin"];
-									$_SESSION['dateArriveDestination'] = $row["dateArriveDestination"];
-									$_SESSION['timeArriveDestination'] = $row["timeArriveDestination"];
-								}
-							} else {
-								echo "no result";
-							}
-						}
-						?>
-
-						</div>
-
-					</div>
-
-					<?php
-					if (isset($_POST['btn'])) {
-					?>
-						<a class='button primary' style='text-decoration:none;' href='selectSeats.php'>Confirm</a>
-					<?php
+					foreach ($query_run as $row) {
+						// save to session variables
+						$_SESSION['flightOrigin'] = $row["flightOrigin"];
+						$_SESSION['flightDestination'] = $row["flightDestination"];
+						$_SESSION['dateDepartOrigin'] = $row["dateDepartOrigin"];
+						$_SESSION['timeDepartOrigin'] = $row["timeDepartOrigin"];
+						$_SESSION['dateArriveDestination'] = $row["dateArriveDestination"];
+						$_SESSION['timeArriveDestination'] = $row["timeArriveDestination"];
 					}
-					?>
-
-
-				</section>
+					header('location: pnr', true, 301);
+				}
+			}
+			?>
 		</div>
+	</div>
 
 		<!-- Footer -->
 		<footer id="footer">

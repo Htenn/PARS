@@ -63,7 +63,7 @@ include 'sessionstart.php';
                                     echo "<label for='passenger'>Number of Passenger/s</label><input type='number' name='passenger' id='numcount' value='$seatcount' min='$minSeatCount'/>";
                                 echo "</div>";
                                 echo "<div class='col-1 col-12-xsmall'>";
-                                    echo "<label><br></label><input type='submit' class='button fit' value='OK'>";
+                                    echo "<label><br></label><input type='submit' class='button fit' value='Apply'>";
                                 echo "</div>";
                             echo "</div>";
                         echo "</form>";
@@ -71,8 +71,6 @@ include 'sessionstart.php';
                         echo "<p><br></p>";
 
                         echo "<form method='post' action='pnrprocess'>";
-                        
-                        $count = 1;
 
                         for ($count = 1; $count <= $seatcount; $count++) {
                             if ($count !== 1) {
@@ -161,11 +159,79 @@ include 'sessionstart.php';
                                             <h2>Passenger Type *</h2>
                                         </label>
                                         <select name="passengerType<?php echo $count; ?>" id="passengerType">
-                                            <option value="N" selected>Normal</option>
-                                            <option value="U">Unaccompanied Minor</option>
-                                            <option value="H">Handicapped</option>
-                                            <option value="M">Medically OK for travel</option>
+                                            <option value="ADT" selected>ADT</option> <!--Adult-->
+                                            <option value="CHD">CHD</option> <!--Child-->
+                                            <option value="SRC">SRC</option> <!--Senior Citizen-->
+                                            <option value="UNN">UNN</option> <!--Unaccompanied Child-->
+                                            <option value="UNMR">UNMR</option> <!--Unaccompanied Minor-->
+                                            <option value="INF">INF</option> <!--Infant without a seat-->
+                                            <option value="INS">INS</option> <!--Infant with a seat-->
                                         </select>
+                                    </div>
+                                    <div class="col-4 col-12-xsmall">
+                                        <label for="passengerType<?php echo $count; ?>">
+                                            <h2>Specific Passenger Option</h2>
+                                        </label>
+                                        <select name="passengerOption<?php echo $count; ?>" id="passengerOption">
+                                            <option value="" disabled selected hidden></option>
+                                            <option value="">None</option> <!--None-->
+                                            <option value="PWD">PWD</option> <!--Person with disability-->
+                                            <option value="M">M</option> <!--Medically OK for travel-->
+                                        </select>
+                                    </div>
+                                </div>
+                                <br />
+                                    <label><h2>Special Service Requests</h2></label>
+                                <div class="row gtr-uniform">
+                                    <div class="col-3 col-12-xsmall">
+                                        <select name="ssrA<?php echo $count; ?>">
+                                            <option value="" disabled selected hidden>Disability</option>
+                                            <option value="">None</option>
+                                            <option value="BLND">BLND</option> <!--Blind-->
+                                            <option value="DEAF">DEAF</option> <!--Deaf-->
+                                            <option value="BLND DEAF">BLND DEAF</option> <!--Blind and deaf-->
+                                        </select>
+                                    </div>
+                                    <div class="col-3 col-12-xsmall">
+                                        <select name="ssrB<?php echo $count; ?>">
+                                            <option value="" disabled selected hidden>Wheelchair</option>
+                                            <option value="">None</option>
+                                            <option value="WCHC">WCHC</option> <!--Wheelchair is needed - traveler is completely immobile-->
+                                            <option value="WCHR">WCHR</option> <!--Wheelchair is needed - traveler can ascend/descend stairs-->
+                                        </select>
+                                    </div>
+                                    <div class="col-3 col-12-xsmall">
+                                        <select name="ssrC<?php echo $count; ?>">
+                                            <option value="" disabled selected hidden>Meal</option>
+                                            <option value="">None</option>
+                                            <option value="AVML">AVML</option>
+                                            <option value="BBML">BBML</option>
+                                            <option value="BLML">BLML</option>
+                                            <option value="CHML">CHML</option>
+                                            <option value="DBML">DBML</option>
+                                            <option value="FPML">FPML</option>
+                                            <option value="GFML">GFML</option>
+                                            <option value="HFML">HFML</option>
+                                            <option value="HNML">HNML</option>
+                                            <option value="KSML">KSML</option>
+                                            <option value="LCML">LCML</option>
+                                            <option value="LFML">LFML</option>
+                                            <option value="LPML">LPML</option>
+                                            <option value="LSML">LSML</option>
+                                            <option value="MOML">MOML</option>
+                                            <option value="NLML">NLML</option>
+                                            <option value="ORML">ORML</option>
+                                            <option value="PRML">PRML</option>
+                                            <option value="RVML">RVML</option>
+                                            <option value="SFML">SFML</option>
+                                            <option value="SPML">SPML</option>
+                                            <option value="VGML">VGML</option>
+                                            <option value="VLML">VLML</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-3 col-12-xsmall tooltip">
+                                        <span class='tooltiptext'>Separate codes with a space</span>
+                                        <input type="text" name="ssrD<?php echo $count; ?>" value="" placeholder="Others" />
                                     </div>
                                 </div>
                                 <br />
@@ -180,13 +246,16 @@ include 'sessionstart.php';
 
                     <?php
                         }
+
+                        $_SESSION['seatcount'] = $seatcount;
                     }
+
                     ?>
                     <?php
                     if (isset($_SESSION['seats'])) {
                     ?>
                         <div class="col-12">
-                            <input type="submit" value="Continue" name="seatSubmit" class="button primary fit" />
+                            <input type="submit" value="Continue" name="pnrSubmit" class="button primary fit" />
                         </div>
                     <?php
                     }

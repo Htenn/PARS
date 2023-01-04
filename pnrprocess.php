@@ -2,7 +2,6 @@
     session_start();
     $db = mysqli_connect('localhost', 'root' , '', 'pars');
 
-    $counter = 1;
     $pcounter = 1;
 
     $firstname = "";
@@ -15,11 +14,14 @@
     $email = "";
     $contactnum = "";
     $passengertype = "";
+    $passengeroption = "";
     $remarks = "";
 
-    if (isset($_POST['seatSubmit'])) {
+    if (isset($_POST['pnrSubmit'])) {
 
-        foreach ($_SESSION['seats'] as $items) {
+        $seatcount = $_SESSION['seatcount'];
+
+        for ($counter = 1; $counter <= $seatcount; $counter++) {
             $firstname = mysqli_real_escape_string($db, $_POST['firstName' . $counter]);
             $middlename = mysqli_real_escape_string($db, $_POST['middleName' . $counter]);
             $lastname = mysqli_real_escape_string($db, $_POST['lastName' . $counter]);
@@ -31,6 +33,7 @@
             $email = mysqli_real_escape_string($db, $_POST['email' . $counter]);
             $contactnum = mysqli_real_escape_string($db, $_POST['contactNum' . $counter]);
             $passengertype = mysqli_real_escape_string($db, $_POST['passengerType' . $counter]);
+            $passengeroption = mysqli_real_escape_string($db, $_POST['passengerOption' . $counter]);
             $remarks = mysqli_real_escape_string($db, $_POST['remarks' . $counter]);
 
             if ($counter == 1) {
@@ -60,10 +63,10 @@
                 $_SESSION['clientContactNum'] = $contactnum;
                 $_SESSION['clientNationality'] = $nationality;
                 $_SESSION['clientType'] = $passengertype;
+                $_SESSION['clientOption'] = $passengeroption;
                 $_SESSION['clientRemarks'] = $remarks;
-                $_SESSION['clientSeat'] = $items;
             }
-            else {
+            else { // PASSENGER
                 $checkpassengerQuery = "SELECT * FROM passenger WHERE 
                     passengerFirstName = '$firstname' AND
                     passengerMiddleName = '$middlename' AND
@@ -90,12 +93,11 @@
                 $_SESSION['passengerContactNum' . $pcounter] = $contactnum;
                 $_SESSION['passengerNationality' . $pcounter] = $nationality;
                 $_SESSION['passengerType' . $pcounter] = $passengertype;
+                $_SESSION['passengerOption' . $pcounter] = $passengeroption;
                 $_SESSION['passengerRemarks' . $pcounter] = $remarks;
-                $_SESSION['passengerSeat' . $pcounter] = $items;
                 
                 $pcounter++;
             }
-            $counter++;
         }
         $_SESSION['counter'] = $counter;
         $_SESSION['pcounter'] = $pcounter;

@@ -1,5 +1,6 @@
 <?php
 include 'sessionstart.php';
+$db = mysqli_connect('localhost', 'root', '', 'pars');
 ?>
 <!DOCTYPE HTML>
 <!--
@@ -29,7 +30,7 @@ include 'sessionstart.php';
 
 		<!-- Header -->
 		<header id="header">
-			<h1>Select Seats</h1>
+			<h1>Seat Map</h1>
 			<p></p>
 		</header>
 
@@ -50,7 +51,7 @@ include 'sessionstart.php';
 					$selectedFlightNumber = $_SESSION["selectedFlightNum"];
 
 					$selectedFlightQuery = "SELECT flightAircraftModel FROM flight WHERE flightNumber = '$selectedFlightNumber' LIMIT 1";
-					$db = mysqli_connect('localhost', 'root', '', 'pars');
+					
 					$selectedFlightAircraftModel = mysqli_query($db, $selectedFlightQuery);
 					$selectedFlightAircraftModel = mysqli_fetch_assoc($selectedFlightAircraftModel);
 					$selectedFlightAircraftModel = $selectedFlightAircraftModel['flightAircraftModel'];

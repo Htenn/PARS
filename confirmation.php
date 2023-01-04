@@ -1,6 +1,8 @@
 <?php
 include 'sessionstart.php';
 date_default_timezone_set("Asia/Manila");
+
+$db = mysqli_connect('localhost', 'root', '', 'pars');
 ?>
 
 <!DOCTYPE HTML>
@@ -301,18 +303,17 @@ date_default_timezone_set("Asia/Manila");
     <?php
     function insertBooking(int $clientID, int $pcounter)
     {
-        $db = mysqli_connect('localhost', 'root', '', 'pars');
+        // $db = mysqli_connect('localhost', 'root', '', 'pars');
         $insertBookingQuery = "INSERT INTO booking (clientID, flightNumber, bookingOrigin, bookingDestination, bookingNumOfSeats, addBookingDate, addBookingTime) VALUES ('" .  $clientID . "', '" .
             $_SESSION['selectedFlightNum'] . "', '" .
             $_SESSION['flightOrigin'] . "', '" .
             $_SESSION['flightDestination'] . "', " .
             $pcounter . ", curdate(), curtime())";
 
-        mysqli_query($db, $insertBookingQuery);
+        mysqli_query($GLOBALS['db'], $insertBookingQuery);
     }
 
     if (array_key_exists('exeConfirm', $_POST)) {
-        $db = mysqli_connect('localhost', 'root', '', 'pars');
         $counter = $_SESSION['counter'];
         $pcounter = $_SESSION['pcounter'];
 

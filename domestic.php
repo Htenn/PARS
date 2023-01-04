@@ -1,5 +1,6 @@
 <?php
 include 'sessionstart.php';
+$db = mysqli_connect("localhost", "root", "", "pars");
 ?>
 <!DOCTYPE HTML>
 
@@ -64,13 +65,12 @@ include 'sessionstart.php';
 
 							<?php
 							if (isset($_POST['Sbtn'])) {
-								$conn = mysqli_connect("localhost", "root", "", "pars");
-								$Ssearch = mysqli_real_escape_string($conn, $_POST['search']);
+								$Ssearch = mysqli_real_escape_string($db, $_POST['search']);
 
 								$Ssql = "SELECT * FROM flight WHERE flightNumber LIKE '%$Ssearch%' OR  flightOrigin LIKE '%$Ssearch%' 
 																	OR flightDestination LIKE '%$Ssearch%' OR dateDepartOrigin LIKE '%$Ssearch%' OR timeDepartOrigin LIKE '%$Ssearch%' 
 																	OR dateArriveDestination LIKE '%$Ssearch%' OR timeArriveDestination LIKE '%$Ssearch%' AND flightType = 'D'";
-								$result = mysqli_query($conn, $Ssql);
+								$result = mysqli_query($db, $Ssql);
 								$queryResult = mysqli_num_rows($result);
 
 								if ($queryResult > 0) {
@@ -97,9 +97,8 @@ include 'sessionstart.php';
 
 
 							if (!isset($_POST['Sbtn'])) {
-								$conn = mysqli_connect("localhost", "root", "", "pars");
 								$sql = "SELECT * from flight WHERE flightType = 'D'";
-								$result = mysqli_query($conn, $sql);
+								$result = mysqli_query($db, $sql);
 								$resultcheck = mysqli_num_rows($result);
 
 								if ($resultcheck > 0) {
@@ -135,7 +134,6 @@ include 'sessionstart.php';
 
 			<!-- First Section -->
 			<?php
-			$con = mysqli_connect("localhost", "root", "", "pars");
 			if (isset($_POST['btn'])) {
 			?>
 				<section id="conf" class="main special">
@@ -147,7 +145,7 @@ include 'sessionstart.php';
 							$_SESSION['selectedFlightNum'] = $btn;
 
 							$query = "SELECT * FROM flight WHERE flightNumber = '$btn' ";
-							$query_run = mysqli_query($con, $query);
+							$query_run = mysqli_query($db, $query);
 
 							echo "<header class='major'><h2>" . $btn . "</h2></header>";
 

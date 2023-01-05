@@ -1,6 +1,6 @@
 <?php
-include 'unset.php';
 include 'sessionstart.php';
+include 'unset.php';
 ?>
 <!DOCTYPE HTML>
 <!--

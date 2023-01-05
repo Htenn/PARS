@@ -47,7 +47,7 @@ $db = mysqli_connect('localhost', 'root', '', 'pars');
             <!-- Content -->
             <section id="content" class="main">
                 <?php
-                $counter = $_SESSION['counter'];
+                $seatcount = $_SESSION['seatcount'];
                 $pcounter = $_SESSION['pcounter'];
 
                 echo "
@@ -56,7 +56,7 @@ $db = mysqli_connect('localhost', 'root', '', 'pars');
                         </div>
                     ";
                 echo "
-                        <div class='row'>
+                        <div class='row gtr-uniform'>
                             <div class='col-6 col-12-xsmall'>
                                 <h3><strong>Origin: </strong>" . $_SESSION['flightOrigin'] . "</h3>
                             </div>
@@ -66,7 +66,7 @@ $db = mysqli_connect('localhost', 'root', '', 'pars');
                         </div>
                     ";
                 echo "
-                        <div class='row'>
+                        <div class='row gtr-uniform'>
                             <div class='col-6 col-12-xsmall'>
                                 <h3><strong>Departure Date: </strong>" . $_SESSION['dateDepartOrigin'] . "</h3>
                             </div>
@@ -76,7 +76,7 @@ $db = mysqli_connect('localhost', 'root', '', 'pars');
                         </div>
                     ";
                 echo "
-                        <div class='row'>
+                        <div class='row gtr-uniform'>
                             <div class='col-6 col-12-xsmall'>
                                 <h3><strong>Departure Time: </strong>" . $_SESSION['timeDepartOrigin'] . "</h3>
                             </div>
@@ -85,199 +85,161 @@ $db = mysqli_connect('localhost', 'root', '', 'pars');
                             </div>
                         </div>
                     ";
+                echo "<p></p>";
+                echo "
+                        <div class='row gtr-uniform'>
+                            <div class='col-12 col-12-xsmall'>
+                                <h3><strong>Seats:</strong> " . $_SESSION['seatcount'];
+                                echo "<br/>";
+                                foreach ($_SESSION['seats'] as $seat) {
+                                    // check for seat class
+                                    if (in_array($seat, $_SESSION['a320j'], true)) {
+                                        $seatClass = 'J';
+                                    }
+                                    elseif (in_array($seat, $_SESSION['a320p'], true)) {
+                                        $seatClass = 'P';
+                                    }
+                                    elseif (in_array($seat, $_SESSION['a320y'], true)) {
+                                        $seatClass = 'Y';
+                                    }
+                                    elseif (in_array($seat, $_SESSION['a330j'], true)) {
+                                        $seatClass = 'J';
+                                    }
+                                    elseif (in_array($seat, $_SESSION['a330p'], true)) {
+                                        $seatClass = 'P';
+                                    }
+                                    elseif (in_array($seat, $_SESSION['a330y'], true)) {
+                                        $seatClass = 'Y';
+                                    }
+                                    
+                                    echo $seatClass;
+                                    echo "\t";
+                                    echo $seat;
+                                    echo "<br/>";
+                                }
+                            echo "</h3></div>
+                        </div>
+                        <br/>
+                    ";
                 echo "<br/><hr/><br/>";
 
-                for ($i = 0; $i < $pcounter; $i++) {
-                    if ($i == 0) {
-                        // check for seat class
-                        if (in_array($_SESSION['clientSeat'], $_SESSION['a320j'], true)) {
-                            $seatClass = 'Business';
-                        }
-                        if (in_array($_SESSION['clientSeat'], $_SESSION['a320p'], true)) {
-                            $seatClass = 'Premium Economy';
-                        }
-                        if (in_array($_SESSION['clientSeat'], $_SESSION['a320y'], true)) {
-                            $seatClass = 'Economy';
-                        }
-                        if (in_array($_SESSION['clientSeat'], $_SESSION['a330j'], true)) {
-                            $seatClass = 'Business';
-                        }
-                        if (in_array($_SESSION['clientSeat'], $_SESSION['a330p'], true)) {
-                            $seatClass = 'Premium Economy';
-                        }
-                        if (in_array($_SESSION['clientSeat'], $_SESSION['a330y'], true)) {
-                            $seatClass = 'Economy';
-                        }
-                        echo "
-                                <div class='row'>
-                                    <div class='col-6 col-12-xsmall'>
-                                        <h3><strong>Seat Number: </strong>" . $_SESSION['clientSeat'] . "</h3>
-                                    </div>
-                                    <div class='col-6 col-12-xsmall'>
-                                        <h3><strong>Seat Class: </strong>" . $seatClass . "</h3>
-                                    </div>
-                                </div>
-                                <br/>
-                            ";
+                for ($i = 1; $i <= $seatcount; $i++) {
+                    if ($i == 1) {
                         echo "
                                 <div class='col-6 col-12-xsmall'>
-                                    <h3><strong>Name: </strong>" . $_SESSION['clientFirstName'] . " " . $_SESSION['clientMiddleName'] . " " . $_SESSION['clientLastName'] . "</h3>
+                                    <h3><strong>Name: </strong>" . $_SESSION['firstName' . $i] . " " . $_SESSION['middleName' . $i] . " " . $_SESSION['lastName' . $i] . "</h3>
                                 </div>
                             ";
                         echo "
-                                <div class='row'>
+                                <div class='row gtr-uniform'>
                                     <div class='col-6 col-12-xsmall'>
-                                        <h3><strong>Gender: </strong>" . $_SESSION['clientGender'] . "</h3>
+                                        <h3><strong>Gender: </strong>" . $_SESSION['gender' . $i] . "</h3>
                                     </div>
                                     <div class='col-6 col-12-xsmall'>
-                                        <h3><strong>Nationality: </strong>" . $_SESSION['clientNationality'] . "</h3>
-                                    </div>
-                                </div>
-                            ";
-                        echo "
-                                <div class='row'>
-                                    <div class='col-6 col-12-xsmall'>
-                                        <h3><strong>Age: </strong>" . $_SESSION['clientAge'] . "</h3>
-                                    </div>
-                                    <div class='col-6 col-12-xsmall'>
-                                        <h3><strong>Birthdate: </strong>" . $_SESSION['clientBirthday'] . "</h3>
+                                        <h3><strong>Nationality: </strong>" . $_SESSION['nationality' . $i] . "</h3>
                                     </div>
                                 </div>
                             ";
                         echo "
-                                <div class='row'>
+                                <div class='row gtr-uniform'>
                                     <div class='col-6 col-12-xsmall'>
-                                        <h3><strong>Email: </strong>" . $_SESSION['clientEmail'] . "</h3>
+                                        <h3><strong>Age: </strong>" . $_SESSION['age' . $i] . "</h3>
                                     </div>
                                     <div class='col-6 col-12-xsmall'>
-                                        <h3><strong>Contact Number: </strong>" . $_SESSION['clientContactNum'] . "</h3>
+                                        <h3><strong>Birthdate: </strong>" . $_SESSION['birthday' . $i] . "</h3>
+                                    </div>
+                                </div>
+                            ";
+                        echo "
+                                <div class='row gtr-uniform'>
+                                    <div class='col-6 col-12-xsmall'>
+                                        <h3><strong>Email: </strong>" . $_SESSION['email' . $i] . "</h3>
+                                    </div>
+                                    <div class='col-6 col-12-xsmall'>
+                                        <h3><strong>Contact Number: </strong>" . $_SESSION['contactNum' . $i] . "</h3>
                                     </div>
                                 </div>
                             ";
 
-                        switch ($_SESSION['clientType']) {
-                            case 'U':
-                                $passengerType = 'Unaccompanied Minor';
-                                break;
-                            case 'H':
-                                $passengerType = 'Handicapped';
-                                break;
-                            case 'M':
-                                $passengerType = 'Medically OK for travel';
-                                break;
-                            default:
-                                $passengerType = 'Normal';
-                        }
-
                         echo "
-                                <div class='row'>
+                                <div class='row gtr-uniform'>
                                     <div class='col-6 col-12-xsmall'>
-                                        <h3><strong>Passenger Type: </strong>" . $passengerType . "</h3>
+                                        <h3><strong>Passenger Type: </strong>" . $_SESSION['type' . $i] . "</h3>
                                     </div>
                                     <div class='col-6 col-12-xsmall'>
-                                        <h3><strong>Remarks: </strong>" . $_SESSION['clientRemarks'] . "</h3>
+                                        <h3><strong>SSR: </strong>" . $_SESSION['ssr' . $i] . "</h3>
                                     </div>
                                 </div>
                             ";
-                    } else {
-                        // check for seat class
-                        if (in_array($_SESSION['passengerSeat' . $i], $_SESSION['a320j'], true)) {
-                            $seatClass = 'Business';
-                        }
-                        if (in_array($_SESSION['passengerSeat' . $i], $_SESSION['a320p'], true)) {
-                            $seatClass = 'Premium Economy';
-                        }
-                        if (in_array($_SESSION['passengerSeat' . $i], $_SESSION['a320y'], true)) {
-                            $seatClass = 'Economy';
-                        }
-                        if (in_array($_SESSION['passengerSeat' . $i], $_SESSION['a330j'], true)) {
-                            $seatClass = 'Business';
-                        }
-                        if (in_array($_SESSION['passengerSeat' . $i], $_SESSION['a330p'], true)) {
-                            $seatClass = 'Premium Economy';
-                        }
-                        if (in_array($_SESSION['passengerSeat' . $i], $_SESSION['a330y'], true)) {
-                            $seatClass = 'Economy';
-                        }
                         echo "
-                                <div class='row'>
-                                    <div class='col-6 col-12-xsmall'>
-                                        <h3><strong>Seat Number: </strong>" . $_SESSION['passengerSeat' . $i] . "</h3>
-                                    </div>
-                                    <div class='col-6 col-12-xsmall'>
-                                        <h3><strong>Seat Class: </strong>" . $seatClass . "</h3>
+                                <div class='row gtr-uniform'>
+                                    <div class='col-12 col-12-xsmall'>
+                                        <h3><strong>Remarks: </strong>" . $_SESSION['remarks' . $i] . "</h3>
                                     </div>
                                 </div>
-                                <br/>
                             ";
+                    } else { // START OF PASSENGER
                         echo "
                                 <div class='col-6 col-12-xsmall'>
-                                    <h3><strong>Name: </strong>" . $_SESSION['passengerFirstName' . $i] . " " . $_SESSION['passengerMiddleName' . $i] . " " . $_SESSION['passengerLastName' . $i] . "</h3>
+                                    <h3><strong>Name: </strong>" . $_SESSION['firstName' . $i] . " " . $_SESSION['middleName' . $i] . " " . $_SESSION['lastName' . $i] . "</h3>
                                 </div>
                             ";
                         echo "
-                                <div class='row'>
+                                <div class='row gtr-uniform'>
                                     <div class='col-6 col-12-xsmall'>
-                                        <h3><strong>Gender: </strong>" . $_SESSION['passengerGender' . $i] . "</h3>
+                                        <h3><strong>Gender: </strong>" . $_SESSION['gender' . $i] . "</h3>
                                     </div>
                                     <div class='col-6 col-12-xsmall'>
-                                        <h3><strong>Nationality: </strong>" . $_SESSION['passengerNationality' . $i] . "</h3>
-                                    </div>
-                                </div>
-                            ";
-                        echo "
-                                <div class='row'>
-                                    <div class='col-6 col-12-xsmall'>
-                                        <h3><strong>Age: </strong>" . $_SESSION['passengerAge' . $i] . "</h3>
-                                    </div>
-                                    <div class='col-6 col-12-xsmall'>
-                                        <h3><strong>Birthdate: </strong>" . $_SESSION['passengerBirthday' . $i] . "</h3>
+                                        <h3><strong>Nationality: </strong>" . $_SESSION['nationality' . $i] . "</h3>
                                     </div>
                                 </div>
                             ";
                         echo "
-                                <div class='row'>
+                                <div class='row gtr-uniform'>
                                     <div class='col-6 col-12-xsmall'>
-                                        <h3><strong>Email: </strong>" . $_SESSION['passengerEmail' . $i] . "</h3>
+                                        <h3><strong>Age: </strong>" . $_SESSION['age' . $i] . "</h3>
                                     </div>
                                     <div class='col-6 col-12-xsmall'>
-                                        <h3><strong>Contact Number: </strong>" . $_SESSION['passengerContactNum' . $i] . "</h3>
+                                        <h3><strong>Birthdate: </strong>" . $_SESSION['birthday' . $i] . "</h3>
+                                    </div>
+                                </div>
+                            ";
+                        echo "
+                                <div class='row gtr-uniform'>
+                                    <div class='col-6 col-12-xsmall'>
+                                        <h3><strong>Email: </strong>" . $_SESSION['email' . $i] . "</h3>
+                                    </div>
+                                    <div class='col-6 col-12-xsmall'>
+                                        <h3><strong>Contact Number: </strong>" . $_SESSION['contactNum' . $i] . "</h3>
                                     </div>
                                 </div>
                             ";
 
-                        switch ($_SESSION['passengerType' . $i]) {
-                            case 'U':
-                                $passengerType = 'Unaccompanied Minor';
-                                break;
-                            case 'H':
-                                $passengerType = 'Handicapped';
-                                break;
-                            case 'M':
-                                $passengerType = 'Medically OK for travel';
-                                break;
-                            default:
-                                $passengerType = 'Normal';
-                        }
-
                         echo "
-                                <div class='row'>
+                                <div class='row gtr-uniform'>
                                     <div class='col-6 col-12-xsmall'>
-                                        <h3><strong>Passenger Type: </strong>" . $passengerType . "</h3>
+                                        <h3><strong>Passenger Type: </strong>" . $_SESSION['type' . $i] . "</h3>
                                     </div>
                                     <div class='col-6 col-12-xsmall'>
-                                        <h3><strong>Remarks: </strong>" . $_SESSION['passengerRemarks' . $i] . "</h3>
+                                        <h3><strong>SSR: </strong>" . $_SESSION['ssr' . $i] . "</h3>
+                                    </div>
+                                </div>
+                            ";
+                        echo "
+                                <div class='row gtr-uniform'>
+                                    <div class='col-12 col-12-xsmall'>
+                                        <h3><strong>Remarks: </strong>" . $_SESSION['remarks' . $i] . "</h3>
                                     </div>
                                 </div>
                             ";
                     }
-                    if ($i < $pcounter - 1) {
+                    if ($i < $seatcount) {
                         echo "<br/><hr/><br/>";
                     }
                 }
                 ?>
                 <p></p>
-                <form method='post' action='confirmation.php'>
+                <form method='post' action='confirmation'>
                     <input type='submit' class='button primary fit' name='exeConfirm' value='CONFIRM' />
                 </form>
             </section>
@@ -301,205 +263,129 @@ $db = mysqli_connect('localhost', 'root', '', 'pars');
     <script src="assets/js/main.js"></script>
 
     <?php
-    function insertBooking(int $clientID, int $pcounter)
-    {
+    function insertBooking(int $clientID, int $seatcount) {
         // $db = mysqli_connect('localhost', 'root', '', 'pars');
-        $insertBookingQuery = "INSERT INTO booking (clientID, flightNumber, bookingOrigin, bookingDestination, bookingNumOfSeats, addBookingDate, addBookingTime) VALUES ('" .  $clientID . "', '" .
+        $insertBookingQuery = "INSERT INTO booking (clientID, flightNumber, Origin, Destination, NumOfSeats, addDate, addTime, user) VALUES ('" .  $clientID . "', '" .
             $_SESSION['selectedFlightNum'] . "', '" .
             $_SESSION['flightOrigin'] . "', '" .
             $_SESSION['flightDestination'] . "', " .
-            $pcounter . ", curdate(), curtime())";
+            $seatcount . ", curdate(), curtime())" . $_SESSION['user'];
 
         mysqli_query($GLOBALS['db'], $insertBookingQuery);
     }
 
+    function insertFlightSeat(int $clientID, int $seatcount) {
+        foreach ($_SESSION['seats'] as $seat) {
+            // check for seat class
+            if (in_array($seat, $_SESSION['a320j'], true)) {
+                $seatClass = 'J';
+            }
+            elseif (in_array($seat, $_SESSION['a320p'], true)) {
+                $seatClass = 'P';
+            }
+            elseif (in_array($seat, $_SESSION['a320y'], true)) {
+                $seatClass = 'Y';
+            }
+            elseif (in_array($seat, $_SESSION['a330j'], true)) {
+                $seatClass = 'J';
+            }
+            elseif (in_array($seat, $_SESSION['a330p'], true)) {
+                $seatClass = 'P';
+            }
+            elseif (in_array($seat, $_SESSION['a330y'], true)) {
+                $seatClass = 'Y';
+            }
+            
+            $insertFlightSeatQuery = "INSERT INTO flight_seat (clientID, flightNumber, SeatClass, SeatNumber) VALUES ('" .
+                $_SESSION['clientID'] . "', '" .
+                $_SESSION['selectedFlightNum'] . "', '" .
+                $seatClass . "', '" .
+                $seat
+                . "') ";
+
+            mysqli_query($GLOBALS['db'], $insertFlightSeatQuery);
+        }
+    }
+
     if (array_key_exists('exeConfirm', $_POST)) {
-        $counter = $_SESSION['counter'];
-        $pcounter = $_SESSION['pcounter'];
+        $seatcount = $_SESSION['seatcount'];
 
-        for ($ii = 0; $ii < $pcounter; $ii++) {
+        for ($j = 1; $j <= $seatcount; $j++) {
 
-            if ($ii == 0) { // CLIENT
-                // check for seat class
-                if (in_array($_SESSION['clientSeat'], $_SESSION['a320j'], true)) {
-                    $seatClass = 'J';
-                }
-                if (in_array($_SESSION['clientSeat'], $_SESSION['a320p'], true)) {
-                    $seatClass = 'P';
-                }
-                if (in_array($_SESSION['clientSeat'], $_SESSION['a320y'], true)) {
-                    $seatClass = 'Y';
-                }
-                if (in_array($_SESSION['clientSeat'], $_SESSION['a330j'], true)) {
-                    $seatClass = 'J';
-                }
-                if (in_array($_SESSION['clientSeat'], $_SESSION['a330p'], true)) {
-                    $seatClass = 'P';
-                }
-                if (in_array($_SESSION['clientSeat'], $_SESSION['a330y'], true)) {
-                    $seatClass = 'Y';
-                }
-
-
+            if ($j == 1) { // START OF CLIENT
                 if (isset($_SESSION['clientID'])) {
 
-                    $insertFlightSeatQuery = "INSERT INTO flight_seat (clientID, flightNumber, flightSeatClass, flightSeatNumber, remarks) VALUES ('" .
-                        $_SESSION['clientID'] . "', '" .
-                        $_SESSION['selectedFlightNum'] . "', '" .
-                        $seatClass . "', '" .
-                        $_SESSION['clientSeat'] . "', '" .
-                        $_SESSION['clientRemarks']
-                        . "') ";
+                    insertBooking($_SESSION['clientID'], $seatcount);
 
-                    mysqli_query($db, $insertFlightSeatQuery);
-
-                    insertBooking($_SESSION['clientID'], $pcounter);
-                } else {
-                    switch ($_SESSION['clientType']) {
-                        case 'U':
-                            $passengerType = 'Unaccompanied Minor';
-                            break;
-                        case 'H':
-                            $passengerType = 'Handicapped';
-                            break;
-                        case 'M':
-                            $passengerType = 'Medically OK for travel';
-                            break;
-                        default:
-                            $passengerType = 'Normal';
-                    }
-
-                    $insertClientQuery = "INSERT INTO client (clientFirstName, clientMiddleName, clientLastName, clientGender, clientNationality, clientAge, clientBirthday, clientEmail, clientContactNum, clientType, addClientDate, addClientTime) VALUES ('" .
-                        $_SESSION['clientFirstName'] . "', '" .
-                        $_SESSION['clientMiddleName'] . "', '" .
-                        $_SESSION['clientLastName'] . "', '" .
-                        $_SESSION['clientGender'] . "', '" .
-                        $_SESSION['clientNationality'] . "', '" .
-                        $_SESSION['clientAge'] . "', '" .
-                        $_SESSION['clientBirthday'] . "', '" .
-                        $_SESSION['clientEmail'] . "', '" .
-                        $_SESSION['clientContactNum'] . "', '" .
-                        $_SESSION['clientType'] . "', curdate(), curtime()) ";
+                } else {                    
+                    $insertClientQuery = "INSERT INTO client (FirstName, MiddleName, LastName, Gender, Nationality, Age, Birthday, Email, ContactNum, Type, addDate, addTime) VALUES ('" .
+                        $_SESSION['firstName' . $j] . "', '" .
+                        $_SESSION['middleName' . $j] . "', '" .
+                        $_SESSION['lastName' . $j] . "', '" .
+                        $_SESSION['gender' . $j] . "', '" .
+                        $_SESSION['nationality' . $j] . "', '" .
+                        $_SESSION['age' . $j] . "', '" .
+                        $_SESSION['birthday' . $j] . "', '" .
+                        $_SESSION['email' . $j] . "', '" .
+                        $_SESSION['contactNum' . $j] . "', '" .
+                        $_SESSION['type' . $j] . "', curdate(), curtime()) ";
 
                     mysqli_query($db, $insertClientQuery);
 
                     $selectClientIDquery = "SELECT clientID FROM client WHERE 
-                        clientFirstname = '" . $_SESSION['clientFirstName']
-                        . "' AND clientMiddleName = '" . $_SESSION['clientMiddleName']
-                        . "' AND clientLastName = '" . $_SESSION['clientLastName']
-                        . "' AND clientGender = '" . $_SESSION['clientGender']
-                        . "' AND clientNationality = '" . $_SESSION['clientNationality']
-                        . "' AND clientAge = '" . $_SESSION['clientAge']
-                        . "' AND clientBirthday = '" . $_SESSION['clientBirthday']
-                        . "' AND clientEmail = '" . $_SESSION['clientEmail']
-                        . "' AND clientContactNum = '" . $_SESSION['clientContactNum']
+                        Firstname = '" . $_SESSION['firstName' . $j]
+                        . "' AND MiddleName = '" . $_SESSION['middleName' . $j]
+                        . "' AND LastName = '" . $_SESSION['lastName' . $j]
+                        . "' AND Gender = '" . $_SESSION['gender' . $j]
+                        . "' AND Nationality = '" . $_SESSION['nationality' . $j]
+                        . "' AND Age = '" . $_SESSION['age' . $j]
+                        . "' AND Birthday = '" . $_SESSION['birthday' . $j]
+                        . "' AND Email = '" . $_SESSION['email' . $j]
+                        . "' AND ContactNum = '" . $_SESSION['contactNum' . $j]
                         . "'";
 
                     $clientID = mysqli_query($db, $selectClientIDquery);
                     $clientID = mysqli_fetch_assoc($clientID);
                     $_SESSION['clientID'] = intval($clientID['clientID']);
 
-                    $insertFlightSeatQuery = "INSERT INTO flight_seat (clientID, flightNumber, flightSeatClass, flightSeatNumber, remarks) VALUES ('" .
-                        $_SESSION['clientID'] . "', '" .
-                        $_SESSION['selectedFlightNum'] . "', '" .
-                        $seatClass . "', '" .
-                        $_SESSION['clientSeat'] . "', '" .
-                        $_SESSION['clientRemarks']
-                        . "') ";
-
-                    mysqli_query($db, $insertFlightSeatQuery);
-
-                    insertBooking($_SESSION['clientID'], $pcounter);
+                    insertBooking($_SESSION['clientID'], $seatcount);
                 }
             } else { // PASSENGER
-                if (in_array($_SESSION['passengerSeat' . $ii], $_SESSION['a320j'], true)) {
-                    $seatClass = 'J';
-                }
-                if (in_array($_SESSION['passengerSeat' . $ii], $_SESSION['a320p'], true)) {
-                    $seatClass = 'P';
-                }
-                if (in_array($_SESSION['passengerSeat' . $ii], $_SESSION['a320y'], true)) {
-                    $seatClass = 'Y';
-                }
-                if (in_array($_SESSION['passengerSeat' . $ii], $_SESSION['a330j'], true)) {
-                    $seatClass = 'J';
-                }
-                if (in_array($_SESSION['passengerSeat' . $ii], $_SESSION['a330p'], true)) {
-                    $seatClass = 'P';
-                }
-                if (in_array($_SESSION['passengerSeat' . $ii], $_SESSION['a330y'], true)) {
-                    $seatClass = 'Y';
-                }
 
-                if (isset($_SESSION['passengerID' . $ii])) {
-                    $passengerID = $_SESSION['passengerID' . $ii];
+                if (isset($_SESSION['passengerID' . $j])) {
+                    $passengerID = $_SESSION['passengerID' . $j];
 
-                    $insertFlightSeatQuery = "INSERT INTO flight_seat (clientID, passengerID, flightNumber, flightSeatClass, flightSeatNumber, remarks) VALUES (" .
-                        $_SESSION['clientID'] . ", '" .
-                        $passengerID . "', '" .
-                        $_SESSION['selectedFlightNum'] . "', '" .
-                        $seatClass . "', '" .
-                        $_SESSION['passengerSeat' . $ii] . "', '" .
-                        $_SESSION['passengerRemarks' . $ii]
-                        . "') ";
-
-                    mysqli_query($db, $insertFlightSeatQuery);
                 } else {
-                    switch ($_SESSION['passengerType' . $ii]) {
-                        case 'U':
-                            $passengerType = 'Unaccompanied Minor';
-                            break;
-                        case 'H':
-                            $passengerType = 'Handicapped';
-                            break;
-                        case 'M':
-                            $passengerType = 'Medically OK for travel';
-                            break;
-                        default:
-                            $passengerType = 'Normal';
-                    }
-
-                    $insertPassengerQuery = "INSERT INTO passenger (clientID, passengerFirstName, passengerMiddleName, passengerLastName, passengerGender, passengerNationality, passengerAge, passengerBirthday, passengerEmail, passengerContactNum, passengerType, addPassengerDate, addPassengerTime) VALUES ('" .
+                    $insertPassengerQuery = "INSERT INTO passenger (clientID, FirstName, MiddleName, LastName, Gender, Nationality, Age, Birthday, Email, ContactNum, Type, addDate, addTime) VALUES ('" .
                         $_SESSION['clientID'] . "', '" .
-                        $_SESSION['passengerFirstName' . $ii] . "', '" .
-                        $_SESSION['passengerMiddleName' . $ii] . "', '" .
-                        $_SESSION['passengerLastName' . $ii] . "', '" .
-                        $_SESSION['passengerGender' . $ii] . "', '" .
-                        $_SESSION['passengerNationality' . $ii] . "', '" .
-                        $_SESSION['passengerAge' . $ii] . "', '" .
-                        $_SESSION['passengerBirthday' . $ii] . "', '" .
-                        $_SESSION['passengerEmail' . $ii] . "', '" .
-                        $_SESSION['passengerContactNum' . $ii] . "', '" .
-                        $_SESSION['passengerType' . $ii] . "', curdate(), curtime()) ";
+                        $_SESSION['firstName' . $j] . "', '" .
+                        $_SESSION['middleName' . $j] . "', '" .
+                        $_SESSION['lastName' . $j] . "', '" .
+                        $_SESSION['gender' . $j] . "', '" .
+                        $_SESSION['nationality' . $j] . "', '" .
+                        $_SESSION['age' . $j] . "', '" .
+                        $_SESSION['birthday' . $j] . "', '" .
+                        $_SESSION['email' . $j] . "', '" .
+                        $_SESSION['contactNum' . $j] . "', '" .
+                        $_SESSION['type' . $j] . "', curdate(), curtime()) ";
 
                     mysqli_query($db, $insertPassengerQuery);
 
                     $selectPassengerIDquery = "SELECT passengerID FROM passenger WHERE 
-                            passengerFirstname = '" . $_SESSION['passengerFirstName' . $ii]
-                        . "' AND passengerMiddleName = '" . $_SESSION['passengerMiddleName' . $ii]
-                        . "' AND passengerLastName = '" . $_SESSION['passengerLastName' . $ii]
-                        . "' AND passengerGender = '" . $_SESSION['passengerGender' . $ii]
-                        . "' AND passengerNationality = '" . $_SESSION['passengerNationality' . $ii]
-                        . "' AND passengerAge = '" . $_SESSION['passengerAge' . $ii]
-                        . "' AND passengerBirthday = '" . $_SESSION['passengerBirthday' . $ii]
-                        . "' AND passengerEmail = '" . $_SESSION['passengerEmail' . $ii]
-                        . "' AND passengerContactNum = '" . $_SESSION['passengerContactNum' . $ii]
+                            Firstname = '" . $_SESSION['firstName' . $j]
+                        . "' AND MiddleName = '" . $_SESSION['middleName' . $j]
+                        . "' AND LastName = '" . $_SESSION['lastName' . $j]
+                        . "' AND Gender = '" . $_SESSION['gender' . $j]
+                        . "' AND Nationality = '" . $_SESSION['nationality' . $j]
+                        . "' AND Age = '" . $_SESSION['age' . $j]
+                        . "' AND Birthday = '" . $_SESSION['birthday' . $j]
+                        . "' AND Email = '" . $_SESSION['email' . $j]
+                        . "' AND ContactNum = '" . $_SESSION['contactNum' . $j]
                         . "'";
 
                     $passengerID = mysqli_query($db, $selectPassengerIDquery);
                     $passengerID = mysqli_fetch_assoc($passengerID);
                     $passengerID = intval($passengerID['passengerID']);
-
-                    $insertFlightSeatQuery = "INSERT INTO flight_seat (clientID, passengerID, flightNumber, flightSeatClass, flightSeatNumber, remarks) VALUES (" .
-                        $_SESSION['clientID'] . ", '" .
-                        $passengerID . "', '" .
-                        $_SESSION['selectedFlightNum'] . "', '" .
-                        $seatClass . "', '" .
-                        $_SESSION['passengerSeat' . $ii] . "', '" .
-                        $_SESSION['passengerRemarks' . $ii]
-                        . "') ";
-
-                    mysqli_query($db, $insertFlightSeatQuery);
                 }
             }
         }

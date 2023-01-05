@@ -70,7 +70,7 @@ include 'sessionstart.php';
 
                         echo "<p><br></p>";
 
-                        echo "<form method='post' action='pnrprocess'>";
+                        echo "<form method='post' action='pnrprocess' id='pnrform'>";
 
                         for ($count = 1; $count <= $seatcount; $count++) {
                             if ($count !== 1) {
@@ -86,7 +86,7 @@ include 'sessionstart.php';
                                         <label for="firstName<?php echo $count; ?>">
                                             <h2>First Name *</h2>
                                         </label>
-                                        <input type="text" name="firstName<?php echo $count; ?>" id="firstName" value="" placeholder="First Name" required />
+                                        <input type="text" name="firstName<?php echo $count; ?>" id="firstName" value="<?php if(isset($_SESSION['firstName' . $count])) {echo $_SESSION['firstName' . $count];} ?>" placeholder="First Name" required />
                                     </div>
                                     <div class="col-4 col-12-xsmall">
                                         <label for="middleName<?php echo $count; ?>">
@@ -163,20 +163,9 @@ include 'sessionstart.php';
                                             <option value="CHD">CHD</option> <!--Child-->
                                             <option value="SRC">SRC</option> <!--Senior Citizen-->
                                             <option value="UNN">UNN</option> <!--Unaccompanied Child-->
-                                            <option value="UNMR">UNMR</option> <!--Unaccompanied Minor-->
+                                            <option value="UAM">UAM</option> <!--Unaccompanied Minor-->
                                             <option value="INF">INF</option> <!--Infant without a seat-->
                                             <option value="INS">INS</option> <!--Infant with a seat-->
-                                        </select>
-                                    </div>
-                                    <div class="col-4 col-12-xsmall">
-                                        <label for="passengerType<?php echo $count; ?>">
-                                            <h2>Specific Passenger Option</h2>
-                                        </label>
-                                        <select name="passengerOption<?php echo $count; ?>" id="passengerOption">
-                                            <option value="" disabled selected hidden></option>
-                                            <option value="">None</option> <!--None-->
-                                            <option value="PWD">PWD</option> <!--Person with disability-->
-                                            <option value="M">M</option> <!--Medically OK for travel-->
                                         </select>
                                     </div>
                                 </div>
@@ -190,6 +179,7 @@ include 'sessionstart.php';
                                             <option value="BLND">BLND</option> <!--Blind-->
                                             <option value="DEAF">DEAF</option> <!--Deaf-->
                                             <option value="BLND DEAF">BLND DEAF</option> <!--Blind and deaf-->
+                                            <option value="DPNA">DPNA</option> <!--Disabled passenger with intellectual or developmental disability needing assistance-->
                                         </select>
                                     </div>
                                     <div class="col-3 col-12-xsmall">
@@ -198,35 +188,44 @@ include 'sessionstart.php';
                                             <option value="">None</option>
                                             <option value="WCHC">WCHC</option> <!--Wheelchair is needed - traveler is completely immobile-->
                                             <option value="WCHR">WCHR</option> <!--Wheelchair is needed - traveler can ascend/descend stairs-->
+                                            <option value="WCHS">WCHS</option> <!--Wheelchair is needed - traveler can walk short distances, but not up or down stairs-->
+                                            <option value="WCMP">WCMP</option> <!--Passenger is traveling with a manual wheelchair-->
+                                            <option value="WCBD">WCBD</option> <!--Passenger is traveling with a dry cell battery-powered wheelchair-->
+                                            <option value="WCBW">WCBW</option> <!--Passenger is traveling with a wet cell battery-powered wheelchair-->
+                                            <option value="WCOB">WCOB</option> <!--On-board aisle wheelchair requested-->
                                         </select>
                                     </div>
                                     <div class="col-3 col-12-xsmall">
                                         <select name="ssrC<?php echo $count; ?>">
                                             <option value="" disabled selected hidden>Meal</option>
                                             <option value="">None</option>
-                                            <option value="AVML">AVML</option>
-                                            <option value="BBML">BBML</option>
-                                            <option value="BLML">BLML</option>
-                                            <option value="CHML">CHML</option>
-                                            <option value="DBML">DBML</option>
-                                            <option value="FPML">FPML</option>
-                                            <option value="GFML">GFML</option>
-                                            <option value="HFML">HFML</option>
-                                            <option value="HNML">HNML</option>
-                                            <option value="KSML">KSML</option>
-                                            <option value="LCML">LCML</option>
-                                            <option value="LFML">LFML</option>
-                                            <option value="LPML">LPML</option>
-                                            <option value="LSML">LSML</option>
-                                            <option value="MOML">MOML</option>
-                                            <option value="NLML">NLML</option>
-                                            <option value="ORML">ORML</option>
-                                            <option value="PRML">PRML</option>
-                                            <option value="RVML">RVML</option>
-                                            <option value="SFML">SFML</option>
-                                            <option value="SPML">SPML</option>
-                                            <option value="VGML">VGML</option>
-                                            <option value="VLML">VLML</option>
+                                            <option value="AVML">AVML</option> <!--Vegetarian Hindu-->
+                                            <option value="BBML">BBML</option> <!--Baby-->
+                                            <option value="BLML">BLML</option> <!--Bland-->
+                                            <option value="CHML">CHML</option> <!--Child-->
+                                            <option value="CNML">CNML</option> <!--Chicken-->
+                                            <option value="DBML">DBML</option> <!--Diabetic-->
+                                            <option value="FPML">FPML</option> <!--Fruit platter-->
+                                            <option value="FSML">FSML</option> <!--Fish-->
+                                            <option value="GFML">GFML</option> <!--Gluten Intolerant-->
+                                            <option value="HNML">HNML</option> <!--Hindu (non-vegetarian)-->
+                                            <option value="IVML">IVML</option> <!--Indian vegetarian-->
+                                            <option value="JPML">JPML</option> <!--Japanese-->
+                                            <option value="KSML">KSML</option> <!--Kosher-->
+                                            <option value="LCML">LCML</option> <!--Low calorie-->
+                                            <option value="LFML">LFML</option> <!--Low fat-->
+                                            <option value="LSML">LSML</option> <!--Low salt-->
+                                            <option value="MOML">MOML</option> <!--Muslim-->
+                                            <option value="NFML">NFML</option> <!--No fish-->
+                                            <option value="NLML">NLML</option> <!--Low lactose-->
+                                            <option value="OBML">OBML</option> <!--Japanese Obento-->
+                                            <option value="RVML">RVML</option> <!--Vegetarian raw-->
+                                            <option value="SFML">SFML</option> <!--Seafood-->
+                                            <option value="SPML">SPML</option> <!--Special Meal-->
+                                            <option value="VGML">VGML</option> <!--Vegetarian vegan-->
+                                            <option value="VJML">VJML</option> <!--Vegetarian Jain-->
+                                            <option value="VLML">VLML</option> <!--Vegetarian Oriental-->
+                                            <option value="VOML">VOML</option> <!--Vegetarian lacto-ovo-->
                                         </select>
                                     </div>
                                     <div class="col-3 col-12-xsmall tooltip">
@@ -253,6 +252,7 @@ include 'sessionstart.php';
                     <?php
                     if (isset($_SESSION['seats'])) {
                     ?>
+                        <p></p>
                         <div class="col-12">
                             <input type="submit" value="Continue" name="pnrSubmit" class="button primary fit" />
                         </div>

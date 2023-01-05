@@ -47,7 +47,7 @@ M: Medically OK for travel
 ADT: Adult
 CHD: Child
 UNN: Unaccompanied Child
-UNMR: Unaccompanied Minor
+UAM/UNMR: Unaccompanied Minor
 INF: Infant without a seat
 INS: Infant with a seat
 SRC: Senior Citizen
@@ -60,15 +60,59 @@ src: https://support.travelport.com/webhelp/uapi/Content/Air/Shared_Air_Topics/P
 
 BLND: Traveler is blind
 DEAF: Traveler is deaf
+DPNA: Disabled passenger with intellectual or developmental disability needing assistance
+ESAN: Passenger is traveling with an emotional support animal
+EXST: Passenger rquires an extra seat due to body size
+MAAS: Meet-and-assist
+MEDA: Medical case
+OXYG: Passenger will require oxygen
+PETC: Passenger is traveling with a pet in cabin
+PNUT: Passenger is allergic to peanut dust
+PPOC: Passenger is traveling with a portable oxygen concentrator
+STCR: Passenger is traveling on a stretcher
+SVAN: Passenger is traveling with a service animal
+
 WCHC: Wheelchair is needed - traveler is completely immobile
+WCHS: Wheelchair is needed - traveler can walk short distance, but not up or down stairs
 WCHR: Wheelchair is needed - traveler can ascend/descend stairs
+WCOB: On-board aisle wheelchair requested
+WCMP: Passenger is traveling with a manual wheelchair
+WCBD: Passenger is traveling with a dry cell battery-powered wheelchair
+WCBW: Passenger is traveling with a wet cell battery-powered wheelchair
 
 # Meal SSRs:
-AVML BBML BLML CHML DBML FPML GFML HFML HNML KSML LCML LFML
-LPML LSML MOML NLML ORML PRML RVML SFML SPML VGML VLML
+AVML: Vegetarian Hindu meal
+BBML: Baby meal
+BLML: Bland meal
+CHML: Child meal
+CNML: Chicken meal
+DBML: Diabetic meal
+FPML: Fruit platter meal
+FSML: Fish meal
+GFML: Gluten intolerant meal
+HNML: Hindu (non-vegetarian) meal
+IVML: Indian vegetarian meal
+JPML: Japanese meal
+KSML: Kosher meal
+LCML: Low calorie meal
+LFML: Low fat meal
+LSML: Low salt meal
+MOML: Muslim meal
+NFML: No fish meal
+NLML: Low lactose meal
+OBML: Japanese Obento meal
+RVML: Vegetarian Raw meal
+SFML: Seafood meal
+SPML: Special meal, specify food
+VGML: Vegetarian vegan meal
+VJML: Vegetarian Jain meal
+VLML: Vegetarian Oriental meal
+VOML: Vegetarian lacto-ovo meal
+(27 Total Meals)
 
 src: https://support.travelport.com/webhelp/uapi/Content/Air/Shared_Air_Topics/SSRs_(Special_Service_Requests).htm
-
+src: https://wheelchairtravel.org/air-travel/special-service-request-codes/
+src: https://servicehub.amadeus.com/c/portal/view-solution/884906/how-to-add-meal-codes
 ---
 
 OW: One way trip

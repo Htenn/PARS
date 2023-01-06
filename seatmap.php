@@ -50,11 +50,11 @@ $db = mysqli_connect('localhost', 'root', '', 'pars');
 
 					$selectedFlightNumber = $_SESSION["selectedFlightNum"];
 
-					$selectedFlightQuery = "SELECT flightAircraftModel FROM flight WHERE flightNumber = '$selectedFlightNumber' LIMIT 1";
+					$selectedFlightQuery = "SELECT AircraftModel FROM flight WHERE flightNumber = '$selectedFlightNumber' LIMIT 1";
 					
 					$selectedFlightAircraftModel = mysqli_query($db, $selectedFlightQuery);
 					$selectedFlightAircraftModel = mysqli_fetch_assoc($selectedFlightAircraftModel);
-					$selectedFlightAircraftModel = $selectedFlightAircraftModel['flightAircraftModel'];
+					$selectedFlightAircraftModel = $selectedFlightAircraftModel['AircraftModel'];
 
 					echo "<h1>" . $selectedFlightAircraftModel . "</h1><p></p>";
 
@@ -77,7 +77,7 @@ $db = mysqli_connect('localhost', 'root', '', 'pars');
 									$seatSold = false;
 
 									foreach ($seatCheck as $data) {
-										if ($data['flightSeatNumber'] == $seatNumber) { # sold if the seat is logged in the database
+										if ($data['Seat'] == $seatNumber) { # sold if the seat is logged in the database
 											$seatSold = true;
 										}
 									}
@@ -103,7 +103,7 @@ $db = mysqli_connect('localhost', 'root', '', 'pars');
 									$seatSold = false;
 
 									foreach ($seatCheck as $data) {
-										if ($data['flightSeatNumber'] == $seatNumber) { # sold if the seat is logged in the database
+										if ($data['Seat'] == $seatNumber) { # sold if the seat is logged in the database
 											$seatSold = true;
 										}
 									}
@@ -131,7 +131,7 @@ $db = mysqli_connect('localhost', 'root', '', 'pars');
 									$seatSold = false;
 
 									foreach ($seatCheck as $data) {
-										if ($data['flightSeatNumber'] == $seatNumber) { # sold if the seat is logged in the database
+										if ($data['Seat'] == $seatNumber) { # sold if the seat is logged in the database
 											$seatSold = true;
 										}
 									}
@@ -150,7 +150,7 @@ $db = mysqli_connect('localhost', 'root', '', 'pars');
 									$seatSold = false;
 
 									foreach ($seatCheck as $data) {
-										if ($data['flightSeatNumber'] == $seatNumber) { # sold if the seat is logged in the database
+										if ($data['Seat'] == $seatNumber) { # sold if the seat is logged in the database
 											$seatSold = true;
 										}
 									}
@@ -169,7 +169,7 @@ $db = mysqli_connect('localhost', 'root', '', 'pars');
 									$seatSold = false;
 
 									foreach ($seatCheck as $data) {
-										if ($data['flightSeatNumber'] == $seatNumber) { # sold if the seat is logged in the database
+										if ($data['Seat'] == $seatNumber) { # sold if the seat is logged in the database
 											$seatSold = true;
 										}
 									}
@@ -200,7 +200,7 @@ $db = mysqli_connect('localhost', 'root', '', 'pars');
 									$seatSold = false;
 
 									foreach ($seatCheck as $data) {
-										if ($data['flightSeatNumber'] == $seatNumber) { # sold if the seat is logged in the database
+										if ($data['Seat'] == $seatNumber) { # sold if the seat is logged in the database
 											$seatSold = true;
 										}
 									}
@@ -234,7 +234,7 @@ $db = mysqli_connect('localhost', 'root', '', 'pars');
 									$seatSold = false;
 
 									foreach ($seatCheck as $data) {
-										if ($data['flightSeatNumber'] == $seatNumber) { # sold if the seat is logged in the database
+										if ($data['Seat'] == $seatNumber) { # sold if the seat is logged in the database
 											$seatSold = true;
 										}
 									}
@@ -267,7 +267,7 @@ $db = mysqli_connect('localhost', 'root', '', 'pars');
 									$seatSold = false;
 
 									foreach ($seatCheck as $data) {
-										if ($data['flightSeatNumber'] == $seatNumber) { # sold if the seat is logged in the database
+										if ($data['Seat'] == $seatNumber) { # sold if the seat is logged in the database
 											$seatSold = true;
 										}
 									}
@@ -300,7 +300,7 @@ $db = mysqli_connect('localhost', 'root', '', 'pars');
 									$seatSold = false;
 
 									foreach ($seatCheck as $data) {
-										if ($data['flightSeatNumber'] == $seatNumber) { # sold if the seat is logged in the database
+										if ($data['Seat'] == $seatNumber) { # sold if the seat is logged in the database
 											$seatSold = true;
 										}
 									}
@@ -319,7 +319,7 @@ $db = mysqli_connect('localhost', 'root', '', 'pars');
 									$seatSold = false;
 
 									foreach ($seatCheck as $data) {
-										if ($data['flightSeatNumber'] == $seatNumber) { # sold if the seat is logged in the database
+										if ($data['Seat'] == $seatNumber) { # sold if the seat is logged in the database
 											$seatSold = true;
 										}
 									}
@@ -349,7 +349,7 @@ $db = mysqli_connect('localhost', 'root', '', 'pars');
 									$seatSold = false;
 
 									foreach ($seatCheck as $data) {
-										if ($data['flightSeatNumber'] == $seatNumber) { # sold if the seat is logged in the database
+										if ($data['Seat'] == $seatNumber) { # sold if the seat is logged in the database
 											$seatSold = true;
 										}
 									}

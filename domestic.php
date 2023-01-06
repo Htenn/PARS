@@ -67,9 +67,9 @@ $db = mysqli_connect("localhost", "root", "", "pars");
 							if (isset($_POST['Sbtn'])) { // Search table display
 								$Ssearch = mysqli_real_escape_string($db, $_POST['search']);
 
-								$Ssql = "SELECT * FROM flight WHERE flightNumber LIKE '%$Ssearch%' OR  flightOrigin LIKE '%$Ssearch%' 
-																	OR flightDestination LIKE '%$Ssearch%' OR dateDepartOrigin LIKE '%$Ssearch%' OR timeDepartOrigin LIKE '%$Ssearch%' 
-																	OR dateArriveDestination LIKE '%$Ssearch%' OR timeArriveDestination LIKE '%$Ssearch%' AND flightType = 'D'";
+								$Ssql = "SELECT * FROM flight WHERE flightNumber LIKE '%$Ssearch%' OR  Origin LIKE '%$Ssearch%' 
+																	OR Destination LIKE '%$Ssearch%' OR dateDepartOrigin LIKE '%$Ssearch%' OR timeDepartOrigin LIKE '%$Ssearch%' 
+																	OR dateArriveDestination LIKE '%$Ssearch%' OR timeArriveDestination LIKE '%$Ssearch%' AND Type = 'D'";
 								$result = mysqli_query($db, $Ssql);
 								$queryResult = mysqli_num_rows($result);
 
@@ -77,8 +77,8 @@ $db = mysqli_connect("localhost", "root", "", "pars");
 									while ($row = mysqli_fetch_array($result)) {
 										echo "<tr>
 																			<td>" . $row["flightNumber"] . "</td>
-																			<td>" . $row["flightOrigin"] . "</td>
-																			<td>" . $row["flightDestination"] . "</td>
+																			<td>" . $row["Origin"] . "</td>
+																			<td>" . $row["Destination"] . "</td>
 																			<td>" . $row["dateDepartOrigin"] . "</td>
 																			<td>" . $row["timeDepartOrigin"] . "</td>
 																			<td>" . $row["dateArriveDestination"] . "</td>
@@ -95,7 +95,7 @@ $db = mysqli_connect("localhost", "root", "", "pars");
 
 
 							if (!isset($_POST['Sbtn'])) { // Standard table display
-								$sql = "SELECT * from flight WHERE flightType = 'D'";
+								$sql = "SELECT * from flight WHERE Type = 'D'";
 								$result = mysqli_query($db, $sql);
 								$resultcheck = mysqli_num_rows($result);
 
@@ -103,8 +103,8 @@ $db = mysqli_connect("localhost", "root", "", "pars");
 									while ($row = mysqli_fetch_array($result)) {
 										echo "<tr>
 																		<td>" . $row["flightNumber"] . "</td>
-																		<td>" . $row["flightOrigin"] . "</td>
-																		<td>" . $row["flightDestination"] . "</td>
+																		<td>" . $row["Origin"] . "</td>
+																		<td>" . $row["Destination"] . "</td>
 																		<td>" . $row["dateDepartOrigin"] . "</td>
 																		<td>" . $row["timeDepartOrigin"] . "</td>
 																		<td>" . $row["dateArriveDestination"] . "</td>
@@ -141,8 +141,8 @@ $db = mysqli_connect("localhost", "root", "", "pars");
 
 					foreach ($query_run as $row) {
 						// save to session variables
-						$_SESSION['flightOrigin'] = $row["flightOrigin"];
-						$_SESSION['flightDestination'] = $row["flightDestination"];
+						$_SESSION['flightOrigin'] = $row["Origin"];
+						$_SESSION['flightDestination'] = $row["Destination"];
 						$_SESSION['dateDepartOrigin'] = $row["dateDepartOrigin"];
 						$_SESSION['timeDepartOrigin'] = $row["timeDepartOrigin"];
 						$_SESSION['dateArriveDestination'] = $row["dateArriveDestination"];

@@ -311,82 +311,66 @@ $db = mysqli_connect('localhost', 'root', '', 'pars');
         $seatcount = $_SESSION['seatcount'];
 
         for ($j = 1; $j <= $seatcount; $j++) {
+            if (isset($_SESSION['passengerID' . $j])) {
 
-            if ($j == 1) { // START OF CLIENT
-                if (isset($_SESSION['clientID'])) {
+                $updatePNRQuery = "UPDATE pnr SET 
+                    Age = " . $_SESSION['age' . $j] . ", 
+                    Email = '" . $_SESSION['email' . $j] . "', 
+                    ContactNum = '" . $_SESSION['remarks' . $j] . "' 
+                    WHERE ID = " . $_SESSION['passengerID' .$j] . " AND user = '" . $_SESSION['user'] ."'";
+                mysqli_query($db, $updatePNRQuery);
 
-                    insertBooking($_SESSION['clientID'], $seatcount);
+                $updatePNRFlightQuery = "UPDATE pnr_flight SET 
+                    Type = '" . $_SESSION['type' . $j] . "', 
+                    ssr = '" . $_SESSION['ssr' . $j] . "', 
+                    remarks = '" . $_SESSION['remarks' . $j] . "' 
+                    WHERE flightNumber = '" . $_SESSION['selectedFlightNum'] . "' AND ID = " . $_SESSION['passengerID' .$j] . " AND user ='" . $_SESSION['user'] . "'";
+                mysqli_query($db, $updatePNRFlightQuery);
 
-                } else {                    
-                    $insertClientQuery = "INSERT INTO client (FirstName, MiddleName, LastName, Gender, Nationality, Age, Birthday, Email, ContactNum, Type, addDate, addTime) VALUES ('" .
-                        $_SESSION['firstName' . $j] . "', '" .
-                        $_SESSION['middleName' . $j] . "', '" .
-                        $_SESSION['lastName' . $j] . "', '" .
-                        $_SESSION['gender' . $j] . "', '" .
-                        $_SESSION['nationality' . $j] . "', '" .
-                        $_SESSION['age' . $j] . "', '" .
-                        $_SESSION['birthday' . $j] . "', '" .
-                        $_SESSION['email' . $j] . "', '" .
-                        $_SESSION['contactNum' . $j] . "', '" .
-                        $_SESSION['type' . $j] . "', curdate(), curtime()) ";
+                $insertSeatQuery = "INSERT INTO flight_seat (clientID, flightNumber, SeatClass, Seat) VALUES ('" .
+                    $_SESSION['passengerID'] . "', '" .
+                    $_SESSION['selectedFlightNum'] . "', '" .
+                    $seatClass . "', '" .
+                    $_SESSION['seat'] . "'";
 
-                    mysqli_query($db, $insertClientQuery);
+            } else {                    
+                $insertPNRQuery = "INSERT INTO pnr (FirstName, MiddleName, LastName, Gender, Nationality, Age, Birthday, Email, ContactNum, addDate, addTime, user) VALUES ('" .
+                    $_SESSION['firstName' . $j] . "', '" .
+                    $_SESSION['middleName' . $j] . "', '" .
+                    $_SESSION['lastName' . $j] . "', '" .
+                    $_SESSION['gender' . $j] . "', '" .
+                    $_SESSION['nationality' . $j] . "', '" .
+                    $_SESSION['age' . $j] . "', '" .
+                    $_SESSION['birthday' . $j] . "', '" .
+                    $_SESSION['email' . $j] . "', '" .
+                    $_SESSION['contactNum' . $j] . "', curdate(), curtime()) " . $_SESSION['user'];
+                mysqli_query($db, $insertPNRQuery);
 
-                    $selectClientIDquery = "SELECT clientID FROM client WHERE 
-                        Firstname = '" . $_SESSION['firstName' . $j]
-                        . "' AND MiddleName = '" . $_SESSION['middleName' . $j]
-                        . "' AND LastName = '" . $_SESSION['lastName' . $j]
-                        . "' AND Gender = '" . $_SESSION['gender' . $j]
-                        . "' AND Nationality = '" . $_SESSION['nationality' . $j]
-                        . "' AND Age = '" . $_SESSION['age' . $j]
-                        . "' AND Birthday = '" . $_SESSION['birthday' . $j]
-                        . "' AND Email = '" . $_SESSION['email' . $j]
-                        . "' AND ContactNum = '" . $_SESSION['contactNum' . $j]
-                        . "'";
+                $selectIDquery = "SELECT ID FROM pnr WHERE 
+                    Firstname = '" . $_SESSION['firstName' . $j]
+                    . "' AND MiddleName = '" . $_SESSION['middleName' . $j]
+                    . "' AND LastName = '" . $_SESSION['lastName' . $j]
+                    . "' AND Gender = '" . $_SESSION['gender' . $j]
+                    . "' AND Nationality = '" . $_SESSION['nationality' . $j]
+                    . "' AND Age = '" . $_SESSION['age' . $j]
+                    . "' AND Birthday = '" . $_SESSION['birthday' . $j]
+                    . "' AND Email = '" . $_SESSION['email' . $j]
+                    . "' AND ContactNum = '" . $_SESSION['contactNum' . $j]
+                    . "'";
 
-                    $clientID = mysqli_query($db, $selectClientIDquery);
-                    $clientID = mysqli_fetch_assoc($clientID);
-                    $_SESSION['clientID'] = intval($clientID['clientID']);
+                $ID = mysqli_query($db, $selectIDquery);
+                $ID = mysqli_fetch_assoc($ID);
+                $_SESSION['passengerID' . $j] = intval($ID['ID']);
 
-                    insertBooking($_SESSION['clientID'], $seatcount);
-                }
-            } else { // PASSENGER
+                $insertPNRFlightQuery = "INSERT INTO pnr_flight (ID, flightNumber, Type, ssr, remarks, user) VALUES ('" .
+                    $_SESSION['passengerID' . $j] . "', '" .
+                    $_SESSION['selectedFlightNum'] . "', '" .
+                    $_SESSION['type' . $j] . "', '" .
+                    $_SESSION['ssr' . $j] . "', '" .
+                    $_SESSION['remarks' . $j] . "', '" .
+                    $_SESSION['user'] . "'";
+                mysqli_query($db, $insertPNRFlightQuery);
 
-                if (isset($_SESSION['passengerID' . $j])) {
-                    $passengerID = $_SESSION['passengerID' . $j];
-
-                } else {
-                    $insertPassengerQuery = "INSERT INTO passenger (clientID, FirstName, MiddleName, LastName, Gender, Nationality, Age, Birthday, Email, ContactNum, Type, addDate, addTime) VALUES ('" .
-                        $_SESSION['clientID'] . "', '" .
-                        $_SESSION['firstName' . $j] . "', '" .
-                        $_SESSION['middleName' . $j] . "', '" .
-                        $_SESSION['lastName' . $j] . "', '" .
-                        $_SESSION['gender' . $j] . "', '" .
-                        $_SESSION['nationality' . $j] . "', '" .
-                        $_SESSION['age' . $j] . "', '" .
-                        $_SESSION['birthday' . $j] . "', '" .
-                        $_SESSION['email' . $j] . "', '" .
-                        $_SESSION['contactNum' . $j] . "', '" .
-                        $_SESSION['type' . $j] . "', curdate(), curtime()) ";
-
-                    mysqli_query($db, $insertPassengerQuery);
-
-                    $selectPassengerIDquery = "SELECT passengerID FROM passenger WHERE 
-                            Firstname = '" . $_SESSION['firstName' . $j]
-                        . "' AND MiddleName = '" . $_SESSION['middleName' . $j]
-                        . "' AND LastName = '" . $_SESSION['lastName' . $j]
-                        . "' AND Gender = '" . $_SESSION['gender' . $j]
-                        . "' AND Nationality = '" . $_SESSION['nationality' . $j]
-                        . "' AND Age = '" . $_SESSION['age' . $j]
-                        . "' AND Birthday = '" . $_SESSION['birthday' . $j]
-                        . "' AND Email = '" . $_SESSION['email' . $j]
-                        . "' AND ContactNum = '" . $_SESSION['contactNum' . $j]
-                        . "'";
-
-                    $passengerID = mysqli_query($db, $selectPassengerIDquery);
-                    $passengerID = mysqli_fetch_assoc($passengerID);
-                    $passengerID = intval($passengerID['passengerID']);
-                }
             }
         }
         echo "<script> alert('Seats are now reserved!'); window.location= 'report.php#reserved'</script>";

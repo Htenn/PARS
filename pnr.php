@@ -1,5 +1,10 @@
 <?php
 include 'sessionstart.php';
+
+if (isset($_POST['str'])) {
+    $_SESSION['seats'] = json_decode($_POST['str'], true);
+    $_SESSION['minSeatCount'] = count($_SESSION['seats']);
+}
 ?>
 
 <!DOCTYPE HTML>
@@ -42,11 +47,6 @@ include 'sessionstart.php';
                 
                     <?php
                     echo "<h2><strong>Seats selected:</strong> "; foreach($_SESSION['seats'] as $seat) { echo $seat . " ";} echo "</h2><br>";
-
-                    if (isset($_POST['str'])) {
-                        $_SESSION['seats'] = json_decode($_POST['str'], true);
-                        $_SESSION['minSeatCount'] = count($_SESSION['seats']);
-                    }
 
                     if (isset($_SESSION['seats'])) {
                         if (isset(($_GET['passenger']))) {
@@ -154,7 +154,7 @@ include 'sessionstart.php';
                                 </div>
                                 <br />
                                 <div class="row gtr-uniform">
-                                    <div class="col-4 col-12-xsmall">
+                                    <div class="col-3 col-12-xsmall">
                                         <label for="passengerType<?php echo $count; ?>">
                                             <h2>Passenger Type *</h2>
                                         </label>
@@ -166,6 +166,19 @@ include 'sessionstart.php';
                                             <option value="UAM">UAM</option> <!--Unaccompanied Minor-->
                                             <option value="INF">INF</option> <!--Infant without a seat-->
                                             <option value="INS">INS</option> <!--Infant with a seat-->
+                                        </select>
+                                    </div>
+                                    <div class="col-3 col-12-xsmall">
+                                        <label for="passengerType<?php echo $count; ?>">
+                                            <h2>Seat *</h2>
+                                        </label>
+                                        <select name="seat<?php echo $count; ?>" id="seat">
+                                            <option value ="" selected hidden>Select seat</option>
+                                            <?php
+                                                foreach ($_SESSION['seats'] as $seat) {
+                                                    echo "<option value='$seat'>" . $seat . "</option>";
+                                                }
+                                            ?>
                                         </select>
                                     </div>
                                 </div>
@@ -280,10 +293,20 @@ include 'sessionstart.php';
     <script src="assets/js/breakpoints.min.js"></script>
     <script src="assets/js/util.js"></script>
     <script src="assets/js/main.js"></script>
-    <script>
-        if (window.history.replaceState) {
-            window.history.replaceState(null, null, window.location.href);
-        }
+
+    <script type="text/javascript">
+        $('select[id*="seat"]').change(function(){
+            $('select[id*="seat"] option').attr('disabled',false);
+
+            $('select[id*="seat"]').each(function(){
+                var $this = $(this);
+                $('select[id*="seat"]').not($this).find('option').each(function(){
+                if($(this).attr('value') == $this.val())
+                    $(this).attr('disabled',true);
+                });
+            });
+
+        });
     </script>
 </body>
 

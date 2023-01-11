@@ -1,5 +1,6 @@
 <?php
-	include 'config_login.php';
+	session_start();
+	require 'config_login.php';
 ?>
 <!DOCTYPE HTML>
 <!--

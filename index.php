@@ -1,6 +1,5 @@
 <?php
     require 'sessionstart.php';
-    $_SESSION = array();
 
     if(isset($_SESSION['session'])) {
         if ($_SESSION['session'] == 'A') {
@@ -11,6 +10,8 @@
         }
     }
     else {
+        session_unset();
+        session_destroy();
         header('location: login.php');
     }
 ?>

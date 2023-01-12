@@ -50,7 +50,8 @@ if (isset($_POST['str'])) {
 
                     if (isset($_SESSION['seats'])) {
                         if (isset(($_GET['passenger']))) {
-                            $seatcount = $_GET['passenger'];
+                            $_SESSION['seatcount'] = $_GET['passenger'];
+                            $seatcount = $_SESSION['seatcount'];
                         }
                         else {
                             $seatcount = count($_SESSION['seats']);
@@ -92,13 +93,13 @@ if (isset($_POST['str'])) {
                                         <label for="middleName<?php echo $count; ?>">
                                             <h2>Middle Name</h2>
                                         </label>
-                                        <input type="text" name="middleName<?php echo $count; ?>" id="middleName" value="" placeholder="Middle Name" />
+                                        <input type="text" name="middleName<?php echo $count; ?>" id="middleName" value="<?php if(isset($_SESSION['middleName' . $count])) {echo $_SESSION['middleName' . $count];} ?>" placeholder="Middle Name" />
                                     </div>
                                     <div class="col-4 col-12-xsmall">
                                         <label for="lastName<?php echo $count; ?>">
                                             <h2>Last Name *</h2>
                                         </label>
-                                        <input type="text" name="lastName<?php echo $count; ?>" id="lastName" value="" placeholder="Last Name" required />
+                                        <input type="text" name="lastName<?php echo $count; ?>" id="lastName" value="<?php if(isset($_SESSION['lastName' . $count])) {echo $_SESSION['lastName' . $count];} ?>" placeholder="Last Name" required />
                                     </div>
                                 </div>
                                 <br />
@@ -108,8 +109,28 @@ if (isset($_POST['str'])) {
                                             <h2>Gender *</h2>
                                         </label>
                                         <select name="gender<?php echo $count; ?>" id="gender">
-                                            <option value="M" selected>Male</option>
-                                            <option value="F">Female</option>
+                                            <option value="M" 
+                                            <?php 
+                                                if(isset($_SESSION['gender' . $count])) {
+                                                    if ($_SESSION['gender' . $count] == 'M') {
+                                                        echo 'selected';
+                                                    }
+                                                }
+                                                else {
+                                                    echo 'selected';
+                                                }
+                                            ?>
+                                            >Male</option>
+                                            
+                                            <option value="F" 
+                                            <?php 
+                                                if(isset($_SESSION['gender' . $count])) {
+                                                    if ($_SESSION['gender' . $count] == 'F') {
+                                                        echo 'selected';
+                                                    }
+                                                }
+                                            ?>
+                                            >Female</option>
                                         </select>
                                     </div>
 
@@ -117,7 +138,7 @@ if (isset($_POST['str'])) {
                                         <label for="nationality<?php echo $count; ?>">
                                             <h2>Nationality *</h2>
                                         </label>
-                                        <input type="text" name="nationality<?php echo $count; ?>" id="nationality" value="" placeholder="Nationality" required />
+                                        <input type="text" name="nationality<?php echo $count; ?>" id="nationality" value="<?php if(isset($_SESSION['nationality' . $count])) {echo $_SESSION['nationality' . $count];} ?>" placeholder="Nationality" required />
                                     </div>
                                 </div>
                                 <br />
@@ -126,14 +147,14 @@ if (isset($_POST['str'])) {
                                         <label for="age<?php echo $count; ?>">
                                             <h2>Age *</h2>
                                         </label>
-                                        <input type="text" name="age<?php echo $count; ?>" id="age" value="" placeholder="Age" required/>
+                                        <input type="text" name="age<?php echo $count; ?>" id="age" value="<?php if(isset($_SESSION['age' . $count])) {echo $_SESSION['age' . $count];} ?>" placeholder="Age" required/>
                                     </div>
 
                                     <div class="col-4 col-12-xsmall">
                                         <label for="birthdate<?php echo $count; ?>">
                                             <h2>Birthdate *</h2>
                                         </label>
-                                        <input type="date" name="birthdate<?php echo $count; ?>" id="birthdate" value="" placeholder="MM/DD/YYYY" required />
+                                        <input type="date" name="birthdate<?php echo $count; ?>" id="birthdate" value="<?php if(isset($_SESSION['birthday' . $count])) {echo $_SESSION['birthday' . $count];} ?>" placeholder="MM/DD/YYYY" required />
                                     </div>
                                 </div>
                                 <br />
@@ -142,14 +163,14 @@ if (isset($_POST['str'])) {
                                         <label for="email<?php echo $count; ?>">
                                             <h2>Email *</h2>
                                         </label>
-                                        <input type="email" name="email<?php echo $count; ?>" id="email" value="" placeholder="Email" />
+                                        <input type="email" name="email<?php echo $count; ?>" id="email" value="<?php if(isset($_SESSION['email' . $count])) {echo $_SESSION['email' . $count];} ?>" placeholder="Email" />
                                     </div>
 
                                     <div class="col-6 col-12-xsmall">
                                         <label for="contactNum<?php echo $count; ?>">
                                             <h2>Contact Number *</h2>
                                         </label>
-                                        <input type="text" name="contactNum<?php echo $count; ?>" id="contactNum" value="" placeholder="************" />
+                                        <input type="text" name="contactNum<?php echo $count; ?>" id="contactNum" value="<?php if(isset($_SESSION['contactNum' . $count])) {echo $_SESSION['contactNum' . $count];} ?>" placeholder="************" />
                                     </div>
                                 </div>
                                 <br />
@@ -159,13 +180,78 @@ if (isset($_POST['str'])) {
                                             <h2>Passenger Type *</h2>
                                         </label>
                                         <select name="passengerType<?php echo $count; ?>" id="passengerType">
-                                            <option value="ADT" selected>ADT</option> <!--Adult-->
-                                            <option value="CHD">CHD</option> <!--Child-->
-                                            <option value="SRC">SRC</option> <!--Senior Citizen-->
-                                            <option value="UNN">UNN</option> <!--Unaccompanied Child-->
-                                            <option value="UAM">UAM</option> <!--Unaccompanied Minor-->
-                                            <option value="INF">INF</option> <!--Infant without a seat-->
-                                            <option value="INS">INS</option> <!--Infant with a seat-->
+                                            <option value="ADT" 
+                                            <?php 
+                                                if(isset($_SESSION['type' . $count])) {
+                                                    if ($_SESSION['type' . $count] == 'ADT') {
+                                                        echo 'selected';
+                                                    }
+                                                }
+                                                else {
+                                                    echo 'selected';
+                                                }
+                                            ?>
+                                            >ADT</option> <!--Adult-->
+
+                                            <option value="CHD" 
+                                            <?php 
+                                                if(isset($_SESSION['type' . $count])) {
+                                                    if ($_SESSION['type' . $count] == 'CHD') {
+                                                        echo 'selected';
+                                                    }
+                                                }
+                                            ?>
+                                            >CHD</option> <!--Child-->
+
+                                            <option value="SRC" 
+                                            <?php 
+                                                if(isset($_SESSION['type' . $count])) {
+                                                    if ($_SESSION['type' . $count] == 'SRC') {
+                                                        echo 'selected';
+                                                    }
+                                                }
+                                            ?>
+                                            >SRC</option> <!--Senior Citizen-->
+
+                                            <option value="UNN" 
+                                            <?php 
+                                                if(isset($_SESSION['type' . $count])) {
+                                                    if ($_SESSION['type' . $count] == 'UNN') {
+                                                        echo 'selected';
+                                                    }
+                                                }
+                                            ?>
+                                            >UNN</option> <!--Unaccompanied Child-->
+
+                                            <option value="UAM" 
+                                            <?php 
+                                                if(isset($_SESSION['type' . $count])) {
+                                                    if ($_SESSION['type' . $count] == 'UAM') {
+                                                        echo 'selected';
+                                                    }
+                                                }
+                                            ?>
+                                            >UAM</option> <!--Unaccompanied Minor-->
+
+                                            <option value="INF" 
+                                            <?php 
+                                                if(isset($_SESSION['type' . $count])) {
+                                                    if ($_SESSION['type' . $count] == 'INF') {
+                                                        echo 'selected';
+                                                    }
+                                                }
+                                            ?>
+                                            >INF</option> <!--Infant without a seat-->
+
+                                            <option value="INS" 
+                                            <?php 
+                                                if(isset($_SESSION['type' . $count])) {
+                                                    if ($_SESSION['type' . $count] == 'INS') {
+                                                        echo 'selected';
+                                                    }
+                                                }
+                                            ?>
+                                            >INS</option> <!--Infant with a seat-->
                                         </select>
                                     </div>
                                     <div class="col-3 col-12-xsmall">
@@ -173,10 +259,23 @@ if (isset($_POST['str'])) {
                                             <h2>Seat *</h2>
                                         </label>
                                         <select name="seat<?php echo $count; ?>" id="seat">
-                                            <option value ="" selected hidden>Select seat</option>
+                                            <option value ="" 
+                                            <?php 
+                                                if(!isset($_SESSION['seat' . $count])) {
+                                                    echo 'selected';
+                                                }
+                                            ?>
+                                             hidden>Select seat</option>
+
                                             <?php
                                                 foreach ($_SESSION['seats'] as $seat) {
-                                                    echo "<option value='$seat'>" . $seat . "</option>";
+                                                    echo "<option value='$seat' ";
+                                                    if(isset($_SESSION['seat' . $count])) {
+                                                        if ($_SESSION['seat' . $count] == "$seat") {
+                                                            echo 'selected';
+                                                        }
+                                                    }
+                                                    echo ">" . $seat . "</option>";
                                                 }
                                             ?>
                                         </select>
@@ -187,63 +286,424 @@ if (isset($_POST['str'])) {
                                 <div class="row gtr-uniform">
                                     <div class="col-3 col-12-xsmall">
                                         <select name="ssrA<?php echo $count; ?>">
-                                            <option value="" disabled selected hidden>Disability</option>
+                                            <option value="" disabled hidden 
+                                            <?php 
+                                                if(!isset($_SESSION['ssrA' . $count])) {
+                                                    echo 'selected';
+                                                }
+                                            ?>
+                                            >Disability</option>
+
                                             <option value="">None</option>
-                                            <option value="BLND">BLND</option> <!--Blind-->
-                                            <option value="DEAF">DEAF</option> <!--Deaf-->
-                                            <option value="BLND DEAF">BLND DEAF</option> <!--Blind and deaf-->
-                                            <option value="DPNA">DPNA</option> <!--Disabled passenger with intellectual or developmental disability needing assistance-->
+                                            <option value="BLND" 
+                                            <?php 
+                                                if(isset($_SESSION['ssrA' . $count])) {
+                                                    if ($_SESSION['ssrA' . $count] == 'BLND') {
+                                                        echo 'selected';
+                                                    }
+                                                }
+                                            ?>
+                                            >BLND</option> <!--Blind-->
+
+                                            <option value="DEAF" 
+                                            <?php 
+                                                if(isset($_SESSION['ssrA' . $count])) {
+                                                    if ($_SESSION['ssrA' . $count] == 'DEAF') {
+                                                        echo 'selected';
+                                                    }
+                                                }
+                                            ?>
+                                            >DEAF</option> <!--Deaf-->
+
+                                            <option value="BLND DEAF" 
+                                            <?php 
+                                                if(isset($_SESSION['ssrA' . $count])) {
+                                                    if ($_SESSION['ssrA' . $count] == 'BLND DEAF') {
+                                                        echo 'selected';
+                                                    }
+                                                }
+                                            ?>
+                                            >BLND DEAF</option> <!--Blind and deaf-->
+
+                                            <option value="DPNA" 
+                                            <?php 
+                                                if(isset($_SESSION['ssrA' . $count])) {
+                                                    if ($_SESSION['ssrA' . $count] == 'DPNA') {
+                                                        echo 'selected';
+                                                    }
+                                                }
+                                            ?>
+                                            >DPNA</option> <!--Disabled passenger with intellectual or developmental disability needing assistance-->
                                         </select>
                                     </div>
                                     <div class="col-3 col-12-xsmall">
                                         <select name="ssrB<?php echo $count; ?>">
-                                            <option value="" disabled selected hidden>Wheelchair</option>
+                                            <option value="" disabled hidden 
+                                            <?php 
+                                                if(!isset($_SESSION['ssrB' . $count])) {
+                                                    echo 'selected';
+                                                }
+                                            ?>
+                                            >Wheelchair</option>
+
                                             <option value="">None</option>
-                                            <option value="WCHC">WCHC</option> <!--Wheelchair is needed - traveler is completely immobile-->
-                                            <option value="WCHR">WCHR</option> <!--Wheelchair is needed - traveler can ascend/descend stairs-->
-                                            <option value="WCHS">WCHS</option> <!--Wheelchair is needed - traveler can walk short distances, but not up or down stairs-->
-                                            <option value="WCMP">WCMP</option> <!--Passenger is traveling with a manual wheelchair-->
-                                            <option value="WCBD">WCBD</option> <!--Passenger is traveling with a dry cell battery-powered wheelchair-->
-                                            <option value="WCBW">WCBW</option> <!--Passenger is traveling with a wet cell battery-powered wheelchair-->
-                                            <option value="WCOB">WCOB</option> <!--On-board aisle wheelchair requested-->
+
+                                            <option value="WCHC" 
+                                            <?php 
+                                                if(isset($_SESSION['ssrB' . $count])) {
+                                                    if ($_SESSION['ssrB' . $count] == 'WCHC') {
+                                                        echo 'selected';
+                                                    }
+                                                }
+                                            ?>
+                                            >WCHC</option> <!--Wheelchair is needed - traveler is completely immobile-->
+
+                                            <option value="WCHR" 
+                                            <?php 
+                                                if(isset($_SESSION['ssrB' . $count])) {
+                                                    if ($_SESSION['ssrB' . $count] == 'WCHR') {
+                                                        echo 'selected';
+                                                    }
+                                                }
+                                            ?>
+                                            >WCHR</option> <!--Wheelchair is needed - traveler can ascend/descend stairs-->
+
+                                            <option value="WCHS" 
+                                            <?php 
+                                                if(isset($_SESSION['ssrB' . $count])) {
+                                                    if ($_SESSION['ssrB' . $count] == 'WCHS') {
+                                                        echo 'selected';
+                                                    }
+                                                }
+                                            ?>
+                                            >WCHS</option> <!--Wheelchair is needed - traveler can walk short distances, but not up or down stairs-->
+
+                                            <option value="WCMP" 
+                                            <?php 
+                                                if(isset($_SESSION['ssrB' . $count])) {
+                                                    if ($_SESSION['ssrB' . $count] == 'WCMP') {
+                                                        echo 'selected';
+                                                    }
+                                                }
+                                            ?>
+                                            >WCMP</option> <!--Passenger is traveling with a manual wheelchair-->
+
+                                            <option value="WCBD" 
+                                            <?php 
+                                                if(isset($_SESSION['ssrB' . $count])) {
+                                                    if ($_SESSION['ssrB' . $count] == 'WCBD') {
+                                                        echo 'selected';
+                                                    }
+                                                }
+                                            ?>
+                                            >WCBD</option> <!--Passenger is traveling with a dry cell battery-powered wheelchair-->
+
+                                            <option value="WCBW" 
+                                            <?php 
+                                                if(isset($_SESSION['ssrB' . $count])) {
+                                                    if ($_SESSION['ssrB' . $count] == 'WCBW') {
+                                                        echo 'selected';
+                                                    }
+                                                }
+                                            ?>
+                                            >WCBW</option> <!--Passenger is traveling with a wet cell battery-powered wheelchair-->
+
+                                            <option value="WCOB" 
+                                            <?php 
+                                                if(isset($_SESSION['ssrB' . $count])) {
+                                                    if ($_SESSION['ssrB' . $count] == 'WCOB') {
+                                                        echo 'selected';
+                                                    }
+                                                }
+                                            ?>
+                                            >WCOB</option> <!--On-board aisle wheelchair requested-->
                                         </select>
                                     </div>
                                     <div class="col-3 col-12-xsmall">
                                         <select name="ssrC<?php echo $count; ?>">
-                                            <option value="" disabled selected hidden>Meal</option>
+                                            <option value="" disabled hidden 
+                                            <?php 
+                                                if(!isset($_SESSION['ssrC' . $count])) {
+                                                    echo 'selected';
+                                                }
+                                            ?>
+                                            >Meal</option>
+
                                             <option value="">None</option>
-                                            <option value="AVML">AVML</option> <!--Vegetarian Hindu-->
-                                            <option value="BBML">BBML</option> <!--Baby-->
-                                            <option value="BLML">BLML</option> <!--Bland-->
-                                            <option value="CHML">CHML</option> <!--Child-->
-                                            <option value="CNML">CNML</option> <!--Chicken-->
-                                            <option value="DBML">DBML</option> <!--Diabetic-->
-                                            <option value="FPML">FPML</option> <!--Fruit platter-->
-                                            <option value="FSML">FSML</option> <!--Fish-->
-                                            <option value="GFML">GFML</option> <!--Gluten Intolerant-->
-                                            <option value="HNML">HNML</option> <!--Hindu (non-vegetarian)-->
-                                            <option value="IVML">IVML</option> <!--Indian vegetarian-->
-                                            <option value="JPML">JPML</option> <!--Japanese-->
-                                            <option value="KSML">KSML</option> <!--Kosher-->
-                                            <option value="LCML">LCML</option> <!--Low calorie-->
-                                            <option value="LFML">LFML</option> <!--Low fat-->
-                                            <option value="LSML">LSML</option> <!--Low salt-->
-                                            <option value="MOML">MOML</option> <!--Muslim-->
-                                            <option value="NFML">NFML</option> <!--No fish-->
-                                            <option value="NLML">NLML</option> <!--Low lactose-->
-                                            <option value="OBML">OBML</option> <!--Japanese Obento-->
-                                            <option value="RVML">RVML</option> <!--Vegetarian raw-->
-                                            <option value="SFML">SFML</option> <!--Seafood-->
-                                            <option value="SPML">SPML</option> <!--Special Meal-->
-                                            <option value="VGML">VGML</option> <!--Vegetarian vegan-->
-                                            <option value="VJML">VJML</option> <!--Vegetarian Jain-->
-                                            <option value="VLML">VLML</option> <!--Vegetarian Oriental-->
-                                            <option value="VOML">VOML</option> <!--Vegetarian lacto-ovo-->
+
+                                            <option value="AVML" 
+                                            <?php 
+                                                if(isset($_SESSION['ssrC' . $count])) {
+                                                    if ($_SESSION['ssrC' . $count] == 'AVML') {
+                                                        echo 'selected';
+                                                    }
+                                                }
+                                            ?>
+                                            >AVML</option> <!--Vegetarian Hindu-->
+
+                                            <option value="BBML" 
+                                            <?php 
+                                                if(isset($_SESSION['ssrC' . $count])) {
+                                                    if ($_SESSION['ssrC' . $count] == 'BBML') {
+                                                        echo 'selected';
+                                                    }
+                                                }
+                                            ?>
+                                            >BBML</option> <!--Baby-->
+
+                                            <option value="BLML" 
+                                            <?php 
+                                                if(isset($_SESSION['ssrC' . $count])) {
+                                                    if ($_SESSION['ssrC' . $count] == 'BLML') {
+                                                        echo 'selected';
+                                                    }
+                                                }
+                                            ?>
+                                            >BLML</option> <!--Bland-->
+
+                                            <option value="CHML" 
+                                            <?php 
+                                                if(isset($_SESSION['ssrC' . $count])) {
+                                                    if ($_SESSION['ssrC' . $count] == 'CHML') {
+                                                        echo 'selected';
+                                                    }
+                                                }
+                                            ?>
+                                            >CHML</option> <!--Child-->
+
+                                            <option value="CNML" 
+                                            <?php 
+                                                if(isset($_SESSION['ssrC' . $count])) {
+                                                    if ($_SESSION['ssrC' . $count] == 'CHML') {
+                                                        echo 'selected';
+                                                    }
+                                                }
+                                            ?>
+                                            >CNML</option> <!--Chicken-->
+
+                                            <option value="DBML" 
+                                            <?php 
+                                                if(isset($_SESSION['ssrC' . $count])) {
+                                                    if ($_SESSION['ssrC' . $count] == 'DBML') {
+                                                        echo 'selected';
+                                                    }
+                                                }
+                                            ?>
+                                            >DBML</option> <!--Diabetic-->
+
+                                            <option value="FPML" 
+                                            <?php 
+                                                if(isset($_SESSION['ssrC' . $count])) {
+                                                    if ($_SESSION['ssrC' . $count] == 'FPML') {
+                                                        echo 'selected';
+                                                    }
+                                                }
+                                            ?>
+                                            >FPML</option> <!--Fruit platter-->
+
+                                            <option value="FSML" 
+                                            <?php 
+                                                if(isset($_SESSION['ssrC' . $count])) {
+                                                    if ($_SESSION['ssrC' . $count] == 'FSML') {
+                                                        echo 'selected';
+                                                    }
+                                                }
+                                            ?>
+                                            >FSML</option> <!--Fish-->
+
+                                            <option value="GFML" 
+                                            <?php 
+                                                if(isset($_SESSION['ssrC' . $count])) {
+                                                    if ($_SESSION['ssrC' . $count] == 'GFML') {
+                                                        echo 'selected';
+                                                    }
+                                                }
+                                            ?>
+                                            >GFML</option> <!--Gluten Intolerant-->
+
+                                            <option value="HNML" 
+                                            <?php 
+                                                if(isset($_SESSION['ssrC' . $count])) {
+                                                    if ($_SESSION['ssrC' . $count] == 'HNML') {
+                                                        echo 'selected';
+                                                    }
+                                                }
+                                            ?>
+                                            >HNML</option> <!--Hindu (non-vegetarian)-->
+                                            <option value="IVML" 
+                                            <?php 
+                                                if(isset($_SESSION['ssrC' . $count])) {
+                                                    if ($_SESSION['ssrC' . $count] == 'IVML') {
+                                                        echo 'selected';
+                                                    }
+                                                }
+                                            ?>
+                                            >IVML</option> <!--Indian vegetarian-->
+                                            
+                                            <option value="JPML" 
+                                            <?php 
+                                                if(isset($_SESSION['ssrC' . $count])) {
+                                                    if ($_SESSION['ssrC' . $count] == 'JPML') {
+                                                        echo 'selected';
+                                                    }
+                                                }
+                                            ?>
+                                            >JPML</option> <!--Japanese-->
+
+                                            <option value="KSML" 
+                                            <?php 
+                                                if(isset($_SESSION['ssrC' . $count])) {
+                                                    if ($_SESSION['ssrC' . $count] == 'KSML') {
+                                                        echo 'selected';
+                                                    }
+                                                }
+                                            ?>
+                                            >KSML</option> <!--Kosher-->
+
+                                            <option value="LCML" 
+                                            <?php 
+                                                if(isset($_SESSION['ssrC' . $count])) {
+                                                    if ($_SESSION['ssrC' . $count] == 'LCML') {
+                                                        echo 'selected';
+                                                    }
+                                                }
+                                            ?>
+                                            >LCML</option> <!--Low calorie-->
+
+                                            <option value="LFML" 
+                                            <?php 
+                                                if(isset($_SESSION['ssrC' . $count])) {
+                                                    if ($_SESSION['ssrC' . $count] == 'LFML') {
+                                                        echo 'selected';
+                                                    }
+                                                }
+                                            ?>
+                                            >LFML</option> <!--Low fat-->
+
+                                            <option value="LSML" 
+                                            <?php 
+                                                if(isset($_SESSION['ssrC' . $count])) {
+                                                    if ($_SESSION['ssrC' . $count] == 'LSML') {
+                                                        echo 'selected';
+                                                    }
+                                                }
+                                            ?>
+                                            >LSML</option> <!--Low salt-->
+
+                                            <option value="MOML" 
+                                            <?php 
+                                                if(isset($_SESSION['ssrC' . $count])) {
+                                                    if ($_SESSION['ssrC' . $count] == 'MOML') {
+                                                        echo 'selected';
+                                                    }
+                                                }
+                                            ?>
+                                            >MOML</option> <!--Muslim-->
+
+                                            <option value="NFML" 
+                                            <?php 
+                                                if(isset($_SESSION['ssrC' . $count])) {
+                                                    if ($_SESSION['ssrC' . $count] == 'NFML') {
+                                                        echo 'selected';
+                                                    }
+                                                }
+                                            ?>
+                                            >NFML</option> <!--No fish-->
+
+                                            <option value="NLML" 
+                                            <?php 
+                                                if(isset($_SESSION['ssrC' . $count])) {
+                                                    if ($_SESSION['ssrC' . $count] == 'NLML') {
+                                                        echo 'selected';
+                                                    }
+                                                }
+                                            ?>
+                                            >NLML</option> <!--Low lactose-->
+
+                                            <option value="OBML" 
+                                            <?php 
+                                                if(isset($_SESSION['ssrC' . $count])) {
+                                                    if ($_SESSION['ssrC' . $count] == 'OBML') {
+                                                        echo 'selected';
+                                                    }
+                                                }
+                                            ?>
+                                            >OBML</option> <!--Japanese Obento-->
+
+                                            <option value="RVML" 
+                                            <?php 
+                                                if(isset($_SESSION['ssrC' . $count])) {
+                                                    if ($_SESSION['ssrC' . $count] == 'RVML') {
+                                                        echo 'selected';
+                                                    }
+                                                }
+                                            ?>
+                                            >RVML</option> <!--Vegetarian raw-->
+
+                                            <option value="SFML" 
+                                            <?php 
+                                                if(isset($_SESSION['ssrC' . $count])) {
+                                                    if ($_SESSION['ssrC' . $count] == 'SFML') {
+                                                        echo 'selected';
+                                                    }
+                                                }
+                                            ?>
+                                            >SFML</option> <!--Seafood-->
+
+                                            <option value="SPML" 
+                                            <?php 
+                                                if(isset($_SESSION['ssrC' . $count])) {
+                                                    if ($_SESSION['ssrC' . $count] == 'SPML') {
+                                                        echo 'selected';
+                                                    }
+                                                }
+                                            ?>
+                                            >SPML</option> <!--Special Meal-->
+
+                                            <option value="VGML" 
+                                            <?php 
+                                                if(isset($_SESSION['ssrC' . $count])) {
+                                                    if ($_SESSION['ssrC' . $count] == 'VGML') {
+                                                        echo 'selected';
+                                                    }
+                                                }
+                                            ?>
+                                            >VGML</option> <!--Vegetarian vegan-->
+
+                                            <option value="VJML" 
+                                            <?php 
+                                                if(isset($_SESSION['ssrC' . $count])) {
+                                                    if ($_SESSION['ssrC' . $count] == 'VJML') {
+                                                        echo 'selected';
+                                                    }
+                                                }
+                                            ?>
+                                            >VJML</option> <!--Vegetarian Jain-->
+
+                                            <option value="VLML" 
+                                            <?php 
+                                                if(isset($_SESSION['ssrC' . $count])) {
+                                                    if ($_SESSION['ssrC' . $count] == 'VLML') {
+                                                        echo 'selected';
+                                                    }
+                                                }
+                                            ?>
+                                            >VLML</option> <!--Vegetarian Oriental-->
+
+                                            <option value="VOML" 
+                                            <?php 
+                                                if(isset($_SESSION['ssrC' . $count])) {
+                                                    if ($_SESSION['ssrC' . $count] == 'VOML') {
+                                                        echo 'selected';
+                                                    }
+                                                }
+                                            ?>
+                                            >VOML</option> <!--Vegetarian lacto-ovo-->
                                         </select>
                                     </div>
                                     <div class="col-3 col-12-xsmall tooltip">
                                         <span class='tooltiptext'>Separate codes with a space</span>
-                                        <input type="text" name="ssrD<?php echo $count; ?>" value="" placeholder="Others" />
+                                        <input type="text" name="ssrD<?php echo $count; ?>" value="<?php if(isset($_SESSION['ssrD' . $count])) {echo $_SESSION['ssrD' . $count];} ?>" placeholder="Others" />
                                     </div>
                                 </div>
                                 <br />
@@ -251,14 +711,13 @@ if (isset($_POST['str'])) {
                                     <label for="remarks<?php echo $count; ?>">
                                         <h2>Remarks</h2>
                                     </label>
-                                    <input type="text" name="remarks<?php echo $count; ?>" id="remarks" value="" placeholder="Remarks" />
+                                    <input type="text" name="remarks<?php echo $count; ?>" id="remarks" value="<?php if(isset($_SESSION['remarks' . $count])) {echo $_SESSION['remarks' . $count];} ?>" placeholder="Remarks" />
                                 </div>
                             </section>
 
                     <?php
                         }
-
-                        $_SESSION['seatcount'] = $seatcount;
+                        
                     }
 
                     ?>

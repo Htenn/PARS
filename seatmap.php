@@ -1,6 +1,8 @@
 <?php
 include 'sessionstart.php';
 $db = mysqli_connect('localhost', 'root', '', 'pars');
+
+$_SESSION['maxSeatCount'] = 0;
 ?>
 <!DOCTYPE HTML>
 <!--

@@ -2,11 +2,13 @@
     session_start();
     $db = mysqli_connect('localhost', 'root' , '', 'pars');
 
-    $pcounter = 1;
-
     if (isset($_POST['pnrSubmit'])) {
 
         $seatcount = $_SESSION['seatcount'];
+
+        if ($seatcount > $_SESSION['maxSeatCount']) {
+            $_SESSION['maxSeatCount'] = $seatcount;
+        }
 
         for ($counter = 1; $counter <= $seatcount; $counter++) {
             $firstname = mysqli_real_escape_string($db, $_POST['firstName' . $counter]);
@@ -55,6 +57,10 @@
             $_SESSION['nationality' . $counter] = $nationality;
             $_SESSION['type' . $counter] = $passengertype;
             $_SESSION['seat' . $counter] = $seat;
+            $_SESSION['ssrA' . $counter] = $ssrA;
+            $_SESSION['ssrB' . $counter] = $ssrB;
+            $_SESSION['ssrC' . $counter] = $ssrC;
+            $_SESSION['ssrD' . $counter] = $ssrD;
             $_SESSION['ssr' . $counter] = $ssr;
             $_SESSION['remarks' . $counter] = $remarks;
             

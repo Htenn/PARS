@@ -1,5 +1,6 @@
 <?php
 include 'sessionstart.php';
+include 'unset.php';
 date_default_timezone_set("Asia/Manila");
 
 $db = mysqli_connect('localhost', 'root', '', 'pars');
@@ -34,11 +35,7 @@ $db = mysqli_connect('localhost', 'root', '', 'pars');
         <!-- Header -->
         <header id="header">
             <h1>Confirmation</h1>
-            <h2>
-                <?php
-                echo $_SESSION['selectedFlightNum'];
-                ?>
-            </h2>
+            <p></p>
         </header>
 
         <!-- Main -->
@@ -48,7 +45,6 @@ $db = mysqli_connect('localhost', 'root', '', 'pars');
             <section id="content" class="main">
                 <?php
                 $seatcount = $_SESSION['seatcount'];
-                $pcounter = $_SESSION['pcounter'];
 
                 echo "
                         <div class='col-6 col-12-xsmall'>
@@ -56,7 +52,7 @@ $db = mysqli_connect('localhost', 'root', '', 'pars');
                         </div>
                     ";
                 echo "
-                        <div class='row gtr-uniform'>
+                        <div class='row'>
                             <div class='col-6 col-12-xsmall'>
                                 <h3><strong>Origin: </strong>" . $_SESSION['flightOrigin'] . "</h3>
                             </div>
@@ -66,7 +62,7 @@ $db = mysqli_connect('localhost', 'root', '', 'pars');
                         </div>
                     ";
                 echo "
-                        <div class='row gtr-uniform'>
+                        <div class='row'>
                             <div class='col-6 col-12-xsmall'>
                                 <h3><strong>Departure Date: </strong>" . $_SESSION['dateDepartOrigin'] . "</h3>
                             </div>
@@ -76,7 +72,7 @@ $db = mysqli_connect('localhost', 'root', '', 'pars');
                         </div>
                     ";
                 echo "
-                        <div class='row gtr-uniform'>
+                        <div class='row'>
                             <div class='col-6 col-12-xsmall'>
                                 <h3><strong>Departure Time: </strong>" . $_SESSION['timeDepartOrigin'] . "</h3>
                             </div>
@@ -87,9 +83,9 @@ $db = mysqli_connect('localhost', 'root', '', 'pars');
                     ";
                 echo "<p></p>";
                 echo "
-                        <div class='row gtr-uniform'>
+                        <div class='row'>
                             <div class='col-12 col-12-xsmall'>
-                                <h3><strong>Seats:</strong> " . $_SESSION['seatcount'];
+                                <h3><strong>Seats:</strong> " . count($_SESSION['seats']);
                                 echo "<br/>";
                                 foreach ($_SESSION['seats'] as $seat) {
                                     // check for seat class
@@ -119,19 +115,22 @@ $db = mysqli_connect('localhost', 'root', '', 'pars');
                                 }
                             echo "</h3></div>
                         </div>
-                        <br/>
                     ";
                 echo "<br/><hr/><br/>";
 
                 for ($i = 1; $i <= $seatcount; $i++) {
-                    if ($i == 1) {
-                        echo "
-                                <div class='col-6 col-12-xsmall'>
-                                    <h3><strong>Name: </strong>" . $_SESSION['firstName' . $i] . " " . $_SESSION['middleName' . $i] . " " . $_SESSION['lastName' . $i] . "</h3>
+
+                        echo "  <div class='row'>
+                                    <div class='col-6 col-12-xsmall'>
+                                        <h3><strong>Name: </strong>" . $_SESSION['firstName' . $i] . " " . $_SESSION['middleName' . $i] . " " . $_SESSION['lastName' . $i] . "</h3>
+                                    </div>
+                                    <div class='col-6 col-12-xsmall'>
+                                        <h3><strong>Seat: </strong>" . $_SESSION['seat' . $i] . "</h3>
+                                    </div>
                                 </div>
                             ";
                         echo "
-                                <div class='row gtr-uniform'>
+                                <div class='row'>
                                     <div class='col-6 col-12-xsmall'>
                                         <h3><strong>Gender: </strong>" . $_SESSION['gender' . $i] . "</h3>
                                     </div>
@@ -141,7 +140,7 @@ $db = mysqli_connect('localhost', 'root', '', 'pars');
                                 </div>
                             ";
                         echo "
-                                <div class='row gtr-uniform'>
+                                <div class='row'>
                                     <div class='col-6 col-12-xsmall'>
                                         <h3><strong>Age: </strong>" . $_SESSION['age' . $i] . "</h3>
                                     </div>
@@ -151,7 +150,7 @@ $db = mysqli_connect('localhost', 'root', '', 'pars');
                                 </div>
                             ";
                         echo "
-                                <div class='row gtr-uniform'>
+                                <div class='row'>
                                     <div class='col-6 col-12-xsmall'>
                                         <h3><strong>Email: </strong>" . $_SESSION['email' . $i] . "</h3>
                                     </div>
@@ -162,7 +161,7 @@ $db = mysqli_connect('localhost', 'root', '', 'pars');
                             ";
 
                         echo "
-                                <div class='row gtr-uniform'>
+                                <div class='row'>
                                     <div class='col-6 col-12-xsmall'>
                                         <h3><strong>Passenger Type: </strong>" . $_SESSION['type' . $i] . "</h3>
                                     </div>
@@ -172,76 +171,34 @@ $db = mysqli_connect('localhost', 'root', '', 'pars');
                                 </div>
                             ";
                         echo "
-                                <div class='row gtr-uniform'>
+                                <div class='row'>
                                     <div class='col-12 col-12-xsmall'>
                                         <h3><strong>Remarks: </strong>" . $_SESSION['remarks' . $i] . "</h3>
                                     </div>
                                 </div>
                             ";
-                    } else { // START OF PASSENGER
-                        echo "
-                                <div class='col-6 col-12-xsmall'>
-                                    <h3><strong>Name: </strong>" . $_SESSION['firstName' . $i] . " " . $_SESSION['middleName' . $i] . " " . $_SESSION['lastName' . $i] . "</h3>
-                                </div>
-                            ";
-                        echo "
-                                <div class='row gtr-uniform'>
-                                    <div class='col-6 col-12-xsmall'>
-                                        <h3><strong>Gender: </strong>" . $_SESSION['gender' . $i] . "</h3>
-                                    </div>
-                                    <div class='col-6 col-12-xsmall'>
-                                        <h3><strong>Nationality: </strong>" . $_SESSION['nationality' . $i] . "</h3>
-                                    </div>
-                                </div>
-                            ";
-                        echo "
-                                <div class='row gtr-uniform'>
-                                    <div class='col-6 col-12-xsmall'>
-                                        <h3><strong>Age: </strong>" . $_SESSION['age' . $i] . "</h3>
-                                    </div>
-                                    <div class='col-6 col-12-xsmall'>
-                                        <h3><strong>Birthdate: </strong>" . $_SESSION['birthday' . $i] . "</h3>
-                                    </div>
-                                </div>
-                            ";
-                        echo "
-                                <div class='row gtr-uniform'>
-                                    <div class='col-6 col-12-xsmall'>
-                                        <h3><strong>Email: </strong>" . $_SESSION['email' . $i] . "</h3>
-                                    </div>
-                                    <div class='col-6 col-12-xsmall'>
-                                        <h3><strong>Contact Number: </strong>" . $_SESSION['contactNum' . $i] . "</h3>
-                                    </div>
-                                </div>
-                            ";
-
-                        echo "
-                                <div class='row gtr-uniform'>
-                                    <div class='col-6 col-12-xsmall'>
-                                        <h3><strong>Passenger Type: </strong>" . $_SESSION['type' . $i] . "</h3>
-                                    </div>
-                                    <div class='col-6 col-12-xsmall'>
-                                        <h3><strong>SSR: </strong>" . $_SESSION['ssr' . $i] . "</h3>
-                                    </div>
-                                </div>
-                            ";
-                        echo "
-                                <div class='row gtr-uniform'>
-                                    <div class='col-12 col-12-xsmall'>
-                                        <h3><strong>Remarks: </strong>" . $_SESSION['remarks' . $i] . "</h3>
-                                    </div>
-                                </div>
-                            ";
-                    }
+                    
                     if ($i < $seatcount) {
                         echo "<br/><hr/><br/>";
                     }
                 }
                 ?>
-                <p></p>
-                <form method='post' action='confirmation'>
-                    <input type='submit' class='button primary fit' name='exeConfirm' value='CONFIRM' />
-                </form>
+                <p><br></p>
+                <div class='row gtr-uniform'>
+                    <div class='col-12 col-12-xsmall'>
+                        <ul class='actions fit'>
+                            <li><a href='pnr.php?passenger=<?php echo $_SESSION['seatcount']; ?>' class='button fit'>MAKE CHANGES</a></li>
+                        </ul>
+                    </div>                    
+                </div>
+                <br>
+                <div class='row gtr-uniform'>
+                    <div class='col-12 col-12-xsmall'>
+                        <form method='post' action='confirmation'>
+                            <input type='submit' class='button primary fit' name='exeConfirm' value='CONFIRM' />
+                        </form>
+                    </div>
+                </div>
             </section>
 
         </div>
@@ -264,19 +221,18 @@ $db = mysqli_connect('localhost', 'root', '', 'pars');
 
     <?php
     function insertBooking(int $clientID, int $seatcount) {
-        // $db = mysqli_connect('localhost', 'root', '', 'pars');
+        
         $insertBookingQuery = "INSERT INTO booking (clientID, flightNumber, Origin, Destination, NumOfSeats, addDate, addTime, user) VALUES ('" .  $clientID . "', '" .
             $_SESSION['selectedFlightNum'] . "', '" .
             $_SESSION['flightOrigin'] . "', '" .
             $_SESSION['flightDestination'] . "', " .
-            $seatcount . ", curdate(), curtime())" . $_SESSION['user'];
+            $seatcount . ", curdate(), curtime(), '" . $_SESSION['user'] . "')";
 
         mysqli_query($GLOBALS['db'], $insertBookingQuery);
     }
 
-    function insertFlightSeat(int $clientID, int $seatcount) {
-        foreach ($_SESSION['seats'] as $seat) {
-            // check for seat class
+    function seatClassCheck($seat) {
+        if (!empty($seat)) {
             if (in_array($seat, $_SESSION['a320j'], true)) {
                 $seatClass = 'J';
             }
@@ -295,15 +251,8 @@ $db = mysqli_connect('localhost', 'root', '', 'pars');
             elseif (in_array($seat, $_SESSION['a330y'], true)) {
                 $seatClass = 'Y';
             }
-            
-            $insertFlightSeatQuery = "INSERT INTO flight_seat (clientID, flightNumber, SeatClass, SeatNumber) VALUES ('" .
-                $_SESSION['clientID'] . "', '" .
-                $_SESSION['selectedFlightNum'] . "', '" .
-                $seatClass . "', '" .
-                $seat
-                . "') ";
-
-            mysqli_query($GLOBALS['db'], $insertFlightSeatQuery);
+    
+            return $seatClass;
         }
     }
 
@@ -316,34 +265,49 @@ $db = mysqli_connect('localhost', 'root', '', 'pars');
                 $updatePNRQuery = "UPDATE pnr SET 
                     Age = " . $_SESSION['age' . $j] . ", 
                     Email = '" . $_SESSION['email' . $j] . "', 
-                    ContactNum = '" . $_SESSION['remarks' . $j] . "' 
+                    ContactNum = '" . $_SESSION['contactNum' . $j] . "' 
                     WHERE ID = " . $_SESSION['passengerID' .$j] . " AND user = '" . $_SESSION['user'] ."'";
                 mysqli_query($db, $updatePNRQuery);
 
-                $updatePNRFlightQuery = "UPDATE pnr_flight SET 
-                    Type = '" . $_SESSION['type' . $j] . "', 
-                    ssr = '" . $_SESSION['ssr' . $j] . "', 
-                    remarks = '" . $_SESSION['remarks' . $j] . "' 
-                    WHERE flightNumber = '" . $_SESSION['selectedFlightNum'] . "' AND ID = " . $_SESSION['passengerID' .$j] . " AND user ='" . $_SESSION['user'] . "'";
-                mysqli_query($db, $updatePNRFlightQuery);
+                if ( !empty($_SESSION['type' . $j]) || !empty($_SESSION['ssr' . $j]) || !empty($_SESSION['remarks' . $j]) ) {
+                    // check if pnr_flight exists with same ID and user
+                    $selectIDquery = "SELECT ID FROM pnr_flight WHERE 
+                        ID = " . $_SESSION['passengerID' . $j]
+                        . " AND flightNumber = '" . $_SESSION['selectedFlightNum']
+                        . "' AND user = '" . $_SESSION['user'] . "'";
+                    $selectIDResult = mysqli_query($db, $selectIDquery);
+                    
+                    if ($selectIDResult) { // if pnr_flight record exists, execute the ff:
+                        $updatePNRFlightQuery = "UPDATE pnr_flight SET 
+                            Type = '" . $_SESSION['type' . $j] . "', 
+                            ssr = '" . $_SESSION['ssr' . $j] . "', 
+                            remarks = '" . $_SESSION['remarks' . $j] . "' 
+                            WHERE (flightNumber = '" . $_SESSION['selectedFlightNum'] . "') AND (ID = " . $_SESSION['passengerID' .$j] . ") AND (user ='" . $_SESSION['user'] . "')";
+                        mysqli_query($db, $updatePNRFlightQuery);    
+                    }
+                    else { // if record doesnt exist
+                        $insertPNRFlightQuery = "INSERT INTO pnr_flight (ID, flightNumber, Type, ssr, remarks, user) VALUES (" .
+                            $_SESSION['passengerID' . $j] . ", '" .
+                            $_SESSION['selectedFlightNum'] . "', '" .
+                            $_SESSION['type' . $j] . "', '" .
+                            $_SESSION['ssr' . $j] . "', '" .
+                            $_SESSION['remarks' . $j] . "', '" .
+                            $_SESSION['user'] . "')";
+                        mysqli_query($db, $insertPNRFlightQuery);
+                    }
+                }
 
-                $insertSeatQuery = "INSERT INTO flight_seat (clientID, flightNumber, SeatClass, Seat) VALUES ('" .
-                    $_SESSION['passengerID'] . "', '" .
-                    $_SESSION['selectedFlightNum'] . "', '" .
-                    $seatClass . "', '" .
-                    $_SESSION['seat'] . "'";
-
-            } else {                    
+            } else {
                 $insertPNRQuery = "INSERT INTO pnr (FirstName, MiddleName, LastName, Gender, Nationality, Age, Birthday, Email, ContactNum, addDate, addTime, user) VALUES ('" .
                     $_SESSION['firstName' . $j] . "', '" .
                     $_SESSION['middleName' . $j] . "', '" .
                     $_SESSION['lastName' . $j] . "', '" .
                     $_SESSION['gender' . $j] . "', '" .
-                    $_SESSION['nationality' . $j] . "', '" .
-                    $_SESSION['age' . $j] . "', '" .
+                    $_SESSION['nationality' . $j] . "', " .
+                    $_SESSION['age' . $j] . ", '" .
                     $_SESSION['birthday' . $j] . "', '" .
                     $_SESSION['email' . $j] . "', '" .
-                    $_SESSION['contactNum' . $j] . "', curdate(), curtime()) " . $_SESSION['user'];
+                    $_SESSION['contactNum' . $j] . "', curdate(), curtime(), '" . $_SESSION['user'] . "')";
                 mysqli_query($db, $insertPNRQuery);
 
                 $selectIDquery = "SELECT ID FROM pnr WHERE 
@@ -352,8 +316,8 @@ $db = mysqli_connect('localhost', 'root', '', 'pars');
                     . "' AND LastName = '" . $_SESSION['lastName' . $j]
                     . "' AND Gender = '" . $_SESSION['gender' . $j]
                     . "' AND Nationality = '" . $_SESSION['nationality' . $j]
-                    . "' AND Age = '" . $_SESSION['age' . $j]
-                    . "' AND Birthday = '" . $_SESSION['birthday' . $j]
+                    . "' AND Age = " . $_SESSION['age' . $j]
+                    . " AND Birthday = '" . $_SESSION['birthday' . $j]
                     . "' AND Email = '" . $_SESSION['email' . $j]
                     . "' AND ContactNum = '" . $_SESSION['contactNum' . $j]
                     . "'";
@@ -362,18 +326,48 @@ $db = mysqli_connect('localhost', 'root', '', 'pars');
                 $ID = mysqli_fetch_assoc($ID);
                 $_SESSION['passengerID' . $j] = intval($ID['ID']);
 
-                $insertPNRFlightQuery = "INSERT INTO pnr_flight (ID, flightNumber, Type, ssr, remarks, user) VALUES ('" .
-                    $_SESSION['passengerID' . $j] . "', '" .
+                $insertPNRFlightQuery = "INSERT INTO pnr_flight (ID, flightNumber, Type, ssr, remarks, user) VALUES (" .
+                    $_SESSION['passengerID' . $j] . ", '" .
                     $_SESSION['selectedFlightNum'] . "', '" .
                     $_SESSION['type' . $j] . "', '" .
                     $_SESSION['ssr' . $j] . "', '" .
                     $_SESSION['remarks' . $j] . "', '" .
-                    $_SESSION['user'] . "'";
+                    $_SESSION['user'] . "')";
                 mysqli_query($db, $insertPNRFlightQuery);
-
             }
+
+            if (!empty($_SESSION['seat' . $j])) {
+                $seatClass = seatClassCheck($_SESSION['seat' . $j]);
+            }
+            else {
+                $seatClass = '';
+            }
+
+            if ($j == 1) {
+                $insertSeatQuery = "INSERT INTO flight_seat (clientID, flightNumber, SeatClass, Seat) VALUES (" .
+                    $_SESSION['passengerID1'] . ", '" .
+                    $_SESSION['selectedFlightNum'] . "', '" .
+                    $seatClass . "', '" .
+                    $_SESSION['seat' . $j] . "')";
+            }
+            else {
+                $insertSeatQuery = "INSERT INTO flight_seat (clientID, passengerID, flightNumber, SeatClass, Seat) VALUES (" .
+                    $_SESSION['passengerID1'] . ", " .
+                    $_SESSION['passengerID' . $j] . ", '" .
+                    $_SESSION['selectedFlightNum'] . "', '" .
+                    $seatClass . "', '" .
+                    $_SESSION['seat' . $j] . "')";
+            }
+            mysqli_query($db, $insertSeatQuery);
+
+
         }
-        echo "<script> alert('Seats are now reserved!'); window.location= 'report.php#reserved'</script>";
+
+        insertBooking($_SESSION['passengerID1'], $seatcount);
+
+        unsetpnr();
+
+        // echo "<script> alert('Seats are now reserved!'); window.location= 'reservations.php#reserved'</script>";
     }
 
 

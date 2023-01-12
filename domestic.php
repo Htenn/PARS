@@ -67,9 +67,9 @@ $db = mysqli_connect("localhost", "root", "", "pars");
 							if (isset($_POST['Sbtn'])) { // Search table display
 								$Ssearch = mysqli_real_escape_string($db, $_POST['search']);
 
-								$Ssql = "SELECT * FROM flight WHERE flightNumber LIKE '%$Ssearch%' OR  Origin LIKE '%$Ssearch%' 
+								$Ssql = "SELECT * FROM flight WHERE (flightNumber LIKE '%$Ssearch%' OR  Origin LIKE '%$Ssearch%' 
 																	OR Destination LIKE '%$Ssearch%' OR dateDepartOrigin LIKE '%$Ssearch%' OR timeDepartOrigin LIKE '%$Ssearch%' 
-																	OR dateArriveDestination LIKE '%$Ssearch%' OR timeArriveDestination LIKE '%$Ssearch%' AND Type = 'D'";
+																	OR dateArriveDestination LIKE '%$Ssearch%' OR timeArriveDestination LIKE '%$Ssearch%') AND Type = 'D'";
 								$result = mysqli_query($db, $Ssql);
 								$queryResult = mysqli_num_rows($result);
 

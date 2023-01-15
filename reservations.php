@@ -1,5 +1,6 @@
 <?php
 include 'sessionstart.php';
+$db = mysqli_connect('localhost', 'root', '', 'pars');
 ?>
 <!DOCTYPE HTML>
 <!--
@@ -25,11 +26,11 @@ include 'sessionstart.php';
 
 				<!-- Header -->
 				<header id="header">
-					<h1>PCC QC Airline Reservation System</h1>
-					<p>Reports</p>
+					<h1></h1>
+					<p></p>
 				</header>
 
-				<!-- Nav -->
+				<!-- Nav 
 					<nav id="nav">
 						<ul>
 							<li><a href="#cp" class="active">Client and Passenger List</a></li>
@@ -37,11 +38,12 @@ include 'sessionstart.php';
 							<li><a href="#reserved">Reserved Seats</a></li>
 						</ul>
 					</nav>
+				-->
 
 				<!-- Main -->
 					<div id="main">
 
-						<!-- Introduction -->
+						<!-- Introduction 
 							<section id="cp" class="main">
 								<div class="spotlight">
 									<div class="content">
@@ -66,7 +68,7 @@ include 'sessionstart.php';
 												</thead>
 												<tbody>
 
-													<?php
+													< ?php
 														$db = mysqli_connect('localhost', 'root', '', 'pars');
 														$clientQuery = mysqli_query($db, "SELECT * FROM client");
 														
@@ -106,6 +108,7 @@ include 'sessionstart.php';
 									</div>
 								</div>
 							</section>
+						-->
 
 						<!-- First Section -->
 							<section id="reservations" class="main special">
@@ -117,9 +120,8 @@ include 'sessionstart.php';
 										<table class="alt">
 											<thead>
 												<tr>
-													<th>ID</th>
+													<th>Client</th>
 													<th>Flight Number</th>
-													<th>Client Name</th>
 													<th>Origin</th>
 													<th>Destination</th>
 													<th>Reserved Seats Count</th>
@@ -129,18 +131,17 @@ include 'sessionstart.php';
 											<tbody>
 												
 												<?php
-													$db = mysqli_connect('localhost', 'root', '', 'pars');
-													$bookingQuery = mysqli_query($db, "SELECT * FROM client INNER JOIN booking ON client.clientID = booking.clientID INNER JOIN flight ON booking.flightNumber = flight.flightNumber ORDER BY booking.addBookingDate DESC, booking.addBookingTime DESC");
+													$bookingQuery = mysqli_query($db, "SELECT * FROM pnr INNER JOIN booking ON pnr.ID = booking.clientID INNER JOIN flight ON booking.flightNumber = flight.flightNumber ORDER BY booking.addBookingDate DESC, booking.addBookingTime DESC");
 													
 
 													while($row = mysqli_fetch_array($bookingQuery)) {
 														echo "<tr>";
 															echo "<td>" . $row['bookingID'] . "</td>";
 															echo "<td>" . $row['flightNumber'] . "</td>";
-															echo "<td>" . $row['clientFirstName'] . " " . $row['clientMiddleName'] . " " . $row['clientLastName'] . "</td>";
-															echo "<td>" . $row['bookingOrigin'] . " " . $row['dateDepartOrigin'] . " " . $row['timeDepartOrigin'] . "</td>";
-															echo "<td>" . $row['bookingDestination'] . " " . $row['dateArriveDestination'] . " " . $row['timeArriveDestination'] . "</td>";
-															echo "<td>" . $row['bookingNumOfSeats'] . "</td>";
+															echo "<td>" . $row['FirstName'] . " " . $row['MiddleName'] . " " . $row['LastName'] . "</td>";
+															echo "<td>" . $row['Origin'] . " " . $row['dateDepartOrigin'] . " " . $row['timeDepartOrigin'] . "</td>";
+															echo "<td>" . $row['Destination'] . " " . $row['dateArriveDestination'] . " " . $row['timeArriveDestination'] . "</td>";
+															echo "<td>" . $row['NumOfSeats'] . "</td>";
 														echo "</tr>";
 													}
 													

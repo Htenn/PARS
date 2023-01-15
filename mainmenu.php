@@ -65,7 +65,7 @@ include 'unset.php';
 						<p></p>
 						<div class="col-6 col-12-medium">
 							<ul class="actions stacked">
-								<li><a href="login.php?logout=1" class="button fit">LOGOUT</a></li>
+								<li><a href="index.php?logout=1" class="button fit">LOGOUT</a></li>
 							</ul>
 						</div>
 

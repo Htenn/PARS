@@ -81,7 +81,7 @@ require 'unset.php';
 							</ul>
 							<ul class="actions stacked">
 								<li><a href="clients.php" class="button primary fit">Manage Clients</a></li>
-								<li><a href="report.php" class="button primary fit">Reports</a></li>
+								<li><a href="reservations.php" class="button primary fit">Reservations</a></li>
 							</ul>
 						</div>
 
@@ -89,7 +89,7 @@ require 'unset.php';
 						<p></p>
 						<div class="col-6 col-12-medium">
 							<ul class="actions stacked">
-								<li><a href="login.php?logout=1" class="button fit">LOGOUT</a></li>
+								<li><a href="index.php?logout=1" class="button fit">LOGOUT</a></li>
 							</ul>
 						</div>
 					</div>

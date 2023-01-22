@@ -38,7 +38,7 @@ include 'sessionstart.php';
 								<!-- Text -->
 								<!-- Form -->
 									<section>
-										<form method="post" action="add_user-config.php">
+										<form method="post" action="add_user-config">
 											<div class="row gtr-uniform">
 												<div class="col-4 col-12-xsmall">
 													<h2>First Name</h2>
@@ -54,11 +54,11 @@ include 'sessionstart.php';
 												</div>
 												<div class="col-6 col-12-xsmall">
 													<h2>Username</h2>
-													<input type="text" name="username" id="username" value="" placeholder="Username" required/>
+													<input type="text" name="newusername" id="newusername" value="" placeholder="Username" required/>
 												</div>
 												<div class="col-6 col-12-xsmall">
 													<h2>Password</h2>
-													<input type="text" name="password" id="password" value="" placeholder="Password" required/>
+													<input type="password" name="newpassword" id="newpassword" value="" placeholder="Password" required/>
 												</div>
 												<div class="col-6 col-12-xsmall">
 													<h2>Account Type</h2>

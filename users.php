@@ -1,5 +1,6 @@
 <?php
 include 'sessionstart.php';
+require 'db.php';
 ?>
 <!DOCTYPE HTML>
 
@@ -35,7 +36,7 @@ include 'sessionstart.php';
 			<!-- Introduction -->
 			<section id="choose" class="main">
 				<div class="col-2 col-12-xsmall" style="position: relative; margin-left: auto; margin: right; display: block; width: 25%;">
-					<form action="users.php#table" method="POST">
+					<form action="users#table" method="POST">
 						<input type="text" name="search" placeholder="Search" />
 						<br>
 						<button class="button primary small" name="Sbtn" type="submit">Search</button>
@@ -50,9 +51,9 @@ include 'sessionstart.php';
 					<table class="alt">
 						<thead>
 							<tr>
+								<th>Last Name</th>
 								<th>First Name</th>
 								<th>Middle Name</th>
-								<th>Last Name</th>
 								<th>Username</th>
 							</tr>
 						</thead>
@@ -61,23 +62,22 @@ include 'sessionstart.php';
 							<!-- SEARCH -->
 							<?php
 							if (isset($_POST['Sbtn'])) {
-								$conn = mysqli_connect("localhost", "root", "", "pars");
-								$Ssearch = mysqli_real_escape_string($conn, $_POST['search']);
+								$Ssearch = mysqli_real_escape_string($db, $_POST['search']);
 
 								$Ssql = "SELECT * FROM user WHERE userFirstName LIKE '%$Ssearch%' 
-																	OR userMiddleName LIKE '%$Ssearch%' OR userLastName LIKE '%$Ssearch%' OR username LIKE '%$Ssearch%' ORDER BY userFirstName";
-								$result = mysqli_query($conn, $Ssql);
+																	OR userMiddleName LIKE '%$Ssearch%' OR userLastName LIKE '%$Ssearch%' OR username LIKE '%$Ssearch%' AND userType = 'U' ORDER BY userLastName";
+								$result = mysqli_query($db, $Ssql);
 								$queryResult = mysqli_num_rows($result);
 
 								if ($queryResult > 0) {
 									while ($row = mysqli_fetch_array($result)) {
 										echo "<tr>
+																			<td>" . $row["userLastName"] . "</td>
 																			<td>" . $row["userFirstName"] . "</td>
 																			<td>" . $row["userMiddleName"] . "</td>
-																			<td>" . $row["userLastName"] . "</td>
 																			<td>" . $row["username"] . "</td>
 																			<td>" .
-											"<form action='users.php#conf' method='post'>	
+											"<form action='users#conf' method='post'>	
 																			<button class='button primary small' name='btn' type='submit' value = " . $row["userID"] . ">Select</button>" .
 											"</form>
 																			</td>
@@ -90,20 +90,19 @@ include 'sessionstart.php';
 
 
 							if (!isset($_POST['Sbtn'])) {
-								$conn = mysqli_connect("localhost", "root", "", "pars");
-								$sql = "SELECT * from user ORDER BY userFirstName";
-								$result = mysqli_query($conn, $sql);
+								$sql = "SELECT * from user WHERE userType = 'U' ORDER BY userLastName";
+								$result = mysqli_query($db, $sql);
 								$resultcheck = mysqli_num_rows($result);
 
 								if ($resultcheck > 0) {
 									while ($row = mysqli_fetch_array($result)) {
 										echo "<tr>
+																		<td>" . $row["userLastName"] . "</td>
 																		<td>" . $row["userFirstName"] . "</td>
 																		<td>" . $row["userMiddleName"] . "</td>
-																		<td>" . $row["userLastName"] . "</td>
 																		<td>" . $row["username"] . "</td>
 																		<td>" .
-											"<form action='users.php#conf' method='post'>
+											"<form action='users#conf' method='post'>
 																		<button class='button primary small' name='btn' type='submit' value = " . $row["userID"] . ">Edit</button>" .
 											"</form>
 																		</td>
@@ -125,19 +124,18 @@ include 'sessionstart.php';
 
 			<!-- First Section -->
 			<?php
-			$con = mysqli_connect("localhost", "root", "", "pars");
 			if (isset($_POST['btn'])) {
 			?>
 				<section id="conf" class="main special">
 					<div class="spotlight">
 						<div class="content">
-							<form action='users.php' method='post'>
+							<form action='users' method='post'>
 								<?php
 
 								$btn = $_POST['btn'];
 
-								$query = "SELECT * FROM user WHERE userID = $btn ";
-								$query_run = mysqli_query($con, $query);
+								$query = "SELECT * FROM user WHERE userID = $btn AND userType = 'U'";
+								$query_run = mysqli_query($db, $query);
 
 								if (mysqli_num_rows($query_run) > 0) {
 
@@ -176,15 +174,13 @@ include 'sessionstart.php';
 												<label for="password">
 													<h2>Password</h2>
 												</label>
-												<input type="text" name="password" id="password" value="" placeholder="Enter new password" required />
+												<input type="password" name="password" id="password" value="" placeholder="Enter new password" />
 											</div>
 										</div>
 
 
 							<?php
 									}
-								} else {
-									echo "no result";
 								}
 							}
 							?>
@@ -223,7 +219,6 @@ include 'sessionstart.php';
 
 		<?php
 		if (isset($_POST['save'])) {
-			$db = mysqli_connect('localhost', 'root', '', 'pars');
 			$id = mysqli_real_escape_string($db, $_POST['id']);
 			$id = intval($id);
 			$firstName = mysqli_real_escape_string($db, $_POST['firstName']);
@@ -231,22 +226,37 @@ include 'sessionstart.php';
 			$lastName = mysqli_real_escape_string($db, $_POST['lastName']);
 			$username = mysqli_real_escape_string($db, $_POST['username']);
 			$password = mysqli_real_escape_string($db, $_POST['password']);
+			$password = md5($password);
 
 			$updateQuery = "UPDATE user SET 
 					userFirstName = '" . $firstName . "',
 					userMiddleName = '" . $middleName . "',
 					userLastName = '" . $lastName . "', 
 					username = '" . $username . "', 
-					password = '" . md5($password) . "'
+					password = '" . $password . "'
 					WHERE userID = " . $id;
 
 			mysqli_query($db, $updateQuery);
 
-			echo "<script> alert('Changes has been saved!'); window.location= 'users.php'</script>";
+			$selectQuery = "SELECT userID FROM user WHERE (userFirstName = '$firstName' AND userMiddleName = '$middleName' AND userlastName = '$lastName' AND username = '$username')";
+			$selectResult = mysqli_query($db, $selectQuery);
+			$ID = mysqli_fetch_assoc($selectResult);
+			$ID = intval($ID['userID']);
+
+			$checkQuery = "SELECT userID FROM user_1stpass WHERE userID = $ID";
+			$checkResult = mysqli_query($db, $selectQuery);
+			if (mysqli_num_rows($checkResult) > 0) {
+				$passQuery = "INSERT INTO user_1stpass (userID) VALUES ($ID)";
+				mysqli_query($db, $passQuery);
+
+				echo "<script> alert('Changes has been saved!'); window.location= 'users.php'</script>";
+			}
+			else {
+				echo "<script> alert('Changes has been saved!'); window.location= 'users.php'</script>";
+			}
 		}
 
 		if (isset($_POST['delete'])) {
-			$db = mysqli_connect('localhost', 'root', '', 'pars');
 			$id = mysqli_real_escape_string($db, $_POST['id']);
 			$id = intval($id);
 

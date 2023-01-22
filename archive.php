@@ -1,6 +1,6 @@
 <?php
 include 'sessionstart.php';
-$db = mysqli_connect("localhost", "root", "", "pars");
+require 'db.php';
 ?>
 <!DOCTYPE HTML>
 
@@ -33,8 +33,8 @@ $db = mysqli_connect("localhost", "root", "", "pars");
 		<!-- Nav -->
 		<nav id="nav">
 			<ul>
-				<li><a href="#intro" class="active">Available Flights</a></li>
-				<li><a href="#first">Archive</a></li>
+				<li><a href="#avail" class="active">Available Flights</a></li>
+				<li><a href="#archive">Archive</a></li>
 			</ul>
 		</nav>
 
@@ -42,7 +42,7 @@ $db = mysqli_connect("localhost", "root", "", "pars");
 		<div id="main">
 
 			<!-- Introduction -->
-			<section id="intro" class="main">
+			<section id="avail" class="main">
 				<header class="major">
 					<h2>Available Flights</h2>
 				</header>
@@ -71,7 +71,7 @@ $db = mysqli_connect("localhost", "root", "", "pars");
 
 							if ($resultcheck > 0) {
 								while ($row = mysqli_fetch_array($result)) {
-									echo "<tr><td>" . $row["flightNumber"] . "</td><td>" . $row["flightOrigin"] . "</td><td>" . $row["flightDestination"] . "</td><td>" . $row["dateDepartOrigin"] . "</td><td>"
+									echo "<tr><td>" . $row["flightNumber"] . "</td><td>" . $row["Origin"] . "</td><td>" . $row["Destination"] . "</td><td>" . $row["dateDepartOrigin"] . "</td><td>"
 										. $row["timeDepartOrigin"] . "</td><td>" . $row["dateArriveDestination"] . "</td><td>" . $row["timeArriveDestination"] .
 										"</td><td>" .
 										"<form>" .
@@ -79,10 +79,7 @@ $db = mysqli_connect("localhost", "root", "", "pars");
 										"</form>" .
 										"</td></tr>";
 								}
-							} else {
-								echo "No results";
 							}
-							$db->close();
 
 							?>
 
@@ -132,7 +129,7 @@ $db = mysqli_connect("localhost", "root", "", "pars");
 
 
 			<!-- First Section -->
-			<section id="first" class="main special">
+			<section id="archive" class="main special">
 				<div class="spotlight">
 					<div class="content">
 						<header class="major">
@@ -163,14 +160,11 @@ $db = mysqli_connect("localhost", "root", "", "pars");
 
 									if ($resultcheck > 0) {
 										while ($row = mysqli_fetch_array($result)) {
-											echo "<tr><td>" . $row["flightNumber"] . "</td><td>" . $row["flightOrigin"] . "</td><td>" . $row["flightDestination"] . "</td><td>" . $row["dateDepartOrigin"] . "</td><td>"
+											echo "<tr><td>" . $row["flightNumber"] . "</td><td>" . $row["Origin"] . "</td><td>" . $row["Destination"] . "</td><td>" . $row["dateDepartOrigin"] . "</td><td>"
 												. $row["timeDepartOrigin"] . "</td><td>" . $row["dateArriveDestination"] . "</td><td>" . $row["timeArriveDestination"] .
 												"</td></tr>";
 										}
-									} else {
-										echo "No results";
 									}
-									$db->close();
 
 									?>
 

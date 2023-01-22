@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require 'db.php';
+    require '../../db.php';
 
     if (isset($_POST['pnrSubmit'])) {
 
@@ -22,7 +22,8 @@
             $email = mysqli_real_escape_string($db, $_POST['email' . $counter]);
             $contactnum = mysqli_real_escape_string($db, $_POST['contactNum' . $counter]);
             $passengertype = mysqli_real_escape_string($db, $_POST['passengerType' . $counter]);
-            $seat = mysqli_real_escape_string($db, $_POST['seat' . $counter]);
+            $seat1 = mysqli_real_escape_string($db, $_POST['seat1' . $counter]);
+            $seat2 = mysqli_real_escape_string($db, $_POST['seat2' . $counter]);
             $ssrA = mysqli_real_escape_string($db, $_POST['ssrA' . $counter]);
             $ssrB = mysqli_real_escape_string($db, $_POST['ssrB' . $counter]);
             $ssrC = mysqli_real_escape_string($db, $_POST['ssrC' . $counter]);
@@ -56,7 +57,8 @@
             $_SESSION['contactNum' . $counter] = $contactnum;
             $_SESSION['nationality' . $counter] = $nationality;
             $_SESSION['type' . $counter] = $passengertype;
-            $_SESSION['seat' . $counter] = $seat;
+            $_SESSION['seat1' . $counter] = $seat1;
+            $_SESSION['seat2' . $counter] = $seat2;
             $_SESSION['ssrA' . $counter] = $ssrA;
             $_SESSION['ssrB' . $counter] = $ssrB;
             $_SESSION['ssrC' . $counter] = $ssrC;

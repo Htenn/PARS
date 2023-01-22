@@ -1,10 +1,6 @@
 <?php
-include 'sessionstart.php';
-include 'unset.php';
-unsetpnr();
-require 'db.php';
+require '../../db.php';
 
-$_SESSION['maxSeatCount'] = 0;
 ?>
 <!DOCTYPE HTML>
 <!--
@@ -18,9 +14,9 @@ $_SESSION['maxSeatCount'] = 0;
 	<title>Select Seats - PARS</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="assets/css/seats.css" />
+	<link rel="stylesheet" href="../../assets/css/seats.css" />
 	<noscript>
-		<link rel="stylesheet" href="assets/css/noscript.css" />
+		<link rel="stylesheet" href="../../assets/css/noscript.css" />
 	</noscript>
 </head>
 
@@ -29,13 +25,28 @@ $_SESSION['maxSeatCount'] = 0;
 	<!-- Wrapper -->
 	<div id="wrapper">
 		<?php
-		include 'includes/menubutton.php';
+			if($_SESSION['session'] == 'A') {
+				$menu = '../../adminmenu.php';
+			} else {
+				$menu = '../../mainmenu.php';
+			}
+
+			echo "<div style='position: fixed; float: left; margin-left: 15px; margin-top: 15px; color: grey;'>
+			<ul class='actions'>
+				<li><a href=" . $menu . " class='button primary small'>Menu</a></li>
+			</ul>
+			</div>";
+			echo "<div style='position: fixed; float: left; margin-left: 15px; margin-top: 60px; color: grey;'>
+            <ul class='actions'>
+                <li><a href='seatmap.php?plane=1' class='button primary small'>Back</a></li>
+            </ul>
+            </div>";
 		?>
 
 		<!-- Header -->
 		<header id="header">
-			<h1>Seat Map</h1>
-			<p></p>
+			<h1>Seat Map for <?php echo $_SESSION['selectedFlightNum2']; ?></h1>
+			<p>Notice: Map does not update in real time.</p>
 		</header>
 
 		<!-- Main -->
@@ -45,28 +56,28 @@ $_SESSION['maxSeatCount'] = 0;
 			<section id="content" class="main">
 				<div class="container">
 					<?php
-					$_SESSION['a320j'] = array();
-					$_SESSION['a320p'] = array();
-					$_SESSION['a320y'] = array();
-					$_SESSION['a330j'] = array();
-					$_SESSION['a330p'] = array();
-					$_SESSION['a330y'] = array();
+					$_SESSION['a320j2'] = array();
+					$_SESSION['a320p2'] = array();
+					$_SESSION['a320y2'] = array();
+					$_SESSION['a330j2'] = array();
+					$_SESSION['a330p2'] = array();
+					$_SESSION['a330y2'] = array();
 
-					$selectedFlightNumber = $_SESSION["selectedFlightNum"];
+					$selectedFlightNumber = $_SESSION["selectedFlightNum2"];
 
 					$selectedFlightQuery = "SELECT AircraftModel FROM flight WHERE flightNumber = '$selectedFlightNumber' LIMIT 1";
 					
 					$selectedFlightAircraftModel = mysqli_query($db, $selectedFlightQuery);
 					$selectedFlightAircraftModel = mysqli_fetch_assoc($selectedFlightAircraftModel);
-					$_SESSION['AircraftModel'] = $selectedFlightAircraftModel['AircraftModel'];
+					$_SESSION['AircraftModel2'] = $selectedFlightAircraftModel['AircraftModel'];
 
-					echo "<h1>" . $_SESSION['AircraftModel'] . "</h1><p></p>";
+					echo "<h1>" . $_SESSION['AircraftModel2'] . "</h1><p></p>";
 
 					# query to check the availability of a seat
 					$seatCheckQuery = "SELECT * from flight_seat WHERE flightNumber = '$selectedFlightNumber'";
 					$seatCheck = mysqli_query($db, $seatCheckQuery);
 
-					switch ($_SESSION['AircraftModel']) {
+					switch ($_SESSION['AircraftModel2']) {
 						case 'A320':
 							# business class
 							echo "<h2>Business</h2>";
@@ -76,7 +87,7 @@ $_SESSION['maxSeatCount'] = 0;
 								for ($row = 1; $row <= 3; $row++) {
 									$seatNumber = $column . $row;
 
-									array_push($_SESSION['a320j'], $seatNumber);
+									array_push($_SESSION['a320j2'], $seatNumber);
 
 									$seatSold = false;
 
@@ -102,7 +113,7 @@ $_SESSION['maxSeatCount'] = 0;
 								for ($row = 1; $row <= 3; $row++) {
 									$seatNumber = $column . $row;
 
-									array_push($_SESSION['a320j'], $seatNumber);
+									array_push($_SESSION['a320j2'], $seatNumber);
 
 									$seatSold = false;
 
@@ -130,7 +141,7 @@ $_SESSION['maxSeatCount'] = 0;
 								for ($row = 7; $row <= 8; $row++) {
 									$seatNumber = $column . $row;
 
-									array_push($_SESSION['a320p'], $seatNumber);
+									array_push($_SESSION['a320p2'], $seatNumber);
 
 									$seatSold = false;
 
@@ -149,7 +160,7 @@ $_SESSION['maxSeatCount'] = 0;
 								for ($row = 10; $row <= 12; $row++) {
 									$seatNumber = $column . $row;
 
-									array_push($_SESSION['a320p'], $seatNumber);
+									array_push($_SESSION['a320p2'], $seatNumber);
 
 									$seatSold = false;
 
@@ -168,7 +179,7 @@ $_SESSION['maxSeatCount'] = 0;
 								for ($row = 20; $row <= 21; $row++) {
 									$seatNumber = $column . $row;
 
-									array_push($_SESSION['a320p'], $seatNumber);
+									array_push($_SESSION['a320p2'], $seatNumber);
 
 									$seatSold = false;
 
@@ -199,7 +210,7 @@ $_SESSION['maxSeatCount'] = 0;
 								for ($row = 22; $row <= 38; $row++) {
 									$seatNumber = $column . $row;
 
-									array_push($_SESSION['a320y'], $seatNumber);
+									array_push($_SESSION['a320y2'], $seatNumber);
 
 									$seatSold = false;
 
@@ -233,7 +244,7 @@ $_SESSION['maxSeatCount'] = 0;
 								for ($row = 1; $row <= 5; $row++) {
 									$seatNumber = $column . $row;
 
-									array_push($_SESSION['a330j'], $seatNumber);
+									array_push($_SESSION['a330j2'], $seatNumber);
 
 									$seatSold = false;
 
@@ -266,7 +277,7 @@ $_SESSION['maxSeatCount'] = 0;
 								for ($row = 21; $row <= 23; $row++) {
 									$seatNumber = $column . $row;
 
-									array_push($_SESSION['a330p'], $seatNumber);
+									array_push($_SESSION['a330p2'], $seatNumber);
 
 									$seatSold = false;
 
@@ -299,7 +310,7 @@ $_SESSION['maxSeatCount'] = 0;
 								for ($row = 31; $row <= 47; $row++) {
 									$seatNumber = $column . $row;
 
-									array_push($_SESSION['a330y'], $seatNumber);
+									array_push($_SESSION['a330y2'], $seatNumber);
 
 									$seatSold = false;
 
@@ -318,7 +329,7 @@ $_SESSION['maxSeatCount'] = 0;
 								for ($row = 51; $row <= 62; $row++) {
 									$seatNumber = $column . $row;
 
-									array_push($_SESSION['a330y'], $seatNumber);
+									array_push($_SESSION['a330y2'], $seatNumber);
 
 									$seatSold = false;
 
@@ -348,7 +359,7 @@ $_SESSION['maxSeatCount'] = 0;
 								for ($row = 63; $row <= 67; $row++) {
 									$seatNumber = $column . $row;
 
-									array_push($_SESSION['a330j'], $seatNumber);
+									array_push($_SESSION['a330j2'], $seatNumber);
 
 									$seatSold = false;
 
@@ -376,8 +387,8 @@ $_SESSION['maxSeatCount'] = 0;
 				</div>
 
 				<p></p>
-				<form id="inviForm" action="pnr" method="POST">
-					<input type="hidden" id="str" name="str" value="" />
+				<form id="inviForm" action="seatmapget" method="POST">
+					<input type="hidden" id="str2" name="str2" value="" />
 					<input type="submit" class="button primary fit" id="btn" name="submit" value="Continue" />
 				</form>
 
@@ -394,13 +405,13 @@ $_SESSION['maxSeatCount'] = 0;
 
 	<!-- Scripts
 			<script src="selectSeatsScript.js"></script>-->
-	<script src="assets/js/jquery.min.js"></script>
-	<script src="assets/js/jquery.scrollex.min.js"></script>
-	<script src="assets/js/jquery.scrolly.min.js"></script>
-	<script src="assets/js/browser.min.js"></script>
-	<script src="assets/js/breakpoints.min.js"></script>
-	<script src="assets/js/util.js"></script>
-	<script src="assets/js/main.js"></script>
+	<script src="../../assets/js/jquery.min.js"></script>
+	<script src="../../assets/js/jquery.scrollex.min.js"></script>
+	<script src="../../assets/js/jquery.scrolly.min.js"></script>
+	<script src="../../assets/js/browser.min.js"></script>
+	<script src="../../assets/js/breakpoints.min.js"></script>
+	<script src="../../assets/js/util.js"></script>
+	<script src="../../assets/js/main.js"></script>
 
 	<script language="javascript" type="text/javascript">
 		const container = document.querySelector(".container");
@@ -469,7 +480,7 @@ $_SESSION['maxSeatCount'] = 0;
 		$(document).ready(function() {
 			$("#btn").click(function() {
 				$.post($("#inviForm").attr("action"),
-					$("#str").val(JSON.stringify(ids)),
+					$("#str2").val(JSON.stringify(ids)),
 					function(info) {
 						$("#result").html(info);
 					});

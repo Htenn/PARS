@@ -1,6 +1,6 @@
 <?php
-include 'sessionstart.php';
-include 'unset.php';
+include '../../sessionstart.php';
+include '../../unset.php';
 
 unsetpassengerID();
 
@@ -22,9 +22,9 @@ if (isset($_POST['str'])) {
     <title>Passenger Name Record - PARS</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="../../assets/css/main.css" />
     <noscript>
-        <link rel="stylesheet" href="assets/css/noscript.css" />
+        <link rel="stylesheet" href="../../assets/css/noscript.css" />
     </noscript>
 </head>
 
@@ -33,8 +33,23 @@ if (isset($_POST['str'])) {
     <!-- Wrapper -->
     <div id="wrapper">
         <?php
-        include 'includes/menubutton.php';
-        ?>
+			if($_SESSION['session'] == 'A') {
+				$menu = '../../adminmenu.php';
+			} else {
+				$menu = '../../mainmenu.php';
+			}
+
+			echo "<div style='position: fixed; float: left; margin-left: 15px; margin-top: 15px; color: grey;'>
+			<ul class='actions'>
+				<li><a href=" . $menu . " class='button primary small'>Menu</a></li>
+			</ul>
+			</div>";
+            echo "<div style='position: fixed; float: left; margin-left: 15px; margin-top: 60px; color: grey;'>
+            <ul class='actions'>
+                <li><a href='seatmap.php' class='button primary small'>Back</a></li>
+            </ul>
+            </div>";
+		?>
 
         <!-- Header -->
         <header id="header">

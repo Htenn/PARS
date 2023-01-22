@@ -1,6 +1,9 @@
 <?php
 include 'sessionstart.php';
-include 'unset.php';
+require 'unset.php';
+unsetpnr();
+unsetseats();
+unsetetc();
 ?>
 <!DOCTYPE HTML>
 <!--
@@ -11,7 +14,7 @@ include 'unset.php';
 <html>
 
 <head>
-	<title>Main Menu - PARS</title>
+	<title>Admin Menu - PARS</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="assets/css/main.css" />
@@ -29,7 +32,7 @@ include 'unset.php';
 		<header id="header" class="alt">
 			<span class="logo"><img src="images/logo.svg" alt="" /></span>
 			<h1>PCC QC Airline Reservation System</h1>
-			<h3>Main Menu</h3>
+			<h3>Welcome, <?php echo $_SESSION['user']; ?></h3>
 			<p></p>
 		</header>
 
@@ -42,33 +45,40 @@ include 'unset.php';
 					<div class="content">
 
 						<header class="major">
-							<h2>Reserve Seats</h2>
+							<h2>One-Way Trip</h2>
 						</header>
 						<div class="col-6 col-12-medium">
 							<ul class="actions fit">
-								<li><a href="domestic.php" class="button primary fit">Domestic</a></li>
-								<li><a href="international.php" class="button primary fit">International</a>
+								<li><a href="D/OW/reserve.php" class="button fit">Domestic</a></li>
+								<li><a href="I/OW/reserve.php" class="button fit">International</a>
 							</ul>
 						</div>
 
 						<header class="major">
-							<h2>Options</h2>
+							<h2>Return/Round Trip</h2>
 						</header>
 						<div class="col-6 col-12-medium">
-							<ul class="actions stacked">
-								<li><a href="clients.php" class="button primary fit">Manage Clients</a></li>
-								<li><a href="report.php" class="button primary fit">View Reports</a></li>
+							<ul class="actions fit">
+								<li><a href="D/RT/reserve.php?citypair=1" class="button fit">Domestic</a></li>
+								<li><a href="I/RT/reserve.php?citypair=1" class="button fit">International</a>
 							</ul>
 						</div>
 
-						<p></p>
-						<p></p>
+						<header class="major">
+							<h2>Reservations</h2>
+						</header>
+						<div class="col-6 col-12-medium">
+							<ul class="actions fit">
+								<li><a href="reservations/list.php" class="button fit">All Reservations</a></li>
+							</ul>
+						</div>
+
+						<p><br></p>
 						<div class="col-6 col-12-medium">
 							<ul class="actions stacked">
-								<li><a href="index.php?logout=1" class="button fit">LOGOUT</a></li>
+								<li><a href="index.php?logout=1" class="button primary fit">LOGOUT</a></li>
 							</ul>
 						</div>
-
 					</div>
 				</div>
 			</section>

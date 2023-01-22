@@ -1,6 +1,9 @@
 <?php
 include 'sessionstart.php';
 require 'unset.php';
+unsetpnr();
+unsetseats();
+unsetetc();
 ?>
 <!DOCTYPE HTML>
 <!--
@@ -29,7 +32,7 @@ require 'unset.php';
 		<header id="header" class="alt">
 			<span class="logo"><img src="images/logo.svg" alt="" /></span>
 			<h1>PCC QC Airline Reservation System</h1>
-			<h3>Admin Menu</h3>
+			<h3>Welcome, <?php echo $_SESSION['user']; ?></h3>
 			<p></p>
 		</header>
 
@@ -46,8 +49,8 @@ require 'unset.php';
 						</header>
 						<div class="col-6 col-12-medium">
 							<ul class="actions fit">
-								<li><a href="domestic.php" class="button primary fit">Domestic</a></li>
-								<li><a href="international.php" class="button primary fit">International</a>
+								<li><a href="D/OW/reserve.php" class="button fit">Domestic</a></li>
+								<li><a href="I/OW/reserve.php" class="button fit">International</a>
 							</ul>
 						</div>
 
@@ -56,8 +59,18 @@ require 'unset.php';
 						</header>
 						<div class="col-6 col-12-medium">
 							<ul class="actions fit">
-								<li><a href="domestic.php" class="button primary fit">Domestic</a></li>
-								<li><a href="international.php" class="button primary fit">International</a>
+								<li><a href="D/RT/reserve.php?citypair=1" class="button fit">Domestic</a></li>
+								<li><a href="I/RT/reserve.php?citypair=1" class="button fit">International</a>
+							</ul>
+						</div>
+
+						<header class="major">
+							<h2>Reservations</h2>
+						</header>
+						<div class="col-6 col-12-medium">
+							<ul class="actions fit">
+								<li><a href="reservations/userlist.php" class="button fit">Per User Reservations</a></li>
+								<li><a href="reservations/adminlist.php" class="button fit">All Reservations</a></li>
 							</ul>
 						</div>
 
@@ -65,31 +78,26 @@ require 'unset.php';
 							<h2>Manage Flights</h2>
 						</header>
 						<div class="col-6 col-12-medium">
-							<ul class="actions stacked">
-								<li><a href="addflight.php" class="button primary fit">Add Flights</a></li>
-								<li><a href="archive.php" class="button primary fit">Archive Flights</a></li>
+							<ul class="actions fit">
+								<li><a href="addflight.php" class="button fit">Add Flight</a></li>
+								<li><a href="archive.php" class="button fit">Archive Flight</a></li>
 							</ul>
 						</div>
 
 						<header class="major">
-							<h2>Options</h2>
+							<h2>Users</h2>
 						</header>
 						<div class="col-6 col-12-medium">
 							<ul class="actions fit">
-								<li><a href="adduser.php" class="button primary fit">Add User</a></li>
-								<li><a href="users.php" class="button primary fit">Manage Users</a></li>
-							</ul>
-							<ul class="actions stacked">
-								<li><a href="clients.php" class="button primary fit">Manage Clients</a></li>
-								<li><a href="reservations.php" class="button primary fit">Reservations</a></li>
+								<li><a href="adduser.php" class="button fit">Add User</a></li>
+								<li><a href="users.php" class="button fit">Manage User</a></li>
 							</ul>
 						</div>
 
-						<p></p>
-						<p></p>
+						<p><br></p>
 						<div class="col-6 col-12-medium">
 							<ul class="actions stacked">
-								<li><a href="index.php?logout=1" class="button fit">LOGOUT</a></li>
+								<li><a href="index.php?logout=1" class="button primary fit">LOGOUT</a></li>
 							</ul>
 						</div>
 					</div>

@@ -1,9 +1,9 @@
 <?php
-include 'sessionstart.php';
-include 'unset.php';
+include '../../sessionstart.php';
+include '../../unset.php';
 date_default_timezone_set("Asia/Manila");
 
-$db = mysqli_connect('localhost', 'root', '', 'pars');
+require '../../db.php';
 ?>
 
 <!DOCTYPE HTML>
@@ -18,9 +18,9 @@ $db = mysqli_connect('localhost', 'root', '', 'pars');
     <title>Confirmation - PARS</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="../../assets/css/main.css" />
     <noscript>
-        <link rel="stylesheet" href="assets/css/noscript.css" />
+        <link rel="stylesheet" href="../../assets/css/noscript.css" />
     </noscript>
 </head>
 
@@ -29,8 +29,18 @@ $db = mysqli_connect('localhost', 'root', '', 'pars');
     <!-- Wrapper -->
     <div id="wrapper">
         <?php
-        include 'includes/menubutton.php';
-        ?>
+			if($_SESSION['session'] == 'A') {
+				$menu = '../../adminmenu.php';
+			} else {
+				$menu = '../../mainmenu.php';
+			}
+
+			echo "<div style='position: fixed; float: left; margin-left: 15px; margin-top: 15px; color: grey;'>
+			<ul class='actions'>
+				<li><a href=" . $menu . " class='button primary small'>Menu</a></li>
+			</ul>
+			</div>";
+		?>
 
         <!-- Header -->
         <header id="header">
@@ -215,13 +225,13 @@ $db = mysqli_connect('localhost', 'root', '', 'pars');
     </div>
 
     <!-- Scripts -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/jquery.scrollex.min.js"></script>
-    <script src="assets/js/jquery.scrolly.min.js"></script>
-    <script src="assets/js/browser.min.js"></script>
-    <script src="assets/js/breakpoints.min.js"></script>
-    <script src="assets/js/util.js"></script>
-    <script src="assets/js/main.js"></script>
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/jquery.scrollex.min.js"></script>
+    <script src="../../assets/js/jquery.scrolly.min.js"></script>
+    <script src="../../assets/js/browser.min.js"></script>
+    <script src="../../assets/js/breakpoints.min.js"></script>
+    <script src="../../assets/js/util.js"></script>
+    <script src="../../assets/js/main.js"></script>
 
     <?php
     function insertBooking(int $clientID, int $seatcount) {
@@ -344,16 +354,11 @@ $db = mysqli_connect('localhost', 'root', '', 'pars');
                 mysqli_query($db, $insertPNRFlightQuery);
             }
 
-            if (!empty($_SESSION['seat' . $j])) {
-                $seatClass = seatClassCheck($_SESSION['seat' . $j]);
-            }
-            else {
-                $seatClass = 'NULL';
+            if ($j == 1) {
+                insertBooking($_SESSION['passengerID1'], $seatcount);
             }
 
-            insertBooking($_SESSION['passengerID1'], $seatcount);
-
-            $bookingIDQuery = "SELECT * FROM booking WHERE 
+            $bookingIDQuery = "SELECT bookingID FROM booking WHERE 
                 flightNumber = '" . $_SESSION['selectedFlightNum']
                 . "' AND Origin = '" . $_SESSION['flightOrigin']
                 . "' AND Destination = '" . $_SESSION['flightDestination']
@@ -363,6 +368,13 @@ $db = mysqli_connect('localhost', 'root', '', 'pars');
             $bookingIDResult = mysqli_query($db, $bookingIDQuery);
             $bookingID = mysqli_fetch_assoc($bookingIDResult);
             $bookingID = intval($bookingID['bookingID']);
+
+            if (!empty($_SESSION['seat' . $j])) {
+                $seatClass = seatClassCheck($_SESSION['seat' . $j]);
+            }
+            else {
+                $seatClass = 'NULL';
+            }
 
             $insertSeatQuery = "INSERT INTO flight_seat (clientID, passengerID, flightNumber, SeatClass, Seat, bookingID) VALUES (" .
                 $_SESSION['passengerID1'] . ", " .
@@ -374,8 +386,10 @@ $db = mysqli_connect('localhost', 'root', '', 'pars');
         }
 
         unsetpnr();
+        unsetseats();
+        unsetetc();
 
-        echo "<script> alert('Seats are now reserved!'); window.location= 'reservations/list.php'</script>";
+        echo "<script> alert('Seats are now reserved!'); window.location= '../../reservations/list.php'</script>";
     }
 
 

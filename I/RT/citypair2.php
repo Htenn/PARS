@@ -1,18 +1,21 @@
 <?php
-include 'sessionstart.php';
-require 'db.php';
+include '../../sessionstart.php';
+require '../../db.php';
+include '../../unset.php';
+unsetpnr();
+unsetseats();
 ?>
 <!DOCTYPE HTML>
 
 <html>
 
 <head>
-	<title>Domestic Flights - PARS</title>
+	<title>International Flights City Pair 2 - PARS</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="assets/css/main.css" />
+	<link rel="stylesheet" href="../../assets/css/main.css" />
 	<noscript>
-		<link rel="stylesheet" href="assets/css/noscript.css" />
+		<link rel="stylesheet" href="../../assets/css/noscript.css" />
 	</noscript>
 </head>
 
@@ -21,7 +24,23 @@ require 'db.php';
 	<!-- Wrapper -->
 	<div id="wrapper">
 		<?php
-		include 'includes/menubutton.php';
+			if($_SESSION['session'] == 'A') {
+				$menu = '../../adminmenu.php';
+			} else {
+				$menu = '../../mainmenu.php';
+			}
+
+			echo "<div style='position: fixed; float: left; margin-left: 15px; margin-top: 15px; color: grey;'>
+			<ul class='actions'>
+				<li><a href=" . $menu . " class='button primary small'>Menu</a></li>
+			</ul>
+			</div>";
+
+			echo "<div style='position: fixed; float: left; margin-left: 15px; margin-top: 60px; color: grey;'>
+            <ul class='actions'>
+                <li><a href='reserve.php?citypair=1' class='button primary small'>Back</a></li>
+            </ul>
+            </div>";
 		?>
 
 		<!-- Header -->
@@ -36,7 +55,7 @@ require 'db.php';
 			<!-- Introduction -->
 			<section id="choose" class="main">
 				<div class="col-2 col-12-xsmall" style="position: relative; margin-left: auto; margin: right; display: block; width: 25%;">
-					<form action="domestic" method="POST">
+					<form action="citypair2" method="POST">
 						<input type="text" name="search" placeholder="Search" />
 						<br>
 						<button class="button small" name="Sbtn" type="submit">Search</button>
@@ -44,7 +63,7 @@ require 'db.php';
 				</div>
 
 				<header class="major">
-					<h2>Available Flights</h2>
+					<h2>Select City Pair 2</h2>
 				</header>
 
 				<div id='table' class="table-wrapper">
@@ -69,7 +88,7 @@ require 'db.php';
 
 								$Ssql = "SELECT * FROM flight WHERE (flightNumber LIKE '%$Ssearch%' OR  Origin LIKE '%$Ssearch%' 
 																	OR Destination LIKE '%$Ssearch%' OR dateDepartOrigin LIKE '%$Ssearch%' OR timeDepartOrigin LIKE '%$Ssearch%' 
-																	OR dateArriveDestination LIKE '%$Ssearch%' OR timeArriveDestination LIKE '%$Ssearch%') AND Type = 'D'";
+																	OR dateArriveDestination LIKE '%$Ssearch%' OR timeArriveDestination LIKE '%$Ssearch%') AND Type = 'I'";
 								$result = mysqli_query($db, $Ssql);
 								$queryResult = mysqli_num_rows($result);
 
@@ -84,7 +103,7 @@ require 'db.php';
 																			<td>" . $row["dateArriveDestination"] . "</td>
 																			<td>" . $row["timeArriveDestination"] . "</td>
 																			<td>" .
-											"<form action='domestic' method='post'>	
+											"<form action='citypair2' method='post'>	
 																			<button class='button primary small' name='btn' type='submit' value = " . $row["flightNumber"] . ">Select</button>" .
 											"</form>
 																			</td>
@@ -95,7 +114,7 @@ require 'db.php';
 
 
 							if (!isset($_POST['Sbtn'])) { // Standard table display
-								$sql = "SELECT * from flight WHERE Type = 'D'";
+								$sql = "SELECT * from flight WHERE Type = 'I'";
 								$result = mysqli_query($db, $sql);
 								$resultcheck = mysqli_num_rows($result);
 
@@ -110,7 +129,7 @@ require 'db.php';
 																		<td>" . $row["dateArriveDestination"] . "</td>
 																		<td>" . $row["timeArriveDestination"] . "</td>
 																		<td>" .
-											"<form action='domestic' method='post'>
+											"<form action='citypair2' method='post'>
 																		<button class='button primary small' name='btn' type='submit' value = " . $row["flightNumber"] . ">Select</button>" .
 											"</form>
 																		</td>
@@ -132,23 +151,23 @@ require 'db.php';
 			<?php
 			if (isset($_POST['btn'])) {
 				$btn = $_POST['btn'];
-				$_SESSION['selectedFlightNum'] = $btn;
+				$_SESSION['selectedFlightNum2'] = $btn;
 
-				$query = "SELECT * FROM flight WHERE flightNumber = '$btn' ";
+				$query = "SELECT * FROM flight WHERE flightNumber = '$btn' AND Type = 'I'";
 				$query_run = mysqli_query($db, $query);
 
 				if (mysqli_num_rows($query_run) > 0) {
 
 					foreach ($query_run as $row) {
 						// save to session variables
-						$_SESSION['flightOrigin'] = $row["Origin"];
-						$_SESSION['flightDestination'] = $row["Destination"];
-						$_SESSION['dateDepartOrigin'] = $row["dateDepartOrigin"];
-						$_SESSION['timeDepartOrigin'] = $row["timeDepartOrigin"];
-						$_SESSION['dateArriveDestination'] = $row["dateArriveDestination"];
-						$_SESSION['timeArriveDestination'] = $row["timeArriveDestination"];
+						$_SESSION['flightOrigin2'] = $row["Origin"];
+						$_SESSION['flightDestination2'] = $row["Destination"];
+						$_SESSION['dateDepartOrigin2'] = $row["dateDepartOrigin"];
+						$_SESSION['timeDepartOrigin2'] = $row["timeDepartOrigin"];
+						$_SESSION['dateArriveDestination2'] = $row["dateArriveDestination"];
+						$_SESSION['timeArriveDestination2'] = $row["timeArriveDestination"];
 					}
-					header('location: seatmap', true, 301);
+					header('location: seatmap?plane=1', true, 301);
 				}
 			}
 			?>
@@ -161,13 +180,13 @@ require 'db.php';
 		</footer>
 
 		<!-- Scripts -->
-		<script src="assets/js/jquery.min.js"></script>
-		<script src="assets/js/jquery.scrollex.min.js"></script>
-		<script src="assets/js/jquery.scrolly.min.js"></script>
-		<script src="assets/js/browser.min.js"></script>
-		<script src="assets/js/breakpoints.min.js"></script>
-		<script src="assets/js/util.js"></script>
-		<script src="assets/js/main.js"></script>
+		<script src="../../assets/js/jquery.min.js"></script>
+		<script src="../../assets/js/jquery.scrollex.min.js"></script>
+		<script src="../../assets/js/jquery.scrolly.min.js"></script>
+		<script src="../../assets/js/browser.min.js"></script>
+		<script src="../../assets/js/breakpoints.min.js"></script>
+		<script src="../../assets/js/util.js"></script>
+		<script src="../../assets/js/main.js"></script>
 		<script>
 			if (window.history.replaceState) {
 				window.history.replaceState(null, null, window.location.href);

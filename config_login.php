@@ -4,7 +4,7 @@
     $password = "";
     $errors = array();
 
-    $db = mysqli_connect("localhost", "root", "", "pars"); //connect to the database
+    require 'db.php'; //connect to the database
 
     if(isset($_POST['login'])) {
         $username = mysqli_real_escape_string($db, $_POST['username']); //collect text from the form
@@ -32,7 +32,21 @@
             else {
                 $_SESSION['session'] = 'U';
                 $_SESSION['user'] = $username;
-                header ('location: mainmenu.php'); //if the user account type is a user, redirect to the user menu.
+
+                $selectQuery = "SELECT userID FROM user WHERE (username = '$username' AND password = '$password')";
+                $selectResult = mysqli_query($db, $selectQuery);
+                $ID = mysqli_fetch_assoc($selectResult);
+                $ID = intval($ID['userID']);
+
+                $checkQuery = "SELECT userID FROM user_1stpass WHERE userID = $ID";
+                $checkResult = mysqli_query($db, $checkQuery);
+                if (mysqli_num_rows($checkResult) > 0) {
+                    $_SESSION['changepassID'] = $ID;
+                    header("location: changepassword.php");
+                }
+                else {
+                    header ('location: mainmenu.php'); //if the user account type is a user, redirect to the user menu.    
+                }
             }
         }
         else {

@@ -1,5 +1,6 @@
 <?php
 include 'sessionstart.php';
+require 'db.php';
 ?>
 <!DOCTYPE HTML>
 
@@ -65,12 +66,12 @@ include 'sessionstart.php';
 							<!-- SEARCH -->
 							<?php
 							if (isset($_POST['Sbtn'])) {
-								$conn = mysqli_connect("localhost", "root", "", "pars");
-								$Ssearch = mysqli_real_escape_string($conn, $_POST['search']);
+								
+								$Ssearch = mysqli_real_escape_string($db, $_POST['search']);
 
 								$Ssql = "SELECT * FROM client WHERE clientFirstName LIKE '%$Ssearch%' 
 																	OR clientMiddleName LIKE '%$Ssearch%' OR clientLastName LIKE '%$Ssearch%' OR clientGender LIKE '%$Ssearch%' OR clientAge LIKE '%$Ssearch%' OR clientEmail LIKE '%$Ssearch%' OR clientContactNum LIKE '%$Ssearch%' OR clientNationality LIKE '%$Ssearch%' ORDER BY clientFirstName";
-								$result = mysqli_query($conn, $Ssql);
+								$result = mysqli_query($db, $Ssql);
 								$queryResult = mysqli_num_rows($result);
 
 								if ($queryResult > 0) {
@@ -98,7 +99,7 @@ include 'sessionstart.php';
 								// PASSENGER
 								$Ssql = "SELECT * FROM passenger WHERE passengerFirstName LIKE '%$Ssearch%' 
 																	OR passengerMiddleName LIKE '%$Ssearch%' OR passengerLastName LIKE '%$Ssearch%' OR passengerGender LIKE '%$Ssearch%' OR passengerAge LIKE '%$Ssearch%' OR passengerEmail LIKE '%$Ssearch%' OR passengerContactNum LIKE '%$Ssearch%' OR passengerNationality LIKE '%$Ssearch%' ORDER BY passengerFirstName";
-								$result = mysqli_query($conn, $Ssql);
+								$result = mysqli_query($db, $Ssql);
 								$queryResult = mysqli_num_rows($result);
 
 								if ($queryResult > 0) {
@@ -127,11 +128,10 @@ include 'sessionstart.php';
 
 							// NORMAL DISPLAY TABLE
 							if (!isset($_POST['Sbtn'])) {
-								$conn = mysqli_connect("localhost", "root", "", "pars");
 
 								//clients
 								$sql = "SELECT * from client";
-								$result = mysqli_query($conn, $sql);
+								$result = mysqli_query($db, $sql);
 								$resultcheck = mysqli_num_rows($result);
 
 								if ($resultcheck > 0) {
@@ -158,7 +158,7 @@ include 'sessionstart.php';
 
 								// passengers
 								$sql = "SELECT * from passenger";
-								$result = mysqli_query($conn, $sql);
+								$result = mysqli_query($db, $sql);
 								$resultcheck = mysqli_num_rows($result);
 
 								if ($resultcheck > 0) {
@@ -195,7 +195,6 @@ include 'sessionstart.php';
 
 			<!-- First Section -->
 			<?php
-			$con = mysqli_connect("localhost", "root", "", "pars");
 			if (isset($_POST['btn'])) {
 			?>
 				<section id="conf" class="main special">
@@ -207,7 +206,7 @@ include 'sessionstart.php';
 								$btn = $_POST['btn'];
 
 								$query = "SELECT * FROM client WHERE clientID = $btn LIMIT 1";
-								$query_run = mysqli_query($con, $query);
+								$query_run = mysqli_query($db, $query);
 
 								if (mysqli_num_rows($query_run) > 0) {
 
@@ -321,7 +320,6 @@ include 'sessionstart.php';
 
 							<!--  PASSENGER  -->
 							<?php
-							$con = mysqli_connect("localhost", "root", "", "pars");
 							if (isset($_POST['pbtn'])) {
 							?>
 								<section id="conf" class="main special">
@@ -333,7 +331,7 @@ include 'sessionstart.php';
 												$btn = $_POST['pbtn'];
 
 												$query = "SELECT * FROM passenger WHERE passengerID = $btn LIMIT 1";
-												$query_run = mysqli_query($con, $query);
+												$query_run = mysqli_query($db, $query);
 
 												if (mysqli_num_rows($query_run) > 0) {
 

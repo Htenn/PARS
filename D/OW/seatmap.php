@@ -1,8 +1,9 @@
 <?php
-include 'sessionstart.php';
-include 'unset.php';
+include '../../sessionstart.php';
+include '../../unset.php';
 unsetpnr();
-require 'db.php';
+unsetseats();
+require '../../db.php';
 
 $_SESSION['maxSeatCount'] = 0;
 ?>
@@ -18,9 +19,9 @@ $_SESSION['maxSeatCount'] = 0;
 	<title>Select Seats - PARS</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="assets/css/seats.css" />
+	<link rel="stylesheet" href="../../assets/css/seats.css" />
 	<noscript>
-		<link rel="stylesheet" href="assets/css/noscript.css" />
+		<link rel="stylesheet" href="../../assets/css/noscript.css" />
 	</noscript>
 </head>
 
@@ -29,13 +30,29 @@ $_SESSION['maxSeatCount'] = 0;
 	<!-- Wrapper -->
 	<div id="wrapper">
 		<?php
-		include 'includes/menubutton.php';
+			if($_SESSION['session'] == 'A') {
+				$menu = '../../adminmenu.php';
+			} else {
+				$menu = '../../mainmenu.php';
+			}
+
+			echo "<div style='position: fixed; float: left; margin-left: 15px; margin-top: 15px; color: grey;'>
+			<ul class='actions'>
+				<li><a href=" . $menu . " class='button primary small'>Menu</a></li>
+			</ul>
+			</div>";
+			
+			echo "<div style='position: fixed; float: left; margin-left: 15px; margin-top: 60px; color: grey;'>
+            <ul class='actions'>
+                <li><a href='reserve.php' class='button primary small'>Back</a></li>
+            </ul>
+            </div>";
 		?>
 
 		<!-- Header -->
 		<header id="header">
 			<h1>Seat Map</h1>
-			<p></p>
+			<p>Notice: Map does not update in real time.</p>
 		</header>
 
 		<!-- Main -->
@@ -394,13 +411,13 @@ $_SESSION['maxSeatCount'] = 0;
 
 	<!-- Scripts
 			<script src="selectSeatsScript.js"></script>-->
-	<script src="assets/js/jquery.min.js"></script>
-	<script src="assets/js/jquery.scrollex.min.js"></script>
-	<script src="assets/js/jquery.scrolly.min.js"></script>
-	<script src="assets/js/browser.min.js"></script>
-	<script src="assets/js/breakpoints.min.js"></script>
-	<script src="assets/js/util.js"></script>
-	<script src="assets/js/main.js"></script>
+	<script src="../../assets/js/jquery.min.js"></script>
+	<script src="../../assets/js/jquery.scrollex.min.js"></script>
+	<script src="../../assets/js/jquery.scrolly.min.js"></script>
+	<script src="../../assets/js/browser.min.js"></script>
+	<script src="../../assets/js/breakpoints.min.js"></script>
+	<script src="../../assets/js/util.js"></script>
+	<script src="../../assets/js/main.js"></script>
 
 	<script language="javascript" type="text/javascript">
 		const container = document.querySelector(".container");

@@ -1,6 +1,10 @@
 <?php
-include 'sessionstart.php';
-require 'db.php';
+include '../../sessionstart.php';
+require '../../db.php';
+include '../../unset.php';
+unsetpnr();
+unsetseats();
+unsetetc();
 ?>
 <!DOCTYPE HTML>
 
@@ -10,9 +14,9 @@ require 'db.php';
 	<title>Domestic Flights - PARS</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="assets/css/main.css" />
+	<link rel="stylesheet" href="../../assets/css/main.css" />
 	<noscript>
-		<link rel="stylesheet" href="assets/css/noscript.css" />
+		<link rel="stylesheet" href="../../assets/css/noscript.css" />
 	</noscript>
 </head>
 
@@ -21,7 +25,17 @@ require 'db.php';
 	<!-- Wrapper -->
 	<div id="wrapper">
 		<?php
-		include 'includes/menubutton.php';
+			if($_SESSION['session'] == 'A') {
+				$menu = '../../adminmenu.php';
+			} else {
+				$menu = '../../mainmenu.php';
+			}
+
+			echo "<div style='position: fixed; float: left; margin-left: 15px; margin-top: 15px; color: grey;'>
+			<ul class='actions'>
+				<li><a href=" . $menu . " class='button primary small'>Menu</a></li>
+			</ul>
+			</div>";
 		?>
 
 		<!-- Header -->
@@ -36,7 +50,7 @@ require 'db.php';
 			<!-- Introduction -->
 			<section id="choose" class="main">
 				<div class="col-2 col-12-xsmall" style="position: relative; margin-left: auto; margin: right; display: block; width: 25%;">
-					<form action="domestic" method="POST">
+					<form action="reserve" method="POST">
 						<input type="text" name="search" placeholder="Search" />
 						<br>
 						<button class="button small" name="Sbtn" type="submit">Search</button>
@@ -84,7 +98,7 @@ require 'db.php';
 																			<td>" . $row["dateArriveDestination"] . "</td>
 																			<td>" . $row["timeArriveDestination"] . "</td>
 																			<td>" .
-											"<form action='domestic' method='post'>	
+											"<form action='reserve' method='post'>	
 																			<button class='button primary small' name='btn' type='submit' value = " . $row["flightNumber"] . ">Select</button>" .
 											"</form>
 																			</td>
@@ -110,7 +124,7 @@ require 'db.php';
 																		<td>" . $row["dateArriveDestination"] . "</td>
 																		<td>" . $row["timeArriveDestination"] . "</td>
 																		<td>" .
-											"<form action='domestic' method='post'>
+											"<form action='reserve' method='post'>
 																		<button class='button primary small' name='btn' type='submit' value = " . $row["flightNumber"] . ">Select</button>" .
 											"</form>
 																		</td>
@@ -134,7 +148,7 @@ require 'db.php';
 				$btn = $_POST['btn'];
 				$_SESSION['selectedFlightNum'] = $btn;
 
-				$query = "SELECT * FROM flight WHERE flightNumber = '$btn' ";
+				$query = "SELECT * FROM flight WHERE flightNumber = '$btn' AND Type = 'D'";
 				$query_run = mysqli_query($db, $query);
 
 				if (mysqli_num_rows($query_run) > 0) {
@@ -161,13 +175,13 @@ require 'db.php';
 		</footer>
 
 		<!-- Scripts -->
-		<script src="assets/js/jquery.min.js"></script>
-		<script src="assets/js/jquery.scrollex.min.js"></script>
-		<script src="assets/js/jquery.scrolly.min.js"></script>
-		<script src="assets/js/browser.min.js"></script>
-		<script src="assets/js/breakpoints.min.js"></script>
-		<script src="assets/js/util.js"></script>
-		<script src="assets/js/main.js"></script>
+		<script src="../../assets/js/jquery.min.js"></script>
+		<script src="../../assets/js/jquery.scrollex.min.js"></script>
+		<script src="../../assets/js/jquery.scrolly.min.js"></script>
+		<script src="../../assets/js/browser.min.js"></script>
+		<script src="../../assets/js/breakpoints.min.js"></script>
+		<script src="../../assets/js/util.js"></script>
+		<script src="../../assets/js/main.js"></script>
 		<script>
 			if (window.history.replaceState) {
 				window.history.replaceState(null, null, window.location.href);

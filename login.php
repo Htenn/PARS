@@ -47,7 +47,7 @@
 									<p><?php if($errors) {
 											echo $errors[0];
 									} ?></p>
-									<input type="submit" value="LOGIN" name="login" class="button primary fit">
+									<input type="submit" value="LOGIN" name="login" class="button fit">
 								</form>
 							</section>
 

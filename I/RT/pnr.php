@@ -1,13 +1,9 @@
 <?php
-include 'sessionstart.php';
-include 'unset.php';
+include '../../sessionstart.php';
+include '../../unset.php';
 
 unsetpassengerID();
 
-if (isset($_POST['str'])) {
-    $_SESSION['seats'] = json_decode($_POST['str'], true);
-    $_SESSION['minSeatCount'] = count($_SESSION['seats']);
-}
 ?>
 
 <!DOCTYPE HTML>
@@ -22,9 +18,9 @@ if (isset($_POST['str'])) {
     <title>Passenger Name Record - PARS</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="../../assets/css/main.css" />
     <noscript>
-        <link rel="stylesheet" href="assets/css/noscript.css" />
+        <link rel="stylesheet" href="../../assets/css/noscript.css" />
     </noscript>
 </head>
 
@@ -33,8 +29,23 @@ if (isset($_POST['str'])) {
     <!-- Wrapper -->
     <div id="wrapper">
         <?php
-        include 'includes/menubutton.php';
-        ?>
+			if($_SESSION['session'] == 'A') {
+				$menu = '../../adminmenu.php';
+			} else {
+				$menu = '../../mainmenu.php';
+			}
+
+			echo "<div style='position: fixed; float: left; margin-left: 15px; margin-top: 15px; color: grey;'>
+			<ul class='actions'>
+				<li><a href=" . $menu . " class='button primary small'>Menu</a></li>
+			</ul>
+			</div>";
+            echo "<div style='position: fixed; float: left; margin-left: 15px; margin-top: 60px; color: grey;'>
+            <ul class='actions'>
+                <li><a href='seatmap.php?plane=1' class='button primary small'>Back</a></li>
+            </ul>
+            </div>";
+		?>
 
         <!-- Header -->
         <header id="header">
@@ -49,15 +60,16 @@ if (isset($_POST['str'])) {
             <section id="content" class="main">
                 
                     <?php
-                    echo "<h2><strong>Seats selected:</strong> "; foreach($_SESSION['seats'] as $seat) { echo $seat . " ";} echo "</h2><br>";
+                    echo "<h3><strong>" . $_SESSION['selectedFlightNum1'] . " seats selected:</strong> "; foreach($_SESSION['seats1'] as $seat) { echo $seat . " ";} echo "</h3>";
+                    echo "<h3><strong>" . $_SESSION['selectedFlightNum2'] . " seats selected:</strong> "; foreach($_SESSION['seats2'] as $seat) { echo $seat . " ";} echo "</h3><br>";
 
-                    if (isset($_SESSION['seats'])) {
+                    if (isset($_SESSION['seats1'])) {
                         if (isset(($_GET['passenger']))) {
                             $_SESSION['seatcount'] = $_GET['passenger'];
                             $seatcount = $_SESSION['seatcount'];
                         }
                         else {
-                            $seatcount = count($_SESSION['seats']);
+                            $seatcount = count($_SESSION['seats1']);
                             $_SESSION['seatcount'] = $seatcount;
                         }
 
@@ -258,24 +270,52 @@ if (isset($_POST['str'])) {
                                             >INS</option> <!--Infant with a seat-->
                                         </select>
                                     </div>
+                                    <!--SEAT 1-->
                                     <div class="col-3 col-12-xsmall">
-                                        <label for="passengerType<?php echo $count; ?>">
-                                            <h2>Seat *</h2>
+                                        <label for="seat1<?php echo $count; ?>">
+                                            <h2>Seat for <?php echo $_SESSION['selectedFlightNum1']; ?> *</h2>
                                         </label>
-                                        <select name="seat<?php echo $count; ?>" id="seat">
+                                        <select name="seat1<?php echo $count; ?>" id="seat1">
                                             <option value ="NULL" 
                                             <?php 
-                                                if(!isset($_SESSION['seat' . $count])) {
+                                                if(!isset($_SESSION['seat1' . $count])) {
                                                     echo 'selected';
                                                 }
                                             ?>
                                              hidden>Select seat</option>
 
                                             <?php
-                                                foreach ($_SESSION['seats'] as $seat) {
+                                                foreach ($_SESSION['seats1'] as $seat) {
                                                     echo "<option value='$seat' ";
-                                                    if(isset($_SESSION['seat' . $count])) {
-                                                        if ($_SESSION['seat' . $count] == "$seat") {
+                                                    if(isset($_SESSION['seat1' . $count])) {
+                                                        if ($_SESSION['seat1' . $count] == "$seat") {
+                                                            echo 'selected';
+                                                        }
+                                                    }
+                                                    echo ">" . $seat . "</option>";
+                                                }
+                                            ?>
+                                        </select>
+                                    </div>
+                                    <!--SEAT 2-->
+                                    <div class="col-3 col-12-xsmall">
+                                        <label for="seat2<?php echo $count; ?>">
+                                            <h2>Seat for <?php echo $_SESSION['selectedFlightNum2']; ?> *</h2>
+                                        </label>
+                                        <select name="seat2<?php echo $count; ?>" id="seat2">
+                                            <option value ="NULL" 
+                                            <?php 
+                                                if(!isset($_SESSION['seat2' . $count])) {
+                                                    echo 'selected';
+                                                }
+                                            ?>
+                                             hidden>Select seat</option>
+
+                                            <?php
+                                                foreach ($_SESSION['seats2'] as $seat) {
+                                                    echo "<option value='$seat' ";
+                                                    if(isset($_SESSION['seat2' . $count])) {
+                                                        if ($_SESSION['seat2' . $count] == "$seat") {
                                                             echo 'selected';
                                                         }
                                                     }
@@ -726,7 +766,7 @@ if (isset($_POST['str'])) {
 
                     ?>
                     <?php
-                    if (isset($_SESSION['seats'])) {
+                    if (isset($_SESSION['seats1']) && isset($_SESSION['seats2'])) {
                     ?>
                         <p></p>
                         <div class="col-12">
@@ -749,21 +789,33 @@ if (isset($_POST['str'])) {
     </div>
 
     <!-- Scripts -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/jquery.scrollex.min.js"></script>
-    <script src="assets/js/jquery.scrolly.min.js"></script>
-    <script src="assets/js/browser.min.js"></script>
-    <script src="assets/js/breakpoints.min.js"></script>
-    <script src="assets/js/util.js"></script>
-    <script src="assets/js/main.js"></script>
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/jquery.scrollex.min.js"></script>
+    <script src="../../assets/js/jquery.scrolly.min.js"></script>
+    <script src="../../assets/js/browser.min.js"></script>
+    <script src="../../assets/js/breakpoints.min.js"></script>
+    <script src="../../assets/js/util.js"></script>
+    <script src="../../assets/js/main.js"></script>
 
     <script type="text/javascript">
-        $('select[id*="seat"]').change(function(){
-            $('select[id*="seat"] option').attr('disabled',false);
+        $('select[id*="seat1"]').change(function(){
+            $('select[id*="seat1"] option').attr('disabled',false);
 
-            $('select[id*="seat"]').each(function(){
+            $('select[id*="seat1"]').each(function(){
                 var $this = $(this);
-                $('select[id*="seat"]').not($this).find('option').each(function(){
+                $('select[id*="seat1"]').not($this).find('option').each(function(){
+                if($(this).attr('value') == $this.val())
+                    $(this).attr('disabled',true);
+                });
+            });
+
+        });
+        $('select[id*="seat2"]').change(function(){
+            $('select[id*="seat2"] option').attr('disabled',false);
+
+            $('select[id*="seat2"]').each(function(){
+                var $this = $(this);
+                $('select[id*="seat2"]').not($this).find('option').each(function(){
                 if($(this).attr('value') == $this.val())
                     $(this).attr('disabled',true);
                 });

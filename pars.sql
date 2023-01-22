@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 15, 2023 at 04:33 PM
+-- Generation Time: Jan 22, 2023 at 03:11 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -47,10 +47,8 @@ CREATE TABLE `booking` (
 --
 
 INSERT INTO `booking` (`bookingID`, `clientID`, `flightNumber`, `Origin`, `Destination`, `NumOfSeats`, `addDate`, `addTime`, `user`, `editDate`, `editTime`, `editUser`) VALUES
-(5, 9, 'PR312', 'MNL', 'HKG', 2, '2022-12-18', '14:59:48', '', NULL, NULL, ''),
-(6, 9, '5J907', 'MNL', 'CEB', 2, '2022-12-20', '12:51:07', '', NULL, NULL, ''),
-(7, 9, '5J907', 'MNL', 'CEB', 2, '2022-12-20', '14:17:31', '', NULL, NULL, ''),
-(8, 9, '5J907', 'MNL', 'CEB', 1, '2022-12-20', '15:36:47', '', NULL, NULL, '');
+(19, 35, 'PR312', 'MNL', 'HKG', 1, '2023-01-22', '21:42:34', 'admin', NULL, NULL, NULL),
+(20, 36, 'CX709', 'HKG', 'BKK', 1, '2023-01-22', '21:48:54', 'jonas', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -69,8 +67,17 @@ CREATE TABLE `bookingr` (
   `Destination2` varchar(5) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `NumOfSeats` int(5) NOT NULL,
   `addDate` date NOT NULL,
-  `addTime` time NOT NULL
+  `addTime` time NOT NULL,
+  `user` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `bookingr`
+--
+
+INSERT INTO `bookingr` (`bookingID`, `clientID`, `flightNumber1`, `flightNumber2`, `Origin1`, `Destination1`, `Origin2`, `Destination2`, `NumOfSeats`, `addDate`, `addTime`, `user`) VALUES
+(10, 33, 'PR312', 'TG621', 'MNL', 'HKG', 'MNL', 'BKK', 2, '2023-01-22', '21:18:08', 'admin'),
+(11, 37, '5J907', 'PR612', 'MNL', 'CEB', 'DVO', 'CRK', 1, '2023-01-22', '21:50:14', 'jonas');
 
 -- --------------------------------------------------------
 
@@ -109,26 +116,15 @@ INSERT INTO `flight` (`flightNumber`, `Origin`, `Destination`, `dateDepartOrigin
 
 CREATE TABLE `flightarchive` (
   `flightNumber` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `flightOrigin` varchar(5) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `flightDestination` varchar(5) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `Origin` varchar(5) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `Destination` varchar(5) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `dateDepartOrigin` date NOT NULL,
   `timeDepartOrigin` time NOT NULL,
   `dateArriveDestination` date NOT NULL,
   `timeArriveDestination` time NOT NULL,
-  `flightType` varchar(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `flightAircraftModel` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL
+  `Type` varchar(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `AircraftModel` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `flightarchive`
---
-
-INSERT INTO `flightarchive` (`flightNumber`, `flightOrigin`, `flightDestination`, `dateDepartOrigin`, `timeDepartOrigin`, `dateArriveDestination`, `timeArriveDestination`, `flightType`, `flightAircraftModel`) VALUES
-('CX709', 'HKG', 'BKK', '2022-12-05', '19:00:00', '2022-12-05', '23:30:00', 'I', 'A320'),
-('TG621', 'MNL', 'BKK', '2022-12-05', '20:30:00', '2022-12-05', '23:30:00', 'I', 'A320'),
-('CX709', 'HKG', 'BKK', '2022-12-19', '20:00:00', '2022-12-19', '23:00:00', 'I', 'A330'),
-('CX132', 'MNL', 'DVO', '2022-12-21', '15:00:00', '2022-12-21', '18:00:00', 'D', 'A320'),
-('Z2321', 'CRK', 'CEB', '2022-12-22', '18:30:00', '2022-12-22', '20:30:00', 'D', 'A320');
 
 -- --------------------------------------------------------
 
@@ -141,21 +137,24 @@ CREATE TABLE `flight_seat` (
   `passengerID` int(10) DEFAULT NULL,
   `flightNumber` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `SeatClass` varchar(5) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `Seat` varchar(5) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL
+  `Seat` varchar(5) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `bookingID` int(10) DEFAULT NULL,
+  `bookingrID` int(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `flight_seat`
 --
 
-INSERT INTO `flight_seat` (`clientID`, `passengerID`, `flightNumber`, `SeatClass`, `Seat`) VALUES
-(9, 0, 'PR312', 'J', 'G1'),
-(9, 0, 'PR312', 'J', 'D1'),
-(9, 0, '5J907', 'J', 'E1'),
-(9, 0, '5J907', 'J', 'B1'),
-(9, 0, '5J907', 'J', 'E2'),
-(9, 0, '5J907', 'J', 'B2'),
-(9, 0, '5J907', 'J', 'E2');
+INSERT INTO `flight_seat` (`clientID`, `passengerID`, `flightNumber`, `SeatClass`, `Seat`, `bookingID`, `bookingrID`) VALUES
+(33, 33, 'PR312', 'J', 'G1', NULL, 10),
+(33, 33, 'TG621', 'J', 'B1', NULL, 10),
+(33, 34, 'PR312', 'J', 'D1', NULL, 10),
+(33, 34, 'TG621', 'J', 'A1', NULL, 10),
+(35, 35, 'PR312', 'J', 'A1', 19, NULL),
+(36, 36, 'CX709', 'Y', 'C31', 20, NULL),
+(37, 37, '5J907', 'P', 'A7', NULL, 11),
+(37, 37, 'PR612', 'P', 'K23', NULL, 11);
 
 -- --------------------------------------------------------
 
@@ -197,7 +196,11 @@ CREATE TABLE `pnr` (
 --
 
 INSERT INTO `pnr` (`ID`, `FirstName`, `MiddleName`, `LastName`, `Gender`, `Birthday`, `Age`, `Email`, `ContactNum`, `Nationality`, `addDate`, `addTime`, `user`) VALUES
-(9, 'Sean', 'Uy', 'Santos', 'M', '2001-06-20', 19, 'sean@gmail.com', '09569210432', 'PHL', '2022-12-14', '17:30:06', '');
+(33, 'Kobe', 'Bean', 'Bryant', 'M', '2023-01-08', 40, 'kobe@kobe.com', '09569210432', 'USA', '2023-01-22', '21:18:08', 'admin'),
+(34, 'Kenneth', '', 'Uy', 'M', '2001-06-20', 21, 'kenneth@gmail.com', '09151792760', 'PHL', '2023-01-22', '21:18:08', 'admin'),
+(35, 'LeBron', '', 'James', 'M', '2023-01-08', 35, 'lbj@yahoo.com', '09569210432', 'USA', '2023-01-22', '21:42:34', 'admin'),
+(36, 'Damian', '', 'Lillard', 'M', '2023-01-14', 34, 'dl@hotmail.com', '09569210432', 'USA', '2023-01-22', '21:48:54', 'jonas'),
+(37, 'DeMar', '', 'DeRozan', 'M', '2023-01-01', 33, 'dr@dr.com', '09569210432', 'USA', '2023-01-22', '21:50:14', 'jonas');
 
 -- --------------------------------------------------------
 
@@ -213,6 +216,20 @@ CREATE TABLE `pnr_flight` (
   `remarks` text COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
   `user` varchar(100) COLLATE utf8mb4_unicode_520_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+
+--
+-- Dumping data for table `pnr_flight`
+--
+
+INSERT INTO `pnr_flight` (`ID`, `flightNumber`, `Type`, `ssr`, `remarks`, `user`) VALUES
+(33, 'PR312', 'ADT', '  JPML ', '', 'admin'),
+(33, 'TG621', 'ADT', '  JPML ', '', 'admin'),
+(34, 'PR312', 'ADT', '  CHML ', '', 'admin'),
+(34, 'TG621', 'ADT', '  CHML ', '', 'admin'),
+(35, 'PR312', 'ADT', '   ', '', 'admin'),
+(36, 'CX709', 'ADT', '   ', '', 'jonas'),
+(37, '5J907', 'ADT', 'DEAF  FPML ', '', 'jonas'),
+(37, 'PR612', 'ADT', 'DEAF  FPML ', '', 'jonas');
 
 -- --------------------------------------------------------
 
@@ -237,7 +254,18 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`userID`, `userFirstName`, `userMiddleName`, `userLastName`, `username`, `password`, `userType`) VALUES
 (1, '', '', '', 'admin', '21232f297a57a5a743894a0e4a801fc3', 'A'),
 (2, 'Sean', 'Uy', 'Santos', 'sean', '9b938710211168f2902f9ed4357cd05c', 'U'),
-(3, 'Jonas', '', 'Napiza', 'jonas', '9c5ddd54107734f7d18335a5245c286b', 'U');
+(4, 'Jonas', '', 'Napiza', 'jonas', '1e0a158c429c9e2564d5e12f5e960d97', 'U'),
+(5, 'Neil', '', 'Ong', 'neil', 'ddf10d41d5d840f6a7d0079028ddd3d6', 'U');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_1stpass`
+--
+
+CREATE TABLE `user_1stpass` (
+  `userID` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -315,7 +343,59 @@ INSERT INTO `user_sign_in_log` (`username`, `date`, `time`) VALUES
 ('admin', '2023-01-07', '18:49:11'),
 ('admin', '2023-01-07', '18:49:18'),
 ('admin', '2023-01-11', '17:02:33'),
-('admin', '2023-01-12', '15:21:38');
+('admin', '2023-01-12', '15:21:38'),
+('admin', '2023-01-20', '14:39:33'),
+('admin', '2023-01-20', '15:04:54'),
+('admin', '2023-01-21', '12:34:02'),
+('admin', '2023-01-21', '12:42:29'),
+('admin', '2023-01-21', '14:17:59'),
+('admin', '2023-01-21', '14:33:17'),
+('admin', '2023-01-21', '21:33:52'),
+('admin', '2023-01-21', '21:34:00'),
+('admin', '2023-01-22', '00:04:00'),
+('admin', '2023-01-22', '00:16:11'),
+('admin', '2023-01-22', '00:53:32'),
+('admin', '2023-01-22', '01:29:27'),
+('admin', '2023-01-22', '11:50:18'),
+('jonas', '2023-01-22', '11:51:17'),
+('admin', '2023-01-22', '11:51:50'),
+('jonas', '2023-01-22', '11:53:07'),
+('jonas', '2023-01-22', '11:53:23'),
+('jonas', '2023-01-22', '11:55:36'),
+('admin', '2023-01-22', '11:55:43'),
+('jonas', '2023-01-22', '11:55:50'),
+('admin', '2023-01-22', '12:02:26'),
+('jonas', '2023-01-22', '12:02:35'),
+('admin', '2023-01-22', '12:02:48'),
+('jonas', '2023-01-22', '12:03:23'),
+('admin', '2023-01-22', '12:05:21'),
+('jonas', '2023-01-22', '12:05:46'),
+('admin', '2023-01-22', '12:08:37'),
+('jonas', '2023-01-22', '12:12:21'),
+('jonas', '2023-01-22', '12:12:38'),
+('jonas', '2023-01-22', '12:12:56'),
+('admin', '2023-01-22', '12:13:01'),
+('neil', '2023-01-22', '12:13:55'),
+('neil', '2023-01-22', '12:14:05'),
+('admin', '2023-01-22', '12:14:08'),
+('admin', '2023-01-22', '15:22:36'),
+('jonas', '2023-01-22', '15:23:04'),
+('jonas', '2023-01-22', '15:23:19'),
+('jonas', '2023-01-22', '15:23:37'),
+('admin', '2023-01-22', '15:23:39'),
+('jonas', '2023-01-22', '15:24:26'),
+('admin', '2023-01-22', '15:24:39'),
+('admin', '2023-01-22', '17:19:08'),
+('admin', '2023-01-22', '17:42:02'),
+('admin', '2023-01-22', '18:12:02'),
+('admin', '2023-01-22', '18:44:44'),
+('admin', '2023-01-22', '18:51:20'),
+('admin', '2023-01-22', '19:20:21'),
+('admin', '2023-01-22', '21:14:01'),
+('jonas', '2023-01-22', '21:43:45'),
+('jonas', '2023-01-22', '21:43:56'),
+('admin', '2023-01-22', '21:50:25'),
+('admin', '2023-01-22', '21:57:55');
 
 --
 -- Indexes for dumped tables
@@ -367,25 +447,25 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `bookingID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `bookingID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `bookingr`
 --
 ALTER TABLE `bookingr`
-  MODIFY `bookingID` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `bookingID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `pnr`
 --
 ALTER TABLE `pnr`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `userID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `userID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

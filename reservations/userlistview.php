@@ -18,7 +18,7 @@ if (isset($_GET['view'])) {
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="../assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>\
+		<noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
 		<link rel="icon" href="../images/favicon.png">
 	</head>
 	<body class="is-preload">
@@ -95,6 +95,7 @@ if (isset($_GET['view'])) {
 															echo "<td>
 																<form action='ow' method='get'>
 																<div>
+																	<input type='hidden' name='userID' value='$userID' />
 																	<button class='button primary fit small' name='view' type='submit' value = " . $row['bookingID'] . ">View</button>
 																</div>
 																</form>

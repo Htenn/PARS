@@ -31,10 +31,18 @@ require '../db.php';
         <?php
             if($_SESSION['session'] == 'A') {
                 $menu = '../adminmenu.php';
-                $back = 'adminlist.php';
+                if (isset($_GET['userID'])) {
+                    $back = 'userlistview.php?view=' . $_GET['userID'];
+                } else {
+                    $back = 'adminlist.php';
+                }
             } else {
                 $menu = '../mainmenu.php';
-                $back = 'list.php';
+                if (isset($_GET['userlist'])) {
+                    $back = 'userlist.php';
+                } else {
+                    $back = 'list.php';
+                }
             }
 
             echo "<div style='position: fixed; float: left; margin-left: 15px; margin-top: 15px; color: grey;'>

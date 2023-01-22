@@ -26,6 +26,7 @@ if (isset($_POST['str'])) {
     <noscript>
         <link rel="stylesheet" href="assets/css/noscript.css" />
     </noscript>
+    <link rel="icon" href="images/favicon.png">
 </head>
 
 <body class="is-preload">

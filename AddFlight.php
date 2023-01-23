@@ -39,7 +39,7 @@ include 'includes/AddingData.php';
 				<div class="spotlight">
 					<div class="content">
 
-						<form action="addflight.php" method="POST">
+						<form action="addflight" method="POST">
 
 							<div class="row gtr-uniform">
 

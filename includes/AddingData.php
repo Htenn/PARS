@@ -12,15 +12,15 @@
     $flightTypeN = $_POST['flightTypeN'];
     $AircraftModelN = $_POST['AircraftModelN'];
     
-    $flightNumberNsql = "SELECT * FROM flight WHERE flightNumber = '$flightNumberN' AND flightAircraftModel = '$AircraftModelN'";
+    $flightNumberNsql = "SELECT * FROM flight WHERE flightNumber = '$flightNumberN' AND AircraftModel = '$AircraftModelN'";
 
     $query = mysqli_query($db, $flightNumberNsql);
     if(mysqli_num_rows($query) > 0) {
         echo "<script> alert('Flight already exists!'); window.location= 'addflight.php'</script>";
     } else {
 
-    $sql = "INSERT INTO flight (flightNumber, flightOrigin, flightDestination, dateDepartOrigin, timeDepartOrigin, 
-    dateArriveDestination, timeArriveDestination, flightType, flightAircraftModel)
+    $sql = "INSERT INTO flight (flightNumber, Origin, Destination, dateDepartOrigin, timeDepartOrigin, 
+    dateArriveDestination, timeArriveDestination, Type, AircraftModel)
     VALUES ('$flightNumberN', '$flightOriginN', '$flightDestinationN', '$dateDepartOriginN', '$timeDepartOriginN',
      '$dateArriveDestinationN', '$timeArriveDestinationN', '$flightTypeN', '$AircraftModelN')";
 

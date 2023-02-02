@@ -28,7 +28,7 @@
     }
 
     function unsetseats() {
-        $pnrFieldsArray = array('seats', 'seats1', 'seats2', 'seatcount', 'minSeatCount','a320j', 'a320p', 'a320y', 'a330j', 'a330p', 'a330y', 'a320j1', 'a320p1', 'a320y1', 'a330j1', 'a330p1', 'a330y1', 'a320j2', 'a320p2', 'a320y2', 'a330j2', 'a330p2', 'a330y2');
+        $pnrFieldsArray = array('seats', 'seats1', 'seats2', 'seatcount', 'minSeatCount', 'minSeatCount1', 'minSeatCount2', 'a320j', 'a320p', 'a320y', 'a330j', 'a330p', 'a330y', 'a320j1', 'a320p1', 'a320y1', 'a330j1', 'a330p1', 'a330y1', 'a320j2', 'a320p2', 'a320y2', 'a330j2', 'a330p2', 'a330y2');
         foreach ($pnrFieldsArray as $items) {
             if (isset($_SESSION["$items"]))
             unset($_SESSION["$items"]);
